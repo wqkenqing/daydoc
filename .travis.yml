@@ -1,0 +1,64 @@
+language: node_js
+
+# node_js: stable
+node_js:
+  - 7.9.0
+cache:
+    apt: true
+    directories:
+        - node_modules
+
+notifications:
+    email:
+        recipients:
+            - wqkenqingto@126.com
+        on_success: change
+        on_failure: always
+
+before_install:
+    - export TZ='Asia/Shanghai'
+    - npm install hexo-generator-searchdb --save
+    - npm install hexo-generator-search --save
+    - npm install -g hexo
+
+    # - npm install hexo-cli -g
+    # - chmod +x ./publish-to-gh-pages.sh
+    #    - git clone -b dev https://github.com/Molunerfinn/hexo-theme-melody themes/melody
+
+
+install:
+    - npm install
+    - npm install hexo-cli -g
+    - npm install hexo --save
+# - npm install
+      #- npm install hexo-renderer-jade hexo-renderer-stylus --save # medoly 主题需要的插件
+      #- npm install hexo-deployer-git --save # git 部署
+      #- npm install hexo-generator-feed # RSS generate
+
+script:
+    - hexo clean
+    - hexo g
+    # - sed -i "s/gh_token/${REPO_TOKEN}/g" ./_config.yml
+    # - hexo d
+
+
+after_script:
+      # - hexo deploy
+      - cd ./public
+      - git init
+      - git config user.name "wqkenqing"
+      - git config user.email "wqkenqingto@163.com"
+      - git add .
+      - git commit -m "Update docs"
+      - git push --force --quiet "https://${REPO_TOKEN}@${GH_REF}" master:master
+
+branches:
+    only:
+        - hexo
+
+env:
+    global:
+        # Github Pages
+        - GH_REF: github.com/wqkenqing/daydoc.git
+        # Coding Pages
+        # - CD_REF: git.coding.net/Leafney/Leafney.coding.me.git

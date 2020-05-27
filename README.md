@@ -1,2 +1,2 @@
-# daydoc
-daydoc
+# wqkenqing.github.io
+hexo博客使用

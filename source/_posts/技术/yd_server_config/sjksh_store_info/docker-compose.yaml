@@ -1,0 +1,19 @@
+version: '2.4'
+services:
+  sjksh-store-info:
+    image: registry.lisong.pub:28500/hy/hy-sjksh-info-v1.5
+    container_name: hy-sjksh-info
+    cpus: 4
+    mem_limit: 2g
+    restart: unless-stopped
+    extra_hosts:
+      - "data1:10.103.22.40"
+      - "data2:10.103.22.64"
+      - "data3:10.103.22.65"
+      - "app1:10.103.22.66"
+      - "app2:10.103.22.67"
+      - "app3:10.103.22.68"
+    env_file:
+      - common.env
+    environment:
+      - JAVA_OPTIONS=-XX:CompressedClassSpaceSize=32m

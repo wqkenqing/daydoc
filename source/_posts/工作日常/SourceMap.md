@@ -1,0 +1,12 @@
+11	{"code":"SSJPT","name":"市数据平台","index":11}
+1	{"code":"QXJ","name":"气象局","index":1}
+12	{"code":"ZJSB","name":"自建设备","index":12}
+2	{"code":"STHJJ","name":"生态环境局","index":2}
+3	{"code":"WJJ","name":"卫建局","index":3}
+4	{"code":"JDGLJ","name":"监督管理局","index":4}
+5	{"code":"GAJ","name":"公安局","index":5}
+6	{"code":"JTYSGLJ","name":"交通运输管理局","index":6}
+7	{"code":"STSJPT","name":"省厅数据平台","index":7}
+8	{"code":"WLSJ","name":"网络数据","index":8}
+9	{"code":"JQSJ","name":"景区数据","index":9}
+10	{"code":"WHLYJ","name":"文化旅游局","index":10}
