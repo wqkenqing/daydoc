@@ -20,6 +20,7 @@ before_install:
     - npm install hexo-generator-searchdb --save
     - npm install hexo-generator-search --save
     - npm install -g hexo
+    - npm i --save hexo-wordcount
 
     # - npm install hexo-cli -g
     # - chmod +x ./publish-to-gh-pages.sh
