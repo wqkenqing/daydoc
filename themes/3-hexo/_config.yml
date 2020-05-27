@@ -12,20 +12,20 @@ link:
   theme: color # 链接样式，color: 彩色图标  white: 黑白图标
   items:
     rss: /atom.xml
-    github: https://github.com/yelog
+    github: https://github.com/wqkenqing
     facebook: https://www.facebook.com/faker.tops
     twitter:
     linkedin:
-    instagram: https://www.facebook.com/faker.tops
-    reddit: https://www.reddit.com/user/yelog/
-    weibo: http://weibo.com/u/2307534817
-    jianshu: https://www.jianshu.com/u/ff56736de7cf
-    zhihu: https://www.zhihu.com/people/jaytp/activities
+      #instagram: https://www.facebook.com/faker.tops
+    #reddit: https://www.reddit.com/user/yelog/
+    #weibo: http://weibo.com/u/2307534817
+    #jianshu: https://www.jianshu.com/u/ff56736de7cf
+    #zhihu: https://www.zhihu.com/people/jaytp/activities
     csdn:
-    oschina: https://my.oschina.net/yelog
+      #  oschina: https://my.oschina.net/yelog
     juejin:
-    email: jaytp@qq.com
-    qq: 872336115
+      # email: jaytp@qq.com
+      #qq: 872336115
     kugou: https://www.kugou.com/
     neteasemusic: https://music.163.com/#/user/home?id=88151013
 
@@ -76,11 +76,11 @@ menu:
       type: 1  # 跳转类型 1：站内异步跳转
     叶落阁:
       on: false
-      url: http://yelog.org/
+      url: http://www.wqkenqing.ren/
       type: 2  # 跳转类型 2：当前页面跳转
     github:
       on: false
-      url: https://github.com/yelog
+      url: https://github.com/wqkenqing
       type: 3  # 跳转类型 3：打开新的tab页
 
 # 文末声明
@@ -97,7 +97,7 @@ miit:
   url: http://beian.miit.gov.cn/ # 默认链接为 http://beian.miit.gov.cn/
 
 
-reward: true
+reward: false
 # true 开启打赏功能
 
 searchAll: false
@@ -222,9 +222,6 @@ mermaid:
 ##############################
 
 # 友情链接
-friends:
-  叶落阁: http://yelog.org/
-
 ##########评论设置#############
 comment:
   on: false
@@ -239,15 +236,6 @@ disqus:
   # 获取shortname：https://help.disqus.com/customer/en/portal/articles/466208-what-s-a-shortname-
 
 
-gitalk:
-  githubID: yelog
-  repo: yelog.github.io
-  ClientID:
-  ClientSecret:
-  adminUser: yelog
-  distractionFreeMode: true
-  language: zh-CN
-  perPage: 10
 # gitalk：利用github issue制作的第三方聊天插件
 # https://github.com/gitalk/gitalk
 # 参数介绍：
@@ -260,29 +248,8 @@ gitalk:
 # perPage: 每次加载的数据大小，默认10，最大100
 
 
-gitment:
-  owner: yelog
-  repo: yelog.github.io
-  client_id:
-  client_secret:
-  # gitment : 通过github issue实现的评论系统
-  # 开源地址 : https://github.com/imsun/gitment
-  # 使用说明 :
 
-livere:
-  data_uid:
-  # 来必力: http://livere.com/
-  # 使用说明 : https://yelog.org//2020/05/23/3-hexo-comment/
-
-utteranc:
-  repo: xxx/xxx.github.io # 承载评论的仓库，填上自己新建的仓库
-  issue_term: pathname    # Issue 与 博客文章 之间映射关系
-  label: utteranc         # 创建的 Issue 添加的标签
-  theme: github-light     # 主题，可选主题请查看官方文档 https://utteranc.es/#heading-theme
-# 官方文档 https://utteranc.es/
-# 使用说明 https://yelog.org//2020/05/23/3-hexo-comment/
-
-##############################
+#############################
 
 ##########CND设置#############
 CDN:
