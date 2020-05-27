@@ -74,7 +74,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 #theme: landscape
-theme: 3-hexo
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -83,6 +83,7 @@ deploy:
   # repo: https://github.com/wqkenqing/wqkenqing.github.io.git
   # repo: ssh://git@github.com:wqkenqing/wqkenqing.github.io.git
   repo: https://gh_token@github.com/wqkenqing/daydoc.git
+  #repo: https://github.com/wqkenqing/daydoc.git
   #repo: https://github.com/wqkenqing/blogbackup.git
   branch: master
   ###serarch
