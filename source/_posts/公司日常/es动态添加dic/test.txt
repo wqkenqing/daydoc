@@ -1,7 +1,0 @@
- reptitle/_update_by_query?conflicts=proceed
-
-
-flume-ng agent   -c /root/flume_config/   -f /root/flume_config/kafka_demo.conf  -n a1   -Dflume.root.logger=info,console   -DpropertiesImplementation=org.apache.flume.node.EnvVarResolverProperties 
-
-
-gather_test_1.log,industry_real-weather_data.log
