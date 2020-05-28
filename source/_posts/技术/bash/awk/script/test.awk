@@ -1,0 +1,4 @@
+Begin
+{
+    print "hello word!"
+}
