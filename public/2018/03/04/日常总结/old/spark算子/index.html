@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>spark算子 | wang&#39;s dayliy document</title>
+  <meta name="keywords" content=" spark学习 ">
+  <meta name="description" content="spark算子 | wang&#39;s dayliy document">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="http://www.wqkenqing.ren/daydoc/tags/index.html">
+<meta property="og:site_name" content="wang&#39;s dayliy document">
+<meta property="article:published_time" content="2020-05-22T02:42:26.000Z">
+<meta property="article:modified_time" content="2020-05-27T06:39:23.660Z">
+<meta property="article:author" content="Kuiq  Wang">
+<meta property="article:tag" content="yGin910">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+</div>
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>Kuiq  Wang</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/wqkenqing" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active" data-rel="All">All<small>(42)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">About</a><a style="width: 50%"  class="friends">Friends</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="42">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" />
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>bigdata</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>cvim</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>DDNS</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>elasticsearch drawio</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>elasticsearch kibana head vscode</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>es feild script</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>flink</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hdfs</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mac os & windows</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>python learn</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>spark dependency</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>spark es kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sparkstream</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>sparkstreaming</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>spark学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>tmux</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习spark</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>学习spark2</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>小结</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>常规api封装</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>日常总结</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>运维 cdn 加速</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class="All "
+           href="/daydoc/2020/05/25/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E7%BC%96%E7%A8%8B/python/"
+           data-tag="python learn"
+           data-author="" >
+            <span class="post-title" title="python 小结2">python 小结2</span>
+            <span class="post-date" title="2020-05-25 00:00:00">2020/05/25</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/22/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%BF%90%E7%BB%B4/es%E6%B7%BB%E5%8A%A0%E5%AD%97%E6%AE%B5%E5%92%8C%E9%BB%98%E8%AE%A4%E5%80%BC/"
+           data-tag="es feild script"
+           data-author="" >
+            <span class="post-title" title="es添加字段并赋值">es添加字段并赋值</span>
+            <span class="post-date" title="2020-05-22 00:00:00">2020/05/22</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/21/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/es/es%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%B7%A5%E5%85%B7/"
+           data-tag="elasticsearch kibana head vscode"
+           data-author="" >
+            <span class="post-title" title="es常用操作工具">es常用操作工具</span>
+            <span class="post-date" title="2020-05-21 00:00:00">2020/05/21</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/21/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%BF%90%E7%BB%B4/vscode%E6%8F%92%E4%BB%B6/"
+           data-tag="elasticsearch drawio"
+           data-author="" >
+            <span class="post-title" title="vscode插件">vscode插件</span>
+            <span class="post-date" title="2020-05-21 00:00:00">2020/05/21</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/20/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%BF%90%E7%BB%B4/%E9%98%BF%E9%87%8C%E4%BA%91DDNS/"
+           data-tag="DDNS"
+           data-author="" >
+            <span class="post-title" title="阿里云DDNS[转载]">阿里云DDNS[转载]</span>
+            <span class="post-date" title="2020-05-20 00:00:00">2020/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/20/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%BF%90%E7%BB%B4/%E6%9D%82%E8%AE%B0(%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C)/"
+           data-tag="mac os &amp; windows"
+           data-author="" >
+            <span class="post-title" title="杂记(操作系统)">杂记(操作系统)</span>
+            <span class="post-date" title="2020-05-20 00:00:00">2020/05/20</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/19/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/"
+           data-tag="tmux"
+           data-author="" >
+            <span class="post-title" title="tmux上手[转载]">tmux上手[转载]</span>
+            <span class="post-date" title="2020-05-19 00:00:00">2020/05/19</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/19/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%BF%90%E7%BB%B4/cvim%20f%E5%A4%B1%E7%81%B5%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D/"
+           data-tag="cvim"
+           data-author="" >
+            <span class="post-title" title="cvim f失灵问题修复">cvim f失灵问题修复</span>
+            <span class="post-date" title="2020-05-19 00:00:00">2020/05/19</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/11/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/kafka/kafka%E5%AE%9E%E7%8E%B0/"
+           data-tag="kafka"
+           data-author="" >
+            <span class="post-title" title="kafka学习">kafka学习</span>
+            <span class="post-date" title="2020-05-11 00:00:00">2020/05/11</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/11/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/Lamda%E7%A7%AF%E7%B4%AF/"
+           data-tag="日常总结"
+           data-author="" >
+            <span class="post-title" title="Lambda&amp;Stream.md">Lambda&amp;Stream.md</span>
+            <span class="post-date" title="2020-05-11 00:00:00">2020/05/11</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/11/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/kafka/"
+           data-tag="kafka"
+           data-author="" >
+            <span class="post-title" title="kafka">kafka</span>
+            <span class="post-date" title="2020-05-11 00:00:00">2020/05/11</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/11/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/mapreduce%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/"
+           data-tag="bigdata"
+           data-author="" >
+            <span class="post-title" title="mapreduce组件总结">mapreduce组件总结</span>
+            <span class="post-date" title="2020-05-11 00:00:00">2020/05/11</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/11/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/spark%E5%AD%A6%E4%B9%A03/"
+           data-tag="bigdata"
+           data-author="" >
+            <span class="post-title" title="spark go on">spark go on</span>
+            <span class="post-date" title="2020-05-11 00:00:00">2020/05/11</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/11/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E5%88%86%E4%BA%AB/"
+           data-tag="日常总结"
+           data-author="" >
+            <span class="post-title" title="大数据分享">大数据分享</span>
+            <span class="post-date" title="2020-05-11 00:00:00">2020/05/11</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/11/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/spark/spark%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BE%93%E5%85%A5%E6%BA%90/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="spark常见的输入源">spark常见的输入源</span>
+            <span class="post-date" title="2020-05-11 00:00:00">2020/05/11</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/11/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%BF%90%E7%BB%B4/%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4/"
+           data-tag="运维 cdn 加速"
+           data-author="" >
+            <span class="post-title" title="日常运维">日常运维</span>
+            <span class="post-date" title="2020-05-11 00:00:00">2020/05/11</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/10/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/%E5%87%86%E5%A4%87%E5%B0%8F%E7%BB%93/"
+           data-tag="小结"
+           data-author="" >
+            <span class="post-title" title="准备小结">准备小结</span>
+            <span class="post-date" title="2020-05-10 00:00:00">2020/05/10</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/05/07/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E6%9C%80%E8%BF%91/5.7/"
+           data-tag="spark es kafka"
+           data-author="" >
+            <span class="post-title" title="5.7">5.7</span>
+            <span class="post-date" title="2020-05-07 00:00:00">2020/05/07</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/02/25/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/es/es%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="es常用命令">es常用命令</span>
+            <span class="post-date" title="2020-02-25 00:00:00">2020/02/25</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/02/25/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/es/ELK/ELK/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ELK使用">ELK使用</span>
+            <span class="post-date" title="2020-02-25 00:00:00">2020/02/25</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2020/02/25/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/es/ELK/Beats/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Beats">Beats</span>
+            <span class="post-date" title="2020-02-25 00:00:00">2020/02/25</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/12/24/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/hive2%E6%80%BB%E7%BB%93/"
+           data-tag="bigdata"
+           data-author="" >
+            <span class="post-title" title="hive2总结">hive2总结</span>
+            <span class="post-date" title="2019-12-24 23:07:45">2019/12/24</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/07/31/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/flink/Flink/"
+           data-tag="flink"
+           data-author="" >
+            <span class="post-title" title="flink学习">flink学习</span>
+            <span class="post-date" title="2019-07-31 00:00:00">2019/07/31</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/07/17/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/hadoop/hdfs/hdfs%E5%91%BD%E4%BB%A4/"
+           data-tag="hdfs"
+           data-author="" >
+            <span class="post-title" title="hdfs命令">hdfs命令</span>
+            <span class="post-date" title="2019-07-17 00:00:00">2019/07/17</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/07/16/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/oldblog/blog17/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="kafka小结">kafka小结</span>
+            <span class="post-date" title="2019-07-16 00:00:00">2019/07/16</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/07/16/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/spark/stream2/"
+           data-tag="sparkstreaming"
+           data-author="" >
+            <span class="post-title" title="sparkstreaming 窗口操作">sparkstreaming 窗口操作</span>
+            <span class="post-date" title="2019-07-16 00:00:00">2019/07/16</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/07/16/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/spark/%E5%AE%BD%E7%AA%84%E4%BE%9D%E8%B5%96/"
+           data-tag="spark dependency"
+           data-author="" >
+            <span class="post-title" title="宽窄依赖">宽窄依赖</span>
+            <span class="post-date" title="2019-07-16 00:00:00">2019/07/16</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/07/15/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/spark/stream/"
+           data-tag="sparkstream"
+           data-author="" >
+            <span class="post-title" title="updateStateByKey&amp;mapStateWithKey">updateStateByKey&amp;mapStateWithKey</span>
+            <span class="post-date" title="2019-07-15 00:00:00">2019/07/15</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/06/13/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/Yarn%E9%85%8D%E7%BD%AE/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Yarn配置细节">Yarn配置细节</span>
+            <span class="post-date" title="2019-06-13 00:00:00">2019/06/13</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/06/13/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/flume%E8%AE%B0%E5%BD%95/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="flume记录">flume记录</span>
+            <span class="post-date" title="2019-06-13 00:00:00">2019/06/13</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/06/13/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/spark/sql/SparkSql/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="SparkSql">SparkSql</span>
+            <span class="post-date" title="2019-06-13 00:00:00">2019/06/13</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/05/27/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/CDH/%E6%90%AD%E5%BB%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CDH搭建细节">CDH搭建细节</span>
+            <span class="post-date" title="2019-05-27 00:00:00">2019/05/27</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/05/17/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/spark/spark%E6%93%8D%E4%BD%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="spark操作.md">spark操作.md</span>
+            <span class="post-date" title="2019-05-17 00:00:00">2019/05/17</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/05/17/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/hadoop/hbase/hbase%E6%93%8D%E4%BD%9C/"
+           data-tag="常规api封装"
+           data-author="" >
+            <span class="post-title" title="hbaes操作">hbaes操作</span>
+            <span class="post-date" title="2019-05-17 00:00:00">2019/05/17</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/05/16/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/hadoop/hadoopHA%E6%90%AD%E5%BB%BA/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hadoop高可用模式搭建">hadoop高可用模式搭建</span>
+            <span class="post-date" title="2019-05-16 00:00:00">2019/05/16</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2019/05/16/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/hadoop/hdfs/hdfs%E6%93%8D%E4%BD%9C/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hdfs操作细节">hdfs操作细节</span>
+            <span class="post-date" title="2019-05-16 00:00:00">2019/05/16</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2018/12/24/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/hive%E6%80%BB%E7%BB%93/"
+           data-tag="bigdata"
+           data-author="" >
+            <span class="post-title" title="hive总结">hive总结</span>
+            <span class="post-date" title="2018-12-24 23:07:45">2018/12/24</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2018/06/04/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/hbase%E7%A7%AF%E7%B4%AF/"
+           data-tag="日常总结"
+           data-author="" >
+            <span class="post-title" title="hbase积累.md">hbase积累.md</span>
+            <span class="post-date" title="2018-06-04 10:54:48">2018/06/04</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2018/03/04/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/spark%E5%AD%A6%E4%B9%A0/"
+           data-tag="学习spark"
+           data-author="" >
+            <span class="post-title" title="spark学习">spark学习</span>
+            <span class="post-date" title="2018-03-04 11:12:58">2018/03/04</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2018/03/04/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/spark%E5%AD%A6%E4%B9%A02/"
+           data-tag="学习spark2"
+           data-author="" >
+            <span class="post-title" title="spark学习2">spark学习2</span>
+            <span class="post-date" title="2018-03-04 11:12:58">2018/03/04</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2018/03/04/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/spark%E7%AE%97%E5%AD%90/"
+           data-tag="spark学习"
+           data-author="" >
+            <span class="post-title" title="spark算子">spark算子</span>
+            <span class="post-date" title="2018-03-04 11:12:05">2018/03/04</span>
+        </a>
+        
+        <a  class="All "
+           href="/daydoc/2018/03/04/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/old/sqoop%E8%AE%B0%E5%BD%95/"
+           data-tag="日常总结"
+           data-author="" >
+            <span class="post-title" title="sqoop记录">sqoop记录</span>
+            <span class="post-date" title="2018-03-04 10:54:48">2018/03/04</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-日常总结/old/spark算子" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">spark算子</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">spark学习</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2020-05-26 22:32:28'>2018-03-04 11:12</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#spark-算子"><span class="toc-text">spark 算子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Transformation-转换"><span class="toc-text">Transformation(转换)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#parallelize-并行化"><span class="toc-text">parallelize (并行化)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#makeRDD"><span class="toc-text">makeRDD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textFile"><span class="toc-text">textFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#filter"><span class="toc-text">filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flatMap"><span class="toc-text">flatMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#distinct"><span class="toc-text">distinct</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#union"><span class="toc-text">union</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intersection"><span class="toc-text">intersection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#subtract"><span class="toc-text">subtract</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cartesian"><span class="toc-text">cartesian</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mapToPair"><span class="toc-text">mapToPair</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flatMapToPair"><span class="toc-text">flatMapToPair</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#combineByKey"><span class="toc-text">combineByKey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reduceByKey"><span class="toc-text">reduceByKey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#foldByKey"><span class="toc-text">foldByKey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sortByKey"><span class="toc-text">sortByKey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#groupByKey"><span class="toc-text">groupByKey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cogroup"><span class="toc-text">cogroup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#subtractByKey"><span class="toc-text">subtractByKey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join"><span class="toc-text">join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fullOuterJoin"><span class="toc-text">fullOuterJoin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#leftOuterJoin"><span class="toc-text">leftOuterJoin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rightOuterJoin"><span class="toc-text">rightOuterJoin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Action"><span class="toc-text">Action</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#first"><span class="toc-text">first</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#take"><span class="toc-text">take</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#collect"><span class="toc-text">collect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#count"><span class="toc-text">count</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#countByValue"><span class="toc-text">countByValue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reduce"><span class="toc-text">reduce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fold"><span class="toc-text">fold</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#top"><span class="toc-text">top</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#takeOrdered"><span class="toc-text">takeOrdered</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#foreach"><span class="toc-text">foreach</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#countByKey"><span class="toc-text">countByKey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#collectAsMap"><span class="toc-text">collectAsMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#saveAsTextFile"><span class="toc-text">saveAsTextFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#saveAsSequenceFile"><span class="toc-text">saveAsSequenceFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#saveAsObjectFile"><span class="toc-text">saveAsObjectFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#saveAsHadoopFile"><span class="toc-text">saveAsHadoopFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#saveAsNewAPIHadoopFile"><span class="toc-text">saveAsNewAPIHadoopFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mapPartitions"><span class="toc-text">mapPartitions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mapPartitionsWithIndex"><span class="toc-text">mapPartitionsWithIndex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashPartitioner"><span class="toc-text">HashPartitioner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RangePartitioner"><span class="toc-text">RangePartitioner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义分区"><span class="toc-text">自定义分区</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="spark-算子"><a href="#spark-算子" class="headerlink" title="spark 算子"></a>spark 算子</h1><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sparkRDD封装的函数方法又称算子,通过这些算子可以对RDD进行相关处理,从而获我们想要的结果,因为可能涉及的算子较多.因此单独开篇进行粒度更细,更集中的总结.</span><br><span class="line"></span><br><span class="line">总得来讲spark的算子,本就是scala集合的一些高阶用法.</span><br></pre></td></tr></table></figure>
+<h2 id="Transformation-转换"><a href="#Transformation-转换" class="headerlink" title="Transformation(转换)"></a>Transformation(转换)</h2><p>不触发提交作业，完成作业中间处理过程。</p>
+<h3 id="parallelize-并行化"><a href="#parallelize-并行化" class="headerlink" title="parallelize (并行化)"></a>parallelize (并行化)</h3><p>将一个存在的集合，变成一个RDD ,返回的是一个JavaRDD[T]<br>** in scala **</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc.parallelize(<span class="type">List</span>(<span class="string">"shenzhen"</span>, <span class="string">"is a beautiful city"</span>))</span><br></pre></td></tr></table></figure>
+<p> ** in java **<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JavaRDD&lt;String&gt; javaStringRDD = sc.parallelize(Arrays.asList(<span class="string">"shenzhen"</span>, <span class="string">"is a beautiful city"</span>));</span><br></pre></td></tr></table></figure></p>
+<h3 id="makeRDD"><a href="#makeRDD" class="headerlink" title="makeRDD"></a>makeRDD</h3><p>只有scala版本的才有makeRDD ,与parallelize类似.</p>
+<h3 id="textFile"><a href="#textFile" class="headerlink" title="textFile"></a>textFile</h3><p>调用SparkContext.textFile()方法，从外部存储中读取数据来创建 RDD<br>** in scala **<br> <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lines = sc.textFile(inpath)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java</span></span><br><span class="line"> JavaRDD&lt;String&gt; lines = sc.textFile(inpath);</span><br></pre></td></tr></table></figure>
+
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>对RDD数据进行过滤</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>接收一个函数,并将这个函数作用于RDD中的每个元素.RDD 中对应*<em>元素的值 map是一对一的关系 *</em></p>
+<h3 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h3><p>有时候，我们希望对某个元素生成多个元素，实现该功能的操作叫作 flatMap() ,faltMap的函数应用于每一个元素，对于每一个元素返回的是多个元素组成的迭代器</p>
+<h3 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h3><p>去重,我们生成的RDD可能有重复的元素，使用distinct方法可以去掉重复的元素, 不过此方法涉及到混洗，操作开销很大 </p>
+<h3 id="union"><a href="#union" class="headerlink" title="union"></a>union</h3><p>两个RDD进行合并 </p>
+<h3 id="intersection"><a href="#intersection" class="headerlink" title="intersection"></a>intersection</h3><p>RDD1.intersection(RDD2) 返回两个RDD的交集，** 并且去重 **<br>intersection 需要混洗数据，比较浪费性能</p>
+<h3 id="subtract"><a href="#subtract" class="headerlink" title="subtract"></a>subtract</h3><p>RDD1.subtract(RDD2),返回在RDD1中出现，但是不在RDD2中出现的元素，不去重 </p>
+<h3 id="cartesian"><a href="#cartesian" class="headerlink" title="cartesian"></a>cartesian</h3><p>cartesian(RDD2) 返回RDD1和RDD2的笛卡儿积，这个开销非常大</p>
+<h3 id="mapToPair"><a href="#mapToPair" class="headerlink" title="mapToPair"></a>mapToPair</h3><p>将元素该成key-value形式</p>
+<h3 id="flatMapToPair"><a href="#flatMapToPair" class="headerlink" title="flatMapToPair"></a>flatMapToPair</h3><p>差异同mapToPair</p>
+<h3 id="combineByKey"><a href="#combineByKey" class="headerlink" title="combineByKey"></a>combineByKey</h3><p>该方法主要针对不同分区的同一key进行元素合并函数操作.<br>需要对pairRDD进行</p>
+<ol>
+<li>createCombiner  会遍历分区中的所有元素，因此每个元素的键要么还没有遇到过,要么就<br>和之前的某个元素的键相同。如果这是一个新的元素， combineByKey() 会使用一个叫作 createCombiner() 的函数来创建<br>那个键对应的累加器的初始值</li>
+<li>mergeValue 如果这是一个在处理当前分区之前已经遇到的键， 它会使用 mergeValue() 方法将该键的累加器对应的当前值与这个新的值进行合并</li>
+<li>mergeCombiners 于每个分区都是独立处理的， 因此对于同一个键可以有多个累加器。如果有两个或者更<br>多的分区都有对应同一个键的累加器， 就需要使用用户提供的 mergeCombiners() 方法将各<br>个分区的结果进行合并。<h3 id="reduceByKey"><a href="#reduceByKey" class="headerlink" title="reduceByKey"></a>reduceByKey</h3>接收一个函数，按照相同的key进行reduce操<h3 id="foldByKey"><a href="#foldByKey" class="headerlink" title="foldByKey"></a>foldByKey</h3>该函数用于RDD[K,V]根据K将V做折叠、合并处理，其中的参数zeroValue表示先根据映射函数将zeroValue应用于V,进行初始化V,再将映射函数应用于初始化后的V ,与reduce不同的是 foldByKey开始折叠的第一个元素不是集合中的第一个元素，而是传入的一个元素 <h3 id="sortByKey"><a href="#sortByKey" class="headerlink" title="sortByKey"></a>sortByKey</h3>SortByKey用于对pairRDD按照key进行排序，第一个参数可以设置true或者false，默认是true <h3 id="groupByKey"><a href="#groupByKey" class="headerlink" title="groupByKey"></a>groupByKey</h3>groupByKey会将RDD[key,value] 按照相同的key进行分组，形成RDD[key,Iterable[value]]的形式， 有点类似于sql中的groupby，例如类似于mysql中的group_concat <h3 id="cogroup"><a href="#cogroup" class="headerlink" title="cogroup"></a>cogroup</h3>groupByKey是对单个 RDD 的数据进行分组，还可以使用一个叫作 cogroup() 的函数对多个共享同一个键的 RDD 进行分组<br>RDD1.cogroup(RDD2) 会将RDD1和RDD2按照相同的key进行分组，得到(key,RDD[key,Iterable[value1],Iterable[value2]])的形式 <h3 id="subtractByKey"><a href="#subtractByKey" class="headerlink" title="subtractByKey"></a>subtractByKey</h3>类似于subtrac，删掉 RDD 中键与 other RDD 中的键相同的元素<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3>可以把RDD1,RDD2中的相同的key给连接起来，类似于sql中的join操作<br>RDD1.join(RDD2) <h3 id="fullOuterJoin"><a href="#fullOuterJoin" class="headerlink" title="fullOuterJoin"></a>fullOuterJoin</h3>全连接<h3 id="leftOuterJoin"><a href="#leftOuterJoin" class="headerlink" title="leftOuterJoin"></a>leftOuterJoin</h3><h3 id="rightOuterJoin"><a href="#rightOuterJoin" class="headerlink" title="rightOuterJoin"></a>rightOuterJoin</h3></li>
+</ol>
+<h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><h3 id="first"><a href="#first" class="headerlink" title="first"></a>first</h3><p>返回第一个元素 </p>
+<h3 id="take"><a href="#take" class="headerlink" title="take"></a>take</h3><p>rdd.take(n)返回第n个元素 </p>
+<h3 id="collect"><a href="#collect" class="headerlink" title="collect"></a>collect</h3><p>rdd.collect() 返回 RDD 中的所有元素 </p>
+<h3 id="count"><a href="#count" class="headerlink" title="count"></a>count</h3><p>rdd.count() 返回 RDD 中的元素个数 </p>
+<h3 id="countByValue"><a href="#countByValue" class="headerlink" title="countByValue"></a>countByValue</h3><p>各元素在 RDD 中出现的次数 返回{(key1,次数),(key2,次数),…(keyn,次数)} </p>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>并行整合RDD中所有数据</p>
+<h3 id="fold"><a href="#fold" class="headerlink" title="fold"></a>fold</h3><p>和 reduce() 一 样， 但是提供了初始值num,每个元素计算时，先要合这个初始值进行折叠, 注意，这里会按照每个分区进行fold，然后分区之间还会再次进行fold </p>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>rdd.top(n)<br>按照降序的或者指定的排序规则，返回前n个元素 </p>
+<h3 id="takeOrdered"><a href="#takeOrdered" class="headerlink" title="takeOrdered"></a>takeOrdered</h3><p>rdd.take(n)<br>对RDD元素进行升序排序,取出前n个元素并返回，也可以自定义比较器（这里不介绍），类似于top的相反的方法 </p>
+<h3 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h3><p>对 RDD 中的每个元素使用给<br>定的函数</p>
+<h3 id="countByKey"><a href="#countByKey" class="headerlink" title="countByKey"></a>countByKey</h3><p>以RDD{(1, 2),(2,4),(2,5), (3, 4),(3,5), (3, 6)}为例 rdd.countByKey会返回{(1,1),(2,2),(3,3)} </p>
+<h3 id="collectAsMap"><a href="#collectAsMap" class="headerlink" title="collectAsMap"></a>collectAsMap</h3><p>将pair类型(键值对类型)的RDD转换成map, 还是上面的例子</p>
+<h3 id="saveAsTextFile"><a href="#saveAsTextFile" class="headerlink" title="saveAsTextFile"></a>saveAsTextFile</h3><p>saveAsTextFile用于将RDD以文本文件的格式存储到文件系统中。</p>
+<h3 id="saveAsSequenceFile"><a href="#saveAsSequenceFile" class="headerlink" title="saveAsSequenceFile"></a>saveAsSequenceFile</h3><p>saveAsSequenceFile用于将RDD以SequenceFile的文件格式保存到HDFS上。</p>
+<h3 id="saveAsObjectFile"><a href="#saveAsObjectFile" class="headerlink" title="saveAsObjectFile"></a>saveAsObjectFile</h3><p>saveAsObjectFile用于将RDD中的元素序列化成对象，存储到文件中。</p>
+<h3 id="saveAsHadoopFile"><a href="#saveAsHadoopFile" class="headerlink" title="saveAsHadoopFile"></a>saveAsHadoopFile</h3><h3 id="saveAsNewAPIHadoopFile"><a href="#saveAsNewAPIHadoopFile" class="headerlink" title="saveAsNewAPIHadoopFile"></a>saveAsNewAPIHadoopFile</h3><h3 id="mapPartitions"><a href="#mapPartitions" class="headerlink" title="mapPartitions"></a>mapPartitions</h3><h3 id="mapPartitionsWithIndex"><a href="#mapPartitionsWithIndex" class="headerlink" title="mapPartitionsWithIndex"></a>mapPartitionsWithIndex</h3><h3 id="HashPartitioner"><a href="#HashPartitioner" class="headerlink" title="HashPartitioner"></a>HashPartitioner</h3><h3 id="RangePartitioner"><a href="#RangePartitioner" class="headerlink" title="RangePartitioner"></a>RangePartitioner</h3><h3 id="自定义分区"><a href="#自定义分区" class="headerlink" title="自定义分区"></a>自定义分区</h3>
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

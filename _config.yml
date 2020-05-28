@@ -72,10 +72,14 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+
 ## Themes: https://hexo.io/themes/
 #theme: landscape
-theme: volantis
-#theme: 3-hexo
+#theme: volantis
+plugin:
+- hexo-generator-feed
+- hexo-generator-sitemap
+theme: 3-hexo
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
