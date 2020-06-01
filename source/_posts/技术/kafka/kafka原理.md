@@ -4,8 +4,8 @@
 
 ## 正常kafka服务运行的组件组成
 
- * kafka
- * zookeeper
+* kafka
+* zookeeper
 
  kafka运行主要的逻辑角色组成
 

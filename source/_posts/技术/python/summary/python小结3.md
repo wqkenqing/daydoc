@@ -1,6 +1,7 @@
 title:  python小结3
 date: 2020-05-29
-tags:[python]
+tags: [python]
+
 ---
 
  <!--more-->
