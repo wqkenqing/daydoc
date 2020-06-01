@@ -52,9 +52,11 @@ category:
     sm: 100 # 426px<屏幕宽度<=1024px 左侧分类宽度（ipad）
 # 多级分类说明：
 # 比如在文章中设置多个菜单，则默认为多级菜单，即：工具>hexo
-# categories:
-#   - 工具
-#   - hexo
+ categories:
+    - 日常
+    - 技术
+    - 其它
+    - 考试
 
 # 快捷键
 shortcutKey: true
@@ -98,7 +100,7 @@ miit:
 reward: false
 # true 开启打赏功能
 
-searchAll: false
+searchAll:true
 # true 启用全文搜索
 # 开启此功能需要下面操作：
 # 1. 在 hexo 根目录 执行 npm install hexo-generator-search --save 安装插件
