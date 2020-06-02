@@ -164,3 +164,58 @@ os.mkdir()
 os.rmdir()
 
 os.path.abspath()
+## 常用包
+
+datetime.datetime
+
+即datetime包下的datetime类
+
+``` python
+import datetime.datetime
+or 
+from datetime import datetime
+```
+
+### 获取当前时间
+
+datetime.now()
+
+### 获取指定的时间
+
+dt=datetime(2020,05,23,12,32)
+
+`转成timestamp`
+dt.timestamp()
+
+`timestamp to datetime`
+
+datetime.fromtimestamp(t)
+
+`转成格林制式时间`
+datetime.utcfromtimestamp(t)
+
+`str转成datetime`
+
+
+
+## collections
+### namedtuple
+
+### deque ("双向列表")
+
+### defaultdict
+
+使用dict时，如果引用的Key不存在，就会抛出KeyError。如果希望key不存在时，返回一个默认值，就可以用defaultdict：
+
+
+### OrderedDict
+
+注意，OrderedDict的Key会按照插入的顺序排列，不是Key本身排序：
+
+
+### ChainMap(再研究)
+
+### Counter
+
+Counter实际上也是dict的一个子类，上面的结果可以看出每个字符出现的次数。
+
