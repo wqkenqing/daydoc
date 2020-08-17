@@ -355,3 +355,13 @@ flume-ng agent -c /etc/flume-ng/conf/ -f taildir.conf -n a1 -Dflume.root.logger=
 flume-ng agent -c /etc/flume-ng/conf/ -f udp.conf -n a1 -Dflume.root.logger=INFO,console
 flume-ng agent -c /etc/flume-ng/conf/ -f udp_two_sink.conf -n a1 -Dflume.root.logger=INFO,console
 ---
+
+2020-7-22
+
+docker run --restart=unless-stopped  -d -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node"  --name="hankoues" elasticsearch:7.1.0
+
+
+docker pull docker.io/cerebro
+docker pull docker.io/cerebro
+
+---
