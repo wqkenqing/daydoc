@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>wang&#39;s dayliy document</title>
+  
+  
+  <link href="/daydoc/atom.xml" rel="self"/>
+  
+  <link href="http://www.wqkenqing.ren/daydoc/"/>
+  <updated>2021-01-05T02:35:38.000Z</updated>
+  <id>http://www.wqkenqing.ren/daydoc/</id>
+  
+  <author>
+    <name>Kuiq  Wang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>日常/vue/vue</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/vue/vue/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/vue/vue/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/考试/电子科大2019招生收集</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/yd_server_config/README</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/yd_server_config/README/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/yd_server_config/README/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录移动云服务器上部署的服务</p><table><thead><tr><th align="left">服务名</th><th align="left">说明</th></tr></thead><tbody><tr><td align="left">sjksh_store_info</td><td align="left">数据可视化模块的存储信息查询服务</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;记录移动云服务器上部署的服务&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;服务名&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;sj
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/blog_sync_project/plan</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/blog_sync_project/plan/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/blog_sync_project/plan/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>about two git project</p><p>one hexo .<br>this project is used to deploy the files;</p><p>two : dayliy_doc</p><p>so I just divide the project about these parts</p><ol><li><p>pull files from github </p></li><li><p>list the files;</p></li><li><p>choose the files to sync. </p></li><li><p>push and deploy;</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;about two git project&lt;/p&gt;
+&lt;p&gt;one hexo .&lt;br&gt;this project is used to deploy the files;&lt;/p&gt;
+&lt;p&gt;two : dayliy_doc&lt;/p&gt;
+&lt;p&gt;so I just divide the 
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/运维/about云账号密码</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>account: wqkenqing<br>password:125323wkQ$</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;account: wqkenqing&lt;br&gt;password:125323wkQ$&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/集群/私有集群</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/%E9%9B%86%E7%BE%A4/%E7%A7%81%E6%9C%89%E9%9B%86%E7%BE%A4/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/%E9%9B%86%E7%BE%A4/%E7%A7%81%E6%9C%89%E9%9B%86%E7%BE%A4/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>9 @(私有集群的搭建)<br>###私有集群搭建<br>一、服务器的准备</p><ul><li>阿里云实例（115.29.97.126）</li><li>华为云实例（114.115.203.81）</li><li>阿里云实例2(115.29.35.125）</li><li>本机实例（）</li></ul><p>1.1）服务器环境设置<br>修改服务器hostname</p><ul><li>阿里（wqkenqing）</li><li>华为（wqkenqing02）</li><li>阿里2(wqkenqing03)</li><li>虚拟机（wqkneqing04）<br><a href="http://blog.csdn.net/huangxy10/article/details/40213095" target="_blank" rel="noopener">hostname修改教程</a></li></ul><hr><p>1.2）配置语言环境（取的默认环境）<br><img src="./1475308903359.png" alt="Alt text"><br>1.3）<a href="https://my.oschina.net/cjun/blog/344836" target="_blank" rel="noopener">关闭防火墙</a><br>1.4）创建hadoop用户<br>1.5）上传相关文件(jdk1.7、hadoop2.7.2)</p><hr><p>1.6）配置环境变量<br>**<br>export JAVA_HOME=/usr/local/jdk1.7<br>export JRE_HOME=${JAVA_HOME}/jre<br>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib</p><p>export PATH=${JAVA_HOME}/bin:$PATH **</p><hr><p>1.7）配置免密码登陆<br>    1)实现本机ssh免秘钥登录：</p><ul><li>$ ssh-keygen -t dsa -P ‘’ -f ~/.ssh/id_dsa</li><li>$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys</li><li>chmod 700 ~/.ssh/authorized_keys</li></ul><hr><p>2)实现集群ssh免秘钥登录</p><ul><li>写入每一个集群机器秘钥到主NN 的authorized_keys中 ssh hadoopXXX ‘cat /home/hadoop/.ssh/id_dsa.pub’ &gt;&gt; ~/.ssh/authorized_keys</li><li>覆盖所有集群机器authorized_keys：scp ~/.ssh/authorized_keys hadoopXXX:/home/hadoop/.ssh/authorized_keys</li></ul><p>二、hadoop配置<br>2.1）配置hadoop环境<br>export HADOOP_HOME=/usr/local/hadoop/hadoop</p><p>export HIVE_HOME=/usr/local/hadoop/hive</p><p>export HBASE_HOME=/usr/local/hadoop/hbase</p><p>PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$HBASE_HOME/bin:$HIVE_HOME/bin</p><hr><p>hadoop配置文件配置<br>2.1）wqkenqing节点（以后作为name节点）<br><strong>修改 /home/hadoop/etc/hadoop/ core-site.xml</strong><br>在 <configuration> 块儿中添加：</p><property><p><name>fs.defaultFS</name></p><p><value>hdfs://wqkenqing.com:9000</value></p></property><property><p><name>hadoop.tmp.dir</name></p><p><value>file:/home/hadoop/tmp</value></p></property><property><p><name>io.file.buffer.size</name></p><p><value>131702</value></p><!-- 指定zookeeper地址 -->  <pre><code>&lt;property&gt;      &lt;name&gt;ha.zookeeper.quorum&lt;/name&gt;      &lt;value&gt;wqkenqing.com:2181,wqkenqing02.com:2181&lt;/value&gt;  &lt;/property&gt;  </code></pre></property>*****修改 /home/hadoop/etc/hadoop/ hdfs-site.xml**在 <configuration> 块儿中添加：<property><p><name>dfs.namenode.name.dir</name></p><p><value>file:/home/hadoop/hdfs/name</value></p></property><property><p><name>dfs.datanode.data.dir</name></p><p><value>file:/home/hadoop/hdfs/data</value></p></property><property><p><name>dfs.replication</name></p><p><value>2</value></p></property><property><p><name>dfs.namenode.secondary.http-address</name></p><p><value>wqkenqing.com:9001</value></p></property><property><p><name>dfs.webhdfs.enabled</name></p><p><value>true</value><br></property></p><hr> <!--指定hdfs的nameservice为mycluster，需要和core-site.xml中的保持一致 -->  <pre><code>&lt;property&gt;      &lt;name&gt;dfs.nameservices&lt;/name&gt;      &lt;value&gt;wqkenqing.com&lt;/value&gt;  &lt;/property&gt;  &lt;!-- mycluster下面有两个NameNode，分别是nn1，nn2 --&gt;  &lt;property&gt;   &lt;name&gt;dfs.ha.namenodes.mycluster&lt;/name&gt;      &lt;value&gt;wqkenqing,wqkenqing02&lt;/value&gt;  &lt;/property&gt;  &lt;!-- nn1的RPC通信地址 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.namenode.rpc-address.mycluster.nn1&lt;/name&gt;      &lt;value&gt;wqkenqing:9000&lt;/value&gt;  &lt;/property&gt;  &lt;!-- nn1的http通信地址 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.namenode.http-address.mycluster.nn1&lt;/name&gt;      &lt;value&gt;h1m1:50070&lt;/value&gt;  &lt;/property&gt;  &lt;!-- nn2的RPC通信地址 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.namenode.rpc-address.mycluster.nn2&lt;/name&gt;      &lt;value&gt;wqkenqing02:9000&lt;/value&gt;  &lt;/property&gt;  &lt;!-- nn2的http通信地址 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.namenode.http-address.mycluster.nn2&lt;/name&gt;      &lt;value&gt;wqkenqing02:50070&lt;/value&gt;  &lt;/property&gt;  &lt;!-- 指定NameNode的元数据在JournalNode上的存放位置 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.namenode.shared.edits.dir&lt;/name&gt;      &lt;value&gt;qjournal://wqkenqing:8485;wqkenqing02:8485/mycluster&lt;/value&gt;  &lt;/property&gt;  &lt;!-- 指定JournalNode在本地磁盘存放数据的位置 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.journalnode.edits.dir&lt;/name&gt;      &lt;value&gt;/usr/lib/hadoop/journal&lt;/value&gt;  &lt;/property&gt;  &lt;!-- 开启NameNode失败自动切换 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.ha.automatic-failover.enabled&lt;/name&gt;      &lt;value&gt;true&lt;/value&gt;  &lt;/property&gt;  &lt;!-- 配置失败自动切换实现方式 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.client.failover.proxy.provider.mycluster&lt;/name&gt;      &lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider&lt;/value&gt;  &lt;/property&gt;  &lt;!-- 配置隔离机制方法，多个机制用换行分割，即每个机制暂用一行--&gt;  &lt;property&gt;      &lt;name&gt;dfs.ha.fencing.methods&lt;/name&gt;      &lt;value&gt;          sshfence          shell(/bin/true)      &lt;/value&gt;  &lt;/property&gt;  &lt;!-- 使用sshfence隔离机制时需要ssh免登陆 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.ha.fencing.ssh.private-key-files&lt;/name&gt;      &lt;value&gt;/home/hadoop/.ssh/id_rsa&lt;/value&gt;  &lt;/property&gt;  &lt;!-- 配置sshfence隔离机制超时时间 --&gt;  &lt;property&gt;      &lt;name&gt;dfs.ha.fencing.ssh.connect-timeout&lt;/name&gt;      &lt;value&gt;30000&lt;/value&gt;  &lt;/property&gt;</code></pre><hr><p><strong>修改 /home/hadoop/etc/hadoop/ mapred-site.xml</strong><br>这个文件默认不存在，需要从 mapred-site.xml.template 复制过来<br>在 <configuration> 块儿中添加：</p><property><p><name>mapreduce.framework.name</name></p><p><value>yarn</value></p></property><property><p><name>mapreduce.jobhistory.address</name></p><p><value>wqkenqing:10020</value></p></property><property><p><name>mapreduce.jobhistory.webapp.address</name></p><p><value>wqkenqing:19888</value></p></property>*****修改 /home/hadoop/etc/hadoop/ yarn-site.xml**在 <configuration> 块儿中添加：<property><p><name>yarn.nodemanager.aux-services</name></p><p><value>mapreduce_shuffle</value></p></property><property><p><name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name></p><p><value>org.apache.hadoop.mapred.ShuffleHandler</value></p></property><property><p><name>yarn.resourcemanager.address</name></p><p><value>wqkenqing:8032</value></p></property><property><p><name>yarn.resourcemanager.scheduler.address</name></p><p><value>wqkenqing:8030</value></p></property><property><p><name>yarn.resourcemanager.resource-tracker.address</name></p><p><value>wqkenqing:8031</value></p></property><property><p><name>yarn.resourcemanager.admin.address</name></p><p><value>wqkenqing:8033</value></p></property><property><p><name>yarn.resourcemanager.webapp.address</name></p><p><value>wqkenqing:8088</value></p></property>*****修改 /home/hadoop/etc/hadoop/ slaves**<p>删除已有内容，添加：<br>wqkenqing02（data节点）</p><hr><p><a href="http://115.29.97.126:50070/" target="_blank" rel="noopener">http://115.29.97.126:50070/</a></p><hr><p><strong>启动 hadoop</strong><br>在master启动hadoop，从节点会自动启动<br><strong>初始化</strong><br>    hadoop-daemon.sh start journalnode<br>$ hdfs namenode -format<br>$ hadoop-daemon.sh start namenode<br>$ hadoop-daemon.sh start datanode<br>$ start-dfs.sh<br>$ start-yarn.sh</p><hr><p>启动报错<br><strong>java.io.IOException: All specified directories are failed to load.</strong><br>解决方式：配置文件中的地址书写有问题</p><hr><p>至此hadoop集群中的关键功能已经实现</p><ul><li>hdfs</li><li>mapreudce<br><a href="http://www.tuicool.com/articles/uAnyEfj" target="_blank" rel="noopener">集群配置参考文献</a></li></ul><hr><p>hadoop220集群运行状态：<br><img src="./1475419804382.png" alt="Alt text"></p><p><a href="http://f.dataguru.cn/thread-475940-1-1.html" target="_blank" rel="noopener">同步时钟参考文献</a><br>###hbase集成(尚未完成)</p><ul><li><a href="http://www.linuxidc.com/Linux/2013-06/86347p4.htm" target="_blank" rel="noopener">hadoop集群搭建参考文献</a></li><li></li></ul><hr><p>###hbase集群启动指令</p><ul><li>start-hbase.sh</li><li><a href="http://blog.csdn.net/korder/article/details/47403801" target="_blank" rel="noopener">hbase中的zookeeper使用教程</a></li></ul><p>###集群重置</p><ul><li>hadoop配置完成(ali1+ali2)</li><li>添加hbase</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;9 @(私有集群的搭建)&lt;br&gt;###私有集群搭建&lt;br&gt;一、服务器的准备&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;阿里云实例（115.29.97.126）&lt;/li&gt;
+&lt;li&gt;华为云实例（114.115.203.81）&lt;/li&gt;
+&lt;li&gt;阿里云实例2(115.29.35.125）&lt;/li
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/prepare/数据储备</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">采集数据,留作备用</span><br></pre></td></tr></table></figure><p>所涉组件</p><p>采集</p><ul><li>flume</li><li>logstash</li><li>beats</li><li>elasticsearch-dump</li></ul><p>传输</p><ul><li>kafka</li><li>flume</li></ul><p>存储</p><ul><li>elasticsearch</li><li>hbase</li><li>hdfs</li></ul><p>step one : 采集数据到elasticsearch</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span cla
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/运维/jumpserver</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p> title:  jumpserver体验<br> date: 2020-07-28<br> tags: [jumpserver,资产管理]</p><hr> <a id="more"></a><p> # jumpserver体验</p><p> ## 一体化安装</p><p>mysql -uroot -e “create database jumpserver default charset ‘utf8’; grant all on jumpserver.* to ‘jumpserver’@’127.0.0.1’ identified by ‘$DB_PASSWORD’; flush privileges;”</p><p>m6GgXgemmBw5B7om9uYqFSz3erVo0JCLO7Trxpo8S2bxazXk2Y</p><p>Vv42qLmxsEPUO4Kf</p><p>xLnAOS5Mc8cqRZ8QDxUzVQvZgxIRnJl73c0rE56WCSq8tYZQFG</p><p>ETNhIk9zu3fgN2pG</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;p&gt; title:  jumpserver体验&lt;br&gt; date: 2020-07-28&lt;br&gt; tags: [jumpserver,资产管理]&lt;/p&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/运维/tmux上手</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用tmux"><a href="#使用tmux" class="headerlink" title="使用tmux"></a>使用tmux</h2><p>mac os 通过 brew install tmux</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux 接收快捷键的指令是 ^ + B 即mac中的control + B</span><br></pre></td></tr></table></figure><p>窗格的操作</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这些操作都是通过 ^+b 来接收</span><br></pre></td></tr></table></figure><table><thead><tr><th align="left">操作符</th><th align="left">作用</th></tr></thead><tbody><tr><td align="left">%</td><td align="left">左右创建两个窗格</td></tr><tr><td align="left">‘’</td><td align="left">左右创建两个窗格</td></tr><tr><td align="left">x</td><td align="left">关闭当前窗格</td></tr><tr><td align="left">{</td><td align="left">前移当前窗格</td></tr><tr><td align="left">}</td><td align="left">后移当前窗格</td></tr><tr><td align="left">;</td><td align="left">选择上次用的窗格</td></tr><tr><td align="left">o</td><td align="left">选择下一个窗格</td></tr><tr><td align="left">space</td><td align="left">切换窗格布局</td></tr><tr><td align="left">z</td><td align="left">放大窗格</td></tr><tr><td align="left">q</td><td align="left">显示序号</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;使用tmux&quot;&gt;&lt;a href=&quot;#使用tmux&quot; class=&quot;headerlink&quot; title=&quot;使用tmux&quot;&gt;&lt;/a&gt;使用tmux&lt;/h2&gt;&lt;p&gt;mac os 通过 brew install tmux&lt;/p&gt;
+&lt;figure class=&quot;highlig
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/运维/京东云</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E4%BA%AC%E4%B8%9C%E4%BA%91/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E4%BA%AC%E4%B8%9C%E4%BA%91/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>114.67.107.246<br>wangkuiqing<br>eExfeTmKkgRJ255SRRZq</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;114.67.107.246&lt;br&gt;wangkuiqing&lt;br&gt;eExfeTmKkgRJ255SRRZq&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/运维/博客不同主题切换</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里的背景是针对博客不同项目生成不同主题类目的方案</span><br></pre></td></tr></table></figure><p>step one </p><p> 更换wqkenqing.github.io下的github项目</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span cla
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>日常/运维/运维操作</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Q-更换ubuntu安装源"><a href="#Q-更换ubuntu安装源" class="headerlink" title="Q: 更换ubuntu安装源"></a>Q: 更换ubuntu安装源</h2><p>cp /source/apt/source.plist /source/apt/source.list.bak</p><p>vim /source/apt/source.plist</p><p>添加国内源.</p><p>Q: mac 查看目前哪些进程占用哪些端口</p><p>lsof -nP  | grep TCP | grep LISTEN</p><p>lsof -i :TCP</p><p><img src="http://img.wqkenqing.ren/759a2c6c1c06fc81b9c400060913e93b.png" alt="查看mac pid进程的端口"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Q-更换ubuntu安装源&quot;&gt;&lt;a href=&quot;#Q-更换ubuntu安装源&quot; class=&quot;headerlink&quot; title=&quot;Q: 更换ubuntu安装源&quot;&gt;&lt;/a&gt;Q: 更换ubuntu安装源&lt;/h2&gt;&lt;p&gt;cp /source/apt/source.pl
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/编程/scala/scala学习</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/scala/scala%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/scala/scala%E5%AD%A6%E4%B9%A0/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p> title:  scala学习<br> date:  2020-07-23<br> tags:</p><hr> <a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;p&gt; title:  scala学习&lt;br&gt; date:  2020-07-23&lt;br&gt; tags:&lt;/p&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/yg_config/hy-sjksh-info-dev/docker-compose</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/yg_config/hy-sjksh-info-dev/docker-compose/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/yg_config/hy-sjksh-info-dev/docker-compose/</id>
+    <published>2021-01-05T02:35:38.000Z</published>
+    <updated>2021-01-05T02:35:38.000Z</updated>
+    
+    <content type="html"><![CDATA[{"version":"2.3","services":{"sjksh-store-info":{"image":"registry.lisong.pub:28500/hy/hy-sjksh-info-dev-v6","container_name":"hy-sjksh-info-dev","cpus":2,"mem_limit":"2g","restart":"unless-stopped","extra_hosts":["namenode:192.168.10.100","datanode1:192.168.10.101","datanode2:192.168.10.102","datanode3:192.168.10.103","namenode2:192.168.10.104"],"env_file":["common.env"],"environment":["JAVA_OPTIONS=-XX:CompressedClassSpaceSize=32m"]}}}]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        {&quot;version&quot;:&quot;2.3&quot;,&quot;services&quot;:{&quot;sjksh-store-info&quot;:{&quot;image&quot;:&quot;registry.lisong.pub:28500/hy/hy-sjksh-info-dev-v6&quot;,&quot;container_name&quot;:&quot;hy-sjksh-info
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/hive/hive20190109</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/hive/hive20190109/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/hive/hive20190109/</id>
+    <published>2021-01-05T02:35:37.000Z</published>
+    <updated>2021-01-05T02:35:37.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/program/mutiThread</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/program/mutiThread/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/program/mutiThread/</id>
+    <published>2021-01-05T02:35:37.000Z</published>
+    <updated>2021-01-05T02:35:37.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/hbase/hbase20190109</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/hbase/hbase20190109/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/hbase/hbase20190109/</id>
+    <published>2021-01-05T02:35:37.000Z</published>
+    <updated>2021-01-05T02:35:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="summary-of-today"><a href="#summary-of-today" class="headerlink" title="summary of today"></a>summary of today</h1><p><code>今日总结</code></p><ul><li>hive外部表的创建与删除</li><li>hbase filter的使用</li><li>hbase rowkey 的使用</li></ul><ol><li>hive 外部表的创建,主要是 postion_gps_online表</li><li>hbase rowkey的使用,这里涉及到相关逻辑里的实现问题,如轨迹某段时间里所有设备的轨迹,rowkey 若设计成<br>device_id+”<em>“+ts_time 形式,则会出现通过start_row与stop_row的模糊区间匹配未找到现成的方案.所以后<br>续rowkey设计成的是ts_time+”</em>“+device_id的形式,这样可以只通过传时间就可以筛选出这个时间区间里的所有<br>device_id.</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;summary-of-today&quot;&gt;&lt;a href=&quot;#summary-of-today&quot; class=&quot;headerlink&quot; title=&quot;summary of today&quot;&gt;&lt;/a&gt;summary of today&lt;/h1&gt;&lt;p&gt;&lt;code&gt;今日总结&lt;/co
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/kafka/kafka小结</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/kafka/kafka%E5%B0%8F%E7%BB%93/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/kafka/kafka%E5%B0%8F%E7%BB%93/</id>
+    <published>2021-01-05T02:35:37.000Z</published>
+    <updated>2021-01-05T02:35:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kafka细粒度学习与总结</span><br></pre></td></tr></table></figure><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><a href="Kafka史上最详细原理总结">相对干货</a></p><p><a href="https://blog.csdn.net/fuyuwei2015/article/details/72943207" target="_blank" rel="noopener">Kafka学习笔记——Kafka原理与使用详解</a></p><p>记录点</p><ol><li>kafka组成部分</li><li>数据流转过程</li><li>备份</li><li>安全性</li><li>持久性</li><li>性能</li><li>api储备</li><li>消息传输机制(相关语义)</li><li>zookeer的作用</li></ol><p>着重点</p><ol><li><p>备份同步(ISR)</p></li><li><p>消费请求处理(处理能力,出现总是的恢复)</p></li><li><p><strong>Consumer Rebalance</strong> 触发条件</p><ol><li>consumer的增加或删除</li><li>broker的增加或删除</li></ol></li><li><p>分区策略</p><ol><li>Rangeassignor</li><li>RoundRobinAssignor</li><li>StickyAssignor</li><li>自定义</li></ol></li><li><p>再均衡</p><ol><li>均衡器<ol><li>GroupCoordinator</li><li>ConsumerCoordinator</li></ol></li><li>原因<ol><li>新的消费者入组</li><li>消息者宕机失联</li><li>消息者主动退组(leaveGroupRequest),fg 调用unsubscribe()取消订阅</li><li>消费组对应分区数量发生变化</li></ol></li></ol></li><li><p>分区管理</p><ol><li>优先副本(分区broker)<ol><li>leader副本承担读写服务,分区leader被怼坏意味着该分区不可用.即broker节点中对应的leader副本多少,决定了该节点的负载高低.</li><li></li></ol></li></ol></li></ol><p>High Level Consumer将从某个Partition读取的最后一条消息的offset存于Zookeeper中（从<strong>0.8.2</strong>开始同时支持将Offset存于Zookeeper中和专用的Kafka Topic中）。</p><p>Q: 为什么kafka吞吐量高</p><p>A: 同一个topic同个CG下的consumer只有一个消费它.</p><p>Q:为什么要支持存储于专用的Kafka Topic中？</p><p>KafkaConsumer 多线程思路:</p><p>应该不单是只开启多个consumer线程</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span cla
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/platform/platform</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/platform/platform/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/platform/platform/</id>
+    <published>2021-01-05T02:35:37.000Z</published>
+    <updated>2021-01-05T02:35:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="数据中心平台banner页面"><a href="#数据中心平台banner页面" class="headerlink" title="数据中心平台banner页面"></a>数据中心平台banner页面</h1><h2 id="数据治理平台"><a href="#数据治理平台" class="headerlink" title="数据治理平台"></a>数据治理平台</h2><p><a href="http://192.168.10.100:8888/hue/oozie/editor/workflow/new/" target="_blank" rel="noopener">http://192.168.10.100:8888/hue/oozie/editor/workflow/new/</a>  hue<br><img src="http://img.wqkenqing.ren/grdQ6x.png" alt=""></p><p>账号:admin<br>密码:admin</p><h2 id="元数据管理"><a href="#元数据管理" class="headerlink" title="元数据管理"></a>元数据管理</h2><p><a href="http://192.168.10.100:9090/home?zkPath=/hbase/table" target="_blank" rel="noopener">http://192.168.10.100:9090/home?zkPath=/hbase/table</a><br><img src="http://img.wqkenqing.ren/TYpLzV.png" alt=""><br>账号:admin<br>密码:manager</p><h2 id="数据资源平台"><a href="#数据资源平台" class="headerlink" title="数据资源平台"></a>数据资源平台</h2><ul><li><a href="http://192.168.10.100:60010/tablesDetailed.jsp" target="_blank" rel="noopener">http://192.168.10.100:60010/tablesDetailed.jsp</a><br><img src="http://img.wqkenqing.ren/b5EgXW.png" alt=""></li><li><a href="http://192.168.10.100:10002/hiveserver2.jsp" target="_blank" rel="noopener">http://192.168.10.100:10002/hiveserver2.jsp</a><br><img src="http://img.wqkenqing.ren/97aFOC.png" alt=""></li><li><a href="http://192.168.10.100:50070/explorer.html#/" target="_blank" rel="noopener">http://192.168.10.100:50070/explorer.html#/</a><br><img src="http://img.wqkenqing.ren/kQsXqv.png" alt=""></li></ul><h2 id="资源统一调度平台"><a href="#资源统一调度平台" class="headerlink" title="资源统一调度平台"></a>资源统一调度平台</h2><ul><li><a href="http://192.168.10.100:8088/cluster/apps" target="_blank" rel="noopener">http://192.168.10.100:8088/cluster/apps</a><br><img src="http://img.wqkenqing.ren/tL6oeC.png" alt=""></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;数据中心平台banner页面&quot;&gt;&lt;a href=&quot;#数据中心平台banner页面&quot; class=&quot;headerlink&quot; title=&quot;数据中心平台banner页面&quot;&gt;&lt;/a&gt;数据中心平台banner页面&lt;/h1&gt;&lt;h2 id=&quot;数据治理平台&quot;&gt;&lt;a href=&quot;
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>技术/kafka/kafka疑问点</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/kafka/kafka%E7%96%91%E9%97%AE%E7%82%B9/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/01/05/%E6%8A%80%E6%9C%AF/kafka/kafka%E7%96%91%E9%97%AE%E7%82%B9/</id>
+    <published>2021-01-05T02:35:37.000Z</published>
+    <updated>2021-01-05T02:35:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="kafka疑问点"><a href="#kafka疑问点" class="headerlink" title="kafka疑问点"></a>kafka疑问点</h1><h2 id="consumer-api"><a href="#consumer-api" class="headerlink" title="consumer api"></a>consumer api</h2><ol><li>High-level &amp;&amp; sample-level的区别</li><li>不同api下offset的维护.</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;kafka疑问点&quot;&gt;&lt;a href=&quot;#kafka疑问点&quot; class=&quot;headerlink&quot; title=&quot;kafka疑问点&quot;&gt;&lt;/a&gt;kafka疑问点&lt;/h1&gt;&lt;h2 id=&quot;consumer-api&quot;&gt;&lt;a href=&quot;#consumer-api&quot; cla
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
