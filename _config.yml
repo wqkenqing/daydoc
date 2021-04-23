@@ -80,7 +80,7 @@ plugin:
 - hexo-generator-feed
 - hexo-generator-sitemap
 #theme: 3-hexo
-theme: tree
+theme: trees
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
