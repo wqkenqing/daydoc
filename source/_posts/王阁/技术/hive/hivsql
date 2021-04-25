@@ -1,0 +1,20 @@
+select count(*) from postion_gps_online where rowkey >"13002750821_2018-08-22" and rowkey <"13002750821_2018-08-23"
+
+set mapreduce.map.memory.mb=2048;
+set mapreduce.reduce.memory.mb=2048;
+select count(*) from gps_online_normal where split(rowkey,"_")[1]>"2018-08-22" and split(rowkey,"_")[1] <"2018-08-23"
+
+
+
+##
+查询某一天最大轨迹点
+set mapreduce.map.memory.mb=2048;
+set mapreduce.reduce.memory.mb=2048;
+select max(rowkey) from postion_gps_online_new  where split(rowkey,"_")[0]>"2018-08-22 00:00:00" and split(rowkey,"_")[0] <"2018-08-22 23:59:59" and split(rowkey,"_")[1]="13002750821"
+
+
+
+create external table postion_gps_online_new(rowkey string, device_id string,platform string,speed string,longtitude string,laititude string )
+stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+with serdeproperties("hbase.columns.mapping" = ":key,info:device_id,info:platform,info:speed,info:longtitude,info:laititude")
+tblproperties("hbase.table.name"="postion:gps_online_new");
