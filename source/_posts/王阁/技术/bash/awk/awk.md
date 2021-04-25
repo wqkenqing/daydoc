@@ -1,0 +1,75 @@
+```
+适合针对格式化文本操作
+
+```
+
+## 内置变量
+
+* FS(Field Separator)：输入字段分隔符， 默认为空白字符
+* OFS(Out of Field Separator)：输出字段分隔符， 默认为空白字符
+* RS(Record Separator)：输入记录分隔符(输入换行符)， 指定输入时的换行符
+* ORS(Output Record Separate)：输出记录分隔符（输出换行符），输出时用指定符号代替换行符
+* NF(Number for Field)：当前行的字段的个数(即当前行被分割成了几列)
+* NR(Number of Record)：行号，当前处理的文本行的行号。
+* FNR：各文件分别计数的行号
+* ARGC：命令行参数的个数
+* ARGV：数组，保存的是命令行所给定的各参数
+
+awk 其实相当是一门脚本语言,所以用法比较丰富.但一般来讲,一定程度的掌握就已经能满足我们日常使用了.至于是否需要更深入,则根据实际情况.
+
+
+
+常规:
+
+awk '{print $1 , $2}' file.txt
+输出file的1,2列
+
+`说明: awk 命令内容'' `
+
+## 过滤记录
+
+awk '$1>2 'file.txt
+
+
+$0	 当前记录（这个变量中存放着整个行的内容）
+$1~$n	 当前记录的第n个字段，字段间由FS分隔
+FS	输入字段分隔符 默认是空格或Tab
+NF	当前记录中的字段个数，就是有多少列
+NR	已经读出的记录数，就是行号，从1开始，如果有多个文件话，这个值也是不断累加中。
+FNR	当前记录数，与NR不同的是，这个值会是各个文件自己的行号
+RS	输入的记录分隔符， 默认为换行符
+OFS	输出字段分隔符， 默认也是空格
+ORS	输出的记录分隔符，默认为换行符
+FILENAME	当前输入文件的名字
+
+
+### 指定分隔符
+ awk  'BEGIN{FS=":"} {print $1,$3,$6}' /etc/passwd
+ 
+亦可用 awk -F 
+指定多个分隔符
+
+awk -F '[;:]'
+
+### 字符串匹配
+
+awk '$6 ~ /FIN/ || NR==1 {print NR,$4,$5,$6}' OFS="\t" netstat.txt
+
+awk '$6 ~ /WAIT/ || NR==1 {print NR,$4,$5,$6}' OFS="\t" netstat.txt
+
+
+awk '/LISTEN/' netstat.txt
+awk '$6 ~ /FIN|TIME/ || NR==1 {print NR,$4,$5,$6}' OFS="\t" netstat.txt
+
+awk '$6 !~ /WAIT/ || NR==1 {print NR,$4,$5,$6}' OFS="\t" netstat.txt
+
+#### if else 
+
+awk 'NR!=1{if($6 ~ /TIME|ESTABLISHED/) print > "1.txt";
+else if($6 ~ /LISTEN/) print > "2.txt";
+else print > "3.txt" }' netstat.txt
+ 
+
+
+### 脚本
+

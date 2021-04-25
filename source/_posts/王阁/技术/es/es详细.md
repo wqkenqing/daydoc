@@ -1,0 +1,145 @@
+`针对es的掌握,总有些地方不通透,想来还是从头从细粒度上再捋一遍`
+
+`总得来讲es的掌握需要分为两个大块,一是es的使用,二是es的运维`
+
+
+
+`默认选择kibana操作`
+
+[TOC]
+
+## 前言
+
+以<<Elasticsearch技术解析与实战>>一书为例.
+
+具体的使用章节内容大致有
+
+第二章部份
+
+第三章
+
+第四章
+
+第五章
+
+第七章
+
+运维相关
+
+第二章部份
+
+第六章
+
+第八章
+
+第九章
+
+
+
+## 索引
+
+### 创建索引
+
+```
+PUT /indexName/
+{
+"settings":{
+},
+"mappings":{
+}
+}
+```
+
+### 修改索引
+
+```
+PUT /indexName/
+{
+
+}
+```
+
+<font color=red>mappings映射只能添加,不能修改.所以一个index的mapping设计需要事先把握清楚.不然后续治理困难</font>
+
+### 删除索引
+
+### 别名
+
+#### 添加
+
+```
+PUT /alias
+{
+    "actions": [
+        {"add": {"index": "test1", "alias": "alias1"}}
+    ]
+}
+```
+
+#### 删除
+
+```
+PUT /alias
+{
+    "actions": [
+        {"remove": {"index": "test1", "alias": "alias1"}}
+    ]
+}
+```
+
+
+
+<strong>别名只能通过删除后再建立来进行修改</strong>
+
+
+
+#### 添加多个别名
+
+```
+{
+    "actions": [
+        {"add": {"index": "test1", "alias":"alias1"}},
+        {"add": {"index": "test2", "alias":"alias1"}}
+    ]
+}
+```
+
+
+
+
+
+### 索引配置
+
+常规的replica,shard
+
+然后还能配置analyzer
+
+```
+PUT /indexName/_settings
+{
+"analysis":{
+"analyzer":{
+"content":{
+"type":"",
+"tokenizer":""
+}
+}
+}
+}
+```
+
+
+
+<strong>索引只能在关闭后,再进行一些设置上的调整</strong>
+
+
+
+
+### 映射
+
+#### 字符串数据可接受的参数
+
+
+
+
+

@@ -1,8 +1,8 @@
-title: hive回顾   
+title: "hive回顾"   
 date: 2020-06-23
-tags:[ hive ,DDL,DML]
+tags: [ hive ,DDL,DML]
 categories:
-- 日常
+- 日常 
 ---
 DDL ,DML
 
