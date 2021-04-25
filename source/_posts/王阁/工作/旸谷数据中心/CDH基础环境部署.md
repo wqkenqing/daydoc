@@ -9,14 +9,327 @@ password: 7FKBKZrTTTPG2LnC
  <!--more-->
 
  ## 基础准备
-
+#### 时区更改
+pssh -h "timedatectl set-timezone Asia/Shanghai"
 ### 各服务资源的免密钥登录
 
 服务器资源参见 [数据中心服务资源](../数据中心服务资源/数据中心服务资源.md)
 
 
 #### 修改hostname
-
-
+done
 
 #### 配置免密钥登录
+
+done
+
+### 切换yum源,这里设置为阿里源
+
+```bash
+cd /etc/yum.repos.d/
+
+mv CentOS-Base.repo CentOS-Base.repo.backup
+
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+yum clean all
+
+yum makecache
+
+```
+
+
+```bash
+#1.安装vim编辑器 
+yum install -y vim
+
+#2.安装lrzsz文件传输工具 
+yum -y install lrzsz
+
+#3.安装wget文件下载工具 
+yum -y install wget
+
+#4.安装netstat，查看端口监听状况：
+
+yum -y install net-tools
+
+netstat -ntlp | grep 端口号
+
+#5.下载unzip解压工具，解压命令：
+
+yum install -y unzip zip
+
+uzip 压缩包.zip -d 解压目录
+```
+
+### 配置pssh 批操作工具
+
+```
+wget https://pypi.python.org/packages/60/9a/8035af3a7d3d1617ae2c7c174efa4f154e5bf9c24b36b623413b38be8e4a/pssh-2.3.1.tar.gz
+
+tar xf pssh-2.3.1.tar.gz -C /usr/local/pssh/
+
+cd /usr/local/pssh/pssh-2.3.1/
+
+python setup.py install
+
+```
+
+
+
+### 配置tod别名
+
+```
+echo "alias tog='cd /data/gitfiles/" >>  ~/.bashrc
+echo "alias tod='cd /data/" >>  ~/.bashrc
+```
+
+### 安装mysql
+
+```bash
+## 创建mysql镜像的存放文件夹
+
+mkdir -p /data/soft_install/mysql_rpm
+
+## wget 获取mysql rpm 文件
+
+wget https://repo.mysql.com//mysql80-community-release-el7-3.noarch.rpm
+
+## 安装mysql源
+yum localinstall -y mysql80-community-release-el7-3.noarch.rpm
+## 3.检查MySQL源是否安装成功，此时查到的安装包的版本都是mysql5.8版本的 
+yum repolist enabled | grep "mysql.*-community.*"
+
+## 4.修改yum源配置文件，获取自己想要安装的mysql5.7版本
+
+##  #5.检查MySQL源是否选择的是5.7版本，此时查到的安装包的版本都是mysql5.7版本的
+yum repolist enabled | grep "mysql.*-community.*"
+
+##安装mysql
+yum -y install mysql-community-server
+## 启动mysql服务
+
+```
+![2021-04-25-14-30-38](http://img.wqkenqing.ren/2021-04-25-14-30-38.png)
+
+### 启动mysql服务
+
+``` bash
+#1.临时启动mysql服务 
+systemctl start mysqld
+
+#2.开机启动mysql服务 
+systemctl enable mysqld
+
+#3.查看MySQL的启动状态 
+systemctl status mysqld
+
+#4.查看mysql进程是否正常开启 
+ps -le | grep mysqld
+```
+### 修改mysql中root本地登录密码
+
+```bash
+grep 'temporary password' /var/log/mysqld.log
+
+# temp password
+k2PqXCarz-BS
+# 登录
+mysql -u root -p
+再用temp密码登录
+
+## 修改密码
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'ER62-fP()hs1OoFW>';
+
+###重启使密码生效
+systemctl restart mysqld
+```
+![2021-04-25-14-35-25](http://img.wqkenqing.ren/2021-04-25-14-35-25.png)
+
+### 允许root用户远程登录
+
+```bash
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>' WITH GRANT OPTION; 
+FLUSH PRIVILEGES;
+
+
+## 指定特定的IP，开启root用户远程连接 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'指定的IP' IDENTIFIED BY 'root用户的密码' WITH GRANT OPTION; 
+## 一般为了安全起见，会创建专用的远程访问用户
+ GRANT ALL PRIVILEGES ON *.* TO 'dadeity'@'%' IDENTIFIED BY 'daDeity@163.com' WITH GRANT OPTION;
+
+```
+### 创建CDH源数据库、用户、服务的数据库
+
+```bash 
+CREATE DATABASE scm DEFAULT CHARACTER SET utf8; 
+CREATE USER 'scm'@'%'IDENTIFIED BY 'scm'; 
+GRANT ALL PRIVILEGES ON scm.* TO 'scm'@'%' IDENTIFIED BY 'scm'; 
+GRANT ALL PRIVILEGES ON *.* TO 'scm'@'%' IDENTIFIED BY 'scm' WITH GRANT OPTION;
+
+CREATE DATABASE amon DEFAULT CHARACTER SET utf8; CREATE USER 'amon'@'%'IDENTIFIED BY 'amon'; GRANT ALL PRIVILEGES ON amon.* TO 'amon'@'%' IDENTIFIED BY 'amon'; GRANT ALL PRIVILEGES ON *.* TO 'amon'@'%' IDENTIFIED BY 'amon' WITH GRANT OPTION;
+
+CREATE DATABASE hive DEFAULT CHARACTER SET utf8; CREATE USER 'hive'@'%'IDENTIFIED BY 'hive'; GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'%' IDENTIFIED BY 'hive'; GRANT ALL PRIVILEGES ON *.* TO 'hive'@'%' IDENTIFIED BY 'hive' WITH GRANT OPTION;
+
+CREATE DATABASE hue DEFAULT CHARACTER SET utf8; CREATE USER 'hue'@'%'IDENTIFIED BY 'hue'; GRANT ALL PRIVILEGES ON hue.* TO 'hue'@'%' IDENTIFIED BY 'hue'; GRANT ALL PRIVILEGES ON *.* TO 'hue'@'%' IDENTIFIED BY 'hue' WITH GRANT OPTION;
+
+CREATE DATABASE oozie DEFAULT CHARACTER SET utf8; CREATE USER 'oozie'@'%'IDENTIFIED BY 'oozie'; GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'%' IDENTIFIED BY 'oozie'; GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'%' IDENTIFIED BY 'oozie' WITH GRANT OPTION;
+
+## 刷新mysql的权限列表 
+FLUSH PRIVILEGES;
+
+## 查看用户
+##设置密码等级
+#密码强度设为最低等级
+set global validate_password_policy=0; 
+#密码允许最小长度为2
+set global validate_password_length=2; 
+set global validate_password_number_count=0; 
+
+#更新授权表，生效
+flush privileges;                      
+
+```
+
+### 创建本地YUM仓库
+
+``` bash
+##安装createrepo包
+yum install -y createrepo
+
+cd /root/cloudera_install/cm6.3.1
+createrepo . 
+ cd /root/cloudera_install/cdh6.3.2
+createrepo . 
+
+## 创建/var/www/html 地址
+mkdir -p /var/www/html
+
+## 修改cdh6.3.2中的校验文件
+CDH-6.3.2-1.cdh6.3.2.p0.1605554-el6.parcel.sha256 CDH-6.3.2-1.cdh6.3.2.p0.1605554- el6.parcel.sha
+##移动文件至/var/www/html
+mv cdh6.3.2 /var/www/html
+mv cm6.3.1 /var/www/html
+#安装httpd服务 
+yum install -y httpd 
+#启动httpd服务 
+systemctl start httpd 
+#设置httpd服务开机启动 
+systemctl enable httpd 
+#查看httpd服务是否启动
+ ps -ef | grep httpd
+
+vim /etc/yum.repos.d/os.repo
+
+#以下为文件内容 
+[osrepo] name=os_repo 
+baseurl=http://hadoop01.baicdt.com/cm6.3.1 
+enabled=true 
+gpgcheck=false
+
+pscp -h host.txt  /etc/yum.repos.d/os.repo /etc/yum.repos.d/
+
+yum repolist
+
+vim /etc/httpd/conf/httpd.conf 
+#在<IfModule mime_module>中修改以下内容 #把第284行的 
+AddType application/x-gzip .gz .tgz 
+修改为: AddType application/x-gzip .gz .tgz .parcel
+#重启httpd服务
+systemctl restart httpd
+
+```
+
+### 所有服务器安装jdk
+
+```
+
+pssh -h host.txt " yum install -y oracle-j2sdk1.8-1.8.0+update181-1.x86_64"
+
+```
+
+### 配置jdk的环境变量
+
+```
+
+vim /etc/profile
+
+export JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar export PATH=:$JAVA_HOME/bin:$PATH
+
+pscp -h host.txt /etc/profile /etc
+
+pssh -h host.txt  "source /etc/profile"
+
+```
+
+### 添加mysql驱动包
+
+```
+mkdir -p /usr/share/java 
+mv /root/cloudera_install/mysql-connector-java-5.1.46.jar /usr/share/java/ 
+cd /usr/share/java/ 
+mv mysql-connector-java-5.1.46.jar mysql-connector-java.jar
+
+pssh -h host2.txt "mkdir -p  /usr/share/java "
+pscp -h host2.txt /usr/share/java/mysql-connector-java.jar /usr/share/java/
+
+```
+
+## Cloudera Manager部署
+### 安装CM server及agent
+
+```
+#安装python27，解决安装过程中Hue无法访问数据库问题
+pssh -h host.txt yum install -y centos-release-scl 
+pssh -h host.txt yum install -y python27 python27-devel
+
+## 安装agent and damons
+pssh -h host.txt yum -y install cloudera-manager-daemons
+pssh -h host.txt yum -y install cloudera-manager-agent
+pssh -h host2.txt yum -y install cloudera-manager-daemons
+pssh -h host2.txt yum -y install cloudera-manager-agent
+
+```
+
+#### 所有节点修改agent配置
+
+```
+vim /etc/cloudera-scm-agent/config.ini 
+#修改文件中server_host的属性值 
+server_host=scm-server
+
+
+pscp -h host2.txt /etc/cloudera-scm-agent/config.ini /etc/cloudera-scm-agent/
+
+```
+
+#### 初始化scm数据库
+
+```
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm scm
+
+添加mysql驱动包
+pscp -h host2.txt /usr/share/java/mysql-connector-java.jar  /opt/cloudera/cm/lib
+
+```
+
+#### 启动CM server及agent
+
+```
+#hadoop01主节点启动CM  server 
+systemctl start cloudera-scm-server
+
+#启动日志目录为
+/var/log/cloudera-scm-server/ cd /var/log/cloudera-scm-server/ 
+tail cloudera-scm-server.log
+
+#所有节点启动CM agent 
+
+systemctl start cloudera-scm-agent
+```
+
+### 重启 scm服务
+
+systemctl restart cloudera-scm-server
+
+pssh -h host.txt  "systemctl restart cloudera-scm-agent  "
