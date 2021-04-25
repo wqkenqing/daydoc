@@ -1,1 +1,0 @@
-tourist_minute_local_data

@@ -1,4 +1,0 @@
-Begin
-{
-    print "hello word!"
-}
