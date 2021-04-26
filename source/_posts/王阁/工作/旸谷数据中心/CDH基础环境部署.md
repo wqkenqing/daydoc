@@ -333,3 +333,11 @@ systemctl start cloudera-scm-agent
 systemctl restart cloudera-scm-server
 
 pssh -h host.txt  "systemctl restart cloudera-scm-agent  "
+
+Q:这里有出现了agent安装失败的情况
+A:分析日志基本可知,是agent和server服务启动时,运行的监听问题.解决思路是对/etc/hosts文件进行处理
+![2021-04-26-11-41-22](http://img.wqkenqing.ren/2021-04-26-11-41-22.png)
+事实证明确实如此。
+
+
+pssh -h host.txt 'mkdir -p /data/colony/hdfs'
