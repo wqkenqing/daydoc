@@ -175,6 +175,8 @@ CREATE DATABASE hue DEFAULT CHARACTER SET utf8; CREATE USER 'hue'@'%'IDENTIFIED 
 
 CREATE DATABASE oozie DEFAULT CHARACTER SET utf8; CREATE USER 'oozie'@'%'IDENTIFIED BY 'oozie'; GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'%' IDENTIFIED BY 'oozie'; GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'%' IDENTIFIED BY 'oozie' WITH GRANT OPTION;
 
+CREATE DATABASE sentry DEFAULT CHARACTER SET utf8; CREATE USER 'sentry'@'%'IDENTIFIED BY 'sentry'; GRANT ALL PRIVILEGES ON sentry.* TO 'sentry'@'%' IDENTIFIED BY 'sentry'; GRANT ALL PRIVILEGES ON *.* TO 'sentry'@'%' IDENTIFIED BY 'sentry' WITH GRANT OPTION;
+
 ## 刷新mysql的权限列表 
 FLUSH PRIVILEGES;
 
@@ -338,6 +340,12 @@ Q:这里有出现了agent安装失败的情况
 A:分析日志基本可知,是agent和server服务启动时,运行的监听问题.解决思路是对/etc/hosts文件进行处理
 ![2021-04-26-11-41-22](http://img.wqkenqing.ren/2021-04-26-11-41-22.png)
 事实证明确实如此。
+后续2:
+在运维同事进行处理后,又在/etc/hosts 文件里添加了新的内容。
 
 
 pssh -h host.txt 'mkdir -p /data/colony/hdfs'
+
+pssh -h es.txt      chmod 777 /opt/cloudera/parcels/ELASTICSEARCH-0.0.5.elasticsearch.p0.5/config/
+
+### kibana部署
