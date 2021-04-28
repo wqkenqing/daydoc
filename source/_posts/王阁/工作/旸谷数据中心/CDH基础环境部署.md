@@ -346,6 +346,52 @@ A:分析日志基本可知,是agent和server服务启动时,运行的监听问�
 
 pssh -h host.txt 'mkdir -p /data/colony/hdfs'
 
-pssh -h es.txt      chmod 777 /opt/cloudera/parcels/ELASTICSEARCH-0.0.5.elasticsearch.p0.5/config/
+### elasticearch 集中安装
+1. 将es的parcel包移动到/var/www/html/elasticearch中
+2. 在parcel配置页面添加es镜像的添加地址: http://server/elasticsearch
+3. 在parcel页面刷新,直至elasticearch栏加载出来,点击下载,分配.
+4. 分配完成后,点击激活,这一步常是要退出分配页面,重新点击.
+5. 激活完成后一般就可以安装elasticsearch了.按CDH安装其它主机一样,进行安装
+6. 安装时elasticearch的配置内容一般不可能更改,这里要elastiscearch安装完成后再进行配置.
+要配置的内容主要有如下图
+![2021-04-28-14-36-25](http://img.wqkenqing.ren/2021-04-28-14-36-25.png)
+#### es内存设置
+
+```
+-Xms8g
+-Xmx8g
+```
+两个参数要设置成一样大,不然会有报错。
+
+
+elasticearch.yml添加监听配置
+
+```
+action.destructive_requires_name: true
+action.auto_create_index: .security,.monitoring*,.watches,.triggered_watches,.watcher-history*
+xpack.monitoring.enabled: true
+xpack.graph.enabled: false
+xpack.watcher.enabled: false
+xpack.ml.enabled: false
+```
+
+
+
 
 ### kibana部署
+
+#### docker-compose.yml
+
+```yml
+version: '2.4'
+services:
+  kibana:
+   image: kibana:7.9.0
+   container_name: kibana
+   restart: always
+   volumes:
+       - ./config:/usr/share/kibana/config
+   network_mode: host
+
+```
+
