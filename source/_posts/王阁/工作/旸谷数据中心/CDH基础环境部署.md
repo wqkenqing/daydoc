@@ -395,3 +395,44 @@ services:
 
 ```
 
+### sentry 鉴权
+
+### clickhouse集群
+
+
+
+#### 部署单机版
+1. 先查看支不支持sse4指令集
+grep -q sse4_2 /proc/cpuinfo && echo “SSE 4.2 supported” || echo “SSE 4.2 not supported.
+![2021-04-28-17-34-28](http://img.wqkenqing.ren/2021-04-28-17-34-28.png)
+现有服务器不支持sse4。在此种情况下，先安装一个集群试用
+
+
+2. 
+
+pssh -h ck.txt "yum install -y yum-utils"
+pssh -h ck.txt "rpm --import https://repo.clickhouse.tech/CLICKHOUSE-KEY.GPG"
+pssh -h ck.txt "yum-config-manager --add-repo https://repo.clickhouse.tech/rpm/stable/x86_64"
+pssh -h ck.txt "yum install -y clickhouse-server clickhouse-client"
+
+3. 
+启动server
+
+systemctl start clickhouse-server
+
+pssh -h ck.txt "systemctl start clickhouse-server"
+
+4. 修改config.xml
+
+修改以下几个参数
+```
+    <path>/var/lib/clickhouse/</path>
+    <tmp_path>/var/lib/clickhouse/tmp/</tmp_path>
+    <user_files_path>/var/lib/clickhouse/user_files/</user_files_path>
+
+    全局替换
+    /var/lib ===> /data/colony/
+    /var/log ===> /data/colony/log
+    
+
+```
