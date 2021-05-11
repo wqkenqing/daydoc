@@ -434,5 +434,4 @@ pssh -h ck.txt "systemctl start clickhouse-server"
     /var/lib ===> /data/colony/
     /var/log ===> /data/colony/log
     
-
 ```
