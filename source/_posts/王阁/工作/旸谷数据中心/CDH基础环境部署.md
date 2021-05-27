@@ -435,3 +435,21 @@ pssh -h ck.txt "systemctl start clickhouse-server"
     /var/log ===> /data/colony/log
     
 ```
+
+## flink手动安装
+
+复制flink至其它节点
+pscp -h host2.txt flink-1.12.4-bin-scala_2.11.tgz ~
+解压flink压缩包
+pssh -h host2.txt "tar -zxvf ~/flink-1.12.4-bin-scala_2.11.tgz"
+
+安装scala环境
+pscp  -r  -h host2.txt scala-2.11.8 ~/
+
+
+复制 flink包至所有节点
+
+pscp -h host.txt  /root/upload/flink-shaded-hadoop-2-uber-3.0.0-cdh6.2.0-7.0.jar   /opt/cloudera/parcels/FLINK/lib
+
+demo 示例
+
