@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>wang&#39;s dayliy document</title>
+  
+  
+  <link href="/daydoc/atom.xml" rel="self"/>
+  
+  <link href="http://www.wqkenqing.ren/daydoc/"/>
+  <updated>2021-06-07T02:28:51.152Z</updated>
+  <id>http://www.wqkenqing.ren/daydoc/</id>
+  
+  <author>
+    <name>Kuiq  Wang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>王阁/日常/vue/vue</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/vue/vue/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/vue/vue/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/考试/电子科大2019招生收集</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/blog_sync_project/plan</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/blog_sync_project/plan/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/blog_sync_project/plan/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<p>about two git project</p><p>one hexo .<br>this project is used to deploy the files;</p><p>two : dayliy_doc</p><p>so I just divide the project about these parts</p><ol><li><p>pull files from github </p></li><li><p>list the files;</p></li><li><p>choose the files to sync. </p></li><li><p>push and deploy;</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;about two git project&lt;/p&gt;
+&lt;p&gt;one hexo .&lt;br&gt;this project is used to deploy the files;&lt;/p&gt;
+&lt;p&gt;two : dayliy_doc&lt;/p&gt;
+&lt;p&gt;so I just divide the 
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/prepare/数据储备</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">采集数据,留作备用</span><br></pre></td></tr></table></figure><p>所涉组件</p><p>采集</p><ul><li>flume</li><li>logstash</li><li>beats</li><li>elasticsearch-dump</li></ul><p>传输</p><ul><li>kafka</li><li>flume</li></ul><p>存储</p><ul><li>elasticsearch</li><li>hbase</li><li>hdfs</li></ul><p>step one : 采集数据到elasticsearch</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span cla
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/运维/about云账号密码</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<p>account: wqkenqing<br>password:125323wkQ$</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;account: wqkenqing&lt;br&gt;password:125323wkQ$&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/运维/jumpserver</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p> title:  jumpserver体验<br> date: 2020-07-28<br> tags: [jumpserver,资产管理]</p><hr> <a id="more"></a><p> # jumpserver体验</p><p> ## 一体化安装</p><p>mysql -uroot -e “create database jumpserver default charset ‘utf8’; grant all on jumpserver.* to ‘jumpserver’@’127.0.0.1’ identified by ‘$DB_PASSWORD’; flush privileges;”</p><p>m6GgXgemmBw5B7om9uYqFSz3erVo0JCLO7Trxpo8S2bxazXk2Y</p><p>Vv42qLmxsEPUO4Kf</p><p>xLnAOS5Mc8cqRZ8QDxUzVQvZgxIRnJl73c0rE56WCSq8tYZQFG</p><p>ETNhIk9zu3fgN2pG</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;p&gt; title:  jumpserver体验&lt;br&gt; date: 2020-07-28&lt;br&gt; tags: [jumpserver,资产管理]&lt;/p&gt;
+&lt;hr&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/运维/tmux上手</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用tmux"><a href="#使用tmux" class="headerlink" title="使用tmux"></a>使用tmux</h2><p>mac os 通过 brew install tmux</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux 接收快捷键的指令是 ^ + B 即mac中的control + B</span><br></pre></td></tr></table></figure><p>窗格的操作</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这些操作都是通过 ^+b 来接收</span><br></pre></td></tr></table></figure><table><thead><tr><th align="left">操作符</th><th align="left">作用</th></tr></thead><tbody><tr><td align="left">%</td><td align="left">左右创建两个窗格</td></tr><tr><td align="left">‘’</td><td align="left">左右创建两个窗格</td></tr><tr><td align="left">x</td><td align="left">关闭当前窗格</td></tr><tr><td align="left">{</td><td align="left">前移当前窗格</td></tr><tr><td align="left">}</td><td align="left">后移当前窗格</td></tr><tr><td align="left">;</td><td align="left">选择上次用的窗格</td></tr><tr><td align="left">o</td><td align="left">选择下一个窗格</td></tr><tr><td align="left">space</td><td align="left">切换窗格布局</td></tr><tr><td align="left">z</td><td align="left">放大窗格</td></tr><tr><td align="left">q</td><td align="left">显示序号</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;使用tmux&quot;&gt;&lt;a href=&quot;#使用tmux&quot; class=&quot;headerlink&quot; title=&quot;使用tmux&quot;&gt;&lt;/a&gt;使用tmux&lt;/h2&gt;&lt;p&gt;mac os 通过 brew install tmux&lt;/p&gt;
+&lt;figure class=&quot;highlig
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/运维/京东云</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E4%BA%AC%E4%B8%9C%E4%BA%91/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E4%BA%AC%E4%B8%9C%E4%BA%91/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<p>114.67.107.246<br>wangkuiqing<br>eExfeTmKkgRJ255SRRZq</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;114.67.107.246&lt;br&gt;wangkuiqing&lt;br&gt;eExfeTmKkgRJ255SRRZq&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/运维/博客不同主题切换</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里的背景是针对博客不同项目生成不同主题类目的方案</span><br></pre></td></tr></table></figure><p>step one </p><p> 更换wqkenqing.github.io下的github项目</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span cla
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作记录</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[ <a id="more"></a><p>docker run  –name fid_state_new -d -v /data/query_sql:/query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.137 –add-host  data3:10.20.10.138 registry.lisong.pub:28500/toll_job_tmp /query/fid_state_tmp.sql    30<br>docker run  –name fid_state_new -d -v /data/query_sql:/query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.137 –add-host  data3:10.20.10.138 registry.lisong.pub:28500/toll_state_new /query/fid_state_tmp.sql    30</p><p>docker run    -v /data/query_sql:/query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.137 –add-host  data3:10.20.10.138 registry.lisong.pub:28500/toll_job_state_tmp /query/fid_state_tmp.sql</p><p>69641199</p><p>kafka-console-consumer.sh –bootstrap-server data1:9092 –property print.key=true –topic zhsd_real –partition=0  –offset  69640199 &gt;real.log</p><p>kafka-consumer-groups.sh –bootstrap-server data1:9092 –group jzwsd-camera-real-time-forecast-a –describe</p><p>c9656300807b</p><p>docker run -d   -v /data/query_sql:/query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.137 –add-host  data3:10.20.10.138 registry.lisong.pub:28500/toll_job_tmp /query/fid_info.sql  30</p><p>select * from Biz_Roadstae where FID &gt; 186681323</p><p>ssh -o ServerAliveInterval=59 -NfL 0.0.0.0:9092:data1:9092 jzw</p><p>ssh -o ServerAliveInterval=59 -NfL 0.0.0.0:2181:data1:2181 jzw</p><p>kafka-run-class.sh kafka.tools.GetOaffsetShell  –broker-list localhost:9092 –partitions 0 –topic zhsd_real –time -1</p><p>71429512</p><p>kafka-console-consumer.sh –bootstrap-server data1:9092 –property print.key=true –topic zhsd_real –partition=0  –offset 71409512 &gt;real.log</p><p>kafka-console-consumer.sh –bootstrap-server data1:9092  –from-beginning –topic jzw_toll_island_state   &gt;state.txt</p><p>kafka-run-class.sh kafka.tools.GetOaffsetShell  –broker-list data1:9092  –topic ws_hy_mock_data_five_minute –time -1</p><p>PUT /_snapshot/my_backup<br>{<br>  “type” : “fs”,<br>  “settings”: {<br>    “location”: “/data/snapshot/backup1”<br>    “max_snapshot_bytes_per_sec” : “50mb”,<br>    “max_restore_bytes_per_sec” :”50mb”,<br>    “compress”:true}<br>  }<br>}</p><p>curl -XPUT ‘<a href="http://192.168.5.185:9200/_snapshot/el_bak&#39;" target="_blank" rel="noopener">http://192.168.5.185:9200/_snapshot/el_bak&#39;</a> -d ‘{“type”: “fs”,”settings”: {“location”:”/usr/hadoop/application/el_bak”,”max_snapshot_bytes_per_sec” : “50mb”, “max_restore_bytes_per_sec” :”50mb”,”compress”:true}}’</p><p>————————————————<br>版权声明：本文为CSDN博主「warrah」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/warrah/article/details/78978244" target="_blank" rel="noopener">https://blog.csdn.net/warrah/article/details/78978244</a></p><p>plugin install elasticsearch/elasticsearch-repository-hdfs/6.7.2</p><p>POST /hy_mock_data_five_minute/_delete_by_query<br>{<br>  “query”: {<br>      “bool”: {<br>        “must”: [<br>          {<br>            “range”: {<br>              “rangeBegin”: {<br>                “gte”: “2020-04-18 00:00:00”,<br>                “lt”: “2020-04-22 00:00:00”<br>              }<br>            }<br>          }<br>        ]<br>      }<br>    }<br>}</p><p>同步hy_mock_data</p><p>elasticdump –input=<a href="http://namenode2:9200/hy_mock_data_five_minute" target="_blank" rel="noopener">http://namenode2:9200/hy_mock_data_five_minute</a> –output=<a href="http://yd_data1:9200/hy_mock_data_five_minute_new" target="_blank" rel="noopener">http://yd_data1:9200/hy_mock_data_five_minute_new</a>  –type=settings<br>elasticdump –input=<a href="http://namenode2:9200/hy_mock_data_five_minute" target="_blank" rel="noopener">http://namenode2:9200/hy_mock_data_five_minute</a> –output=<a href="http://yd_data1:9200/hy_mock_data_five_minute_new" target="_blank" rel="noopener">http://yd_data1:9200/hy_mock_data_five_minute_new</a>  –type=mapping<br>elasticdump –input=<a href="http://namenode2:9200/hy_mock_data_five_minute" target="_blank" rel="noopener">http://namenode2:9200/hy_mock_data_five_minute</a> –output=<a href="http://yd_data1:9200/hy_mock_data_five_minute_new" target="_blank" rel="noopener">http://yd_data1:9200/hy_mock_data_five_minute_new</a>  –type=data</p><p>hy_traffic_baidu_five_minute</p><p>elasticdump –input=<a href="http://namenode2:9200/hy_traffic_baidu_five_minute" target="_blank" rel="noopener">http://namenode2:9200/hy_traffic_baidu_five_minute</a> –output=<a href="http://yd_data1:9200/hy_traffic_baidu_five_minute_new1" target="_blank" rel="noopener">http://yd_data1:9200/hy_traffic_baidu_five_minute_new1</a>  –type=settings<br>elasticdump –input=<a href="http://namenode2:9200/hy_traffic_baidu_five_minute" target="_blank" rel="noopener">http://namenode2:9200/hy_traffic_baidu_five_minute</a> –output=<a href="http://yd_data1:9200/hy_traffic_baidu_five_minute_new1" target="_blank" rel="noopener">http://yd_data1:9200/hy_traffic_baidu_five_minute_new1</a>  –type=mapping<br>elasticdump –input=<a href="http://namenode2:9200/hy_traffic_baidu_five_minute" target="_blank" rel="noopener">http://namenode2:9200/hy_traffic_baidu_five_minute</a> –output=<a href="http://yd_data1:9200/hy_traffic_baidu_five_minute_new1" target="_blank" rel="noopener">http://yd_data1:9200/hy_traffic_baidu_five_minute_new1</a>  –type=data</p><p>county_consumption_city</p><p>hotel_tourist_source 不一致</p><p>tourist_local_data<br>tourist_source_prov<br>tourist_source_country<br>county_consumption<br>county_consumption_province<br>hotel_checkin_record</p><hr><p>tourist_passenger_ticket<br>tourist_minute_local_data</p><p>industry_real-weather_data  26866<br>environment_bureau-data 12749</p><hr><p>ddns</p><p>docker run -d  <br>    –restart=always <br>    –name ddns-aliyun <br>    -e “AKID=LTAI4GBKPp17u31LThucvsab” <br>    -e “AKSCT=mmR4XXXKC1QG9KeiHCAuWktMq50UyF” <br>    -e “DOMAIN=home.kuiq.wang” <br>    -e “REDO=600” <br>    chenhw2/aliyun-ddns-cli</p><p>curl -X GET <a href="http://jd_cloud:9200/_search?v" target="_blank" rel="noopener">http://jd_cloud:9200/_search?v</a></p><p>county_consumption_city<br>county_industry_consumption<br>county_consumption_province<br>county_consumption<br>county_business_circle_consumption</p><p>tourist_local_data<br>tourist_source_prov<br>tourist_source_country<br>tourist_source_city</p><hr><p>returns((TypeInformation) TupleTypeInfo.getBasicTupleTypeInfo(String.class, Integer.class)).groupBy(0).sum(1)</p><p>2020-07-29</p><p>flink run -c org.example.stream.SocketTextStreamWordCount /Users/wqkenqing/Desktop/gitfiles/flink-demo/target/original-flink-demo-1.0-SNAPSHOT.jar 127.0.0.1 9000<br>flink run -c org.example.stream.SocketTextStreamWordCount original-flink-demo-1.0-SNAPSHOT.jar 127.0.0.1 9000</p><p>/Users/wqkenqing/Desktop/gitfiles/flink-demo/target/original-flink-demo-1.0-SNAPSHOT.jar</p><p>docker run -d <br>    –restart=always <br>    –name ddns-aliyun <br>    -e “AKID=LTAI4GBKPp17u31LThucvsab” <br>    -e “AKSCT=mmR4XXXKC1QG9KeiHCAuWktMq50UyF” <br>    -e “DOMAIN=home.kuiq.wang” <br>    -e “REDO=600” <br>chenhw2/aliyun-ddns-cli</p><p>LTAI4GBKPp17u31LThucvsab</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+         &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;docker run  –name fid_state_new -d -v /data/query_sql:/query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/日常/运维/运维操作</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Q-更换ubuntu安装源"><a href="#Q-更换ubuntu安装源" class="headerlink" title="Q: 更换ubuntu安装源"></a>Q: 更换ubuntu安装源</h2><p>cp /source/apt/source.plist /source/apt/source.list.bak</p><p>vim /source/apt/source.plist</p><p>添加国内源.</p><p>Q: mac 查看目前哪些进程占用哪些端口</p><p>lsof -nP  | grep TCP | grep LISTEN</p><p>lsof -i :TCP</p><p><img src="http://img.wqkenqing.ren/759a2c6c1c06fc81b9c400060913e93b.png" alt="查看mac pid进程的端口"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Q-更换ubuntu安装源&quot;&gt;&lt;a href=&quot;#Q-更换ubuntu安装源&quot; class=&quot;headerlink&quot; title=&quot;Q: 更换ubuntu安装源&quot;&gt;&lt;/a&gt;Q: 更换ubuntu安装源&lt;/h2&gt;&lt;p&gt;cp /source/apt/source.pl
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/front_end/nginx部署</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/nginx%E9%83%A8%E7%BD%B2/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/nginx%E9%83%A8%E7%BD%B2/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<p>server {<br>  listen 8089;<br>  server_name ; // 你的域名或者 ip<br>  root /root/H-ui.admin; // 你的克隆到的项目路径<br>  index index.html; // 显示首页<br>  location ~* ^.+.(jpg|jpeg|gif|png|ico|css|js|pdf|txt){<br>    root //root/H-ui.admin;<br>  } // 静态文件访问<br>}</p><p>server {<br>    listen       9001;<br>    server_name  localhost;<br>    location / {<br>        root   /root/node-project/pm2test;<br>        #index  index.html index.htm;<br>    }<br>}</p><h1 id="For-more-information-on-configuration-see"><a href="#For-more-information-on-configuration-see" class="headerlink" title="For more information on configuration, see:"></a>For more information on configuration, see:</h1><h1 id="Official-English-Documentation-http-nginx-org-en-docs"><a href="#Official-English-Documentation-http-nginx-org-en-docs" class="headerlink" title="* Official English Documentation: http://nginx.org/en/docs/"></a>* Official English Documentation: <a href="http://nginx.org/en/docs/" target="_blank" rel="noopener">http://nginx.org/en/docs/</a></h1><h1 id="Official-Russian-Documentation-http-nginx-org-ru-docs"><a href="#Official-Russian-Documentation-http-nginx-org-ru-docs" class="headerlink" title="* Official Russian Documentation: http://nginx.org/ru/docs/"></a>* Official Russian Documentation: <a href="http://nginx.org/ru/docs/" target="_blank" rel="noopener">http://nginx.org/ru/docs/</a></h1><p>user root;<br>worker_processes auto;<br>error_log /var/log/nginx/error.log;<br>pid /run/nginx.pid;</p><h1 id="Load-dynamic-modules-See-usr-share-nginx-README-dynamic"><a href="#Load-dynamic-modules-See-usr-share-nginx-README-dynamic" class="headerlink" title="Load dynamic modules. See /usr/share/nginx/README.dynamic."></a>Load dynamic modules. See /usr/share/nginx/README.dynamic.</h1><p>include /usr/share/nginx/modules/*.conf;</p><p>events {<br>    worker_connections 1024;<br>}</p><p>http {<br>    log_format  main  ‘$remote_addr - $remote_user [$time_local] “$request” ‘<br>                      ‘$status $body_bytes_sent “$http_referer” ‘<br>                      ‘“$http_user_agent” “$http_x_forwarded_for”‘;</p><pre><code>access_log  /var/log/nginx/access.log  main;sendfile            on;tcp_nopush          on;tcp_nodelay         on;keepalive_timeout   65;types_hash_max_size 2048;include             /etc/nginx/mime.types;default_type        application/octet-stream;# Load modular configuration files from the /etc/nginx/conf.d directory.# See http://nginx.org/en/docs/ngx_core_module.html#include# for more information.#include /etc/nginx/conf.d/*.conf;server {</code></pre><p>  listen 8089;<br>  server_name  116.196.81.123;<br>  root /root/H-ui.admin;<br>  index index.html;<br>  location ~* ^.+.(jpg|jpeg|gif|png|ico|css|js|pdf|txt){<br>    root //root/H-ui.admin;<br>  }<br>}<br>    include /etc/nginx/default.d/*.conf;</p><h1 id="Settings-for-a-TLS-enabled-server"><a href="#Settings-for-a-TLS-enabled-server" class="headerlink" title="Settings for a TLS enabled server."></a>Settings for a TLS enabled server.</h1><p>#</p><h1 id="server"><a href="#server" class="headerlink" title="server {"></a>server {</h1><h1 id="listen-443-ssl-http2-default-server"><a href="#listen-443-ssl-http2-default-server" class="headerlink" title="listen       443 ssl http2 default_server;"></a>listen       443 ssl http2 default_server;</h1><h1 id="listen-443-ssl-http2-default-server-1"><a href="#listen-443-ssl-http2-default-server-1" class="headerlink" title="listen       [::]:443 ssl http2 default_server;"></a>listen       [::]:443 ssl http2 default_server;</h1><h1 id="server-name"><a href="#server-name" class="headerlink" title="server_name  _;"></a>server_name  _;</h1><h1 id="root-usr-share-nginx-html"><a href="#root-usr-share-nginx-html" class="headerlink" title="root         /usr/share/nginx/html;"></a>root         /usr/share/nginx/html;</h1><p>#</p><h1 id="ssl-certificate-“-etc-pki-nginx-server-crt”"><a href="#ssl-certificate-“-etc-pki-nginx-server-crt”" class="headerlink" title="ssl_certificate “/etc/pki/nginx/server.crt”;"></a>ssl_certificate “/etc/pki/nginx/server.crt”;</h1><h1 id="ssl-certificate-key-“-etc-pki-nginx-private-server-key”"><a href="#ssl-certificate-key-“-etc-pki-nginx-private-server-key”" class="headerlink" title="ssl_certificate_key “/etc/pki/nginx/private/server.key”;"></a>ssl_certificate_key “/etc/pki/nginx/private/server.key”;</h1><h1 id="ssl-session-cache-shared-SSL-1m"><a href="#ssl-session-cache-shared-SSL-1m" class="headerlink" title="ssl_session_cache shared:SSL:1m;"></a>ssl_session_cache shared:SSL:1m;</h1><h1 id="ssl-session-timeout-10m"><a href="#ssl-session-timeout-10m" class="headerlink" title="ssl_session_timeout  10m;"></a>ssl_session_timeout  10m;</h1><h1 id="ssl-ciphers-HIGH-aNULL-MD5"><a href="#ssl-ciphers-HIGH-aNULL-MD5" class="headerlink" title="ssl_ciphers HIGH:!aNULL:!MD5;"></a>ssl_ciphers HIGH:!aNULL:!MD5;</h1><h1 id="ssl-prefer-server-ciphers-on"><a href="#ssl-prefer-server-ciphers-on" class="headerlink" title="ssl_prefer_server_ciphers on;"></a>ssl_prefer_server_ciphers on;</h1><p>#</p><h1 id="Load-configuration-files-for-the-default-server-block"><a href="#Load-configuration-files-for-the-default-server-block" class="headerlink" title="# Load configuration files for the default server block."></a># Load configuration files for the default server block.</h1><h1 id="include-etc-nginx-default-d-conf"><a href="#include-etc-nginx-default-d-conf" class="headerlink" title="include /etc/nginx/default.d/*.conf;"></a>include /etc/nginx/default.d/*.conf;</h1><p>#</p><h1 id="location"><a href="#location" class="headerlink" title="location / {"></a>location / {</h1><h1 id=""><a href="#" class="headerlink" title="}"></a>}</h1><p>#</p><h1 id="error-page-404-404-html"><a href="#error-page-404-404-html" class="headerlink" title="error_page 404 /404.html;"></a>error_page 404 /404.html;</h1><h1 id="location-40x-html"><a href="#location-40x-html" class="headerlink" title="location = /40x.html {"></a>location = /40x.html {</h1><h1 id="-1"><a href="#-1" class="headerlink" title="}"></a>}</h1><p>#</p><h1 id="error-page-500-502-503-504-50x-html"><a href="#error-page-500-502-503-504-50x-html" class="headerlink" title="error_page 500 502 503 504 /50x.html;"></a>error_page 500 502 503 504 /50x.html;</h1><h1 id="location-50x-html"><a href="#location-50x-html" class="headerlink" title="location = /50x.html {"></a>location = /50x.html {</h1><h1 id="-2"><a href="#-2" class="headerlink" title="}"></a>}</h1><h1 id="-3"><a href="#-3" class="headerlink" title="}"></a>}</h1><p>}</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;server {&lt;br&gt;  listen 8089;&lt;br&gt;  server_name ; // 你的域名或者 ip&lt;br&gt;  root /root/H-ui.admin; // 你的克隆到的项目路径&lt;br&gt;  index index.html; // 显示首页&lt;br&gt;  
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/front_end/调研</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E8%B0%83%E7%A0%94/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E8%B0%83%E7%A0%94/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<p>调研几款好用的前端框架与架构</p><ol><li>H-ui</li></ol><p>早期接触过</p><p>kafka管理</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;调研几款好用的前端框架与架构&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;H-ui&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;早期接触过&lt;/p&gt;
+&lt;p&gt;kafka管理&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/hy-sjksh-info-dev/docker-compose</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/hy-sjksh-info-dev/docker-compose/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/hy-sjksh-info-dev/docker-compose/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[{"version":"2.3","services":{"sjksh-store-info":{"image":"registry.lisong.pub:28500/hy/hy-sjksh-info-dev-v6","container_name":"hy-sjksh-info-dev","cpus":2,"mem_limit":"2g","restart":"unless-stopped","extra_hosts":["namenode:192.168.10.100","datanode1:192.168.10.101","datanode2:192.168.10.102","datanode3:192.168.10.103","namenode2:192.168.10.104"],"env_file":["common.env"],"environment":["JAVA_OPTIONS=-XX:CompressedClassSpaceSize=32m"]}}}]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        {&quot;version&quot;:&quot;2.3&quot;,&quot;services&quot;:{&quot;sjksh-store-info&quot;:{&quot;image&quot;:&quot;registry.lisong.pub:28500/hy/hy-sjksh-info-dev-v6&quot;,&quot;container_name&quot;:&quot;hy-sjksh-info
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/owncloud/账号</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/owncloud/%E8%B4%A6%E5%8F%B7/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/owncloud/%E8%B4%A6%E5%8F%B7/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="账号管理"><a href="#账号管理" class="headerlink" title="账号管理"></a>账号管理</h1><table><thead><tr><th align="left">账号</th><th align="left">密码</th></tr></thead><tbody><tr><td align="left">home</td><td align="left">home123</td></tr><tr><td align="left">kuiq.wang</td><td align="left"></td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;账号管理&quot;&gt;&lt;a href=&quot;#账号管理&quot; class=&quot;headerlink&quot; title=&quot;账号管理&quot;&gt;&lt;/a&gt;账号管理&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;账号&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;密码
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/ubuntu/desk_gui</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ubuntu/desk_gui/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ubuntu/desk_gui/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装：</p><p>sudo apt-get install vnc4server xfce4</p><p>vncserver -geometry 1280x800 -alwaysshared :1</p><p> vncserver -kill :1</p><p> #!/bin/sh</p><h1 id="Uncomment-the-following-two-lines-for-normal-desktop"><a href="#Uncomment-the-following-two-lines-for-normal-desktop" class="headerlink" title="Uncomment the following two lines for normal desktop:"></a>Uncomment the following two lines for normal desktop:</h1><p>#unset SESSION_MANAGER<br>#exec /etc/X11/xinit/xinitrc</p><p>#[ -x /etc/vnc/xstartup ] &amp;&amp; exec /etc/vnc/xstartup<br>#[ -r $HOME/.Xresources ] &amp;&amp; xrdb $HOME/.Xresources<br>#xsetroot -solid grey<br>#vncconfig -iconic &amp;<br>#x-terminal-emulator -geometry 80x24+10+10 -ls -title “$VNCDESKTOP Desktop” &amp;<br>#x-window-manager &amp;<br>unset SESSION_MANAGER<br>unset DBUS_SESSION_BUS_ADDRESS<br>[ -x /etc/vnc/xstartup ] &amp;&amp; exec /etc/vnc/xstartup<br>[ -r $HOME/.Xresources ] &amp;&amp; xrdb $HOME/.Xresources<br>vncconfig -iconic &amp;<br>-session &amp;</p><p> sudo x11vnc -display :2 -auth ~/.vnc/passwd -forever -bg -o /var/log/x11vnc.log -rfbauth /etc/x11vnc.pass -shared -noxdamage -xrandr “resize” -rfbport 5900</p><p> sudo x11vnc -forever -bg -usepw -cursor arrow -display :2</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;安装：&lt;/p&gt;
+&lt;p&gt;sudo apt-get install vnc4server xfce4&lt;/p&gt;
+&lt;p&gt;vncserver -geometry 1280x800 -alwaysshared :1&lt;/p&gt;
+&lt;p&gt; vncserver -kill :1&lt;/p&gt;
+&lt;p&gt; 
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/ubuntu/linux自启服务</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ubuntu/linux%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ubuntu/linux%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">linux自启服务</span><br></pre></td></tr></table></figure><h2 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span cla
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/yd_server_config/README</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/yd_server_config/README/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/yd_server_config/README/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录移动云服务器上部署的服务</p><table><thead><tr><th align="left">服务名</th><th align="left">说明</th></tr></thead><tbody><tr><td align="left">sjksh_store_info</td><td align="left">数据可视化模块的存储信息查询服务</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;记录移动云服务器上部署的服务&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;服务名&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&quot;left&quot;&gt;sj
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/front_end/接口规划/data-manager</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E6%8E%A5%E5%8F%A3%E8%A7%84%E5%88%92/data-manager/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E6%8E%A5%E5%8F%A3%E8%A7%84%E5%88%92/data-manager/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h2><p>添加topic<br>/data/kafka/add_topic</p><p>查询toipic</p><p>/data/kafka/select_topic</p><p>删除topic(待定)</p><p>/data/kafka/delete_topic</p><p>工具类</p><p>删除 topic List;</p><h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;kafka&quot;&gt;&lt;a href=&quot;#kafka&quot; class=&quot;headerlink&quot; title=&quot;kafka&quot;&gt;&lt;/a&gt;kafka&lt;/h2&gt;&lt;p&gt;添加topic&lt;br&gt;/data/kafka/add_topic&lt;/p&gt;
+&lt;p&gt;查询toipic&lt;/p&gt;
+&lt;p&gt;/d
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>王阁/技术/运维/yd_server_config/sjksh_store_info/docker-compose</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/yd_server_config/sjksh_store_info/docker-compose/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/yd_server_config/sjksh_store_info/docker-compose/</id>
+    <published>2021-06-07T02:28:51.152Z</published>
+    <updated>2021-06-07T02:28:51.152Z</updated>
+    
+    <content type="html"><![CDATA[{"version":"2.4","services":{"sjksh-store-info":{"image":"registry.lisong.pub:28500/hy/hy-sjksh-info-v1.5","container_name":"hy-sjksh-info","cpus":4,"mem_limit":"2g","restart":"unless-stopped","extra_hosts":["data1:10.103.22.40","data2:10.103.22.64","data3:10.103.22.65","app1:10.103.22.66","app2:10.103.22.67","app3:10.103.22.68"],"env_file":["common.env"],"environment":["JAVA_OPTIONS=-XX:CompressedClassSpaceSize=32m"]}}}]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        {&quot;version&quot;:&quot;2.4&quot;,&quot;services&quot;:{&quot;sjksh-store-info&quot;:{&quot;image&quot;:&quot;registry.lisong.pub:28500/hy/hy-sjksh-info-v1.5&quot;,&quot;container_name&quot;:&quot;hy-sjksh-info&quot;,
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
