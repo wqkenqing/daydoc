@@ -118,3 +118,15 @@ kinit root/admin
 klist 
 
 ```
+
+### 1.6 客户端安装kerberos
+
+```
+# 在所有服务器上安装kerberos-client
+
+pssh -h host.txt  "yum -y install krb5-devel krb5-workstation"
+# 将server中的/etc/krb5.conf 拷贝至所有client上
+pscp -h host2.txt /etc/krb5.conf /etc
+
+```
+
