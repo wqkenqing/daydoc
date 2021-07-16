@@ -19,7 +19,7 @@ Usage:
      -z,--zookeeperNamespace <arg>   Namespace to create the Zookeeper sub-paths for HA mode
 ```
 
-yarn-session.sh -n 2 -jm 1024 -tm 1024 -d
+yarn-session.sh -n 8 -jm 2048 -tm 4096 -d
 参数解释：
 ```
 //-n 2 表示指定两个容器

@@ -1,0 +1,63 @@
+{
+	"job": {
+	    "setting": {
+		"speed": {
+		     "channel": 3
+		},
+		"errorLimit": {
+		    "record": 0,
+		    "percentage": 0.02
+		}
+	    },
+	    "content": [
+		{
+		    "reader": {
+			"name": "mysqlreader",
+			"parameter": {
+			    "writeMode": "insert",
+			    "username": "root",
+			    "password": "********",
+			    "column": [
+				"id",
+				"name"
+			    ],
+			    "splitPk": "id",
+			    "connection": [
+				{
+				    "table": [
+					"mysql_datax"
+				    ],
+				    "jdbcUrl": [
+	 "jdbc:mysql://10.254.116.249:3306/mysql_datax"
+				    ]
+				}
+			    ]
+			}
+		    },
+		   "writer": {
+			"name": "hdfswriter",
+			"parameter": {
+			    "defaultFS": "hdfs://10.254.237.61:9000",
+			    "fileType": "text",
+			    "path": "/user/hive/warehouse/hive_datax.db/hive_datax/",
+			    "fileName": "test",
+			    "column": [
+				{
+				    "name": "id",
+				    "type": "int"
+				},
+				{
+				    "name": "name",
+				    "type": "string"
+				}
+			    ],
+			    "writeMode": "append",
+			    "fieldDelimiter": "\u0001",
+			    "compress":"gzip"
+			}
+		    }
+		}
+	    ]
+	}
+    }
+     
