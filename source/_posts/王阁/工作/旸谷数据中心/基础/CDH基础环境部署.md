@@ -163,19 +163,19 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'指定的IP' IDENTIFIED BY 'root用户的
 
 ```bash 
 CREATE DATABASE scm DEFAULT CHARACTER SET utf8; 
-CREATE USER 'scm'@'%'IDENTIFIED BY 'scm'; 
-GRANT ALL PRIVILEGES ON scm.* TO 'scm'@'%' IDENTIFIED BY 'scm'; 
-GRANT ALL PRIVILEGES ON *.* TO 'scm'@'%' IDENTIFIED BY 'scm' WITH GRANT OPTION;
+CREATE USER 'scm'@'%'IDENTIFIED BY 'ER62-fP()hs1OoFW>'; 
+GRANT ALL PRIVILEGES ON scm.* TO 'scm'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>'; 
+GRANT ALL PRIVILEGES ON *.* TO 'scm'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>' WITH GRANT OPTION;
 
-CREATE DATABASE amon DEFAULT CHARACTER SET utf8; CREATE USER 'amon'@'%'IDENTIFIED BY 'amon'; GRANT ALL PRIVILEGES ON amon.* TO 'amon'@'%' IDENTIFIED BY 'amon'; GRANT ALL PRIVILEGES ON *.* TO 'amon'@'%' IDENTIFIED BY 'amon' WITH GRANT OPTION;
+CREATE DATABASE amon DEFAULT CHARACTER SET utf8; CREATE USER 'amon'@'%'IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON amon.* TO 'amon'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON *.* TO 'amon'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>' WITH GRANT OPTION;
 
-CREATE DATABASE hive DEFAULT CHARACTER SET utf8; CREATE USER 'hive'@'%'IDENTIFIED BY 'hive'; GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'%' IDENTIFIED BY 'hive'; GRANT ALL PRIVILEGES ON *.* TO 'hive'@'%' IDENTIFIED BY 'hive' WITH GRANT OPTION;
+CREATE DATABASE hive DEFAULT CHARACTER SET utf8; CREATE USER 'hive'@'%'IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON *.* TO 'hive'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>' WITH GRANT OPTION;
 
-CREATE DATABASE hue DEFAULT CHARACTER SET utf8; CREATE USER 'hue'@'%'IDENTIFIED BY 'hue'; GRANT ALL PRIVILEGES ON hue.* TO 'hue'@'%' IDENTIFIED BY 'hue'; GRANT ALL PRIVILEGES ON *.* TO 'hue'@'%' IDENTIFIED BY 'hue' WITH GRANT OPTION;
+CREATE DATABASE hue DEFAULT CHARACTER SET utf8; CREATE USER 'hue'@'%'IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON hue.* TO 'hue'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON *.* TO 'hue'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>' WITH GRANT OPTION;
 
-CREATE DATABASE oozie DEFAULT CHARACTER SET utf8; CREATE USER 'oozie'@'%'IDENTIFIED BY 'oozie'; GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'%' IDENTIFIED BY 'oozie'; GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'%' IDENTIFIED BY 'oozie' WITH GRANT OPTION;
+CREATE DATABASE oozie DEFAULT CHARACTER SET utf8; CREATE USER 'oozie'@'%'IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON oozie.* TO 'oozie'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON *.* TO 'oozie'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>' WITH GRANT OPTION;
 
-CREATE DATABASE sentry DEFAULT CHARACTER SET utf8; CREATE USER 'sentry'@'%'IDENTIFIED BY 'sentry'; GRANT ALL PRIVILEGES ON sentry.* TO 'sentry'@'%' IDENTIFIED BY 'sentry'; GRANT ALL PRIVILEGES ON *.* TO 'sentry'@'%' IDENTIFIED BY 'sentry' WITH GRANT OPTION;
+CREATE DATABASE sentry DEFAULT CHARACTER SET utf8; CREATE USER 'sentry'@'%'IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON sentry.* TO 'sentry'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>'; GRANT ALL PRIVILEGES ON *.* TO 'sentry'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>' WITH GRANT OPTION;
 
 ## 刷新mysql的权限列表 
 FLUSH PRIVILEGES;
@@ -256,7 +256,8 @@ pssh -h host.txt " yum install -y oracle-j2sdk1.8-1.8.0+update181-1.x86_64"
 
 vim /etc/profile
 
-export JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar export PATH=:$JAVA_HOME/bin:$PATH
+export JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera 
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar export PATH=:$JAVA_HOME/bin:$PATH
 
 pscp -h host.txt /etc/profile /etc
 
@@ -282,12 +283,13 @@ pscp -h host2.txt /usr/share/java/mysql-connector-java.jar /usr/share/java/
 
 ```
 #安装python27，解决安装过程中Hue无法访问数据库问题
-pssh -h host.txt yum install -y centos-release-scl 
-pssh -h host.txt yum install -y python27 python27-devel
-
+pssh -h host.txt  "yum install -y centos-release-scl "
+pssh -h host.txt "yum install -y python27 python27-devel"
+## server安装
+yum install -y cloudera-manager-server cloudera-manager-daemons cloudera-manager-agent
 ## 安装agent and damons
-pssh -h host.txt yum -y install cloudera-manager-daemons
-pssh -h host.txt yum -y install cloudera-manager-agent
+pssh -h host.txt "yum -y install cloudera-manager-daemons"
+pssh -h host.txt "yum -y install cloudera-manager-agent"
 pssh -h host2.txt yum -y install cloudera-manager-daemons
 pssh -h host2.txt yum -y install cloudera-manager-agent
 
@@ -308,7 +310,7 @@ pscp -h host2.txt /etc/cloudera-scm-agent/config.ini /etc/cloudera-scm-agent/
 #### 初始化scm数据库
 
 ```
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm scm
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm ER62-fP()hs1OoFW>
 
 添加mysql驱动包
 pscp -h host2.txt /usr/share/java/mysql-connector-java.jar  /opt/cloudera/cm/lib
@@ -449,7 +451,8 @@ pscp  -r  -h host2.txt scala-2.11.8 ~/
 
 复制 flink包至所有节点
 
-pscp -h host.txt  /root/upload/flink-shaded-hadoop-2-uber-3.0.0-cdh6.2.0-7.0.jar   /opt/cloudera/parcels/FLINK/lib
+pscp -h hos t.txt  /root/upload/flink-shaded-hadoop-2-uber-3.0.0-cdh6.2.0-7.0.jar   /opt/cloudera/parcels/FLINK/lib
 
 demo 示例
 
+pscp -h hos t.txt  /root/upload/flink-shaded-hadoop-2-uber-3.0.0-cdh6.2.0-7.0.jar   /opt/cloudera/parcels/FLINK/lib
