@@ -9,7 +9,7 @@ password: 7FKBKZrTTTPG2LnC
 
  ## dataworks使用
 
-结合datanworks的深度使用，对数据基础平台的功能进行沉淀
+结合dataworks的深度使用，对数据基础平台的功能进行沉淀
 
 ### 数据集成
 
