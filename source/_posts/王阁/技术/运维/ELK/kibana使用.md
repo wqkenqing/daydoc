@@ -16,4 +16,3 @@ password: 7FKBKZrTTTPG2LnC
 
 ![2021-06-20-18-47-51](http://img.wqkenqing.ren/2021-06-20-18-47-51.png)
 这里就可以选择刚才保存的索引规则。并展相关数据
-
