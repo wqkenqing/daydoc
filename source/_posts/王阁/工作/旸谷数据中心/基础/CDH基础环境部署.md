@@ -110,7 +110,7 @@ yum -y install mysql-community-server
 ## 启动mysql服务
 
 ```
-![2021-04-25-14-30-38](http://rgr3ifyzo.sabkt.gdipper.com2021-04-25-14-30-38.png)
+![2021-04-25-14-30-38](http://img.wqkenqing.ren2021-04-25-14-30-38.png)
 
 ### 启动mysql服务
 
@@ -144,7 +144,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'ER62-fP()hs1OoFW>';
 ###重启使密码生效
 systemctl restart mysqld
 ```
-![2021-04-25-14-35-25](http://rgr3ifyzo.sabkt.gdipper.com2021-04-25-14-35-25.png)
+![2021-04-25-14-35-25](http://img.wqkenqing.ren2021-04-25-14-35-25.png)
 
 ### 允许root用户远程登录
 
@@ -340,7 +340,7 @@ pssh -h host.txt  "systemctl restart cloudera-scm-agent  "
 
 Q:这里有出现了agent安装失败的情况
 A:分析日志基本可知,是agent和server服务启动时,运行的监听问题.解决思路是对/etc/hosts文件进行处理
-![2021-04-26-11-41-22](http://rgr3ifyzo.sabkt.gdipper.com2021-04-26-11-41-22.png)
+![2021-04-26-11-41-22](http://img.wqkenqing.ren2021-04-26-11-41-22.png)
 事实证明确实如此。
 后续2:
 在运维同事进行处理后,又在/etc/hosts 文件里添加了新的内容。
@@ -356,7 +356,7 @@ pssh -h host.txt 'mkdir -p /data/colony/hdfs'
 5. 激活完成后一般就可以安装elasticsearch了.按CDH安装其它主机一样,进行安装
 6. 安装时elasticearch的配置内容一般不可能更改,这里要elastiscearch安装完成后再进行配置.
 要配置的内容主要有如下图
-![2021-04-28-14-36-25](http://rgr3ifyzo.sabkt.gdipper.com2021-04-28-14-36-25.png)
+![2021-04-28-14-36-25](http://img.wqkenqing.ren2021-04-28-14-36-25.png)
 #### es内存设置
 
 ```
@@ -406,7 +406,7 @@ services:
 #### 部署单机版
 1. 先查看支不支持sse4指令集
 grep -q sse4_2 /proc/cpuinfo && echo “SSE 4.2 supported” || echo “SSE 4.2 not supported.
-![2021-04-28-17-34-28](http://rgr3ifyzo.sabkt.gdipper.com2021-04-28-17-34-28.png)
+![2021-04-28-17-34-28](http://img.wqkenqing.ren2021-04-28-17-34-28.png)
 现有服务器不支持sse4。在此种情况下，先安装一个集群试用
 
 
