@@ -57,18 +57,18 @@ createrepo .
 
 
 ```
-![2021-05-27-14-28-35](http://img.wqkenqing.ren2021-05-27-14-28-35.png)
+![2021-05-27-14-28-35](http://img.wqkenqing.ren/2021-05-27-14-28-35.png)
 
 
 ### cloudera manager中添加flink
 
-![2021-05-27-14-38-15](http://img.wqkenqing.ren2021-05-27-14-38-15.png)
-![2021-05-27-14-39-13](http://img.wqkenqing.ren2021-05-27-14-39-13.png)
-![2021-05-27-14-39-49](http://img.wqkenqing.ren2021-05-27-14-39-49.png)
-![2021-05-27-14-40-44](http://img.wqkenqing.ren2021-05-27-14-40-44.png)
+![2021-05-27-14-38-15](http://img.wqkenqing.ren/2021-05-27-14-38-15.png)
+![2021-05-27-14-39-13](http://img.wqkenqing.ren/2021-05-27-14-39-13.png)
+![2021-05-27-14-39-49](http://img.wqkenqing.ren/2021-05-27-14-39-49.png)
+![2021-05-27-14-40-44](http://img.wqkenqing.ren/2021-05-27-14-40-44.png)
 
 出现flink parcel ，点击下载，分配、激活
-![2021-05-27-14-41-04](http://img.wqkenqing.ren2021-05-27-14-41-04.png)
+![2021-05-27-14-41-04](http://img.wqkenqing.ren/2021-05-27-14-41-04.png)
 
 ### 添加对应服务
  
@@ -96,7 +96,7 @@ Tips:
 
 接下来，像正常安装cdh组件一样安装flink-yarn服务
 
-![2021-05-27-15-23-31](http://img.wqkenqing.ren2021-05-27-15-23-31.png)
+![2021-05-27-15-23-31](http://img.wqkenqing.ren/2021-05-27-15-23-31.png)
 
 但要真的让flink服务成功添加还要进行一些参数配置和修改
 
@@ -105,14 +105,14 @@ Tips:
 
 2. 添加hadoop环境变量
 
-![2021-05-27-15-26-53](http://img.wqkenqing.ren2021-05-27-15-26-53.png)
+![2021-05-27-15-26-53](http://img.wqkenqing.ren/2021-05-27-15-26-53.png)
 
 因为flink1.10后开始应该就不用再集中hadoop的包，而是直接配置hadoop环境变量或从1.11分支上拉项目，自己打包。
 
 大致这里两个参数设置后，服务应该就能正常添加了。
 
 添加成功后的效果
-![2021-05-27-15-28-45](http://img.wqkenqing.ren2021-05-27-15-28-45.png)
+![2021-05-27-15-28-45](http://img.wqkenqing.ren/2021-05-27-15-28-45.png)
 
 
 

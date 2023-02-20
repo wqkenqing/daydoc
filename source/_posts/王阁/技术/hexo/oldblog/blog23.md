@@ -55,16 +55,16 @@ awk的细节小点比较多，一次或无法完全总结全，但总体感觉�
 
 其中searach 与action都可省略其中之一，若action省略，那么action默认为print操作
 如何search省略，那么默认action针对的是每一行如
-![b193032f8daa40faaffc84b673b46885-image.png](//img.wqkenqing.ren/file/2017/7/b193032f8daa40faaffc84b673b46885-image.png)
-![06ddb1ad717c434e939c3d0461b2d937-image.png](//img.wqkenqing.ren/file/2017/7/06ddb1ad717c434e939c3d0461b2d937-image.png)
+![b193032f8daa40faaffc84b673b46885-image.png](//img.wqkenqing.ren//file/2017/7/b193032f8daa40faaffc84b673b46885-image.png)
+![06ddb1ad717c434e939c3d0461b2d937-image.png](//img.wqkenqing.ren//file/2017/7/06ddb1ad717c434e939c3d0461b2d937-image.png)
 
 ---
 附几个操作实例如
-![1b777aa53595428e9d56e0b66052f48c-image.png](//img.wqkenqing.ren/file/2017/7/1b777aa53595428e9d56e0b66052f48c-image.png)
+![1b777aa53595428e9d56e0b66052f48c-image.png](//img.wqkenqing.ren//file/2017/7/1b777aa53595428e9d56e0b66052f48c-image.png)
 
-![a1e8b526c4a042b48e0e161e6eae35fe-image.png](//img.wqkenqing.ren/file/2017/7/a1e8b526c4a042b48e0e161e6eae35fe-image.png)
+![a1e8b526c4a042b48e0e161e6eae35fe-image.png](//img.wqkenqing.ren//file/2017/7/a1e8b526c4a042b48e0e161e6eae35fe-image.png)
 
-![de2e1925530d410ba52f25ff0781f0b5-image.png](//img.wqkenqing.ren/file/2017/7/de2e1925530d410ba52f25ff0781f0b5-image.png)
+![de2e1925530d410ba52f25ff0781f0b5-image.png](//img.wqkenqing.ren//file/2017/7/de2e1925530d410ba52f25ff0781f0b5-image.png)
 
 **这里是以空白区分了列，通过$后加不同的数字，表示不同的列，$0表示这一行，$1表示第一列**，类推。
 
@@ -86,9 +86,9 @@ awk的细节小点比较多，一次或无法完全总结全，但总体感觉�
 END { action; }' input_file
 
 这里引入了BEGIN与END两个部份，用于做一些初始化或善后处理。
-![8a8d39f410944dcc9584c7052e2e46a4-image.png](//img.wqkenqing.ren/file/2017/7/8a8d39f410944dcc9584c7052e2e46a4-image.png)
+![8a8d39f410944dcc9584c7052e2e46a4-image.png](//img.wqkenqing.ren//file/2017/7/8a8d39f410944dcc9584c7052e2e46a4-image.png)
 
-![3fb8e3723fbd439990cd8e000c673c9b-image.png](//img.wqkenqing.ren/file/2017/7/3fb8e3723fbd439990cd8e000c673c9b-image.png)
+![3fb8e3723fbd439990cd8e000c673c9b-image.png](//img.wqkenqing.ren//file/2017/7/3fb8e3723fbd439990cd8e000c673c9b-image.png)
 
 
 ### awk的一些常见的匹配操作

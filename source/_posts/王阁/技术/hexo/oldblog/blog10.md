@@ -11,7 +11,7 @@ tags:
 <!--more-->
 
 ### 异常处理机制小结
-![b89a2f8ca9684364889768d339985ef6-image.png](//img.wqkenqing.ren/file/2017/7/b89a2f8ca9684364889768d339985ef6-image.png)
+![b89a2f8ca9684364889768d339985ef6-image.png](//img.wqkenqing.ren//file/2017/7/b89a2f8ca9684364889768d339985ef6-image.png)
 
 
  在 Java 中，所有的异常都有一个共同的祖先 Throwable（可抛出）。Throwable 指定代码中可用异常传播机制通过 Java 应用程序传输的任何问题的共性。

@@ -28,21 +28,21 @@ HDFS:（Hadoop Distribute File System）即hadoop分布式文件系统  主要�
 
 **Packet**
 Packet的结构：数据包和heatbeat包  一个Packet数据包的组成结构主要分为 Packet Header 、PacketData  Packet Header 中又分为：
-![10eed6bcc563463ea0b8cd5adf99adec-image.png](//img.wqkenqing.ren.qiniudns.com/file/2017/7/10eed6bcc563463ea0b8cd5adf99adec-image.png)
+![10eed6bcc563463ea0b8cd5adf99adec-image.png](//img.wqkenqing.ren/.qiniudns.com/file/2017/7/10eed6bcc563463ea0b8cd5adf99adec-image.png)
 Packet Data部分是一个Packet的实际数据部分。
 主要内容有
 
 * 一个4字节校验
 * Checksum
 * Chunk部分，Chunk部分最大为512字节
-![c68e61da1e8148ab99b43fe8e3f5408e-image.png](//img.wqkenqing.ren/file/2017/7/c68e61da1e8148ab99b43fe8e3f5408e-image.png)
+![c68e61da1e8148ab99b43fe8e3f5408e-image.png](//img.wqkenqing.ren//file/2017/7/c68e61da1e8148ab99b43fe8e3f5408e-image.png)
 Packet创建过程：首先将字节流数据写入一个buffer缓冲区中，也就是从偏移量为25的位置（checksumStart）开 始写Packet数据Chunk的Checksum部分，从偏移量为533的位置（dataStart）开始写Packet数据的Chunk Data部分，直到一个Packet创建完成为止。
 
 ```注意：当写一个文件的最后一个Block的最后一个Packet时，如果一个Packet的大小未能达到最大长度，也就是上图对应的缓冲区 中，Checksum与Chunk Data之间还保留了一段未被写过的缓冲区位置，在发送这个Packet之前，会检查Chunksum与Chunk Data之间的缓冲区是否为空白缓冲区（gap），如果有则将Chunk Data部分向前移动，使得Chunk Data 1与Chunk Checksum N相邻，然后才会被发送到DataNode节点```
 
 #### hdsf架构(主要组成是节点）
 主要的构成角色有：Client、NameNode、SecondayNameNode、DataNode
-![5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png](//img.wqkenqing.ren/file/2017/7/5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png)
+![5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png](//img.wqkenqing.ren//file/2017/7/5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png)
 
 + Client：系统使用者，调用HDFS API操作文件；与NN交互获取文件元数据;与DN交互进行数据读写, 注意：写数据时文件切分由Client完成
 + Namenode：Master节点 （也称元数据节点）是系统唯一的管理者。负责元数据的管理(名称空间和数据块映射信息);配置副本策略；处理客户端请求
@@ -83,10 +83,10 @@ fsimage\edits 是序列化后的文件，想要查看或编辑里面的内容，
 由此可以总结到：NameNode管理着DataNode，接收DataNode的注册、心跳、数据块提交等信息的上报，并且在心跳中发送数据块**复制**、**删除**、**恢复**等指令；同时，NameNode还为客户端对**文件系统目录树的操作**和对**文件数据读写**、对**HDFS系统进行管理提供支持**
 另 Namenode 启动后会进入一个称为**安全模式**的特殊状态。处于安全模式 的 Namenode 是不会进行数据块的复制的。 Namenode 从所有的 Datanode 接收心跳信号和块状态报告。 块状态报告包括了某个 Datanode 所有的数据 块列表。每个数据块都有一个指定的最小副本数。当 Namenode 检测确认某 个数据块的副本数目达到这个最小值，那么该数据块就会被认为是副本安全 (safely replicated) 的；在一定百分比（这个参数可配置）的数据块被 Namenode 检测确认是安全之后（加上一个额外的 30 秒等待时间）， Namenode 将退出安全模式状态。接下来它会确定还有哪些数据块的副本没 有达到指定数目，并将这些数据块复制到其他 Datanode 上。  ##### Secondary NameNode  在HA cluster中又称为standby node
 主要作用：  1.如上文提到的合并fsimage和eits日志，将eits日志文件大小控制在一个限度下  大致流程如下  namenode 响应 Secondary namenode 请求，将 edit log 推送给 Secondary namenode ， 开始重新写一个新的 edit log  Secondary namenode 收到来自 namenode 的 fsimage 文件和 edit log  Secondary namenode 将 fsimage 加载到内存，应用 edit log ， 并生成一 个新的 fsimage 文件  Secondary namenode 将新的 fsimage 推送给 Namenode  Namenode 用新的 fsimage 取代旧的 fsimage ， 在 fstime 文件中记下检查 点发生的时
-![aed541bebcc04fb79e2de3c504b7ee46-image.png](//img.wqkenqing.ren/file/2017/7/aed541bebcc04fb79e2de3c504b7ee46-image.png)
+![aed541bebcc04fb79e2de3c504b7ee46-image.png](//img.wqkenqing.ren//file/2017/7/aed541bebcc04fb79e2de3c504b7ee46-image.png)
 
 
-#### HDFS写文件  1.x 默认的block大小是64M 2.X版本默认block的大小是 128M ![d0c33b33bfbc41e8a493553395e52ef0-image.png](//img.wqkenqing.ren/file/2017/7/d0c33b33bfbc41e8a493553395e52ef0-image.png)
+#### HDFS写文件  1.x 默认的block大小是64M 2.X版本默认block的大小是 128M ![d0c33b33bfbc41e8a493553395e52ef0-image.png](//img.wqkenqing.ren//file/2017/7/d0c33b33bfbc41e8a493553395e52ef0-image.png)
 如上图所示  + Client预先设置的block参数切分FIle
 
 + CLient向NameNode发送写数据请求，
@@ -101,16 +101,16 @@ fsimage\edits 是序列化后的文件，想要查看或编辑里面的内容，
 6. host2,host1,host3向NameNode，host2向Client发送通知，说“消息发送完了”。
 7. client收到host2发来的消息后，向namenode发送消息，说我写完了。这样就真完成了。
 8. 发送完block1后，再向host7，host8，host4发送block2  当客户端向 HDFS 文件写入数据的时候，一开始是写到本地临时文件中。假设该文件的副 本系数设置为 3 ，当本地临时文件累积到一个数据块的大小时，客户端会从 Namenode 获取一个 Datanode 列表用于存放副本。然后客户端开始向第一个 Datanode 传输数据，第一个 Datanode 一小部分一小部分 (4 KB) 地接收数据，将每一部分写入本地仓库，并同时传输该部分到列表中 第二个 Datanode 节点。第二个 Datanode 也是这样，一小部分一小部分地接收数据，写入本地 仓库，并同时传给第三个 Datanode 。最后，第三个 Datanode 接收数据并存储在本地。因此， Datanode 能流水线式地从前一个节点接收数据，并在同时转发给下一个节点，数据以流水线的 方式从前一个 Datanode 复制到下一个
-![2c77aaad2f684820bf8a6b475b79d2f1-image.png](//img.wqkenqing.ren/file/2017/7/2c77aaad2f684820bf8a6b475b79d2f1-image.png)
+![2c77aaad2f684820bf8a6b475b79d2f1-image.png](//img.wqkenqing.ren//file/2017/7/2c77aaad2f684820bf8a6b475b79d2f1-image.png)
 
   写入的过程，按hdsf默认设置，1T文件，我们需要3T的存储，3T的网络流量  在执行读或写的过程中，NameNode和DataNode通过HeartBeat进行保存通信，确定DataNode活着。如果发现DataNode死掉了，就将死掉的DataNode上的数据，放到其他节点去。读取时，要读其他节点去  挂掉一个节点，没关系，还有其他节点可以备份；甚至，挂掉某一个机架，也没关系；其他机架上，也有备份
 ##### hdfs读文件
 
-  ![8fb62c84f57a4203a2dbedf5f68920d9-image.png](//img.wqkenqing.ren/file/2017/7/8fb62c84f57a4203a2dbedf5f68920d9-image.png)
+  ![8fb62c84f57a4203a2dbedf5f68920d9-image.png](//img.wqkenqing.ren//file/2017/7/8fb62c84f57a4203a2dbedf5f68920d9-image.png)
 
   客户端通过调用FileSystem对象的open()方法来打开希望读取的文件，对于HDFS来说，这个对象时分布文件系统的一个实例；  DistributedFileSystem通过使用RPC来调用NameNode以确定文件起始块的位置，同一Block按照重复数会返回多个位置，这些位置按照Hadoop集群拓扑结构排序，距离客户端近的排在前面  前两步会返回一个FSDataInputStream对象，该对象会被封装成DFSInputStream对象，DFSInputStream可以方便的管理datanode和namenode数据流，客户端对这个输入流调用read()方法  存储着文件起始块的DataNode地址的DFSInputStream随即连接距离最近的DataNode，通过对数据流反复调用read()方法，将数据从DataNode传输到客户端  到达块的末端时，DFSInputStream会关闭与该DataNode的连接，然后寻找下一个块的最佳DataNode，这些操作对客户端来说是透明的，客户端的角度看来只是读一个持续不断的流  一旦客户端完成读取，就对FSDataInputStream调用close()方法关闭文件读取
   ##### block持续化结构
-  DataNode节点上一个Block持久化到磁盘上的物理存储结构，如下图所示：  ![df10f0ac586f4baebc2587842aec5675-image.png](//img.wqkenqing.ren/file/2017/7/df10f0ac586f4baebc2587842aec5675-image.png)
+  DataNode节点上一个Block持久化到磁盘上的物理存储结构，如下图所示：  ![df10f0ac586f4baebc2587842aec5675-image.png](//img.wqkenqing.ren//file/2017/7/df10f0ac586f4baebc2587842aec5675-image.png)
 
  每个Block文件（如上图中blk_1084013198文件）都对应一个meta文件（如上图中blk_1084013198_10273532.meta文件），Block文件是一个一个Chunk的二进制数据（每个Chunk的大小是512字节），而meta文件是与每一个Chunk对应的Checksum数据，是序列化形式存储  ---  至上我们大致了解了HDFS。正如上文提到的Hadoop的特点，高可能，高容错性。若光从上文提到的特性可能还不足以说明，如NameNode环节就提到了NameNode的重要作用，但若NameNode出现了故障，对整个机集会是毁灭性的打击，于是Hadoop也引入其它的一些手段来保存高可用，高容错。接下来我们就来探讨下
 ### Hadoop HA的引入
@@ -120,16 +120,16 @@ fsimage\edits 是序列化后的文件，想要查看或编辑里面的内容，
 1. Secondary NameNode：它不是HA，它只是阶段性的合并edits和fsimage，以缩短集群启动的时间。当NN失效的时候，Secondary NN并无法立刻提供服务，Secondary NN甚至无法保证数据完整性：如果NN数据丢失的话，在上一次合并后的文件系统的改动会丢失
 2. Backup NameNode (HADOOP-4539)：它在内存中复制了NN的当前状态，算是Warm Standby，可也就仅限于此，并没有failover等。它同样是阶段性的做checkpoint，也无法保证数据完整性
 3\. 手动把name.dir指向NFS（Network File System），这是安全的Cold Standby，可以保证元数据不丢失，但集群的恢复则完全靠手动
-4\. Facebook AvatarNode：Facebook有强大的运维做后盾，所以Avatarnode只是Hot Standby，并没有自动切换，当主NN失效的时候，需要管理员确认，然后手动把对外提供服务的虚拟IP映射到Standby NN，这样做的好处是确保不会发生脑裂的场景。其某些设计思想和Hadoop 2.0里的HA非常相似，从时间上来看，Hadoop 2.0应该是借鉴了Facebook的做法 ![32ec8d45379b4e4d99505b03b1b33e61-image.png](//img.wqkenqing.ren/file/2017/7/32ec8d45379b4e4d99505b03b1b33e61-image.png)
+4\. Facebook AvatarNode：Facebook有强大的运维做后盾，所以Avatarnode只是Hot Standby，并没有自动切换，当主NN失效的时候，需要管理员确认，然后手动把对外提供服务的虚拟IP映射到Standby NN，这样做的好处是确保不会发生脑裂的场景。其某些设计思想和Hadoop 2.0里的HA非常相似，从时间上来看，Hadoop 2.0应该是借鉴了Facebook的做法 ![32ec8d45379b4e4d99505b03b1b33e61-image.png](//img.wqkenqing.ren//file/2017/7/32ec8d45379b4e4d99505b03b1b33e61-image.png)
 
 5\. PrimaryNN 与StandbyNN之间通过NFS来共享FsEdits、FsImage文件，这样主备NN之间就拥有了一致的目录树和block信息；而block的 位置信息，可以根据DN向两个NN上报的信息过程中构建起来。这样再辅以虚IP，可以较好达到主备NN快速热切的目的。但是显然，这里的NFS又引入了新的SPOF
 6\. 在主备NN共享元数据的过程中，也有方案通过主NN将FsEdits的内容通过与备NN建立的网络IO流，实时写入备NN，并且保证整个过程的原子性。这种方案，解决了NFS共享元数据引入的SPOF，但是主备NN之间的网络连接又会成为新的问题
 #### hadoop2.X ha 原理:  hadoop2.x之后，Clouera提出了QJM/Qurom Journal Manager，这是一个基于Paxos算法实现的HDFS HA方案，它给出了一种较好的解决思路和方案,示意图如下：
-![bc057fbb4b4047928bf06b7a43364335-image.png](//img.wqkenqing.ren/file/2017/7/bc057fbb4b4047928bf06b7a43364335-image.png)
+![bc057fbb4b4047928bf06b7a43364335-image.png](//img.wqkenqing.ren//file/2017/7/bc057fbb4b4047928bf06b7a43364335-image.png)
 
   + 基本原理就是用2N+1台 JN 存储EditLog，每次写数据操作有大多数（>=N+1）返回成功时即认为该次写成功，数据不会丢失了。当然这个算法所能容忍的是最多有N台机器挂掉，如果多于N台挂掉，这个算法就失效了。这个原理是基于Paxos算法
   + 在HA架构里面SecondaryNameNode这个冷备角色已经不存在了，为了保持standby NN时时的与主Active NN的元数据保持一致，他们之间交互通过一系列守护的轻量级进程JournalNode  + 任何修改操作在 Active NN上执行时，JN进程同时也会记录修改log到至少半数以上的JN中，这时 Standby NN 监测到JN 里面的同步log发生变化了会读取 JN 里面的修改log，然后同步到自己的的目录镜像树里面，
-  ![608621d2ab52466db89e8a95d165f6e7-image.png](//img.wqkenqing.ren/file/2017/7/608621d2ab52466db89e8a95d165f6e7-image.png)
+  ![608621d2ab52466db89e8a95d165f6e7-image.png](//img.wqkenqing.ren//file/2017/7/608621d2ab52466db89e8a95d165f6e7-image.png)
 
  当发生故障时，Active的 NN 挂掉后，Standby NN 会在它成为Active NN 前，读取所有的JN里面的修改日志，这样就能高可靠的保证与挂掉的NN的目录镜像树一致，然后无缝的接替它的职责，维护来自客户端请求，从而达到一个高可用的目的  QJM方式来实现HA的主要优势：
  1\. 不需要配置额外的高共享存储，降低了复杂度和维护成本
@@ -138,7 +138,7 @@ fsimage\edits 是序列化后的文件，想要查看或编辑里面的内容，
  4\. JN不会因为其中一台的延迟而影响整体的延迟，而且也不会因为JN的数量增多而影响性能（因为NN向JN发送日志是并行的）  datanode的fencing: 确保只有一个NN能命令DN。HDFS-1972中详细描述了DN如何实现fencing
  1\. 每个NN改变状态的时候，向DN发送自己的状态和一个序列号
  2\. DN在运行过程中维护此序列号，当failover时，新的NN在返回DN心跳时会返回自己的active状态和一个更大的序列号。DN接收到这个返回则认为该NN为新的active  3\. 如果这时原来的active NN恢复，返回给DN的心跳信息包含active状态和原来的序列号，这时DN就会拒绝这个NN的命令  客户端fencing：确保只有一个NN能响应客户端请求，让访问standby nn的客户端直接失败。在RPC层封装了一层，通过FailoverProxyProvider以重试的方式连接NN。通过若干次连接一个NN失败后尝试连接新的NN，对客户端的影响是重试的时候增加一定的延迟。客户端可以设置重试此时和时间  Hadoop提供了ZKFailoverController角色，部署在每个NameNode的节点上，作为一个deamon进程, 简称zkfc，
- ![3cfc6fc17a8e47509465442f6eaf7c14-image.png](//img.wqkenqing.ren/file/2017/7/3cfc6fc17a8e47509465442f6eaf7c14-image.png)
+ ![3cfc6fc17a8e47509465442f6eaf7c14-image.png](//img.wqkenqing.ren//file/2017/7/3cfc6fc17a8e47509465442f6eaf7c14-image.png)
 
    FailoverController主要包括三个组件:
    1\. HealthMonitor: 监控NameNode是否处于unavailable或unhealthy状态。当前通过RPC调用NN相应的方法完成
@@ -147,7 +147,7 @@ fsimage\edits 是序列化后的文件，想要查看或编辑里面的内容，
    2\. 会话管理：如 果NN是健康的，zkfc就会在zookeeper中保持一个打开的会话，如果NameNode同时还是Active状态的，那么zkfc还会在 Zookeeper中占有一个类型为短暂类型的znode，当这个NN挂掉时，这个znode将会被删除，然后备用的NN，将会得到这把锁，升级为主 NN，同时标记状态为Active
    3\. 当宕机的NN新启动时，它会再次注册zookeper，发现已经有znode锁了，便会自动变为Standby状态，如此往复循环，保证高可靠，需要注意，目前仅仅支持最多配置2个NN
    4\. master选举：如上所述，通过在zookeeper中维持一个短暂类型的znode，来实现抢占式的锁机制，从而判断那个NameNode为Active状态  **hadoop2.x Federation**：  单Active NN的架构使得HDFS在集群扩展性和性能上都有潜在的问题，当集群大到一定程度后，NN进程使用的内存可能会达到上百G，NN成为了性能的瓶颈  常用的估算公式为1G对应1百万个块，按缺省块大小计算的话，大概是64T (这个估算比例是有比较大的富裕的，其实，即使是每个文件只有一个块，所有元数据信息也不会有1KB/block)  为了解决这个问题,Hadoop 2.x提供了HDFS Federation, 示意图如下：
-   ![e5015b90accf4fe6a7729afe692ffa64-image.png](//img.wqkenqing.ren/file/2017/7/e5015b90accf4fe6a7729afe692ffa64-image.png)
+   ![e5015b90accf4fe6a7729afe692ffa64-image.png](//img.wqkenqing.ren//file/2017/7/e5015b90accf4fe6a7729afe692ffa64-image.png)
 
   多个NN共用一个集群里的存储资源，每个NN都可以单独对外提供服务  每个NN都会定义一个存储池，有单独的id，每个DN都为所有存储池提供存储  DN会按照存储池id向其对应的NN汇报块信息，同时，DN会向所有NN汇报本地存储可用资源情况  如果需要在客户端方便的访问若干个NN上的资源，可以使用客户端挂载表，把不同的目录映射到不同的NN，但NN上必须存在相应的目录  设计优势：  改动最小，向前兼容；现有的NN无需任何配置改动；如果现有的客户端只连某台NN的话  分离命名空间管理和块存储管理  客户端挂载表：通过路径自动对应NN、使Federation的配置改动对应用透明  (与上面ha方案中介绍的最多2个NN冲突？)  至此hadoop中的hdfs高可用特性，高容错的实现又有了更深理解，但针对hdfs还一层设计实现**机架感知**
 #### 机架感知

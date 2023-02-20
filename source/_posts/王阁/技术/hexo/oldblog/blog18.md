@@ -14,7 +14,7 @@ tags:
 
 ### flume的整体构思
 采用的是flume框架中的flume-ng。整体架构如下图
-![c6589103d8ba4dffaf21c52b37cc7e17-image.png](//img.wqkenqing.ren/file/2017/7/c6589103d8ba4dffaf21c52b37cc7e17-image.png)
+![c6589103d8ba4dffaf21c52b37cc7e17-image.png](//img.wqkenqing.ren//file/2017/7/c6589103d8ba4dffaf21c52b37cc7e17-image.png)
 log_product环节尚有争议，主要针对flume环节进行小结。
 原从效率上考虑，打算在跳板机上搭建直接接入hadoop的单flume节点，因为网络权限等问题，无法直接写入所以放弃。转而改为在hadoop环境中也引入一个flume节点(flume-server)。因client是单节点，所以没有必要引入fail-over机制。因此flume-server也是单节点
 。

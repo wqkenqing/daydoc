@@ -25,7 +25,7 @@ Kafka将消息以topic为单位进行归纳。
 Kafka以集群的方式运行，可以由一个或多个服务组成，每个服务叫做一个broker.
 producers通过网络将消息发送到Kafka集群，集群向消费者提供消息，
 
-![827fdc820cae4619859042761c3b40a9-image.png](//img.wqkenqing.ren/file/2017/7/827fdc820cae4619859042761c3b40a9-image.png)
+![827fdc820cae4619859042761c3b40a9-image.png](//img.wqkenqing.ren//file/2017/7/827fdc820cae4619859042761c3b40a9-image.png)
 
 
 
@@ -38,7 +38,7 @@ Topics 和Logs
 
 先来看一下Kafka提供的一个抽象概念:topic.
 一个topic是对一组消息的归纳。对每个topic，Kafka 对它的日志进行了分区
-![bf0d2ddee1d14cb29fd54483a622d67c-image.png](//img.wqkenqing.ren/file/2017/7/bf0d2ddee1d14cb29fd54483a622d67c-image.png)
+![bf0d2ddee1d14cb29fd54483a622d67c-image.png](//img.wqkenqing.ren//file/2017/7/bf0d2ddee1d14cb29fd54483a622d67c-image.png)
 
 
 一个topic是对一组消息的归纳。

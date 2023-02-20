@@ -17,7 +17,7 @@ password: 7FKBKZrTTTPG2LnC
 
 vim /etc/clickhouse-server/config.xml
 
-![2021-07-12-10-50-47](http://img.wqkenqing.ren2021-07-12-10-50-47.png)
+![2021-07-12-10-50-47](http://img.wqkenqing.ren/2021-07-12-10-50-47.png)
 
 2. 创建/etc/metrika.xml
 并添加相应的配置内容

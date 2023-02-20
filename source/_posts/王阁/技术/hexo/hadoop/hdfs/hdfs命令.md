@@ -17,7 +17,7 @@ count
 ```
 该命令选项显示指定路径下的文件夹数量、文件数量、文件总大小信息，如图4-6所示。
 ```
-![](http://img.wqkenqing.renQFvpXA.png)
+![](http://img.wqkenqing.ren/QFvpXA.png)
 
 
 du

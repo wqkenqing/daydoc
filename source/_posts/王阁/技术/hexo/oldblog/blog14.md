@@ -38,7 +38,7 @@ sort排序主要的操作有
 
 #####sort 指令后面常接的Options
 
-![3baeaf03a24f4874818f343d3893d863-image.png](//img.wqkenqing.ren/file/2017/7/3baeaf03a24f4874818f343d3893d863-image.png)
+![3baeaf03a24f4874818f343d3893d863-image.png](//img.wqkenqing.ren//file/2017/7/3baeaf03a24f4874818f343d3893d863-image.png)
 
 
 
@@ -55,7 +55,7 @@ sort将文件/文本的每一行作为一个单位，相互比较，比较原则
 -n:指定以按数字的大小的形式进行排序
 -k:指定按那一列
 -r:-r是以相反顺序
-![5bf55dc045d846bcbe32e00202b80cbc-image.png](//img.wqkenqing.ren/file/2017/7/5bf55dc045d846bcbe32e00202b80cbc-image.png)
+![5bf55dc045d846bcbe32e00202b80cbc-image.png](//img.wqkenqing.ren//file/2017/7/5bf55dc045d846bcbe32e00202b80cbc-image.png)
 
 
 ```careful```
@@ -86,9 +86,9 @@ sort -u:对文本进行排序，去重，并对重复的只保留一份。
 ##### uniq
 
 uniq的Options主要有
-![540273a5039941a39598a747888f4948-image.png](//img.wqkenqing.ren/file/2017/7/540273a5039941a39598a747888f4948-image.png)
+![540273a5039941a39598a747888f4948-image.png](//img.wqkenqing.ren//file/2017/7/540273a5039941a39598a747888f4948-image.png)
 
-![10bff3119aaa49de976350596f94f4bf-image.png](//img.wqkenqing.ren/file/2017/7/10bff3119aaa49de976350596f94f4bf-image.png)
+![10bff3119aaa49de976350596f94f4bf-image.png](//img.wqkenqing.ren//file/2017/7/10bff3119aaa49de976350596f94f4bf-image.png)
 
 
 

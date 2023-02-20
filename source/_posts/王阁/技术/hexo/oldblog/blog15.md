@@ -14,7 +14,7 @@ vi有三种工作模式：
 * 命令模式
 * 插入模式
 * 和编辑模式。
-![d689c7d6faa6469a885abdb7ed9b9c52-image.png](//img.wqkenqing.ren/file/2017/7/d689c7d6faa6469a885abdb7ed9b9c52-image.png)
+![d689c7d6faa6469a885abdb7ed9b9c52-image.png](//img.wqkenqing.ren//file/2017/7/d689c7d6faa6469a885abdb7ed9b9c52-image.png)
 
 
 
