@@ -227,4 +227,4 @@ http://namenode:8088/ws/v1/cluster/apps
 | finalStatus|最终状态|
 | runningContainers   | 正在运行的容器    |
 
-![](http://rgr3ifyzo.sabkt.gdipper.comr7lvxr.png)
+![](http://img.wqkenqing.ren/r7lvxr.png)

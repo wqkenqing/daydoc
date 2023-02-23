@@ -7,7 +7,7 @@ Dockerfile用于指定docker build 指令时执行时的动作与资源划分等
 
 ## 详细指令
 
-![docker详细指令](http://rgr3ifyzo.sabkt.gdipper.com5aaf3a25b3434c7b1ec0cd5b41b2be1a.png)
+![docker详细指令](http://img.wqkenqing.ren/5aaf3a25b3434c7b1ec0cd5b41b2be1a.png)
 
 如上图即docker主要的指令与作用
 
