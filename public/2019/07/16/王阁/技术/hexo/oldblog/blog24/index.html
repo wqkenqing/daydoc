@@ -1,2800 +1,294 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans" data-default-color-scheme=auto>
+
+
 
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-	
-	<!-- title -->
-	
-	<title>
-	
-		Hadoop总结(第一版---HDFS篇) | 
-	 
-	wang&#39;s dayliy document
-	</title>
-	
-	<!-- keywords,description -->
-	
-		<meta name="keywords" content="yGin910" />
-	 
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/daydoc/img/fluid.png">
+  <link rel="icon" href="/daydoc/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kuiq  Wang">
+  <meta name="keywords" content="yGin910">
+  
+    <meta name="description" content="此处简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop总结(第一版---HDFS篇)">
+<meta property="og:url" content="http://www.wqkenqing.ren/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog24/index.html">
+<meta property="og:site_name" content="wang&#39;s dayliy document">
+<meta property="og:description" content="此处简介">
+<meta property="og:image" content="http://img.wqkenqing.ren/.qiniudns.com/file/2017/7/10eed6bcc563463ea0b8cd5adf99adec-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/c68e61da1e8148ab99b43fe8e3f5408e-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/aed541bebcc04fb79e2de3c504b7ee46-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/d0c33b33bfbc41e8a493553395e52ef0-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/2c77aaad2f684820bf8a6b475b79d2f1-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/8fb62c84f57a4203a2dbedf5f68920d9-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/df10f0ac586f4baebc2587842aec5675-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/32ec8d45379b4e4d99505b03b1b33e61-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/bc057fbb4b4047928bf06b7a43364335-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/608621d2ab52466db89e8a95d165f6e7-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/3cfc6fc17a8e47509465442f6eaf7c14-image.png">
+<meta property="og:image" content="http://img.wqkenqing.ren//file/2017/7/e5015b90accf4fe6a7729afe692ffa64-image.png">
+<meta property="article:published_time" content="2019-07-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-23T02:51:20.906Z">
+<meta property="article:author" content="Kuiq  Wang">
+<meta property="article:tag" content="yGin910">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://img.wqkenqing.ren/.qiniudns.com/file/2017/7/10eed6bcc563463ea0b8cd5adf99adec-image.png">
+  
+  
+  
+  <title>Hadoop总结(第一版---HDFS篇) - wang&#39;s dayliy document</title>
 
-	<!-- favicon -->
-	
-	<link rel="shortcut icon" href="/daydoc/favicon.ico">
-	
-
-
-	<!-- search -->
-	<script>
-		var searchEngine = "https://www.google.com/search?q=";
-		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
-			searchEngine = "https://www.google.com/search?q=";
-		}
-		var homeHost = "https://github.com/wqkenqing/daydoc";
-		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
-			homeHost = window.location.host;
-		}
-	</script>
-
-
-	
-<link rel="stylesheet" href="/daydoc/css/main.css">
-
-	
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
-
-	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-	
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 
-	
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-	
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-	
-<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
-	
-<script src="/daydoc/js/main.js"></script>
 
-	
-		
-<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
 
-		
-<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-	
-	
-		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/daydoc/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/daydoc/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/daydoc/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.wqkenqing.ren","root":"/daydoc/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/daydoc/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/daydoc/js/utils.js" ></script>
+  <script  src="/daydoc/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
 </head>
 
+
 <body>
-	<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?3efe99c287df5a1d6f0d02d187e403c1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+  
 
-<header id="header">
-    <a id="title" href="/daydoc/" class="logo">wang's dayliy document</a>
+  <header>
+    
 
-	<ul id="menu">
-		<li class="menu-item">
-			<a href="/about" class="menu-item-link">ABOUT</a>
-		</li>
-	
-		<li class="menu-item">
-			<a href="/tags" class="menu-item-link">标签</a>
-		</li>
-	
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/daydoc/">
+      <strong>Fluid</strong>
+    </a>
 
-	
-		<li class="menu-item">
-			<a href="/categories" class="menu-item-link">分类</a>
-		</li>
-	
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-		<li class="menu-item">
-			<a href="https://github.com/wujun234/uid-generator-spring-boot-starter" class="menu-item-link" target="_blank">
-				UidGenerator
-			</a>
-		</li>
-		<li class="menu-item">
-			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
-				<i class="fa fa-github fa-2x"></i>
-			</a>
-		</li>
-	</ul>
-</header>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Startseite</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archiv</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Kategorien</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Schlagwörter</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>Über</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
 
-	
-<div id="sidebar">
-	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
-	
-	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
-		<div id="tree">
-			
+  
 
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										王阁
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										分享
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%88%86%E4%BA%AB/%E6%95%B0%E4%BB%93%E5%88%86%E4%BA%AB/">
-										数仓分享
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										回顾
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hive
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/23/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/hive/hive%E5%9B%9E%E9%A1%BE/">
-										hive回顾
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										技能回顾
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										大数据相关组件
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/18/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E6%8A%80%E8%83%BD%E5%9B%9E%E9%A1%BE/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E7%BB%84%E4%BB%B6/hadoop%E5%8F%91%E5%B1%95%E5%8F%B2/">
-										hadoop发展史
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/17/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E6%8A%80%E8%83%BD%E5%9B%9E%E9%A1%BE/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E7%BB%84%E4%BB%B6/%E5%AD%98%E5%82%A8%E7%BB%84%E4%BB%B6/">
-										存储组件
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/17/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E6%8A%80%E8%83%BD%E5%9B%9E%E9%A1%BE/%E6%95%B4%E4%BD%93%E8%A7%84%E5%88%92%E6%80%9D%E8%B7%AF/">
-										整体规划思路
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										工作
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据基础平台
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/02/15/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据基础平台构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据运维
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/02/21/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4-%E9%87%87%E9%9B%86%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9D%97/">
-										数据运维-采集任务模块
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据集成
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E9%9B%86%E6%88%90/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据采集构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/11/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4/">
-										日常运维
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										旸谷数据中心
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										config
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										datax
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/07/05/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/config/datax/hive2myql/">
-										hive2myql
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										基础
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/CDH%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">
-										CDH基础环境部署
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/Flink%E9%9B%86%E6%88%90CDH/">
-										Flink集成CDH
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/21/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/Logstash%20%E9%83%A8%E7%BD%B2/">
-										Logstash 部署
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										元数据
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/03/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E5%85%83%E6%95%B0%E6%8D%AE/Atlas%E5%88%87%E6%8D%A2%E6%90%9C%E7%B4%A2%E7%BB%84%E4%BB%B6/">
-										Atlas切换搜索组件
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/24/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E5%85%83%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E8%A1%80%E7%BC%98%E7%BB%84%E4%BB%B6/">
-										数据血缘组件
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E8%B5%84%E6%BA%90/">
-										数据中心服务资源
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/14/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E7%BB%84%E4%BB%B6%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1%E5%B0%81%E8%A3%85/">
-										数据中心组件管理服务封装
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%9C%8D%E5%8A%A1%E5%B0%81%E8%A3%85/">
-										数据采集服务封装
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										安全模块
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/04/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97/kerberos%E9%83%A8%E7%BD%B2%E4%B8%8E%E4%BD%BF%E7%94%A8/">
-										kerberos部署与使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/04/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1%E5%A4%A7%E7%BA%B2/">
-										数据中心安全模块设计大纲
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据基础平台
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/29/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/dataworks/">
-										dataworks
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0%E5%BB%BA%E8%AE%BE%E6%80%9D%E8%B7%AF/">
-										数据基础平台建设思路
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/12/01/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据安全的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/12/01/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%BA%94%E7%94%A8%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据应用的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/12/01/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据治理的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/30/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据管理的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/12/01/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据运维的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/29/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E9%9B%86%E6%88%90%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据集成的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										组件
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/07/06/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E7%BB%84%E4%BB%B6/azkaban%E7%9A%84%E4%BD%BF%E7%94%A8/">
-										azkaban的使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E7%BB%84%E4%BB%B6/clickhouse%E9%9B%86%E7%BE%A4%E7%89%88%E5%AE%9E%E5%BD%95/">
-										clickhouse集群版实录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										杂记
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%9D%82%E8%AE%B0/%E6%B1%89%E5%8F%A3%E6%BA%90%E7%82%B9%E9%A1%B9%E7%9B%AE%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF/">
-										汉口源点项目相关信息
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%9D%82%E8%AE%B0/%E6%B1%89%E5%8F%A3%E9%A1%B9%E7%9B%AE%E5%85%AC%E5%8F%B8%E6%9C%8D%E5%8A%A1%E6%93%8D%E4%BD%9C/">
-										汉口项目公司服务操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										项目
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										洪雅
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B4%AA%E9%9B%85/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81/">
-										大数据验证
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										济泺路隧道
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										flink服务
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B5%8E%E6%B3%BA%E8%B7%AF%E9%9A%A7%E9%81%93/flink%E6%9C%8D%E5%8A%A1/flink%E5%85%AC%E5%8F%B8%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/">
-										flink公司环境部署记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										出差
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/08/16/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B5%8E%E6%B3%BA%E8%B7%AF%E9%9A%A7%E9%81%93/%E5%87%BA%E5%B7%AE/flink%E8%BF%90%E8%A1%8C%E5%8F%82%E6%95%B0/">
-										flink运行参数
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/01/25/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B5%8E%E6%B3%BA%E8%B7%AF%E9%9A%A7%E9%81%93/%E5%87%BA%E5%B7%AE/test/">
-										test
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/08/16/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B5%8E%E6%B3%BA%E8%B7%AF%E9%9A%A7%E9%81%93/%E5%87%BA%E5%B7%AE/%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E5%9C%B0%E5%9D%80/">
-										相关配置地址
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										绥延
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E7%BB%A5%E5%BB%B6/kafka%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/">
-										kafka测试环境
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/07/20/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E7%BB%A5%E5%BB%B6/%E9%87%87%E9%9B%86%E5%9C%B0%E5%9D%80/">
-										采集地址
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										铁四院数据平台
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数仓
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E6%95%B0%E4%BB%93/%E6%95%B0%E4%BB%93%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%9B%BE/">
-										数仓架构设计图
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										技术
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hexo
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										CDH
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/03/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/CDH/cdh%E9%9B%86%E6%88%90phoenix/">
-										cdh集成phoenix
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/27/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/CDH/%E6%90%AD%E5%BB%BA/">
-										搭建
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										Thread
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/Thread/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-										多线程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										flink
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/31/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/flink/Flink/">
-										Flink
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hadoop
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hadoopHA%E6%90%AD%E5%BB%BA/">
-										hadoopHA搭建
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hbase
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hbase/hbase%E6%93%8D%E4%BD%9C/">
-										hbase操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hdfs
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hdfs/hdfs%E5%91%BD%E4%BB%A4/">
-										hdfs命令
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hdfs/hdfs%E6%93%8D%E4%BD%9C/">
-										hdfs操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										kafka
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/kafka/kafka%E5%AE%9E%E7%8E%B0/">
-										kafka实现
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										old
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/Lamda%E7%A7%AF%E7%B4%AF/">
-										Lamda积累
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/Yarn%E9%85%8D%E7%BD%AE/">
-										Yarn配置
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/flume%E8%AE%B0%E5%BD%95/">
-										flume记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/06/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/hbase%E7%A7%AF%E7%B4%AF/">
-										hbase积累
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/12/24/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/hive%E6%80%BB%E7%BB%93/">
-										hive总结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/kafka/">
-										kafka
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/mapreduce%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/">
-										mapreduce组件总结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A02/">
-										spark学习2
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A03/">
-										spark学习3
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A0/">
-										spark学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E7%AE%97%E5%AD%90/">
-										spark算子
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/03/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/sqoop%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/">
-										sqoop实现方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/sqoop%E8%AE%B0%E5%BD%95/">
-										sqoop记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/%E5%87%86%E5%A4%87%E5%B0%8F%E7%BB%93/">
-										准备小结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E5%88%86%E4%BA%AB/">
-										大数据相关分享
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										oldblog
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog1/">
-										blog1
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog10/">
-										blog10
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog11/">
-										blog11
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog12/">
-										blog12
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog13/">
-										blog13
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog14/">
-										blog14
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog15/">
-										blog15
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog16/">
-										blog16
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog17/">
-										blog17
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog18/">
-										blog18
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog19/">
-										blog19
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog2/">
-										blog2
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog20/">
-										blog20
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog21/">
-										blog21
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog22/">
-										blog22
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog23/">
-										blog23
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file active">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog24/">
-										blog24
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog25/">
-										blog25
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog26/">
-										blog26
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog3/">
-										blog3
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog4/">
-										blog4
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog6/">
-										blog6
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog7/">
-										blog7
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog8/">
-										blog8
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog9/">
-										blog9
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										spark
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/spark%E6%93%8D%E4%BD%9C/">
-										spark操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										sql
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/sql/SparkSql/">
-										SparkSql
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/15/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/stream/">
-										stream
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/stream2/">
-										stream2
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/%E5%AE%BD%E7%AA%84%E4%BE%9D%E8%B5%96/">
-										宽窄依赖
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										算子
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/%E7%AE%97%E5%AD%90/RDD%E7%AE%97%E5%AD%90/">
-										RDD算子
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/%E7%AE%97%E5%AD%90/Spark-Windos%E5%87%BD%E6%95%B0/">
-										Spark-Windos函数
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										专题
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										sql专题
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/05/02/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/sql%E4%B8%93%E9%A2%98/sql%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-										sql基础知识
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/%E6%8A%80%E6%9C%AF%E4%B8%93%E9%A2%98/">
-										技术专题
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据建模
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/04/28/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88/">
-										数据仓库建设方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BB/">
-										数据指标体系
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										大数据
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										Mongodb
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/Mongodb/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-										常用命令
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/21/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/atlas/">
-										atlas
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										es
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/elk%E4%BD%BF%E7%94%A8/">
-										elk使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/esDSL%E8%AF%A6%E8%A7%A3/">
-										esDSL详解
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E5%B0%8F%E7%BB%93/">
-										es小结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/02/25/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-										es常用命令
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E7%9A%84docker%E5%AE%89%E8%A3%85/">
-										es的docker安装
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E8%AF%A6%E7%BB%86/">
-										es详细
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88/">
-										共享数据集合
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/%E7%A7%AF%E7%B4%AF/">
-										积累
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										flink
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										2023
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/22/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/2023/Flink%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B/">
-										Flink学习历程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/06/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/2023/flink_study/">
-										flink_study
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/Flink%E8%AE%B0%E5%BD%95/">
-										Flink记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink/">
-										flink
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink_book/">
-										flink_book
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/03/21/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4/">
-										flink任务提交
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										flume
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/06/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/Flume/">
-										Flume
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/docker%E7%89%88flume%E4%BD%BF%E7%94%A8/">
-										docker版flume使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hbase
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/hbase20190109/">
-										hbase20190109
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/18/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/hbase_api%E5%8D%87%E7%BA%A7/">
-										hbase_api升级
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hive
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/hive20190109/">
-										hive20190109
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										kafka
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E5%8E%9F%E7%90%86/">
-										kafka原理
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E5%B0%8F%E7%BB%93/">
-										kafka小结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/15/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E6%9E%81%E5%AE%A2/">
-										kafka极客
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E7%96%91%E9%97%AE%E7%82%B9/">
-										kafka疑问点
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										spark
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark-streaming/">
-										spark-streaming
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										yarn
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/yarn/YarnState/">
-										YarnState
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										集群
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E9%9B%86%E7%BE%A4/%E7%A7%81%E6%9C%89%E9%9B%86%E7%BE%A4/">
-										私有集群
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										开发
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										前端
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/06/29/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/vue%E5%AD%A6%E4%B9%A0/">
-										vue学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据库
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/sql%E5%82%A8%E5%A4%87&%E7%BB%83%E4%B9%A0/">
-										sql储备&练习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										编程
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										bash
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										awk
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/awk/awk/">
-										awk
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/python_learn/">
-										python_learn
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/shell%E7%A7%AF%E7%B4%AF/">
-										shell积累
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										java
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/06/05/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
-										并发编程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/20/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/java/%E6%97%A5%E6%9C%9F%E5%A4%84%E7%90%86/">
-										日期处理
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/20/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/java/%E8%AE%A1%E7%AE%97%E5%A4%84%E7%90%86/">
-										计算处理
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										python
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										reptile
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/10/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/reptile/python%E7%88%AC%E8%99%AB%E7%AF%87/">
-										python爬虫篇
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										summary
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/2020.3.17/">
-										2020.3.17
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/python5%E5%B0%8F%E7%BB%93/">
-										python5小结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/05/29/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/python%E5%B0%8F%E7%BB%933/">
-										python小结3
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/02/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/python%E5%B0%8F%E7%BB%934/">
-										python小结4
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										scala
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/scala/scala%E5%AD%A6%E4%B9%A0/">
-										scala学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										考研
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/11/03/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%80%83%E7%A0%94/C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-										C学习笔记
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										课程记录
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										Flink专项
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/01/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95/Flink%E4%B8%93%E9%A1%B9/flink%E8%AE%B0%E5%BD%95/">
-										flink记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										es专项
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95/es%E4%B8%93%E9%A1%B9/es%E8%AE%B0%E5%BD%95/">
-										es记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										运维
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										ELK
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ELK/kibana%E4%BD%BF%E7%94%A8/">
-										kibana使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										logstash
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/07/10/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ELK/logstash/beats/">
-										beats
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/07/09/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ELK/logstash/logstash/">
-										logstash
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										cdh
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/cdh/hue/">
-										hue
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										docker
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/docker/Dockerfile%E5%9F%BA%E7%A1%80&%E7%BC%96%E5%86%99/">
-										Dockerfile基础&编写
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/docker/docker/">
-										docker
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/docker/docker%E6%93%8D%E4%BD%9C/">
-										docker操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/docker/docker%E9%95%9C%E5%83%8F/">
-										docker镜像
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										front_end
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/nginx%E9%83%A8%E7%BD%B2/">
-										nginx部署
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										接口规划
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E6%8E%A5%E5%8F%A3%E8%A7%84%E5%88%92/data-manager/">
-										data-manager
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E8%B0%83%E7%A0%94/">
-										调研
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hy-sjksh-info-dev
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/hy-sjksh-info-dev/docker-compose/">
-										docker-compose
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										owncloud
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/owncloud/%E8%B4%A6%E5%8F%B7/">
-										账号
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										ubuntu
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ubuntu/desk_gui/">
-										desk_gui
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ubuntu/linux%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1/">
-										linux自启服务
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										yd_server_config
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/yd_server_config/README/">
-										README
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										sjksh_store_info
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/yd_server_config/sjksh_store_info/docker-compose/">
-										docker-compose
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										调度
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/06/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/%E8%B0%83%E5%BA%A6/%E8%B0%83%E5%BA%A6%E7%BB%84%E4%BB%B6%E9%83%A8%E7%BD%B2/">
-										调度组件部署
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										日常
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										blog_sync_project
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/blog_sync_project/plan/">
-										plan
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/10/15/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/map/">
-										map
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										prepare
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/">
-										数据储备
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										vue
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/vue/vue/">
-										vue
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										考试
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/">
-										电子科大2019招生收集
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/04/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E8%80%83%E8%AF%95%E7%9B%B8%E5%85%B3/">
-										考试相关
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										运维
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/">
-										about云账号密码
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/04/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/docker%E5%90%AF%E5%8A%A8mysql/">
-										docker启动mysql
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/">
-										jumpserver
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/05/25/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/mac%20python%E7%89%88%E6%9C%AC%E6%9B%BF%E6%8D%A2/">
-										mac python版本替换
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/">
-										tmux上手
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E4%BA%AC%E4%B8%9C%E4%BA%91/">
-										京东云
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/">
-										博客不同主题切换
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">
-										操作记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/">
-										运维操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										项目
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										古诗词竞赛
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E5%8F%A4%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B/%E5%BB%BA%E8%AE%BE%E6%80%9D%E8%B7%AF/">
-										建设思路
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/05/21/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E5%8F%A4%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B/%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/">
-										诗词竞赛业务架构
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-		</div>
-	</div>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/daydoc/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hadoop总结(第一版---HDFS篇)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-07-16 00:00" pubdate>
+          July 16, 2019 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k wörter
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          92 minuten
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
 </div>
-
-	<!-- 引入正文 -->
-	<div id="content">
-		<h1 id="article-title">
-
-	blog24
-</h1>
-<div class="article-meta">
-	
-	<span>Kuiq  Wang</span>
-	<span>2019-07-16 00:00:00</span>
-		<div id="article-categories">
-    
-		<span>Categories：</span>
-            
-    
-
-    
-		<span>Tags：</span>
-            
-    
-		</div>
 
 </div>
 
-<div id="article-content">
-	<p>此处简介</p>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hadoop总结(第一版---HDFS篇)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>此处简介</p>
 <a id="more"></a>
 
 <h1 id="Hadoop总结-第一版—HDFS篇"><a href="#Hadoop总结-第一版—HDFS篇" class="headerlink" title="Hadoop总结(第一版—HDFS篇)"></a>Hadoop总结(第一版—HDFS篇)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## 什么是hadoop？</span><br><span class="line">&gt;hadoop是稳定的，高容错的，可大规模布署的分布式文件，存储，并行编程框架。</span><br><span class="line">&#96;&#96;&#96;本文默认是已经有hadoop使用经验,所以暂不涉及具体的hadoop生态的各组件的部署和调优细节，后续单开文章来总结。但在具体讲解时会涉及说参数配置会对相关组件参生影响</span><br></pre></td></tr></table></figure>
@@ -2806,14 +300,14 @@ var _hmt = _hmt || [];
 <li>Packet:是HDFS文件在DFSClient与DataNode之间通信的过程中文件的形式(一般一个Block对应多个Packet)</li>
 <li>Chunk:是通过程中具体传输的文件单位，发送过程以Packet的方式进行，但 一个packet包含多个Chunk,同时对于每个chunk进行checksum计算，生成checksum bytes。</li>
 </ul>
-<p><strong>Packet</strong><br>Packet的结构：数据包和heatbeat包  一个Packet数据包的组成结构主要分为 Packet Header 、PacketData  Packet Header 中又分为：<br><img src="//img.wqkenqing.ren/.qiniudns.com/file/2017/7/10eed6bcc563463ea0b8cd5adf99adec-image.png" alt="10eed6bcc563463ea0b8cd5adf99adec-image.png"><br>Packet Data部分是一个Packet的实际数据部分。<br>主要内容有</p>
+<p><strong>Packet</strong><br>Packet的结构：数据包和heatbeat包  一个Packet数据包的组成结构主要分为 Packet Header 、PacketData  Packet Header 中又分为：<br><img src="//img.wqkenqing.ren/.qiniudns.com/file/2017/7/10eed6bcc563463ea0b8cd5adf99adec-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="10eed6bcc563463ea0b8cd5adf99adec-image.png"><br>Packet Data部分是一个Packet的实际数据部分。<br>主要内容有</p>
 <ul>
 <li>一个4字节校验</li>
 <li>Checksum</li>
-<li>Chunk部分，Chunk部分最大为512字节<br><img src="//img.wqkenqing.ren//file/2017/7/c68e61da1e8148ab99b43fe8e3f5408e-image.png" alt="c68e61da1e8148ab99b43fe8e3f5408e-image.png"><br>Packet创建过程：首先将字节流数据写入一个buffer缓冲区中，也就是从偏移量为25的位置（checksumStart）开 始写Packet数据Chunk的Checksum部分，从偏移量为533的位置（dataStart）开始写Packet数据的Chunk Data部分，直到一个Packet创建完成为止。</li>
+<li>Chunk部分，Chunk部分最大为512字节<br><img src="//img.wqkenqing.ren//file/2017/7/c68e61da1e8148ab99b43fe8e3f5408e-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="c68e61da1e8148ab99b43fe8e3f5408e-image.png"><br>Packet创建过程：首先将字节流数据写入一个buffer缓冲区中，也就是从偏移量为25的位置（checksumStart）开 始写Packet数据Chunk的Checksum部分，从偏移量为533的位置（dataStart）开始写Packet数据的Chunk Data部分，直到一个Packet创建完成为止。</li>
 </ul>
 <p><code>注意：当写一个文件的最后一个Block的最后一个Packet时，如果一个Packet的大小未能达到最大长度，也就是上图对应的缓冲区 中，Checksum与Chunk Data之间还保留了一段未被写过的缓冲区位置，在发送这个Packet之前，会检查Chunksum与Chunk Data之间的缓冲区是否为空白缓冲区（gap），如果有则将Chunk Data部分向前移动，使得Chunk Data 1与Chunk Checksum N相邻，然后才会被发送到DataNode节点</code></p>
-<h4 id="hdsf架构-主要组成是节点）"><a href="#hdsf架构-主要组成是节点）" class="headerlink" title="hdsf架构(主要组成是节点）"></a>hdsf架构(主要组成是节点）</h4><p>主要的构成角色有：Client、NameNode、SecondayNameNode、DataNode<br><img src="//img.wqkenqing.ren//file/2017/7/5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png" alt="5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png"></p>
+<h4 id="hdsf架构-主要组成是节点）"><a href="#hdsf架构-主要组成是节点）" class="headerlink" title="hdsf架构(主要组成是节点）"></a>hdsf架构(主要组成是节点）</h4><p>主要的构成角色有：Client、NameNode、SecondayNameNode、DataNode<br><img src="//img.wqkenqing.ren//file/2017/7/5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="5ba6f1ec6b9c4b0982dc2ce73ff9c444-image.png"></p>
 <ul>
 <li>Client：系统使用者，调用HDFS API操作文件；与NN交互获取文件元数据;与DN交互进行数据读写, 注意：写数据时文件切分由Client完成</li>
 <li>Namenode：Master节点 （也称元数据节点）是系统唯一的管理者。负责元数据的管理(名称空间和数据块映射信息);配置副本策略；处理客户端请求</li>
@@ -2833,8 +327,8 @@ var _hmt = _hmt || [];
 <li>HDFS文件系统中的文件目录树，以及文件的数据块索引，即每个文件对应的数据块列表  数据块和数据节点的对应关系，即某一块数据块保存在哪些数据节点的信息  <strong>第一个关系</strong>即目录树、元数据和数据块的索引信息持久化到物理存储中，具体的实现是保存在命名空间的镜像fsimage和编辑日志edits中，<strong>careful</strong>：在fsimage中，并没有记录每一个block对应到那几个Datanodes的对应表信息</li>
 <li><strong>第二个关系是</strong>在NameNode启动后，每个DataNode对本地的磁盘进行扫描，将本DataNode上保存的block信息上报至NameNode,Namenode在接收到每个Datanode的块信息汇报后，将接收到的块信息，以及其所在的Datanode信息等保存在内存中。HDFS就是通过这种块信息汇报的方式来完成 block -&gt; Datanodes list的对应表构建（<strong>careful</strong>）<br>类似于数据库中的检查点，为了避免edits日志过大，在Hadoop1.X 中，SecondaryNameNode会按照时间阈值（比如24小时）或者edits大小阈值（比如1G），周期性的将fsimage和edits的合 并，然后将最新的fsimage推送给NameNode。而在Hadoop2.X中，这个动作是由Standby NameNode来完成.<br>由此可看出，这两个文件一旦损坏或丢失，将导致整个HDFS文件系统不可用<br>在hadoop1.X为了保证这两种元数据文件的高可用性，一般的做法，将dfs.namenode.name.dir设置成以逗号分隔的多个目录，这多个目录至少不要在一块磁盘上，最好放在不同的机器上，比如：挂载一个共享文件系统<br>fsimage\edits 是序列化后的文件，想要查看或编辑里面的内容，可通过 hdfs 提供的 oiv\oev 命令，<br>命令: hdfs oiv （offline image viewer） 用于将fsimage文件的内容转储到指定文件中以便于阅读,，如文本文件、XML文件，该命令需要以下参数：</li>
 </ol>
-<p>-i (必填参数) –inputFile <arg> 输入FSImage文件<br>-o (必填参数) –outputFile <arg> 输出转换后的文件，如果存在，则会覆盖<br>-p (可选参数） –processor <arg> 将FSImage文件转换成哪种格式： (Ls|XML|FileDistribution).默认为Ls<br>示例：hdfs oiv -i /data1/hadoop/dfs/name/current/fsimage_0000000000019372521 -o /home/hadoop/fsimage.txt<br>命令：hdfs oev (offline edits viewer 离线edits查看器）的缩写， 该工具只操作文件因而并不需要hadoop集群处于运行状态。<br>示例: hdfs oev -i edits_0000000000000042778-0000000000000042779 -o edits.xml<br>支持的输出格式有binary（hadoop使用的二进制格式）、xml（在不使用参数p时的默认输出格式）和stats（输出edits文件的统计信息）<br>由此可以总结到：NameNode管理着DataNode，接收DataNode的注册、心跳、数据块提交等信息的上报，并且在心跳中发送数据块<strong>复制</strong>、<strong>删除</strong>、<strong>恢复</strong>等指令；同时，NameNode还为客户端对<strong>文件系统目录树的操作</strong>和对<strong>文件数据读写</strong>、对<strong>HDFS系统进行管理提供支持</strong><br>另 Namenode 启动后会进入一个称为<strong>安全模式</strong>的特殊状态。处于安全模式 的 Namenode 是不会进行数据块的复制的。 Namenode 从所有的 Datanode 接收心跳信号和块状态报告。 块状态报告包括了某个 Datanode 所有的数据 块列表。每个数据块都有一个指定的最小副本数。当 Namenode 检测确认某 个数据块的副本数目达到这个最小值，那么该数据块就会被认为是副本安全 (safely replicated) 的；在一定百分比（这个参数可配置）的数据块被 Namenode 检测确认是安全之后（加上一个额外的 30 秒等待时间）， Namenode 将退出安全模式状态。接下来它会确定还有哪些数据块的副本没 有达到指定数目，并将这些数据块复制到其他 Datanode 上。  ##### Secondary NameNode  在HA cluster中又称为standby node<br>主要作用：  1.如上文提到的合并fsimage和eits日志，将eits日志文件大小控制在一个限度下  大致流程如下  namenode 响应 Secondary namenode 请求，将 edit log 推送给 Secondary namenode ， 开始重新写一个新的 edit log  Secondary namenode 收到来自 namenode 的 fsimage 文件和 edit log  Secondary namenode 将 fsimage 加载到内存，应用 edit log ， 并生成一 个新的 fsimage 文件  Secondary namenode 将新的 fsimage 推送给 Namenode  Namenode 用新的 fsimage 取代旧的 fsimage ， 在 fstime 文件中记下检查 点发生的时<br><img src="//img.wqkenqing.ren//file/2017/7/aed541bebcc04fb79e2de3c504b7ee46-image.png" alt="aed541bebcc04fb79e2de3c504b7ee46-image.png"></p>
-<h4 id="HDFS写文件-1-x-默认的block大小是64M-2-X版本默认block的大小是-128M"><a href="#HDFS写文件-1-x-默认的block大小是64M-2-X版本默认block的大小是-128M" class="headerlink" title="HDFS写文件  1.x 默认的block大小是64M 2.X版本默认block的大小是 128M "></a>HDFS写文件  1.x 默认的block大小是64M 2.X版本默认block的大小是 128M <img src="//img.wqkenqing.ren//file/2017/7/d0c33b33bfbc41e8a493553395e52ef0-image.png" alt="d0c33b33bfbc41e8a493553395e52ef0-image.png"></h4><p>如上图所示  + Client预先设置的block参数切分FIle</p>
+<p>-i (必填参数) –inputFile <arg> 输入FSImage文件<br>-o (必填参数) –outputFile <arg> 输出转换后的文件，如果存在，则会覆盖<br>-p (可选参数） –processor <arg> 将FSImage文件转换成哪种格式： (Ls|XML|FileDistribution).默认为Ls<br>示例：hdfs oiv -i /data1/hadoop/dfs/name/current/fsimage_0000000000019372521 -o /home/hadoop/fsimage.txt<br>命令：hdfs oev (offline edits viewer 离线edits查看器）的缩写， 该工具只操作文件因而并不需要hadoop集群处于运行状态。<br>示例: hdfs oev -i edits_0000000000000042778-0000000000000042779 -o edits.xml<br>支持的输出格式有binary（hadoop使用的二进制格式）、xml（在不使用参数p时的默认输出格式）和stats（输出edits文件的统计信息）<br>由此可以总结到：NameNode管理着DataNode，接收DataNode的注册、心跳、数据块提交等信息的上报，并且在心跳中发送数据块<strong>复制</strong>、<strong>删除</strong>、<strong>恢复</strong>等指令；同时，NameNode还为客户端对<strong>文件系统目录树的操作</strong>和对<strong>文件数据读写</strong>、对<strong>HDFS系统进行管理提供支持</strong><br>另 Namenode 启动后会进入一个称为<strong>安全模式</strong>的特殊状态。处于安全模式 的 Namenode 是不会进行数据块的复制的。 Namenode 从所有的 Datanode 接收心跳信号和块状态报告。 块状态报告包括了某个 Datanode 所有的数据 块列表。每个数据块都有一个指定的最小副本数。当 Namenode 检测确认某 个数据块的副本数目达到这个最小值，那么该数据块就会被认为是副本安全 (safely replicated) 的；在一定百分比（这个参数可配置）的数据块被 Namenode 检测确认是安全之后（加上一个额外的 30 秒等待时间）， Namenode 将退出安全模式状态。接下来它会确定还有哪些数据块的副本没 有达到指定数目，并将这些数据块复制到其他 Datanode 上。  ##### Secondary NameNode  在HA cluster中又称为standby node<br>主要作用：  1.如上文提到的合并fsimage和eits日志，将eits日志文件大小控制在一个限度下  大致流程如下  namenode 响应 Secondary namenode 请求，将 edit log 推送给 Secondary namenode ， 开始重新写一个新的 edit log  Secondary namenode 收到来自 namenode 的 fsimage 文件和 edit log  Secondary namenode 将 fsimage 加载到内存，应用 edit log ， 并生成一 个新的 fsimage 文件  Secondary namenode 将新的 fsimage 推送给 Namenode  Namenode 用新的 fsimage 取代旧的 fsimage ， 在 fstime 文件中记下检查 点发生的时<br><img src="//img.wqkenqing.ren//file/2017/7/aed541bebcc04fb79e2de3c504b7ee46-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="aed541bebcc04fb79e2de3c504b7ee46-image.png"></p>
+<h4 id="HDFS写文件-1-x-默认的block大小是64M-2-X版本默认block的大小是-128M"><a href="#HDFS写文件-1-x-默认的block大小是64M-2-X版本默认block的大小是-128M" class="headerlink" title="HDFS写文件  1.x 默认的block大小是64M 2.X版本默认block的大小是 128M "></a>HDFS写文件  1.x 默认的block大小是64M 2.X版本默认block的大小是 128M <img src="//img.wqkenqing.ren//file/2017/7/d0c33b33bfbc41e8a493553395e52ef0-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="d0c33b33bfbc41e8a493553395e52ef0-image.png"></h4><p>如上图所示  + Client预先设置的block参数切分FIle</p>
 <ul>
 <li>CLient向NameNode发送写数据请求，</li>
 <li>NameNode，记录block信息，并返回可用的DataNode(具体的返回规则参考下文)</li>
@@ -2855,27 +349,27 @@ var _hmt = _hmt || [];
 </li>
 <li><p>client收到host2发来的消息后，向namenode发送消息，说我写完了。这样就真完成了。</p>
 </li>
-<li><p>发送完block1后，再向host7，host8，host4发送block2  当客户端向 HDFS 文件写入数据的时候，一开始是写到本地临时文件中。假设该文件的副 本系数设置为 3 ，当本地临时文件累积到一个数据块的大小时，客户端会从 Namenode 获取一个 Datanode 列表用于存放副本。然后客户端开始向第一个 Datanode 传输数据，第一个 Datanode 一小部分一小部分 (4 KB) 地接收数据，将每一部分写入本地仓库，并同时传输该部分到列表中 第二个 Datanode 节点。第二个 Datanode 也是这样，一小部分一小部分地接收数据，写入本地 仓库，并同时传给第三个 Datanode 。最后，第三个 Datanode 接收数据并存储在本地。因此， Datanode 能流水线式地从前一个节点接收数据，并在同时转发给下一个节点，数据以流水线的 方式从前一个 Datanode 复制到下一个<br><img src="//img.wqkenqing.ren//file/2017/7/2c77aaad2f684820bf8a6b475b79d2f1-image.png" alt="2c77aaad2f684820bf8a6b475b79d2f1-image.png"></p>
+<li><p>发送完block1后，再向host7，host8，host4发送block2  当客户端向 HDFS 文件写入数据的时候，一开始是写到本地临时文件中。假设该文件的副 本系数设置为 3 ，当本地临时文件累积到一个数据块的大小时，客户端会从 Namenode 获取一个 Datanode 列表用于存放副本。然后客户端开始向第一个 Datanode 传输数据，第一个 Datanode 一小部分一小部分 (4 KB) 地接收数据，将每一部分写入本地仓库，并同时传输该部分到列表中 第二个 Datanode 节点。第二个 Datanode 也是这样，一小部分一小部分地接收数据，写入本地 仓库，并同时传给第三个 Datanode 。最后，第三个 Datanode 接收数据并存储在本地。因此， Datanode 能流水线式地从前一个节点接收数据，并在同时转发给下一个节点，数据以流水线的 方式从前一个 Datanode 复制到下一个<br><img src="//img.wqkenqing.ren//file/2017/7/2c77aaad2f684820bf8a6b475b79d2f1-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="2c77aaad2f684820bf8a6b475b79d2f1-image.png"></p>
 <p>写入的过程，按hdsf默认设置，1T文件，我们需要3T的存储，3T的网络流量  在执行读或写的过程中，NameNode和DataNode通过HeartBeat进行保存通信，确定DataNode活着。如果发现DataNode死掉了，就将死掉的DataNode上的数据，放到其他节点去。读取时，要读其他节点去  挂掉一个节点，没关系，还有其他节点可以备份；甚至，挂掉某一个机架，也没关系；其他机架上，也有备份</p>
-<h5 id="hdfs读文件"><a href="#hdfs读文件" class="headerlink" title="hdfs读文件"></a>hdfs读文件</h5><p><img src="//img.wqkenqing.ren//file/2017/7/8fb62c84f57a4203a2dbedf5f68920d9-image.png" alt="8fb62c84f57a4203a2dbedf5f68920d9-image.png"></p>
+<h5 id="hdfs读文件"><a href="#hdfs读文件" class="headerlink" title="hdfs读文件"></a>hdfs读文件</h5><p><img src="//img.wqkenqing.ren//file/2017/7/8fb62c84f57a4203a2dbedf5f68920d9-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="8fb62c84f57a4203a2dbedf5f68920d9-image.png"></p>
 <p>客户端通过调用FileSystem对象的open()方法来打开希望读取的文件，对于HDFS来说，这个对象时分布文件系统的一个实例；  DistributedFileSystem通过使用RPC来调用NameNode以确定文件起始块的位置，同一Block按照重复数会返回多个位置，这些位置按照Hadoop集群拓扑结构排序，距离客户端近的排在前面  前两步会返回一个FSDataInputStream对象，该对象会被封装成DFSInputStream对象，DFSInputStream可以方便的管理datanode和namenode数据流，客户端对这个输入流调用read()方法  存储着文件起始块的DataNode地址的DFSInputStream随即连接距离最近的DataNode，通过对数据流反复调用read()方法，将数据从DataNode传输到客户端  到达块的末端时，DFSInputStream会关闭与该DataNode的连接，然后寻找下一个块的最佳DataNode，这些操作对客户端来说是透明的，客户端的角度看来只是读一个持续不断的流  一旦客户端完成读取，就对FSDataInputStream调用close()方法关闭文件读取</p>
-<h5 id="block持续化结构"><a href="#block持续化结构" class="headerlink" title="block持续化结构"></a>block持续化结构</h5><p>DataNode节点上一个Block持久化到磁盘上的物理存储结构，如下图所示：  <img src="//img.wqkenqing.ren//file/2017/7/df10f0ac586f4baebc2587842aec5675-image.png" alt="df10f0ac586f4baebc2587842aec5675-image.png"></p>
+<h5 id="block持续化结构"><a href="#block持续化结构" class="headerlink" title="block持续化结构"></a>block持续化结构</h5><p>DataNode节点上一个Block持久化到磁盘上的物理存储结构，如下图所示：  <img src="//img.wqkenqing.ren//file/2017/7/df10f0ac586f4baebc2587842aec5675-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="df10f0ac586f4baebc2587842aec5675-image.png"></p>
 <p>每个Block文件（如上图中blk_1084013198文件）都对应一个meta文件（如上图中blk_1084013198_10273532.meta文件），Block文件是一个一个Chunk的二进制数据（每个Chunk的大小是512字节），而meta文件是与每一个Chunk对应的Checksum数据，是序列化形式存储  —  至上我们大致了解了HDFS。正如上文提到的Hadoop的特点，高可能，高容错性。若光从上文提到的特性可能还不足以说明，如NameNode环节就提到了NameNode的重要作用，但若NameNode出现了故障，对整个机集会是毁灭性的打击，于是Hadoop也引入其它的一些手段来保存高可用，高容错。接下来我们就来探讨下</p>
 <h3 id="Hadoop-HA的引入"><a href="#Hadoop-HA的引入" class="headerlink" title="Hadoop HA的引入"></a>Hadoop HA的引入</h3><p>HA：High Available即高可用性集群，是保证业务连续性的有效解决方案，一般有两个或两个以上的节点，且分为活动节点及备用节点。  在HA具体实现方法不同的情况下，HA框架的流程是一致的, 不一致的就是如何存储和管理日志。在Active NN和Standby NN之间要有个共享的存储日志的地方，Active NN把EditLog写到这个共享的存储日志的地方，Standby NN去读取日志然后执行，这样Active和Standby NN内存中的HDFS元数据保持着同步。一旦发生主从切换Standby NN可以尽快接管Active NN的工作; 默认并未启用 hdfs ha。<br>SPOF方案回顾：</p>
 </li>
 <li><p>Secondary NameNode：它不是HA，它只是阶段性的合并edits和fsimage，以缩短集群启动的时间。当NN失效的时候，Secondary NN并无法立刻提供服务，Secondary NN甚至无法保证数据完整性：如果NN数据丢失的话，在上一次合并后的文件系统的改动会丢失</p>
 </li>
-<li><p>Backup NameNode (HADOOP-4539)：它在内存中复制了NN的当前状态，算是Warm Standby，可也就仅限于此，并没有failover等。它同样是阶段性的做checkpoint，也无法保证数据完整性<br>3. 手动把name.dir指向NFS（Network File System），这是安全的Cold Standby，可以保证元数据不丢失，但集群的恢复则完全靠手动<br>4. Facebook AvatarNode：Facebook有强大的运维做后盾，所以Avatarnode只是Hot Standby，并没有自动切换，当主NN失效的时候，需要管理员确认，然后手动把对外提供服务的虚拟IP映射到Standby NN，这样做的好处是确保不会发生脑裂的场景。其某些设计思想和Hadoop 2.0里的HA非常相似，从时间上来看，Hadoop 2.0应该是借鉴了Facebook的做法 <img src="//img.wqkenqing.ren//file/2017/7/32ec8d45379b4e4d99505b03b1b33e61-image.png" alt="32ec8d45379b4e4d99505b03b1b33e61-image.png"></p>
+<li><p>Backup NameNode (HADOOP-4539)：它在内存中复制了NN的当前状态，算是Warm Standby，可也就仅限于此，并没有failover等。它同样是阶段性的做checkpoint，也无法保证数据完整性<br>3. 手动把name.dir指向NFS（Network File System），这是安全的Cold Standby，可以保证元数据不丢失，但集群的恢复则完全靠手动<br>4. Facebook AvatarNode：Facebook有强大的运维做后盾，所以Avatarnode只是Hot Standby，并没有自动切换，当主NN失效的时候，需要管理员确认，然后手动把对外提供服务的虚拟IP映射到Standby NN，这样做的好处是确保不会发生脑裂的场景。其某些设计思想和Hadoop 2.0里的HA非常相似，从时间上来看，Hadoop 2.0应该是借鉴了Facebook的做法 <img src="//img.wqkenqing.ren//file/2017/7/32ec8d45379b4e4d99505b03b1b33e61-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="32ec8d45379b4e4d99505b03b1b33e61-image.png"></p>
 </li>
 </ol>
 <p>5. PrimaryNN 与StandbyNN之间通过NFS来共享FsEdits、FsImage文件，这样主备NN之间就拥有了一致的目录树和block信息；而block的 位置信息，可以根据DN向两个NN上报的信息过程中构建起来。这样再辅以虚IP，可以较好达到主备NN快速热切的目的。但是显然，这里的NFS又引入了新的SPOF<br>6. 在主备NN共享元数据的过程中，也有方案通过主NN将FsEdits的内容通过与备NN建立的网络IO流，实时写入备NN，并且保证整个过程的原子性。这种方案，解决了NFS共享元数据引入的SPOF，但是主备NN之间的网络连接又会成为新的问题</p>
-<h4 id="hadoop2-X-ha-原理-hadoop2-x之后，Clouera提出了QJM-Qurom-Journal-Manager，这是一个基于Paxos算法实现的HDFS-HA方案，它给出了一种较好的解决思路和方案-示意图如下："><a href="#hadoop2-X-ha-原理-hadoop2-x之后，Clouera提出了QJM-Qurom-Journal-Manager，这是一个基于Paxos算法实现的HDFS-HA方案，它给出了一种较好的解决思路和方案-示意图如下：" class="headerlink" title="hadoop2.X ha 原理:  hadoop2.x之后，Clouera提出了QJM/Qurom Journal Manager，这是一个基于Paxos算法实现的HDFS HA方案，它给出了一种较好的解决思路和方案,示意图如下："></a>hadoop2.X ha 原理:  hadoop2.x之后，Clouera提出了QJM/Qurom Journal Manager，这是一个基于Paxos算法实现的HDFS HA方案，它给出了一种较好的解决思路和方案,示意图如下：</h4><p><img src="//img.wqkenqing.ren//file/2017/7/bc057fbb4b4047928bf06b7a43364335-image.png" alt="bc057fbb4b4047928bf06b7a43364335-image.png"></p>
+<h4 id="hadoop2-X-ha-原理-hadoop2-x之后，Clouera提出了QJM-Qurom-Journal-Manager，这是一个基于Paxos算法实现的HDFS-HA方案，它给出了一种较好的解决思路和方案-示意图如下："><a href="#hadoop2-X-ha-原理-hadoop2-x之后，Clouera提出了QJM-Qurom-Journal-Manager，这是一个基于Paxos算法实现的HDFS-HA方案，它给出了一种较好的解决思路和方案-示意图如下：" class="headerlink" title="hadoop2.X ha 原理:  hadoop2.x之后，Clouera提出了QJM/Qurom Journal Manager，这是一个基于Paxos算法实现的HDFS HA方案，它给出了一种较好的解决思路和方案,示意图如下："></a>hadoop2.X ha 原理:  hadoop2.x之后，Clouera提出了QJM/Qurom Journal Manager，这是一个基于Paxos算法实现的HDFS HA方案，它给出了一种较好的解决思路和方案,示意图如下：</h4><p><img src="//img.wqkenqing.ren//file/2017/7/bc057fbb4b4047928bf06b7a43364335-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="bc057fbb4b4047928bf06b7a43364335-image.png"></p>
 <ul>
 <li><p>基本原理就是用2N+1台 JN 存储EditLog，每次写数据操作有大多数（&gt;=N+1）返回成功时即认为该次写成功，数据不会丢失了。当然这个算法所能容忍的是最多有N台机器挂掉，如果多于N台挂掉，这个算法就失效了。这个原理是基于Paxos算法</p>
 </li>
-<li><p>在HA架构里面SecondaryNameNode这个冷备角色已经不存在了，为了保持standby NN时时的与主Active NN的元数据保持一致，他们之间交互通过一系列守护的轻量级进程JournalNode  + 任何修改操作在 Active NN上执行时，JN进程同时也会记录修改log到至少半数以上的JN中，这时 Standby NN 监测到JN 里面的同步log发生变化了会读取 JN 里面的修改log，然后同步到自己的的目录镜像树里面，<br><img src="//img.wqkenqing.ren//file/2017/7/608621d2ab52466db89e8a95d165f6e7-image.png" alt="608621d2ab52466db89e8a95d165f6e7-image.png"></p>
-<p>当发生故障时，Active的 NN 挂掉后，Standby NN 会在它成为Active NN 前，读取所有的JN里面的修改日志，这样就能高可靠的保证与挂掉的NN的目录镜像树一致，然后无缝的接替它的职责，维护来自客户端请求，从而达到一个高可用的目的  QJM方式来实现HA的主要优势：<br>1. 不需要配置额外的高共享存储，降低了复杂度和维护成本<br>2. 消除spof<br>3. 系统鲁棒性(Robust:健壮)的程度是可配置<br>4. JN不会因为其中一台的延迟而影响整体的延迟，而且也不会因为JN的数量增多而影响性能（因为NN向JN发送日志是并行的）  datanode的fencing: 确保只有一个NN能命令DN。HDFS-1972中详细描述了DN如何实现fencing<br>1. 每个NN改变状态的时候，向DN发送自己的状态和一个序列号<br>2. DN在运行过程中维护此序列号，当failover时，新的NN在返回DN心跳时会返回自己的active状态和一个更大的序列号。DN接收到这个返回则认为该NN为新的active  3. 如果这时原来的active NN恢复，返回给DN的心跳信息包含active状态和原来的序列号，这时DN就会拒绝这个NN的命令  客户端fencing：确保只有一个NN能响应客户端请求，让访问standby nn的客户端直接失败。在RPC层封装了一层，通过FailoverProxyProvider以重试的方式连接NN。通过若干次连接一个NN失败后尝试连接新的NN，对客户端的影响是重试的时候增加一定的延迟。客户端可以设置重试此时和时间  Hadoop提供了ZKFailoverController角色，部署在每个NameNode的节点上，作为一个deamon进程, 简称zkfc，<br><img src="//img.wqkenqing.ren//file/2017/7/3cfc6fc17a8e47509465442f6eaf7c14-image.png" alt="3cfc6fc17a8e47509465442f6eaf7c14-image.png"></p>
-<p>FailoverController主要包括三个组件:<br>1. HealthMonitor: 监控NameNode是否处于unavailable或unhealthy状态。当前通过RPC调用NN相应的方法完成<br>2. ActiveStandbyElector: 管理和监控自己在ZK中的状态<br>3. ZKFailoverController 它订阅HealthMonitor 和ActiveStandbyElector 的事件，并管理NameNode的状态  ZKFailoverController主要职责：      1. 健康监测：周期性的向它监控的NN发送健康探测命令，从而来确定某个NameNode是否处于健康状态，如果机器宕机，心跳失败，那么zkfc就会标记它处于一个不健康的状态<br>2. 会话管理：如 果NN是健康的，zkfc就会在zookeeper中保持一个打开的会话，如果NameNode同时还是Active状态的，那么zkfc还会在 Zookeeper中占有一个类型为短暂类型的znode，当这个NN挂掉时，这个znode将会被删除，然后备用的NN，将会得到这把锁，升级为主 NN，同时标记状态为Active<br>3. 当宕机的NN新启动时，它会再次注册zookeper，发现已经有znode锁了，便会自动变为Standby状态，如此往复循环，保证高可靠，需要注意，目前仅仅支持最多配置2个NN<br>4. master选举：如上所述，通过在zookeeper中维持一个短暂类型的znode，来实现抢占式的锁机制，从而判断那个NameNode为Active状态  <strong>hadoop2.x Federation</strong>：  单Active NN的架构使得HDFS在集群扩展性和性能上都有潜在的问题，当集群大到一定程度后，NN进程使用的内存可能会达到上百G，NN成为了性能的瓶颈  常用的估算公式为1G对应1百万个块，按缺省块大小计算的话，大概是64T (这个估算比例是有比较大的富裕的，其实，即使是每个文件只有一个块，所有元数据信息也不会有1KB/block)  为了解决这个问题,Hadoop 2.x提供了HDFS Federation, 示意图如下：<br><img src="//img.wqkenqing.ren//file/2017/7/e5015b90accf4fe6a7729afe692ffa64-image.png" alt="e5015b90accf4fe6a7729afe692ffa64-image.png"></p>
+<li><p>在HA架构里面SecondaryNameNode这个冷备角色已经不存在了，为了保持standby NN时时的与主Active NN的元数据保持一致，他们之间交互通过一系列守护的轻量级进程JournalNode  + 任何修改操作在 Active NN上执行时，JN进程同时也会记录修改log到至少半数以上的JN中，这时 Standby NN 监测到JN 里面的同步log发生变化了会读取 JN 里面的修改log，然后同步到自己的的目录镜像树里面，<br><img src="//img.wqkenqing.ren//file/2017/7/608621d2ab52466db89e8a95d165f6e7-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="608621d2ab52466db89e8a95d165f6e7-image.png"></p>
+<p>当发生故障时，Active的 NN 挂掉后，Standby NN 会在它成为Active NN 前，读取所有的JN里面的修改日志，这样就能高可靠的保证与挂掉的NN的目录镜像树一致，然后无缝的接替它的职责，维护来自客户端请求，从而达到一个高可用的目的  QJM方式来实现HA的主要优势：<br>1. 不需要配置额外的高共享存储，降低了复杂度和维护成本<br>2. 消除spof<br>3. 系统鲁棒性(Robust:健壮)的程度是可配置<br>4. JN不会因为其中一台的延迟而影响整体的延迟，而且也不会因为JN的数量增多而影响性能（因为NN向JN发送日志是并行的）  datanode的fencing: 确保只有一个NN能命令DN。HDFS-1972中详细描述了DN如何实现fencing<br>1. 每个NN改变状态的时候，向DN发送自己的状态和一个序列号<br>2. DN在运行过程中维护此序列号，当failover时，新的NN在返回DN心跳时会返回自己的active状态和一个更大的序列号。DN接收到这个返回则认为该NN为新的active  3. 如果这时原来的active NN恢复，返回给DN的心跳信息包含active状态和原来的序列号，这时DN就会拒绝这个NN的命令  客户端fencing：确保只有一个NN能响应客户端请求，让访问standby nn的客户端直接失败。在RPC层封装了一层，通过FailoverProxyProvider以重试的方式连接NN。通过若干次连接一个NN失败后尝试连接新的NN，对客户端的影响是重试的时候增加一定的延迟。客户端可以设置重试此时和时间  Hadoop提供了ZKFailoverController角色，部署在每个NameNode的节点上，作为一个deamon进程, 简称zkfc，<br><img src="//img.wqkenqing.ren//file/2017/7/3cfc6fc17a8e47509465442f6eaf7c14-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="3cfc6fc17a8e47509465442f6eaf7c14-image.png"></p>
+<p>FailoverController主要包括三个组件:<br>1. HealthMonitor: 监控NameNode是否处于unavailable或unhealthy状态。当前通过RPC调用NN相应的方法完成<br>2. ActiveStandbyElector: 管理和监控自己在ZK中的状态<br>3. ZKFailoverController 它订阅HealthMonitor 和ActiveStandbyElector 的事件，并管理NameNode的状态  ZKFailoverController主要职责：      1. 健康监测：周期性的向它监控的NN发送健康探测命令，从而来确定某个NameNode是否处于健康状态，如果机器宕机，心跳失败，那么zkfc就会标记它处于一个不健康的状态<br>2. 会话管理：如 果NN是健康的，zkfc就会在zookeeper中保持一个打开的会话，如果NameNode同时还是Active状态的，那么zkfc还会在 Zookeeper中占有一个类型为短暂类型的znode，当这个NN挂掉时，这个znode将会被删除，然后备用的NN，将会得到这把锁，升级为主 NN，同时标记状态为Active<br>3. 当宕机的NN新启动时，它会再次注册zookeper，发现已经有znode锁了，便会自动变为Standby状态，如此往复循环，保证高可靠，需要注意，目前仅仅支持最多配置2个NN<br>4. master选举：如上所述，通过在zookeeper中维持一个短暂类型的znode，来实现抢占式的锁机制，从而判断那个NameNode为Active状态  <strong>hadoop2.x Federation</strong>：  单Active NN的架构使得HDFS在集群扩展性和性能上都有潜在的问题，当集群大到一定程度后，NN进程使用的内存可能会达到上百G，NN成为了性能的瓶颈  常用的估算公式为1G对应1百万个块，按缺省块大小计算的话，大概是64T (这个估算比例是有比较大的富裕的，其实，即使是每个文件只有一个块，所有元数据信息也不会有1KB/block)  为了解决这个问题,Hadoop 2.x提供了HDFS Federation, 示意图如下：<br><img src="//img.wqkenqing.ren//file/2017/7/e5015b90accf4fe6a7729afe692ffa64-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="e5015b90accf4fe6a7729afe692ffa64-image.png"></p>
 <p>多个NN共用一个集群里的存储资源，每个NN都可以单独对外提供服务  每个NN都会定义一个存储池，有单独的id，每个DN都为所有存储池提供存储  DN会按照存储池id向其对应的NN汇报块信息，同时，DN会向所有NN汇报本地存储可用资源情况  如果需要在客户端方便的访问若干个NN上的资源，可以使用客户端挂载表，把不同的目录映射到不同的NN，但NN上必须存在相应的目录  设计优势：  改动最小，向前兼容；现有的NN无需任何配置改动；如果现有的客户端只连某台NN的话  分离命名空间管理和块存储管理  客户端挂载表：通过路径自动对应NN、使Federation的配置改动对应用透明  (与上面ha方案中介绍的最多2个NN冲突？)  至此hadoop中的hdfs高可用特性，高容错的实现又有了更深理解，但针对hdfs还一层设计实现<strong>机架感知</strong></p>
 <h4 id="机架感知"><a href="#机架感知" class="headerlink" title="机架感知"></a>机架感知</h4><p>分布式的集群通常包含非常多的机器，由于受到机架槽位和交换机网口的限制，通常大型的分布式集群都会跨好几个机架，由多个机架上的机器共同组成一个分布 式集群。机架内的机器之间的网络速度通常都会高于跨机架机器之间的网络速度，并且机架之间机器的网络通信通常受到上层交换机间网络带宽的限制。  具体到hadoop集群，由于hadoop的HDFS对数据文件的分布式存放是按照分块block存储，每个block会有多个副本(默认为3)，并且为了数据的安全和高效，所以hadoop默认对3个副本的存放策略为：<br>在本地机器的hdfs目录下存储一个block  在另外一个rack的某个datanode上存储一个block<br>在该机器的同一个rack下的某台机器上存储最后一个block<br>这样的策略可以保证对该block所属文件的访问能够优先在本rack下找到，如果整个rack发生了异常，也可以在另外的rack上找到该block的副本。这样足够的高效，并且同时做到了数据的容错。<br>hadoop对机架的感知并非是自适应的，亦即，hadoop集群分辨某台slave机器是属于哪个rack并非是只能的感知的，而是需要 hadoop的管理者人为的告知hadoop哪台机器属于哪个rack，这样在hadoop的namenode启动初始化时，会将这些机器与rack的对 应信息保存在内存中，用来作为对接下来所有的HDFS的写块操作分配datanode列表时（比如3个block对应三台datanode）的选择 datanode策略，做到hadoop allocate block的策略：尽量将三个副本分布到不同的rack。<br>具体实现本文不在深究，在此附上网上的一些解决方式<br><a href="http://www.cnblogs.com/cloudma/articles/hadoop-topology.html" target="_blank" rel="noopener">机架感知实现1</a>  <a href="http://blog.csdn.net/magicdreaming/article/details/7629773" target="_blank" rel="noopener">机架感知实现2</a></p>
 </li>
@@ -2883,78 +377,344 @@ var _hmt = _hmt || [];
 <hr>
 <p>至此对hdfs的理解与总结告一段落，后续有了新的理解再进行补充</p>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
 </div>
 
 
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog6/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  blog6
-              </a>
-            
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hadoop总结(第一版---HDFS篇)</div>
+      <div>http://www.wqkenqing.ren/daydoc/2019/07/16/王阁/技术/hexo/oldblog/blog24/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Beitragsautor</div>
+          <div>Kuiq  Wang</div>
         </div>
-        <div class="item right">
-            
-              <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog3/">
-                blog3
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Veröffentlicht am</div>
+          <div>July 16, 2019</div>
         </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Urheberrechtshinweis</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog6/" title="反射小结">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">反射小结</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog3/" title="java中枚举的使用">
+                        <span class="hidden-mobile">java中枚举的使用</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-
-
-	<div id="vcomments"></div>
-
-
-<script>
-	
-		// 评论
-		new Valine({
-			av: AV,
-			el: '#vcomments',
-			notify: false,
-			verify: false,
-			path: window.location.pathname,
-			appId: '',
-			appKey: '',
-			placeholder: '请输入评论',
-			avatar: 'retro',
-			recordIP: false
-		})
-	
-	
-</script>
-	</div>
-	<div id="footer">
-	<p>
-	©2019-<span id="footerYear"></span> 
-	<a href="/">Kuiq  Wang</a> 
-	
-	
-		|
-		<span id="busuanzi_container_site_pv">
-			pv
-			<span id="busuanzi_value_site_pv"></span>
-		</span>
-		|
-		<span id="busuanzi_container_site_uv"> 
-			uv
-			<span id="busuanzi_value_site_uv"></span>
-		</span>
-	
-	<br>
-	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
-	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
-	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
-	</p>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Inhaltsverzeichnis</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
-<script type="text/javascript"> 
-	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/daydoc/js/events.js" ></script>
+<script  src="/daydoc/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/daydoc/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
 </script>
-	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/daydoc/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/daydoc/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+  </noscript>
 </body>
 </html>

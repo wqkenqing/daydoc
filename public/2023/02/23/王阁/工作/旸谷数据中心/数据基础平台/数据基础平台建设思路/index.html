@@ -1,2800 +1,279 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans" data-default-color-scheme=auto>
+
+
 
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-	
-	<!-- title -->
-	
-	<title>
-	
-		数据基础平台建设思路 | 
-	 
-	wang&#39;s dayliy document
-	</title>
-	
-	<!-- keywords,description -->
-	
-		<meta name="keywords" content="yGin910" />
-	 
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/daydoc/img/fluid.png">
+  <link rel="icon" href="/daydoc/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kuiq  Wang">
+  <meta name="keywords" content="yGin910">
+  
+    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据基础平台建设思路">
+<meta property="og:url" content="http://www.wqkenqing.ren/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0%E5%BB%BA%E8%AE%BE%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="wang&#39;s dayliy document">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="article:published_time" content="2023-02-23T02:51:20.903Z">
+<meta property="article:modified_time" content="2023-02-23T02:51:20.904Z">
+<meta property="article:author" content="Kuiq  Wang">
+<meta property="article:tag" content="yGin910">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>数据基础平台建设思路 - wang&#39;s dayliy document</title>
 
-	<!-- favicon -->
-	
-	<link rel="shortcut icon" href="/daydoc/favicon.ico">
-	
-
-
-	<!-- search -->
-	<script>
-		var searchEngine = "https://www.google.com/search?q=";
-		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
-			searchEngine = "https://www.google.com/search?q=";
-		}
-		var homeHost = "https://github.com/wqkenqing/daydoc";
-		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
-			homeHost = window.location.host;
-		}
-	</script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-	
-<link rel="stylesheet" href="/daydoc/css/main.css">
 
-	
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
-	
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 
-	
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-	
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
-	
-<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
 
-	
-<script src="/daydoc/js/main.js"></script>
 
-	
-		
-<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
-		
-<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
 
-	
-	
-		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
+<link  rel="stylesheet" href="/daydoc/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/daydoc/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/daydoc/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.wqkenqing.ren","root":"/daydoc/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/daydoc/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/daydoc/js/utils.js" ></script>
+  <script  src="/daydoc/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
 </head>
 
+
 <body>
-	<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?3efe99c287df5a1d6f0d02d187e403c1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+  
 
-<header id="header">
-    <a id="title" href="/daydoc/" class="logo">wang's dayliy document</a>
+  <header>
+    
 
-	<ul id="menu">
-		<li class="menu-item">
-			<a href="/about" class="menu-item-link">ABOUT</a>
-		</li>
-	
-		<li class="menu-item">
-			<a href="/tags" class="menu-item-link">标签</a>
-		</li>
-	
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/daydoc/">
+      <strong>Fluid</strong>
+    </a>
 
-	
-		<li class="menu-item">
-			<a href="/categories" class="menu-item-link">分类</a>
-		</li>
-	
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
 
-		<li class="menu-item">
-			<a href="https://github.com/wujun234/uid-generator-spring-boot-starter" class="menu-item-link" target="_blank">
-				UidGenerator
-			</a>
-		</li>
-		<li class="menu-item">
-			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
-				<i class="fa fa-github fa-2x"></i>
-			</a>
-		</li>
-	</ul>
-</header>
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Startseite</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archiv</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Kategorien</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Schlagwörter</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/daydoc/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>Über</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
 
-	
-<div id="sidebar">
-	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
-	
-	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
-		<div id="tree">
-			
+  
 
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										王阁
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										分享
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%88%86%E4%BA%AB/%E6%95%B0%E4%BB%93%E5%88%86%E4%BA%AB/">
-										数仓分享
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										回顾
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hive
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/23/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/hive/hive%E5%9B%9E%E9%A1%BE/">
-										hive回顾
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										技能回顾
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										大数据相关组件
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/18/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E6%8A%80%E8%83%BD%E5%9B%9E%E9%A1%BE/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E7%BB%84%E4%BB%B6/hadoop%E5%8F%91%E5%B1%95%E5%8F%B2/">
-										hadoop发展史
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/17/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E6%8A%80%E8%83%BD%E5%9B%9E%E9%A1%BE/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E7%BB%84%E4%BB%B6/%E5%AD%98%E5%82%A8%E7%BB%84%E4%BB%B6/">
-										存储组件
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/17/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E6%8A%80%E8%83%BD%E5%9B%9E%E9%A1%BE/%E6%95%B4%E4%BD%93%E8%A7%84%E5%88%92%E6%80%9D%E8%B7%AF/">
-										整体规划思路
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										工作
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据基础平台
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/02/15/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据基础平台构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据运维
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/02/21/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4-%E9%87%87%E9%9B%86%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9D%97/">
-										数据运维-采集任务模块
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据集成
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E9%9B%86%E6%88%90/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据采集构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/11/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4/">
-										日常运维
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										旸谷数据中心
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										config
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										datax
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/07/05/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/config/datax/hive2myql/">
-										hive2myql
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										基础
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/CDH%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">
-										CDH基础环境部署
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/Flink%E9%9B%86%E6%88%90CDH/">
-										Flink集成CDH
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/21/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/Logstash%20%E9%83%A8%E7%BD%B2/">
-										Logstash 部署
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										元数据
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/03/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E5%85%83%E6%95%B0%E6%8D%AE/Atlas%E5%88%87%E6%8D%A2%E6%90%9C%E7%B4%A2%E7%BB%84%E4%BB%B6/">
-										Atlas切换搜索组件
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/24/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E5%85%83%E6%95%B0%E6%8D%AE/%E6%95%B0%E6%8D%AE%E8%A1%80%E7%BC%98%E7%BB%84%E4%BB%B6/">
-										数据血缘组件
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E8%B5%84%E6%BA%90/">
-										数据中心服务资源
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/14/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E7%BB%84%E4%BB%B6%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1%E5%B0%81%E8%A3%85/">
-										数据中心组件管理服务封装
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%9C%8D%E5%8A%A1%E5%B0%81%E8%A3%85/">
-										数据采集服务封装
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										安全模块
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/04/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97/kerberos%E9%83%A8%E7%BD%B2%E4%B8%8E%E4%BD%BF%E7%94%A8/">
-										kerberos部署与使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/04/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9D%97%E8%AE%BE%E8%AE%A1%E5%A4%A7%E7%BA%B2/">
-										数据中心安全模块设计大纲
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据基础平台
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/29/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/dataworks/">
-										dataworks
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file active">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0%E5%BB%BA%E8%AE%BE%E6%80%9D%E8%B7%AF/">
-										数据基础平台建设思路
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/12/01/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据安全的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/12/01/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E5%BA%94%E7%94%A8%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据应用的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/12/01/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据治理的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/30/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据管理的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/12/01/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据运维的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/11/29/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E9%9B%86%E6%88%90%E7%9A%84%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">
-										数据集成的构建方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										组件
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/07/06/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E7%BB%84%E4%BB%B6/azkaban%E7%9A%84%E4%BD%BF%E7%94%A8/">
-										azkaban的使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E7%BB%84%E4%BB%B6/clickhouse%E9%9B%86%E7%BE%A4%E7%89%88%E5%AE%9E%E5%BD%95/">
-										clickhouse集群版实录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										杂记
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%9D%82%E8%AE%B0/%E6%B1%89%E5%8F%A3%E6%BA%90%E7%82%B9%E9%A1%B9%E7%9B%AE%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF/">
-										汉口源点项目相关信息
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%9D%82%E8%AE%B0/%E6%B1%89%E5%8F%A3%E9%A1%B9%E7%9B%AE%E5%85%AC%E5%8F%B8%E6%9C%8D%E5%8A%A1%E6%93%8D%E4%BD%9C/">
-										汉口项目公司服务操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										项目
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										洪雅
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B4%AA%E9%9B%85/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%AA%8C%E8%AF%81/">
-										大数据验证
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										济泺路隧道
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										flink服务
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/28/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B5%8E%E6%B3%BA%E8%B7%AF%E9%9A%A7%E9%81%93/flink%E6%9C%8D%E5%8A%A1/flink%E5%85%AC%E5%8F%B8%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E8%AE%B0%E5%BD%95/">
-										flink公司环境部署记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										出差
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/08/16/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B5%8E%E6%B3%BA%E8%B7%AF%E9%9A%A7%E9%81%93/%E5%87%BA%E5%B7%AE/flink%E8%BF%90%E8%A1%8C%E5%8F%82%E6%95%B0/">
-										flink运行参数
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/01/25/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B5%8E%E6%B3%BA%E8%B7%AF%E9%9A%A7%E9%81%93/%E5%87%BA%E5%B7%AE/test/">
-										test
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/08/16/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E6%B5%8E%E6%B3%BA%E8%B7%AF%E9%9A%A7%E9%81%93/%E5%87%BA%E5%B7%AE/%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E5%9C%B0%E5%9D%80/">
-										相关配置地址
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										绥延
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E7%BB%A5%E5%BB%B6/kafka%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83/">
-										kafka测试环境
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/07/20/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E7%BB%A5%E5%BB%B6/%E9%87%87%E9%9B%86%E5%9C%B0%E5%9D%80/">
-										采集地址
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										铁四院数据平台
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数仓
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E6%95%B0%E4%BB%93/%E6%95%B0%E4%BB%93%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%9B%BE/">
-										数仓架构设计图
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										技术
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hexo
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										CDH
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/03/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/CDH/cdh%E9%9B%86%E6%88%90phoenix/">
-										cdh集成phoenix
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/27/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/CDH/%E6%90%AD%E5%BB%BA/">
-										搭建
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										Thread
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/Thread/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-										多线程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										flink
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/31/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/flink/Flink/">
-										Flink
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hadoop
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hadoopHA%E6%90%AD%E5%BB%BA/">
-										hadoopHA搭建
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hbase
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hbase/hbase%E6%93%8D%E4%BD%9C/">
-										hbase操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hdfs
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hdfs/hdfs%E5%91%BD%E4%BB%A4/">
-										hdfs命令
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hdfs/hdfs%E6%93%8D%E4%BD%9C/">
-										hdfs操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										kafka
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/kafka/kafka%E5%AE%9E%E7%8E%B0/">
-										kafka实现
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										old
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/Lamda%E7%A7%AF%E7%B4%AF/">
-										Lamda积累
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/Yarn%E9%85%8D%E7%BD%AE/">
-										Yarn配置
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/flume%E8%AE%B0%E5%BD%95/">
-										flume记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/06/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/hbase%E7%A7%AF%E7%B4%AF/">
-										hbase积累
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/12/24/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/hive%E6%80%BB%E7%BB%93/">
-										hive总结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/kafka/">
-										kafka
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/mapreduce%E7%BB%84%E4%BB%B6%E6%80%BB%E7%BB%93/">
-										mapreduce组件总结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A02/">
-										spark学习2
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A03/">
-										spark学习3
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A0/">
-										spark学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E7%AE%97%E5%AD%90/">
-										spark算子
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/03/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/sqoop%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88/">
-										sqoop实现方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/sqoop%E8%AE%B0%E5%BD%95/">
-										sqoop记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/%E5%87%86%E5%A4%87%E5%B0%8F%E7%BB%93/">
-										准备小结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E5%88%86%E4%BA%AB/">
-										大数据相关分享
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										oldblog
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog1/">
-										blog1
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog10/">
-										blog10
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog11/">
-										blog11
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog12/">
-										blog12
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog13/">
-										blog13
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog14/">
-										blog14
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog15/">
-										blog15
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog16/">
-										blog16
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog17/">
-										blog17
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog18/">
-										blog18
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog19/">
-										blog19
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog2/">
-										blog2
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog20/">
-										blog20
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog21/">
-										blog21
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog22/">
-										blog22
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog23/">
-										blog23
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog24/">
-										blog24
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog25/">
-										blog25
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog26/">
-										blog26
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog3/">
-										blog3
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog4/">
-										blog4
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog6/">
-										blog6
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog7/">
-										blog7
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog8/">
-										blog8
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog9/">
-										blog9
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										spark
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/spark%E6%93%8D%E4%BD%9C/">
-										spark操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										sql
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/sql/SparkSql/">
-										SparkSql
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/15/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/stream/">
-										stream
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/stream2/">
-										stream2
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/%E5%AE%BD%E7%AA%84%E4%BE%9D%E8%B5%96/">
-										宽窄依赖
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										算子
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/%E7%AE%97%E5%AD%90/RDD%E7%AE%97%E5%AD%90/">
-										RDD算子
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/%E7%AE%97%E5%AD%90/Spark-Windos%E5%87%BD%E6%95%B0/">
-										Spark-Windos函数
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										专题
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										sql专题
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/05/02/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/sql%E4%B8%93%E9%A2%98/sql%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-										sql基础知识
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/%E6%8A%80%E6%9C%AF%E4%B8%93%E9%A2%98/">
-										技术专题
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据建模
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/04/28/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E5%BB%BA%E8%AE%BE%E6%96%B9%E6%A1%88/">
-										数据仓库建设方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BB/">
-										数据指标体系
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										大数据
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										Mongodb
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/Mongodb/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-										常用命令
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/21/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/atlas/">
-										atlas
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										es
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/elk%E4%BD%BF%E7%94%A8/">
-										elk使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/esDSL%E8%AF%A6%E8%A7%A3/">
-										esDSL详解
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E5%B0%8F%E7%BB%93/">
-										es小结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/02/25/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-										es常用命令
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E7%9A%84docker%E5%AE%89%E8%A3%85/">
-										es的docker安装
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E8%AF%A6%E7%BB%86/">
-										es详细
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88/">
-										共享数据集合
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/%E7%A7%AF%E7%B4%AF/">
-										积累
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										flink
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										2023
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/22/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/2023/Flink%E5%AD%A6%E4%B9%A0%E5%8E%86%E7%A8%8B/">
-										Flink学习历程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/06/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/2023/flink_study/">
-										flink_study
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/Flink%E8%AE%B0%E5%BD%95/">
-										Flink记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink/">
-										flink
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink_book/">
-										flink_book
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/03/21/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink%E4%BB%BB%E5%8A%A1%E6%8F%90%E4%BA%A4/">
-										flink任务提交
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										flume
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2019/06/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/Flume/">
-										Flume
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/docker%E7%89%88flume%E4%BD%BF%E7%94%A8/">
-										docker版flume使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hbase
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/hbase20190109/">
-										hbase20190109
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/18/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/hbase_api%E5%8D%87%E7%BA%A7/">
-										hbase_api升级
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hive
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/hive20190109/">
-										hive20190109
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										kafka
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E5%8E%9F%E7%90%86/">
-										kafka原理
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E5%B0%8F%E7%BB%93/">
-										kafka小结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/15/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E6%9E%81%E5%AE%A2/">
-										kafka极客
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E7%96%91%E9%97%AE%E7%82%B9/">
-										kafka疑问点
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										spark
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/06/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/spark/spark-streaming/">
-										spark-streaming
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										yarn
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/yarn/YarnState/">
-										YarnState
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										集群
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E9%9B%86%E7%BE%A4/%E7%A7%81%E6%9C%89%E9%9B%86%E7%BE%A4/">
-										私有集群
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										开发
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										前端
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/06/29/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/vue%E5%AD%A6%E4%B9%A0/">
-										vue学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据库
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/05/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E5%BA%93/sql%E5%82%A8%E5%A4%87&%E7%BB%83%E4%B9%A0/">
-										sql储备&练习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										编程
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										bash
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										awk
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/awk/awk/">
-										awk
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/python_learn/">
-										python_learn
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/shell%E7%A7%AF%E7%B4%AF/">
-										shell积累
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										java
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/06/05/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/java/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
-										并发编程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/20/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/java/%E6%97%A5%E6%9C%9F%E5%A4%84%E7%90%86/">
-										日期处理
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/20/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/java/%E8%AE%A1%E7%AE%97%E5%A4%84%E7%90%86/">
-										计算处理
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										python
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										reptile
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/10/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/reptile/python%E7%88%AC%E8%99%AB%E7%AF%87/">
-										python爬虫篇
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										summary
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/2020.3.17/">
-										2020.3.17
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/python5%E5%B0%8F%E7%BB%93/">
-										python5小结
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/05/29/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/python%E5%B0%8F%E7%BB%933/">
-										python小结3
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/02/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/python%E5%B0%8F%E7%BB%934/">
-										python小结4
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										scala
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/scala/scala%E5%AD%A6%E4%B9%A0/">
-										scala学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										考研
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/11/03/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%80%83%E7%A0%94/C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-										C学习笔记
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										课程记录
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										Flink专项
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/01/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95/Flink%E4%B8%93%E9%A1%B9/flink%E8%AE%B0%E5%BD%95/">
-										flink记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										es专项
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95/es%E4%B8%93%E9%A1%B9/es%E8%AE%B0%E5%BD%95/">
-										es记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										运维
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										ELK
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ELK/kibana%E4%BD%BF%E7%94%A8/">
-										kibana使用
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										logstash
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/07/10/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ELK/logstash/beats/">
-										beats
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/07/09/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ELK/logstash/logstash/">
-										logstash
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										cdh
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/cdh/hue/">
-										hue
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										docker
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/docker/Dockerfile%E5%9F%BA%E7%A1%80&%E7%BC%96%E5%86%99/">
-										Dockerfile基础&编写
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/docker/docker/">
-										docker
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/docker/docker%E6%93%8D%E4%BD%9C/">
-										docker操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/docker/docker%E9%95%9C%E5%83%8F/">
-										docker镜像
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										front_end
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/nginx%E9%83%A8%E7%BD%B2/">
-										nginx部署
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										接口规划
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E6%8E%A5%E5%8F%A3%E8%A7%84%E5%88%92/data-manager/">
-										data-manager
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E8%B0%83%E7%A0%94/">
-										调研
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										hy-sjksh-info-dev
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/hy-sjksh-info-dev/docker-compose/">
-										docker-compose
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										owncloud
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/owncloud/%E8%B4%A6%E5%8F%B7/">
-										账号
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										ubuntu
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ubuntu/desk_gui/">
-										desk_gui
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ubuntu/linux%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1/">
-										linux自启服务
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										yd_server_config
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/yd_server_config/README/">
-										README
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										sjksh_store_info
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/yd_server_config/sjksh_store_info/docker-compose/">
-										docker-compose
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										调度
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/06/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/%E8%B0%83%E5%BA%A6/%E8%B0%83%E5%BA%A6%E7%BB%84%E4%BB%B6%E9%83%A8%E7%BD%B2/">
-										调度组件部署
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										日常
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										blog_sync_project
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/blog_sync_project/plan/">
-										plan
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/10/15/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/map/">
-										map
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										prepare
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/">
-										数据储备
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										vue
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/vue/vue/">
-										vue
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										考试
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/">
-										电子科大2019招生收集
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/04/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E8%80%83%E8%AF%95%E7%9B%B8%E5%85%B3/">
-										考试相关
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										运维
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/">
-										about云账号密码
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/06/04/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/docker%E5%90%AF%E5%8A%A8mysql/">
-										docker启动mysql
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/">
-										jumpserver
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2020/05/25/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/mac%20python%E7%89%88%E6%9C%AC%E6%9B%BF%E6%8D%A2/">
-										mac python版本替换
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/">
-										tmux上手
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E4%BA%AC%E4%B8%9C%E4%BA%91/">
-										京东云
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/">
-										博客不同主题切换
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/">
-										操作记录
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/">
-										运维操作
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										项目
-									</a>
-									
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										古诗词竞赛
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E5%8F%A4%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B/%E5%BB%BA%E8%AE%BE%E6%80%9D%E8%B7%AF/">
-										建设思路
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/daydoc/2022/05/21/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E5%8F%A4%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B/%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/">
-										诗词竞赛业务架构
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-		</div>
-	</div>
+<div id="banner" class="banner" parallax=true
+     style="background: url('/daydoc/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据基础平台建设思路"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-23 10:51" pubdate>
+          February 23, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.4k wörter
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          62 minuten
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
 </div>
-
-	<!-- 引入正文 -->
-	<div id="content">
-		<h1 id="article-title">
-
-	数据基础平台建设思路
-</h1>
-<div class="article-meta">
-	
-	<span>Kuiq  Wang</span>
-	<span>2023-02-23 10:51:20</span>
-		<div id="article-categories">
-    
-		<span>Categories：</span>
-            
-    
-
-    
-		<span>Tags：</span>
-            
-    
-		</div>
 
 </div>
 
-<div id="article-content">
-	<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据基础平台建设思路</h1>
+            
+            
+              
+              <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
   <div class="hbe-input-container">
   <input type="password" id="hbePass" placeholder="" />
     <label for="hbePass">Hey, password is required here.</label>
@@ -2803,78 +282,362 @@ var _hmt = _hmt || [];
   <script id="hbeData" type="hbeData" data-hmacdigest="2d4451943388531a098684f5882e1232dd3dc43dd5103e90fd33f7f24ec5c2c6">f29c680708acd02cbb1b6cceaba0619272de531e177edd19252cbc56b81bb0d2c16549492d7e0144c672bec04f66355435d5b577d39ea320bd017919ac556c43e966e3d9d5e94a55335dbf0cf3bf5164096a825efe80adbfeb5bf41d9349b81f6e5c56e1c7c1fc67b9371b0bca2745eddd58ab5bea369ba9e352816abbc59f409a0324c9dc65287c3115fcfc31f8c2dcdd2026097bedcfff09ed3c1f4b1ef9b002e4170eaf7cbb47739171dad94f6e9935cee25c5631e3f651d7c752390e87a5d2d3d2112ac36dc88b899f697b8fdc77a7e515594ddbfd68a39f7cae7b16baf63aa03ea111e97551c413794d98b47b72ed1e0a3be79bb0df676fe45f3e3b7b65977a67ce1d0e53027aaed03d40e0f7873654bd22dcbfc0ab54555551e66eb2abe2dbe27a5dc5e18942a1e5c12432d20aa7b7ab505ae521cc9c0f5da5eeca40e14428ca28f9aae2a25ba08a50ef4d824869a53d30e1a89fa4a00c0a35ab54ef7f3e6d9ac22b8be8aa85419db836b07371e6e853ba884a408b725e2cb8dc0e68f49855a456ab1907ca8b94b30b4efcc5586cd5474c8228961a155101aa68b91cc0c4bda1956b7283908f151388c0343e97cb030d5a86776901089748715d4efa181f43e637626582fca53961edcd89ea0ae1bb17341a8bb9812e82381580a8f9b522d1029b7c251187c88bbdc83d5e96968e3dce89311b8443a954c183513206059d222e8ec39188d32f8325dfe8800aeaf5dd6c2f8e108b20910d3fd02d069ffd27258592f66a25fbf1f0377404769acc018865ce37e6c101f41d52a9e0eaf7171dc511f74803a4673416f31a4f8194ecb72351dab35c51c2c752cdbd0f67e055248f68da778b0ae2ef870a3c9a9cfdde3e6722b327cd14414b50a573819836b212b493bdcb8a6f990caba8b0cae76433ae4fc06a20b54145c8a043f2fc1b68bbb544a66d9f32a8b80ef38f7bde0367ae4726a3d4828461304e648dc4ab6d367ed81bbebb03a2c38b129282936e2f90f5b1e1d135d935519fb800b7c45321861744b31bd0dafec70684ca4f25ebc128b8fa6a5042ba5f8767a665814771f9e5d0673f2d06b2db11458589088e2315fd2f4199fb4b629db4e360b86f424e09881edd7b4f2bad23aae5a776d72765f32ae9f568e001993a8fdec764c921491a5686a40098ac4c73fead7bdc707f0b63b715715bc52c8ca1c5e6d364d7024931f527dd4fcd326824f5449a827c4656b03e2888512c4d6a8ad0b087c539f9a0392820e9c222f9c6a343247cf38ad59f31243afe03c0ed0e695966e5390a6418aad6d7cbd450505654322d88a97923ec239081430c926b57a86f3f08865722cf54d695b689b7bf253fb5312ab32a65547d6a4501abf9419be3fb2eb78ffa8b4b1e4c29d208f6e3a1c5cf65bf2acf68c800e1c39fb8d3ab3f9e4a8f0c33b393f4aae1f689ceccfd217a01918bc463622d9f25b01203b4d84176e1b48714dd7885366aed5c9a846f5cfecde4eff9a45ed3aad65b91ced96f3580299478ea2317fd3f093604d0a05d6a35396715eb46d0167a31e21cb7754467bba74f84ad8c4efc93425dbf3c4cde6573aa683411f0002e4817dec0d71905b16e2fdd9be306e0fa57cc93b3b9ccb118fc580c20a11c77b0ce0fd63213169f19f4f9e34d6b40247c54a22d3287a74fbafbd5dfcd3a8e66741fac1ed6e847ad0141b1b8f08839752d22e5c6fb26161ac6327c9a8db8664deeed6b54aa824feb864e0ecc8763fa4bf894b9487d1a18d015c9e02f881d092c1c4e1147343c8e97a164cc51f4e534a30e08d9394c5fc551c66cbee92c3dab37a64590e4c50e5ee56d223739d01340951d1e12f391df995a8d3f24a0a79a5d825822b32cfa5a0a00fa142e990705a30437a6b66bf951ad822902f713aa4d0fa294292cb5ea048d162f9ba494735c70c4e2293fb40f0ab87d6caee3185a373c16e586718784fade4edd33a7495009a6ddfba0153510923c617faee85abe45689f39f19c1b788e8af1cf38591d980f220ef7b991d8a591403cc19f752d7d4f9195c97a6e20d169b7571ef86102050873f3045d1a7367670c9da48bd93d21824ffbd631645882c0e3663e90a8a961f770e459dd8f8dca1eea1b560f0474afeb6aa1debffabc478eebd8b8dbca4508504b53852ac46e0ca5023bb125abb30cc2592e0a4939202dc0784176349c29403907fc4bc0317633dd30fdc6911012635c72099194ea63cd25d348f310c0b37339c3c44e4293bddd80c86e8e4e0e0ea03b741e16efb0ee0e40e1039adc8ea00ea0af6d18b8c238b1010c435cee45600bdd69dc0a39a915ea1dce18b275b124a5277b15cf60947dd37c7a480a35348b24460459148cde6cb08e4351e18ea012545cb2fed8cf7eff10c997fc5781b385d01ea644e014cfd56f077f2ab54682d84670770f761175f32460f9f6e8dc16fa8f54e3829b6b917c66e37db3a693bcc0de6af81f4d091ff07bb7d85cfd639841f9da19498a2ff59a0cc658414ba4c3c8b1a0bcab4c2291a2c64fab05643b186f7db922608592c5ccfc91c7f89ce2db3a97dd2a4e5a64cf1c9ddbd0ed7bb977ad42673ce2627b30fc75b54815ce45a1fe3dac07ed4ce38ba021d50f4c7b4b01d3161a9b229756beca6b6ae34f556486482c4b80a10d6925e2e1624c492cd2e7cf5714c6416fe05504d7a03198625ee818b81faa5010cf11eb30e6dbca89587e3d7bf761a67b92323c71a18bd94602760d0ed9320c4ed12a48077f053991f5697896b1a48e7e7582b44cbed6959d3e08a93621e207a48bd9053d754d3cd55217d162131f735ff0fca1f96f762331fc1ea0043c059d988b7c27835df83cba7b0624a23ffa73c2ce079a59d08b309c4b1fba593dd162366f5595ee79988be721a02129a50a334016451bc9a84763fe3253b4d2bc96b4f3724f1342a953f3ccb86f8724317a279e8bd4f072823069e078805c3c8fbdedf95a94f36f2fa76f9c5cac38bcfa0d9c5eb34ae2c9f7c7f695d6d48e10d0beb40cfc2fcb82c5cdd8db3f397dfc26fa5c3b93d73fd6d85f7608eac5d0e64e03766b7c5fd80631a5939c8fba4ae847d01f5ec36b26be9c73caea801b18291493b851b22f6e9550cceff37954c11ce1f6f500972ab813f8289cebf29e2d4488d6dc57e662b08e1ad20783975616dfd018eb2ccf837af35c3d3809bf7aee248c2583fce1322bd5b450bbf78b8cc6e9685ac62c9660ca708f65f122dc021ee1db723a080863c16b8125a523fbd695abb5fc400953222f54292bdb54f2b0cc7af656e18a3048e8962dd579d76bfb30a1ed64e5dcab9ba37d9cd70f818cb4816c9043c856998e90056b1e5eaa051091720a7c4b7a5e67850e72c270bf50f4ddd986ef9dc17513b108cd4daed854b6a0db52a7dcfcddc4943cc1cefd7a2baea4fc237067f261bdb568b40058f40deeac067924b5a977107a3116239b16bd4f384de6c0bca7541ad288dbfa4e2ee0dc7ca11206e08cfbd47afdbfd7b14f5b0c6feeddbd4466464d6380bf239cb307da945c31330a01bfbd1f3aea69f35d26b009ba7be37470d720354162e367436950cb303c82124f04b9235c917393533384a181c2e74b0d99cce250e290823f93c308ee87cdfd868156fa726a727798889c89829a101536e6b450f33ffcf05acef84792bb81da19b565141d4234954b3b0791ab9a20738fbb7daedf3c60245573a860f83b51834dc789d39e82659930719b33e9e8b50fdd3bc267d5a5827f7a1e812259d641ea06a9c86653aa88d3fdf673aba96042b2f469041a78ed2d0ce867cf7b536defeadae82f5e2cc1526612257d1ef3f12120ea907c66a06853187a0bf346018c51a0cd8d11e10520001bbfe2bc087193cf44e8399bc0814052469fa6538e1d6c594d7b0c5c68fc5e54d248d7bce915fb208c35e5c0ece8a2710b6f37eaf105b4a068ac282f38f1ceb4ff045c61a41b84f9752a2a272be492b6690c951ca0f01df2594a57df35c32b6496d26c854445ac99243c25859b0ec503bf146f4cf83717f8f11767641395acd91b34bfeb9e6a6b6041b530c116580d520c951206a215673e4ec57318e9712fe3ef223dc50adc4afb3c6871307f44583717ad519012465df81e76230e7d4b97ed1b92ceaec61e2c36ece398f82943f75c70a0ec7536f37fb6dbfed59119ab1654da342529bfa5ac2101832d72da22feb6c2cd11d75c638e21af81fa9a42fd13a158c55ad95309bb43d08ea7f8620b9a3200daf33467fac12f0611839e1de0760e7f0c2d213ce6ad85f74a4074014166fb0b20c1ca0c68531a2b1403d2449c6e0a5c341a1b65b941636edc4003b0687b6a087a38af9b7f6b6d86ef92ed76b4b54bc00fbd6b1e27c5f6970a2f18e6597600d168926e73f9bc97dc42f6a8579942cdeb1ffe289d636942480a8fb0fb2d5deb2d72b8a45446a7c5e9b588ebae54832fe669a571b263c8f400f56e64c9ddc9bac5291f010cf5eacecd6832171e882d877e883e986fa1be8fa700fff88fe242813917a91cf3303756b38808f63afec62d3ad80602c47d9eec573c2d2e0a252dde11312f78dc9330a243548442f8a74acc591bdc2673f4695c5bbcbaccea152b640e985442e3f98c47acef4156790514f57f136a96878414ff4b68245c3ce35b00539d063df01e33b421cb481d5eba682f68fc9e5e2d6537301a7176d8f1771efcff258ecf47514447d0e6adfb85cd715bafc9d8f39d4e13a2cee633657694281a36a2c92f8d0cf26a53c75eb366ea5f26b2f925a2b462f97c90aed35081f43153acf1bab67fafc6096c3a293b15e0e8cffd301f050cc6b3d3494a86ae1c4f9bdcdf19de05f3ced09e549ab34434b5b5b8d144907e4c0345f9c0cbd1c3ca1030c759a9875d804f21f46e590ed56dd88aea0fde250e6438fe0684edc0102a11969c30982a591f00b1515c34395ceb8e2d2673c7f2756864893904e40905a4583df450c3dbc23256b2165e8446efa227fe1f41d79f6dea54adc22fdc98a516e312bed5cb707a337571b1ac881332cc91218a7ed0e94022f4ab67da435096c2376d49aad5a69feb88aa8fbc9f933c21182e476e0b1b410b9064c5d0f7360dd6824a17e8a3fc3ba13117ae7f8417ee35e33f1b4a0426f0ed095e8341acc695cff083bcd19ad48b7c60113bcef411202a</script>
 </div>
 <script src="/daydoc/lib/blog-encrypt.js"></script><link href="/daydoc/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+              
+
+              
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
 </div>
 
 
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/CDH%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  CDH基础环境部署
-              </a>
-            
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据基础平台建设思路</div>
+      <div>http://www.wqkenqing.ren/daydoc/2023/02/23/王阁/工作/旸谷数据中心/数据基础平台/数据基础平台建设思路/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Beitragsautor</div>
+          <div>Kuiq  Wang</div>
         </div>
-        <div class="item right">
-            
-              <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%88%86%E4%BA%AB/%E6%95%B0%E4%BB%93%E5%88%86%E4%BA%AB/">
-                
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Veröffentlicht am</div>
+          <div>February 23, 2023</div>
         </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Urheberrechtshinweis</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/CDH%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" title="CDH基础环境部署">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">CDH基础环境部署</span>
+                        <span class="visible-mobile">Vorheriger</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E5%88%86%E4%BA%AB/%E6%95%B0%E4%BB%93%E5%88%86%E4%BA%AB/" title="王阁/分享/数仓分享">
+                        <span class="hidden-mobile">王阁/分享/数仓分享</span>
+                        <span class="visible-mobile">Nächster</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
 
-
-
-	<div id="vcomments"></div>
-
-
-<script>
-	
-		// 评论
-		new Valine({
-			av: AV,
-			el: '#vcomments',
-			notify: false,
-			verify: false,
-			path: window.location.pathname,
-			appId: '',
-			appKey: '',
-			placeholder: '请输入评论',
-			avatar: 'retro',
-			recordIP: false
-		})
-	
-	
-</script>
-	</div>
-	<div id="footer">
-	<p>
-	©2019-<span id="footerYear"></span> 
-	<a href="/">Kuiq  Wang</a> 
-	
-	
-		|
-		<span id="busuanzi_container_site_pv">
-			pv
-			<span id="busuanzi_value_site_pv"></span>
-		</span>
-		|
-		<span id="busuanzi_container_site_uv"> 
-			uv
-			<span id="busuanzi_value_site_uv"></span>
-		</span>
-	
-	<br>
-	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
-	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
-	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
-	</p>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Inhaltsverzeichnis</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
-<script type="text/javascript"> 
-	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/daydoc/js/events.js" ></script>
+<script  src="/daydoc/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/daydoc/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+  <script defer>
+    if (document.getElementById('hbePass')) {
+      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
+        var hbePrefix = document.querySelector('hbe-prefix');
+        hbePrefix.parentElement.classList.add('markdown-body');
+        Fluid.utils.retry(function() {
+          if (Fluid.boot && Fluid.boot.refresh) {
+            Fluid.boot.refresh();
+            return true;
+          }
+        }, 100, 10);
+      })
+    }
+  </script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
 </script>
-	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/daydoc/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/daydoc/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+  </noscript>
 </body>
 </html>
