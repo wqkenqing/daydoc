@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          919 wörter
+          919 palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          8 minuten
+          8 minutos
         
       </span>
     
@@ -285,10 +285,10 @@
 <li>下载文件 </li>
 <li>断点续写</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">错误：</span><br><span class="line"></span><br><span class="line">    java.io.IOException: Failed to replace a bad datanode on the existing pipeline due to no more good datanodes being available to try</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs error">错误：<br><br>    java.io.IOException: Failed to replace a bad datanode on the existing pipeline due to no more good datanodes being available to try<br></code></pre></td></tr></table></figure>
 
 <p>原因：<br>    无法写入；我的环境中有3个datanode，备份数量设置的是3。在写操作时，它会在pipeline中写3个机器。默认replace-datanode-on-failure.policy是DEFAULT,如果系统中的datanode大于等于3，它会找另外一个datanode来拷贝。目前机器只有3台，因此只要一台datanode出问题，就一直无法写入成功。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.client.block.write.replace-datanode-on-failure.enable<span class="tag">&lt;/<span class="name">name</span>&gt;</span>         <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.client.block.write.replace-datanode-on-failure.policy<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>NEVER<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>dfs.client.block.write.replace-datanode-on-failure.enable<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>         <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br><br>   <br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>dfs.client.block.write.replace-datanode-on-failure.policy<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>NEVER<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>对于dfs.client.block.write.replace-datanode-on-failure.enable，客户端在写失败的时候，是否使用更换策略，默认是true没有问题<br>对于，dfs.client.block.write.replace-datanode-on-failure.policy，default在3个或以上备份的时候，是会尝试更换结点尝试写入datanode。而在两个备份的时候，不更换datanode，直接开始写。对于3个datanode的集群，只要一个节点没响应写入就会出问题，所以可以关掉。</p>
 
@@ -314,26 +314,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>May 16, 2019</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -356,7 +356,7 @@
                       <a href="/daydoc/2019/05/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hadoopHA%E6%90%AD%E5%BB%BA/" title="hadoop高可用模式搭建">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">hadoop高可用模式搭建</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -365,7 +365,7 @@
                     
                       <a href="/daydoc/2018/12/24/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/hive%E6%80%BB%E7%BB%93/" title="hive总结">
                         <span class="hidden-mobile">hive总结</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -386,7 +386,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -442,7 +442,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -450,7 +450,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -629,7 +629,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

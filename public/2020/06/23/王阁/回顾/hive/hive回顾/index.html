@@ -117,7 +117,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -129,7 +129,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -141,7 +141,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -153,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -165,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k wörter
+          1.4k palabras
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          13 minuten
+          12 minutos
         
       </span>
     
@@ -281,11 +281,11 @@
 
 
 <p> <code>hive 创建hbase内部表</code></p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">create</span> <span class="keyword">table</span> ods_uba.lin_test</span><br><span class="line">(</span><br><span class="line">   operate_no           <span class="keyword">string</span>,</span><br><span class="line">   dev_no               <span class="keyword">string</span>,</span><br><span class="line">   user_id              <span class="keyword">string</span>,</span><br><span class="line">   start_time           <span class="keyword">string</span></span><br><span class="line">)</span><br><span class="line">PARTITIONED <span class="keyword">BY</span> (start_date <span class="keyword">string</span>) </span><br><span class="line"> CLUSTERED <span class="keyword">BY</span> (start_time)</span><br><span class="line"> <span class="keyword">INTO</span> <span class="number">16</span> BUCKETS</span><br><span class="line"> <span class="keyword">STORED</span> <span class="keyword">AS</span> ORC tblproperties(<span class="string">"parquet.compress"</span>=<span class="string">"SNAPPY"</span>);</span><br></pre></td></tr></table></figure>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> ods_uba.lin_test<br>(<br>   operate_no           <span class="hljs-keyword">string</span>,<br>   dev_no               <span class="hljs-keyword">string</span>,<br>   user_id              <span class="hljs-keyword">string</span>,<br>   start_time           <span class="hljs-keyword">string</span><br>)<br>PARTITIONED <span class="hljs-keyword">BY</span> (start_date <span class="hljs-keyword">string</span>) <br> CLUSTERED <span class="hljs-keyword">BY</span> (start_time)<br> <span class="hljs-keyword">INTO</span> <span class="hljs-number">16</span> BUCKETS<br> <span class="hljs-keyword">STORED</span> <span class="hljs-keyword">AS</span> ORC tblproperties(<span class="hljs-string">"parquet.compress"</span>=<span class="hljs-string">"SNAPPY"</span>);<br></code></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">create external table bigdata17_user(</span><br><span class="line">userid int,</span><br><span class="line">username string,</span><br><span class="line">fullname string)  </span><br><span class="line">row format delimited fields terminated by &#39;,&#39;   </span><br><span class="line">lines terminated by &#39;\n&#39;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">external</span> <span class="hljs-keyword">table</span> bigdata17_user(<br>userid <span class="hljs-built_in">int</span>,<br>username <span class="hljs-keyword">string</span>,<br>fullname <span class="hljs-keyword">string</span>)  <br><span class="hljs-keyword">row</span> <span class="hljs-keyword">format</span> <span class="hljs-keyword">delimited</span> <span class="hljs-keyword">fields</span> <span class="hljs-keyword">terminated</span> <span class="hljs-keyword">by</span> <span class="hljs-string">','</span>   <br><span class="hljs-keyword">lines</span> <span class="hljs-keyword">terminated</span> <span class="hljs-keyword">by</span> <span class="hljs-string">'\n'</span>;<br></code></pre></td></tr></table></figure>
 
 
 <h2 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h2><ol>
@@ -319,24 +319,24 @@
 <li>MAP</li>
 <li>数组</li>
 </ul>
-<h2 id="HIVE表的创建-管理"><a href="#HIVE表的创建-管理" class="headerlink" title="HIVE表的创建,管理"></a>HIVE表的创建,管理</h2><h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><h4 id="内部表"><a href="#内部表" class="headerlink" title="内部表"></a>内部表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> page_view(viewTime <span class="built_in">INT</span>, userid <span class="built_in">BIGINT</span>,</span><br><span class="line">                page_url <span class="keyword">STRING</span>, referrer_url <span class="keyword">STRING</span>,</span><br><span class="line">                ip <span class="keyword">STRING</span> <span class="keyword">COMMENT</span> <span class="string">'IP Address of the User'</span>)</span><br><span class="line"><span class="keyword">COMMENT</span> <span class="string">'This is the page view table'</span></span><br><span class="line">PARTITIONED <span class="keyword">BY</span>(dt <span class="keyword">STRING</span>, country <span class="keyword">STRING</span>)</span><br><span class="line"><span class="keyword">ROW</span> <span class="keyword">FORMAT</span> <span class="keyword">DELIMITED</span></span><br><span class="line"><span class="keyword">FIELDS</span> <span class="keyword">TERMINATED</span> <span class="keyword">BY</span> <span class="string">'1'</span></span><br><span class="line"><span class="keyword">STORED</span> <span class="keyword">AS</span> SEQUENCEFILE;</span><br></pre></td></tr></table></figure>
+<h2 id="HIVE表的创建-管理"><a href="#HIVE表的创建-管理" class="headerlink" title="HIVE表的创建,管理"></a>HIVE表的创建,管理</h2><h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><h4 id="内部表"><a href="#内部表" class="headerlink" title="内部表"></a>内部表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> page_view(viewTime <span class="hljs-built_in">INT</span>, userid <span class="hljs-built_in">BIGINT</span>,<br>                page_url <span class="hljs-keyword">STRING</span>, referrer_url <span class="hljs-keyword">STRING</span>,<br>                ip <span class="hljs-keyword">STRING</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'IP Address of the User'</span>)<br><span class="hljs-keyword">COMMENT</span> <span class="hljs-string">'This is the page view table'</span><br>PARTITIONED <span class="hljs-keyword">BY</span>(dt <span class="hljs-keyword">STRING</span>, country <span class="hljs-keyword">STRING</span>)<br><span class="hljs-keyword">ROW</span> <span class="hljs-keyword">FORMAT</span> <span class="hljs-keyword">DELIMITED</span><br><span class="hljs-keyword">FIELDS</span> <span class="hljs-keyword">TERMINATED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">'1'</span><br><span class="hljs-keyword">STORED</span> <span class="hljs-keyword">AS</span> SEQUENCEFILE;<br></code></pre></td></tr></table></figure>
 
 
-<h4 id="外部表"><a href="#外部表" class="headerlink" title="外部表"></a>外部表</h4><h3 id="展示表和分区"><a href="#展示表和分区" class="headerlink" title="展示表和分区"></a>展示表和分区</h3><h4 id="查看所有表"><a href="#查看所有表" class="headerlink" title="查看所有表"></a>查看所有表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show tables</span><br></pre></td></tr></table></figure>
+<h4 id="外部表"><a href="#外部表" class="headerlink" title="外部表"></a>外部表</h4><h3 id="展示表和分区"><a href="#展示表和分区" class="headerlink" title="展示表和分区"></a>展示表和分区</h3><h4 id="查看所有表"><a href="#查看所有表" class="headerlink" title="查看所有表"></a>查看所有表</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">tables</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="查看所有表的分区"><a href="#查看所有表的分区" class="headerlink" title="查看所有表的分区"></a>查看所有表的分区</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW PARTITIONS table_name</span><br></pre></td></tr></table></figure>
+<h4 id="查看所有表的分区"><a href="#查看所有表的分区" class="headerlink" title="查看所有表的分区"></a>查看所有表的分区</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">SHOW</span> PARTITIONS <span class="hljs-built_in">table_name</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="查看表和表的列信息"><a href="#查看表和表的列信息" class="headerlink" title="查看表和表的列信息"></a>查看表和表的列信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">describe table_name</span><br></pre></td></tr></table></figure>
+<h4 id="查看表和表的列信息"><a href="#查看表和表的列信息" class="headerlink" title="查看表和表的列信息"></a>查看表和表的列信息</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">describe table_name</span><br></code></pre></td></tr></table></figure>
 
-<h4 id="列出表的列和表的其它信息"><a href="#列出表的列和表的其它信息" class="headerlink" title="列出表的列和表的其它信息"></a>列出表的列和表的其它信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">describe extended table_name</span><br></pre></td></tr></table></figure>
-<h4 id="列出表和分区的隐藏信息"><a href="#列出表和分区的隐藏信息" class="headerlink" title="列出表和分区的隐藏信息"></a>列出表和分区的隐藏信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">describe extended table_name PARTITION(rowName&#x3D;&#39;&#39;)</span><br></pre></td></tr></table></figure>
+<h4 id="列出表的列和表的其它信息"><a href="#列出表的列和表的其它信息" class="headerlink" title="列出表的列和表的其它信息"></a>列出表的列和表的其它信息</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">describe</span> <span class="hljs-keyword">extended</span> table_name<br></code></pre></td></tr></table></figure>
+<h4 id="列出表和分区的隐藏信息"><a href="#列出表和分区的隐藏信息" class="headerlink" title="列出表和分区的隐藏信息"></a>列出表和分区的隐藏信息</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><br><span class="hljs-keyword">describe</span> <span class="hljs-keyword">extended</span> table_name <span class="hljs-keyword">PARTITION</span>(rowName=<span class="hljs-string">''</span>)<br></code></pre></td></tr></table></figure>
 
-<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><h4 id="对表重命名"><a href="#对表重命名" class="headerlink" title="对表重命名"></a>对表重命名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE old_table_name RENAME TO new_table_name;</span><br></pre></td></tr></table></figure>
-<h4 id="对已有表的列名进行重命名"><a href="#对已有表的列名进行重命名" class="headerlink" title="对已有表的列名进行重命名"></a>对已有表的列名进行重命名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE old_table_name REPLACE COLUMNS (col1 TYPE, ...);</span><br></pre></td></tr></table></figure>
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><h4 id="对表重命名"><a href="#对表重命名" class="headerlink" title="对表重命名"></a>对表重命名</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> old_table_name <span class="hljs-keyword">RENAME</span> <span class="hljs-keyword">TO</span> new_table_name;<br></code></pre></td></tr></table></figure>
+<h4 id="对已有表的列名进行重命名"><a href="#对已有表的列名进行重命名" class="headerlink" title="对已有表的列名进行重命名"></a>对已有表的列名进行重命名</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> old_table_name <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">COLUMNS</span> (col1 <span class="hljs-keyword">TYPE</span>, ...);<br></code></pre></td></tr></table></figure>
 <p>需要保持位置与类型相同,不然会有列丢失</p>
-<h4 id="对已创建的表增加列"><a href="#对已创建的表增加列" class="headerlink" title="对已创建的表增加列"></a>对已创建的表增加列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tab1 ADD COLUMNS (c1 INT COMMENT &#39;a new int column&#39;, c2 STRING DEFAULT &#39;def val&#39;);</span><br></pre></td></tr></table></figure>
-<h3 id="删除表和分区"><a href="#删除表和分区" class="headerlink" title="删除表和分区"></a>删除表和分区</h3><h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table table_name</span><br></pre></td></tr></table></figure>
-<h4 id="删除分区"><a href="#删除分区" class="headerlink" title="删除分区"></a>删除分区</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table table_name drop PARTITION()</span><br></pre></td></tr></table></figure>
+<h4 id="对已创建的表增加列"><a href="#对已创建的表增加列" class="headerlink" title="对已创建的表增加列"></a>对已创建的表增加列</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><br>ALTER TABLE tab1 <span class="hljs-builtin-name">ADD</span> COLUMNS (c1 INT COMMENT <span class="hljs-string">'a new int column'</span>, c2 STRING<span class="hljs-built_in"> DEFAULT </span><span class="hljs-string">'def val'</span>);<br></code></pre></td></tr></table></figure>
+<h3 id="删除表和分区"><a href="#删除表和分区" class="headerlink" title="删除表和分区"></a>删除表和分区</h3><h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> <span class="hljs-built_in">table_name</span><br></code></pre></td></tr></table></figure>
+<h4 id="删除分区"><a href="#删除分区" class="headerlink" title="删除分区"></a>删除分区</h4><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> <span class="hljs-built_in">table_name</span> <span class="hljs-keyword">drop</span> <span class="hljs-keyword">PARTITION</span>()<br></code></pre></td></tr></table></figure>
 
 <h3 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h3>
                 
@@ -393,26 +393,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>June 23, 2020</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -435,7 +435,7 @@
                       <a href="/daydoc/2020/07/09/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ELK/logstash/logstash/" title="logstash使用">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">logstash使用</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -444,7 +444,7 @@
                     
                       <a href="/daydoc/2020/06/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/elk%E4%BD%BF%E7%94%A8/" title="elk使用">
                         <span class="hidden-mobile">elk使用</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -465,7 +465,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -521,7 +521,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -529,7 +529,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -708,7 +708,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

@@ -117,7 +117,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -129,7 +129,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -141,7 +141,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -153,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -165,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.7k wörter
+          2.7k palabras
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          23 minuten
+          23 minutos
         
       </span>
     
@@ -292,7 +292,7 @@
 <p> ROW FORMAT DELIMITED                      //行分隔符</p>
 <p>FIELDS TERMINATED BY ‘,’ ;                    //字段分隔符，这里使用的是逗号可以根据自己的需要自行进行修改<br>load data local inpath ‘/home/zpx/customers.txt’ into table t3 partition</p>
 <h4 id="分桶表"><a href="#分桶表" class="headerlink" title="分桶表"></a>分桶表</h4><p>这样做，在查找数据的时候就可以跨越多个桶，直接查找复合条件的数据了。速度快，时间成本低。Hive中的桶表默认使用的机制也是hash。<br>CREATE TABLE t4(id int,name string,age int) </p>
-<pre><code>CLUSTERED BY (id) INTO 3 BUCKETS      //创建3个通桶表，按照字段id进行分桶
+<pre><code class="hljs">CLUSTERED BY (id) INTO 3 BUCKETS      //创建3个通桶表，按照字段id进行分桶
 
 ROW FORMAT DELIMITED                     //行分隔符
 
@@ -350,26 +350,26 @@ FIELDS TERMINATED BY &apos;,&apos; ; </code></pre><p>load data local inpath ‘/
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>December 24, 2018</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -392,7 +392,7 @@ FIELDS TERMINATED BY &apos;,&apos; ; </code></pre><p>load data local inpath ‘/
                       <a href="/daydoc/2019/05/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hdfs/hdfs%E6%93%8D%E4%BD%9C/" title="hdfs操作细节">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">hdfs操作细节</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -401,7 +401,7 @@ FIELDS TERMINATED BY &apos;,&apos; ; </code></pre><p>load data local inpath ‘/
                     
                       <a href="/daydoc/2018/06/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/hbase%E7%A7%AF%E7%B4%AF/" title="hbase积累.md">
                         <span class="hidden-mobile">hbase积累.md</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -422,7 +422,7 @@ FIELDS TERMINATED BY &apos;,&apos; ; </code></pre><p>load data local inpath ‘/
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -478,7 +478,7 @@ FIELDS TERMINATED BY &apos;,&apos; ; </code></pre><p>load data local inpath ‘/
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -486,7 +486,7 @@ FIELDS TERMINATED BY &apos;,&apos; ; </code></pre><p>load data local inpath ‘/
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -665,7 +665,7 @@ FIELDS TERMINATED BY &apos;,&apos; ; </code></pre><p>load data local inpath ‘/
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

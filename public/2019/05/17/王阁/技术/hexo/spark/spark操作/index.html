@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          702 wörter
+          702 palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          6 minuten
+          6 minutos
         
       </span>
     
@@ -279,12 +279,12 @@
 
 <h1 id="spark编程"><a href="#spark编程" class="headerlink" title="spark编程"></a>spark编程</h1><h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><h3 id="hdfs"><a href="#hdfs" class="headerlink" title="hdfs"></a>hdfs</h3><p>操作hdfs比较常规,直接通过<br>context.textfile(path) //即可实现</p>
 <h3 id="hbase"><a href="#hbase" class="headerlink" title="hbase"></a>hbase</h3><p>hbase 则要通过newAPIHadoopRDD来实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">JavaPairRDD&lt;ImmutableBytesWritable, Result&gt; javaRDD = jsc.newAPIHadoopRDD(HbaseOperate.getConf(), TableInputFormat<span class="class">.<span class="keyword">class</span>, <span class="title">ImmutableBytesWritable</span>.<span class="title">class</span>, <span class="title">Result</span>.<span class="title">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>JavaPairRDD&lt;ImmutableBytesWritable, Result&gt; javaRDD = jsc.newAPIHadoopRDD(HbaseOperate.getConf(), TableInputFormat<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">ImmutableBytesWritable</span>.<span class="hljs-title">class</span>, <span class="hljs-title">Result</span>.<span class="hljs-title">class</span>)</span>;<br></code></pre></td></tr></table></figure>
 <p>这里要特别说明的是,这里的conf承担了更多的责任,如指定表名,指定scan传输字符串等.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Configuration hconf = HbaseOperate.getConf();</span><br><span class="line">    Scan scan = <span class="keyword">new</span> Scan();</span><br><span class="line">    hconf.set(TableInputFormat.INPUT_TABLE, <span class="string">"company"</span>);</span><br><span class="line">    hconf.set(TableInputFormat.SCAN, convertScanToString(scan));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>Configuration hconf = HbaseOperate.getConf();<br>    Scan scan = <span class="hljs-keyword">new</span> Scan();<br>    hconf.set(TableInputFormat.INPUT_TABLE, <span class="hljs-string">"company"</span>);<br>    hconf.set(TableInputFormat.SCAN, convertScanToString(scan));<br></code></pre></td></tr></table></figure>
 <p>参考以上这段代码</p>
 <p>另</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> String <span class="title">convertScanToString</span><span class="params">(Scan scan)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">     ClientProtos.Scan proto = ProtobufUtil.toScan(scan);</span><br><span class="line">     <span class="keyword">return</span> Base64.encodeBytes(proto.toByteArray());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">static</span> String <span class="hljs-title">convertScanToString</span><span class="hljs-params">(Scan scan)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>     ClientProtos.Scan proto = ProtobufUtil.toScan(scan);<br>     <span class="hljs-keyword">return</span> Base64.encodeBytes(proto.toByteArray());<br> &#125;<br></code></pre></td></tr></table></figure>
 <p>以上是为实现scan指令传输字符的封装.</p>
 <p>两者底层都是通过persist实现</p>
 
@@ -310,26 +310,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>May 17, 2019</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -352,7 +352,7 @@
                       <a href="/daydoc/2019/05/27/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/CDH/%E6%90%AD%E5%BB%BA/" title="CDH搭建细节">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">CDH搭建细节</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -361,7 +361,7 @@
                     
                       <a href="/daydoc/2019/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hbase/hbase%E6%93%8D%E4%BD%9C/" title="hbaes操作">
                         <span class="hidden-mobile">hbaes操作</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -382,7 +382,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -438,7 +438,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -446,7 +446,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -625,7 +625,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

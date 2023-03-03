@@ -117,7 +117,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -129,7 +129,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -141,7 +141,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -153,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -165,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k wörter
+          3.8k palabras
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          32 minuten
+          32 minutos
         
       </span>
     
@@ -276,7 +276,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Dockerfile基础"><a href="#Dockerfile基础" class="headerlink" title="Dockerfile基础"></a>Dockerfile基础</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dockerfile用于指定docker build 指令时执行时的动作与资源划分等,如指定分配内存大小,cpu个数等.从而构成相应的镜像</span><br></pre></td></tr></table></figure>
+                <h1 id="Dockerfile基础"><a href="#Dockerfile基础" class="headerlink" title="Dockerfile基础"></a>Dockerfile基础</h1><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">Dockerfile</span>用于指定docker <span class="hljs-keyword">build </span>指令时执行时的动作与资源划分等,如指定分配内存大小,cpu个数等.从而构成相应的镜像<br></code></pre></td></tr></table></figure>
 
 <h2 id="详细指令"><a href="#详细指令" class="headerlink" title="详细指令"></a>详细指令</h2><p><img src="http://img.wqkenqing.ren/5aaf3a25b3434c7b1ec0cd5b41b2be1a.png" srcset="/daydoc/img/loading.gif" lazyload alt="docker详细指令"></p>
 <p>如上图即docker主要的指令与作用</p>
@@ -284,7 +284,7 @@
 <h3 id="指令：FROM"><a href="#指令：FROM" class="headerlink" title="指令：FROM"></a>指令：FROM</h3><p>功能描述：设置基础镜像<br>语法：FROM &lt; image&gt;[:&lt; tag&gt; | @&lt; digest&gt;]<br>提示：镜像都是从一个基础镜像（操作系统或其他镜像）生成，可以在一个Dockerfile中添加多条FROM指令，一次生成多个镜像<br>注意：如果忽略tag选项，会使用latest镜像</p>
 <h3 id="指令：MAINTAINER"><a href="#指令：MAINTAINER" class="headerlink" title="指令：MAINTAINER"></a>指令：MAINTAINER</h3><p>功能描述：设置镜像作者<br>语法：MAINTAINER &lt; name&gt;</p>
 <h3 id="指令：RUN"><a href="#指令：RUN" class="headerlink" title="指令：RUN"></a>指令：RUN</h3><p>功能描述：<br>语法：RUN &lt; command&gt;<br>          RUN [“executable”,”param1”,”param2”]<br>提示：RUN指令会生成容器，在容器中执行脚本，容器使用当前镜像，脚本指令完成后，Docker Daemon会将该容器提交为一个中间镜像，供后面的指令使用<br>补充：RUN指令第一种方式为shell方式，使用/bin/sh -c &lt; command&gt;运行脚本，可以在其中使用\将脚本分为多行<br>          RUN指令第二种方式为exec方式，镜像中没有/bin/sh或者要使用其他shell时使用该方式，其不会调用shell命令<br>例子：RUN source $HOME/.bashrc;<br>          echo $HOME</p>
-<pre><code>RUN [“/bin/bash”,”-c”,”echo hello”]
+<pre><code class="hljs">RUN [“/bin/bash”,”-c”,”echo hello”]
 
 RUN [“sh”,”-c”,”echo”,”$HOME”] 使用第二种方式调用shell读取环境变量</code></pre><h3 id="指令：CMD"><a href="#指令：CMD" class="headerlink" title="指令：CMD"></a>指令：CMD</h3><p>功能描述：设置容器的启动命令<br>语法：CMD [“executable”,”param1”,”param2”]<br>          CMD [“param1”,”param2”]<br>          CMD &lt; command&gt;<br>提示：CMD第一种、第三种方式和RUN类似，第二种方式为ENTRYPOINT参数方式，为entrypoint提供参数列表<br>注意：<strong>Dockerfile中只能有一条CMD命令，如果写了多条则最后一条生效</strong></p>
 <h3 id="指令：LABEL"><a href="#指令：LABEL" class="headerlink" title="指令：LABEL"></a>指令：LABEL</h3><p>功能描述：设置镜像的标签<br>延伸：镜像标签可以通过docker inspect查看<br>格式：LABEL &lt; key&gt;=&lt; value&gt; &lt; key&gt;=&lt; value&gt; …<br>提示：不同标签之间通过空格隔开<br>注意：每条指令都会生成一个镜像层，Docker中镜像最多只能有127层，如果超出Docker Daemon就会报错，如LABEL ..=.. &lt;假装这里有个换行&gt; LABEL ..=..合在一起用空格分隔就可以减少镜像层数量，同样，可以使用连接符\将脚本分为多行镜像会继承基础镜像中的标签，如果存在同名标签则会覆盖</p>
@@ -321,26 +321,26 @@ RUN [“sh”,”-c”,”echo”,”$HOME”] 使用第二种方式调用shell�
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>February 23, 2023</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -363,16 +363,16 @@ RUN [“sh”,”-c”,”echo”,”$HOME”] 使用第二种方式调用shell�
                       <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/ELK/kibana%E4%BD%BF%E7%94%A8/" title="kibana的使用">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">kibana的使用</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%AF%BE%E7%A8%8B%E8%AE%B0%E5%BD%95/es%E4%B8%93%E9%A1%B9/es%E8%AE%B0%E5%BD%95/" title="es记录">
-                        <span class="hidden-mobile">es记录</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE%E9%9B%86%E5%90%88/" title="王阁/技术/大数据/es/共享数据集合">
+                        <span class="hidden-mobile">王阁/技术/大数据/es/共享数据集合</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -393,7 +393,7 @@ RUN [“sh”,”-c”,”echo”,”$HOME”] 使用第二种方式调用shell�
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -449,7 +449,7 @@ RUN [“sh”,”-c”,”echo”,”$HOME”] 使用第二种方式调用shell�
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -457,7 +457,7 @@ RUN [“sh”,”-c”,”echo”,”$HOME”] 使用第二种方式调用shell�
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -636,7 +636,7 @@ RUN [“sh”,”-c”,”echo”,”$HOME”] 使用第二种方式调用shell�
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

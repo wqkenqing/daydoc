@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k wörter
+          2k palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          17 minuten
+          17 minutos
         
       </span>
     
@@ -278,10 +278,10 @@
 
 <h1 id="python小结3"><a href="#python小结3" class="headerlink" title="python小结3"></a>python小结3</h1><h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="类与实例"><a href="#类与实例" class="headerlink" title="类与实例"></a>类与实例</h3><p>python类的声()明会在类名上加<br>os.rmdir()</p>
 <p>eg</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span><span class="hljs-params">(object)</span>:</span><br>    <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure>
 
 <p>构造函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,field1,field2)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,field1,field2)</span>:</span><br>    <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h3><p>python中 私有属性是通过 <strong>来标识,用</strong>标识后则表示该属性是这个类的私有属性,则意味着直接通过一般的*.__是难以访问到的.</p>
 <p>如果是<em>的形式,则也是声明将这个认作是私有变量的属性,但却是可以直接通过*.</em>*的形式进行访问的.</p>
@@ -293,11 +293,11 @@
 <p>通过isinstance()来判断是否是这个类,可用于测试继承,也可通过逗号分隔,测试是不是这些类其中之一<br>通过dir()获取一个对象的所有属性和方法</p>
 <h3 id="实例属性与类属性"><a href="#实例属性与类属性" class="headerlink" title="实例属性与类属性"></a>实例属性与类属性</h3><p>python 是动态语言,所以可以在创建实例后再赋值</p>
 <p>eg:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">student=Stuent()</span><br><span class="line">student.score=<span class="number">90</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><br>student=Stuent()<br>student.score=<span class="hljs-number">90</span><br></code></pre></td></tr></table></figure>
 <p>即这score是后续才赋值上去的.</p>
 <p>这就是实例属性</p>
 <p>而本身类需要绑定一些属性呢,这就可以直接定义在class中,即类属性.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    name=<span class="string">'ken'</span></span><br><span class="line">    age=<span class="number">18</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span><span class="hljs-params">(object)</span>:</span><br>    name=<span class="hljs-string">'ken'</span><br>    age=<span class="hljs-number">18</span><br></code></pre></td></tr></table></figure>
 <h2 id="面向对象进阶"><a href="#面向对象进阶" class="headerlink" title="面向对象进阶"></a>面向对象进阶</h2><h3 id="使用slots"><a href="#使用slots" class="headerlink" title="使用slots"></a>使用<strong>slots</strong></h3><p>因为动态语言的特性,python实例在创建后还能再绑定方法与属性. 这里如果我们想要约束只绑定某些属性时可以通过</p>
 <p><strong>slots</strong>(a,b)的形式来操作.</p>
 <p>#</p>
@@ -326,7 +326,7 @@
 <p>os.path.abspath()</p>
 <h2 id="常用包"><a href="#常用包" class="headerlink" title="常用包"></a>常用包</h2><p>datetime.datetime</p>
 <p>即datetime包下的datetime类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime.datetime</span><br><span class="line"><span class="keyword">or</span> </span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> datetime.datetime<br><span class="hljs-keyword">or</span> <br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime<br></code></pre></td></tr></table></figure>
 
 <h3 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h3><p>datetime.now()</p>
 <h3 id="获取指定的时间"><a href="#获取指定的时间" class="headerlink" title="获取指定的时间"></a>获取指定的时间</h3><p>dt=datetime(2020,05,23,12,32)</p>
@@ -368,26 +368,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>May 29, 2020</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -410,7 +410,7 @@
                       <a href="/daydoc/2020/06/02/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/python/summary/python%E5%B0%8F%E7%BB%934/" title="python小结4">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">python小结4</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -419,7 +419,7 @@
                     
                       <a href="/daydoc/2020/05/25/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/mac%20python%E7%89%88%E6%9C%AC%E6%9B%BF%E6%8D%A2/" title="mac python版本替换">
                         <span class="hidden-mobile">mac python版本替换</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -440,7 +440,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -496,7 +496,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -504,7 +504,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -683,7 +683,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

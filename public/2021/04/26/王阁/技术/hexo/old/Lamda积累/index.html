@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k wörter
+          1.2k palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          11 minuten
+          11 minutos
         
       </span>
     
@@ -278,7 +278,7 @@
 <h2 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h2><p>Lambda主要是一个类语法长糖,尽量为java引入函数编程等实现,细节后续再补充</p>
 <h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><p>java8提拱的新特性之一就有stream.stream主要是针对集合的处理类.提供了一系列集合处理方式.<br>配合使用lambda写出简介优美的代码</p>
 <h3 id="Stream的使用"><a href="#Stream的使用" class="headerlink" title="Stream的使用"></a>Stream的使用</h3><p>通过如</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.stream();<span class="comment">//即可以开启串行流;</span></span><br><span class="line">list.parallelStream().filter(a -&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> a &gt; <span class="number">20</span>;</span><br><span class="line">        &#125;);<span class="comment">//开启并行流</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>list.stream();<span class="hljs-comment">//即可以开启串行流;</span><br>list.parallelStream().filter(a -&gt; &#123;<br>            <span class="hljs-keyword">return</span> a &gt; <span class="hljs-number">20</span>;<br>        &#125;);<span class="hljs-comment">//开启并行流</span><br></code></pre></td></tr></table></figure>
 <p>串行流即内部单线程顺序执行,并行则是启用多线程执行.<br>后者并不一定效率就比前者高.因为并行执行启用分配线程资源时同样要消耗时间和资源,在一定量级下,前者的执行效率一度要高过后者.        </p>
 <p>我这里对三种对集合的处理形式的比较,可以简单参考一下</p>
 <ol>
@@ -286,7 +286,7 @@
 <li>parallelStream 并行流</li>
 <li>常规循环式</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i++) &#123;</span><br><span class="line">          list.add(getRandomNum());</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      DateUtil.setBegin();</span><br><span class="line">      list.stream().filter(a -&gt; &#123;</span><br><span class="line">          <span class="keyword">return</span> a &gt; <span class="number">20</span>;</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      DateUtil.setStop();</span><br><span class="line">      System.out.println(<span class="string">"串行耗时"</span>+DateUtil.calCostTime());</span><br><span class="line"></span><br><span class="line">      DateUtil.setBegin();</span><br><span class="line">      list.parallelStream().filter(a -&gt; &#123;</span><br><span class="line">          <span class="keyword">return</span> a &gt; <span class="number">20</span>;</span><br><span class="line">      &#125;);</span><br><span class="line">      DateUtil.setStop();</span><br><span class="line">      System.out.println(<span class="string">"并行耗时"</span>+DateUtil.calCostTime());</span><br><span class="line">      <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      DateUtil.setBegin();</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> l : list) &#123;</span><br><span class="line">          <span class="keyword">if</span> (l &gt; <span class="number">20</span>) &#123;</span><br><span class="line">              count++;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      DateUtil.setStop();</span><br><span class="line">      System.out.println(<span class="string">"循环耗时"</span>+DateUtil.calCostTime());</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><br>List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100000</span>; i++) &#123;<br>          list.add(getRandomNum());<br>      &#125;<br><br>      DateUtil.setBegin();<br>      list.stream().filter(a -&gt; &#123;<br>          <span class="hljs-keyword">return</span> a &gt; <span class="hljs-number">20</span>;<br>      &#125;);<br><br>      DateUtil.setStop();<br>      System.out.println(<span class="hljs-string">"串行耗时"</span>+DateUtil.calCostTime());<br><br>      DateUtil.setBegin();<br>      list.parallelStream().filter(a -&gt; &#123;<br>          <span class="hljs-keyword">return</span> a &gt; <span class="hljs-number">20</span>;<br>      &#125;);<br>      DateUtil.setStop();<br>      System.out.println(<span class="hljs-string">"并行耗时"</span>+DateUtil.calCostTime());<br>      <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br><br><br>      DateUtil.setBegin();<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> l : list) &#123;<br>          <span class="hljs-keyword">if</span> (l &gt; <span class="hljs-number">20</span>) &#123;<br>              count++;<br>          &#125;<br>      &#125;<br>      DateUtil.setStop();<br>      System.out.println(<span class="hljs-string">"循环耗时"</span>+DateUtil.calCostTime());<br></code></pre></td></tr></table></figure>
 <p>经由相当量次的测试后,我觉得如果要对集合中的数据进行遍历操作,根据量级的不同,<br>建议低量级还是采用普通循环,量级特别大,可考虑用并行流.书写方便,又不是大批量数据处理操作<br>可以直接采用串行流</p>
 <h3 id="Stream的操作分类"><a href="#Stream的操作分类" class="headerlink" title="Stream的操作分类"></a>Stream的操作分类</h3><ol>
 <li>Intermediate</li>
@@ -323,26 +323,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>April 26, 2021</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -362,10 +362,10 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/kafka/kafka%E5%AE%9E%E7%8E%B0/" title="kafka学习">
+                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%97%B8%E8%B0%B7%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E6%9C%8D%E5%8A%A1%E8%B5%84%E6%BA%90/" title="数据中心服务资源">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">kafka学习</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">数据中心服务资源</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -374,7 +374,7 @@
                     
                       <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A03/" title="mapreduce组件总结">
                         <span class="hidden-mobile">mapreduce组件总结</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -395,7 +395,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -451,7 +451,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -459,7 +459,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -638,7 +638,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k wörter
+          1.3k palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          12 minuten
+          11 minutos
         
       </span>
     
@@ -275,10 +275,10 @@
               <div class="markdown-body">
                 
                 <p><code>flink相关记录</code></p>
-<h2 id="yarn启动"><a href="#yarn启动" class="headerlink" title="yarn启动"></a>yarn启动</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Usage:</span><br><span class="line">   Required</span><br><span class="line">     -n,--container &lt;arg&gt;   <span class="built_in">Number</span> <span class="keyword">of</span> YARN container to allocate (=<span class="built_in">Number</span> <span class="keyword">of</span> Task Managers)</span><br><span class="line">   Optional</span><br><span class="line">     -D &lt;arg&gt;                        Dynamic properties</span><br><span class="line">     -d,--detached                   Start detached</span><br><span class="line">     -jm,--jobManagerMemory &lt;arg&gt;    Memory <span class="keyword">for</span> JobManager Container <span class="keyword">with</span> optional unit (<span class="keyword">default</span>: MB)</span><br><span class="line">     -nm,--name                      <span class="built_in">Set</span> a custom name <span class="keyword">for</span> the application on YARN</span><br><span class="line">     -q,--query                      Display available YARN resources (memory, cores)</span><br><span class="line">     -qu,--queue &lt;arg&gt;               Specify YARN queue.</span><br><span class="line">     -s,--slots &lt;arg&gt;                <span class="built_in">Number</span> <span class="keyword">of</span> slots per TaskManager</span><br><span class="line">     -tm,--taskManagerMemory &lt;arg&gt;   Memory per TaskManager Container <span class="keyword">with</span> optional unit (<span class="keyword">default</span>: MB)</span><br><span class="line">     -z,--zookeeperNamespace &lt;arg&gt;   Namespace to create the Zookeeper sub-paths <span class="keyword">for</span> HA mode</span><br></pre></td></tr></table></figure>
+<h2 id="yarn启动"><a href="#yarn启动" class="headerlink" title="yarn启动"></a>yarn启动</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js">Usage:<br>   Required<br>     -n,--container &lt;arg&gt;   <span class="hljs-built_in">Number</span> <span class="hljs-keyword">of</span> YARN container to allocate (=<span class="hljs-built_in">Number</span> <span class="hljs-keyword">of</span> Task Managers)<br>   Optional<br>     -D &lt;arg&gt;                        Dynamic properties<br>     -d,--detached                   Start detached<br>     -jm,--jobManagerMemory &lt;arg&gt;    Memory <span class="hljs-keyword">for</span> JobManager Container <span class="hljs-keyword">with</span> optional unit (<span class="hljs-keyword">default</span>: MB)<br>     -nm,--name                      <span class="hljs-built_in">Set</span> a custom name <span class="hljs-keyword">for</span> the application on YARN<br>     -q,--query                      Display available YARN resources (memory, cores)<br>     -qu,--queue &lt;arg&gt;               Specify YARN queue.<br>     -s,--slots &lt;arg&gt;                <span class="hljs-built_in">Number</span> <span class="hljs-keyword">of</span> slots per TaskManager<br>     -tm,--taskManagerMemory &lt;arg&gt;   Memory per TaskManager Container <span class="hljs-keyword">with</span> optional unit (<span class="hljs-keyword">default</span>: MB)<br>     -z,--zookeeperNamespace &lt;arg&gt;   Namespace to create the Zookeeper sub-paths <span class="hljs-keyword">for</span> HA mode<br></code></pre></td></tr></table></figure>
 
 <p>yarn-session.sh -n 8 -jm 2048 -tm 4096 -d<br>参数解释：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;-n 2 表示指定两个容器</span><br><span class="line">&#x2F;&#x2F; -jm 1024 表示jobmanager 1024M内存</span><br><span class="line">&#x2F;&#x2F; -tm 1024表示taskmanager 1024M内存</span><br><span class="line">&#x2F;&#x2F;-d 任务后台运行</span><br><span class="line">&#x2F;&#x2F;-nm,--name  YARN上为一个自定义的应用设置一个名字</span><br><span class="line">&#x2F;&#x2F;-q,--query  显示yarn中可用的资源 (内存, cpu核数)</span><br><span class="line">&#x2F;&#x2F;-z,--zookeeperNamespace &lt;arg&gt;   针对HA模式在zookeeper上创建NameSpace</span><br><span class="line">&#x2F;&#x2F;-id,--applicationId &lt;yarnAppId&gt;   YARN集群上的任务id，附着到一个后台运行的yarn session中</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">//-n</span> 2 表示指定两个容器<br><span class="hljs-string">//</span> -jm 1024 表示jobmanager 1024M内存<br><span class="hljs-string">//</span> -tm 1024表示taskmanager 1024M内存<br><span class="hljs-string">//-d</span> 任务后台运行<br><span class="hljs-string">//-nm</span>,<span class="hljs-params">--name</span>  YARN上为一个自定义的应用设置一个名字<br><span class="hljs-string">//-q</span>,<span class="hljs-params">--query</span>  显示yarn中可用的资源 <span class="hljs-params">(内存, cpu核数)</span><br><span class="hljs-string">//-z</span>,<span class="hljs-params">--zookeeperNamespace</span> &lt;arg&gt;   针对HA模式在zookeeper上创建NameSpace<br><span class="hljs-string">//-id</span>,<span class="hljs-params">--applicationId</span> &lt;yarnAppId&gt;   YARN集群上的任务id，附着到一个后台运行的yarn session中<br></code></pre></td></tr></table></figure>
 <p><strong>命令</strong>:</p>
 <p><code>yarn-session.sh -n 10 -tm 8192 -s 32</code><br><code>yarn-session.sh -n 2 -tm 2048 -s 2</code><br><code>yarn-session.sh -n 1 -tm 1024 -s 2</code></p>
 <p>yarn-session.sh -n 1 -tm 1024 -s 2<br>yarn-session.sh -n 2 -tm 4096 -jm  4096</p>
@@ -309,26 +309,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>April 26, 2021</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -348,19 +348,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E8%AF%A6%E7%BB%86/" title="王阁/技术/大数据/es/es详细">
+                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink_book/" title="王阁/技术/大数据/flink/flink_book">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">王阁/技术/大数据/es/es详细</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">王阁/技术/大数据/flink/flink_book</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink/" title="王阁/技术/大数据/flink/flink">
-                        <span class="hidden-mobile">王阁/技术/大数据/flink/flink</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/docker%E7%89%88flume%E4%BD%BF%E7%94%A8/" title="王阁/技术/大数据/flume/docker版flume使用">
+                        <span class="hidden-mobile">王阁/技术/大数据/flume/docker版flume使用</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -381,7 +381,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -437,7 +437,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -445,7 +445,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -624,7 +624,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

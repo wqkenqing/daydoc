@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k wörter
+          949 palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          11 minuten
+          8 minutos
         
       </span>
     
@@ -290,19 +290,19 @@
 <p>第六章</p>
 <p>第八章</p>
 <p>第九章</p>
-<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;indexName&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">&quot;settings&quot;:&#123;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;mappings&quot;:&#123;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs awk">PUT <span class="hljs-regexp">/indexName/</span><br>&#123;<br><span class="hljs-string">"settings"</span>:&#123;<br>&#125;,<br><span class="hljs-string">"mappings"</span>:&#123;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;indexName&#x2F;</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">PUT <span class="hljs-regexp">/indexName/</span><br>&#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><font color=red>mappings映射只能添加,不能修改.所以一个index的mapping设计需要事先把握清楚.不然后续治理困难</font></p>
-<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><h4 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;alias</span><br><span class="line">&#123;</span><br><span class="line">    &quot;actions&quot;: [</span><br><span class="line">        &#123;&quot;add&quot;: &#123;&quot;index&quot;: &quot;test1&quot;, &quot;alias&quot;: &quot;alias1&quot;&#125;&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><h4 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h4><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-keyword">PUT</span> /<span class="hljs-keyword">alias</span><br>&#123;<br>    <span class="hljs-string">"actions"</span>: [<br>        &#123;<span class="hljs-string">"add"</span>: &#123;<span class="hljs-string">"index"</span>: <span class="hljs-string">"test1"</span>, <span class="hljs-string">"alias"</span>: <span class="hljs-string">"alias1"</span>&#125;&#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;alias</span><br><span class="line">&#123;</span><br><span class="line">    &quot;actions&quot;: [</span><br><span class="line">        &#123;&quot;remove&quot;: &#123;&quot;index&quot;: &quot;test1&quot;, &quot;alias&quot;: &quot;alias1&quot;&#125;&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-keyword">PUT</span> /<span class="hljs-keyword">alias</span><br>&#123;<br>    <span class="hljs-string">"actions"</span>: [<br>        &#123;<span class="hljs-string">"remove"</span>: &#123;<span class="hljs-string">"index"</span>: <span class="hljs-string">"test1"</span>, <span class="hljs-string">"alias"</span>: <span class="hljs-string">"alias1"</span>&#125;&#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p><strong>别名只能通过删除后再建立来进行修改</strong></p>
-<h4 id="添加多个别名"><a href="#添加多个别名" class="headerlink" title="添加多个别名"></a>添加多个别名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;actions&quot;: [</span><br><span class="line">        &#123;&quot;add&quot;: &#123;&quot;index&quot;: &quot;test1&quot;, &quot;alias&quot;:&quot;alias1&quot;&#125;&#125;,</span><br><span class="line">        &#123;&quot;add&quot;: &#123;&quot;index&quot;: &quot;test2&quot;, &quot;alias&quot;:&quot;alias1&quot;&#125;&#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="添加多个别名"><a href="#添加多个别名" class="headerlink" title="添加多个别名"></a>添加多个别名</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"actions"</span>: [<br>        &#123;<span class="hljs-attr">"add"</span>: &#123;<span class="hljs-attr">"index"</span>: <span class="hljs-string">"test1"</span>, <span class="hljs-attr">"alias"</span>:<span class="hljs-string">"alias1"</span>&#125;&#125;,<br>        &#123;<span class="hljs-attr">"add"</span>: &#123;<span class="hljs-attr">"index"</span>: <span class="hljs-string">"test2"</span>, <span class="hljs-attr">"alias"</span>:<span class="hljs-string">"alias1"</span>&#125;&#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -310,7 +310,7 @@
 
 <h3 id="索引配置"><a href="#索引配置" class="headerlink" title="索引配置"></a>索引配置</h3><p>常规的replica,shard</p>
 <p>然后还能配置analyzer</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;indexName&#x2F;_settings</span><br><span class="line">&#123;</span><br><span class="line">&quot;analysis&quot;:&#123;</span><br><span class="line">&quot;analyzer&quot;:&#123;</span><br><span class="line">&quot;content&quot;:&#123;</span><br><span class="line">&quot;type&quot;:&quot;&quot;,</span><br><span class="line">&quot;tokenizer&quot;:&quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk">PUT <span class="hljs-regexp">/indexName/</span>_settings<br>&#123;<br><span class="hljs-string">"analysis"</span>:&#123;<br><span class="hljs-string">"analyzer"</span>:&#123;<br><span class="hljs-string">"content"</span>:&#123;<br><span class="hljs-string">"type"</span>:<span class="hljs-string">""</span>,<br><span class="hljs-string">"tokenizer"</span>:<span class="hljs-string">""</span><br>&#125;<br>&#125;<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -338,26 +338,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>April 26, 2021</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -377,19 +377,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E5%B0%8F%E7%BB%93/" title="王阁/技术/大数据/es/es小结">
+                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E7%9A%84docker%E5%AE%89%E8%A3%85/" title="王阁/技术/大数据/es/es的docker安装">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">王阁/技术/大数据/es/es小结</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">王阁/技术/大数据/es/es的docker安装</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/Flink%E8%AE%B0%E5%BD%95/" title="王阁/技术/大数据/flink/Flink记录">
-                        <span class="hidden-mobile">王阁/技术/大数据/flink/Flink记录</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink/" title="王阁/技术/大数据/flink/flink">
+                        <span class="hidden-mobile">王阁/技术/大数据/flink/flink</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -410,7 +410,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -466,7 +466,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -474,7 +474,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -653,7 +653,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k wörter
+          1.6k palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          14 minuten
+          14 minutos
         
       </span>
     
@@ -297,17 +297,17 @@
 <li>generateSequence(from,to)</li>
 </ul>
 <p><code>fromCollection</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fromCollection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">          list.add(i + <span class="string">""</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      DataStream&lt;String&gt; dstrem = env.fromCollection(list);</span><br><span class="line">      dstrem.map(s -&gt; <span class="keyword">new</span> Tuple2(s, <span class="number">1</span>)).returns((TypeInformation) TupleTypeInfo.getBasicTupleTypeInfo(String<span class="class">.<span class="keyword">class</span>, <span class="title">Integer</span>.<span class="title">class</span>))</span></span><br><span class="line"><span class="class">              .<span class="title">print</span>()</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fromCollection</span><span class="hljs-params">()</span> </span>&#123;<br>      List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>          list.add(i + <span class="hljs-string">""</span>);<br>      &#125;<br>      DataStream&lt;String&gt; dstrem = env.fromCollection(list);<br>      dstrem.map(s -&gt; <span class="hljs-keyword">new</span> Tuple2(s, <span class="hljs-number">1</span>)).returns((TypeInformation) TupleTypeInfo.getBasicTupleTypeInfo(String<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">Integer</span>.<span class="hljs-title">class</span>))</span><br><span class="hljs-class">              .<span class="hljs-title">print</span>()</span>;<br>  &#125;<br></code></pre></td></tr></table></figure>
 <p><code>generateSequence</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fromGenerateSequence</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      DataStreamSource&lt;Long&gt; interStream = env.generateSequence(<span class="number">10</span>, <span class="number">1000</span>);</span><br><span class="line">      interStream.print();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fromGenerateSequence</span><span class="hljs-params">()</span> </span>&#123;<br>      DataStreamSource&lt;Long&gt; interStream = env.generateSequence(<span class="hljs-number">10</span>, <span class="hljs-number">1000</span>);<br>      interStream.print();<br>  &#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="基于文件"><a href="#基于文件" class="headerlink" title="基于文件"></a>基于文件</h3><ul>
 <li>readFile()</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">DataStream&lt;String&gt; text = env.readTextFile(<span class="string">"/Users/wqkenqing/Desktop/out/keyCount.txt"</span>);</span><br><span class="line">       FlatMapFunction&lt;String, Tuple2&lt;String, String&gt;&gt; spliter = (String sentence, Collector&lt;Tuple2&lt;String, String&gt;&gt; out) -&gt; &#123;</span><br><span class="line">           String ss[] = sentence.split(<span class="string">"\\s+"</span>);</span><br><span class="line">           out.collect(<span class="keyword">new</span> Tuple2&lt;String, String&gt;(ss[<span class="number">0</span>], ss[<span class="number">1</span>]));</span><br><span class="line">       &#125;;</span><br><span class="line">       FilterFunction&lt;Tuple2&lt;String, String&gt;&gt; filter = (Tuple2&lt;String, String&gt; message) -&gt; &#123;</span><br><span class="line">           <span class="keyword">if</span> (message.f1.contains(<span class="string">"m"</span>)) &#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       &#125;;</span><br><span class="line">       ReduceFunction&lt;String&gt; reduceFunction = (m1, m2) -&gt; &#123;</span><br><span class="line">           <span class="keyword">return</span> m1 + m2;</span><br><span class="line">       &#125;;</span><br><span class="line">       text.flatMap(spliter).returns((TypeInformation) TupleTypeInfo.getBasicTupleTypeInfo(String<span class="class">.<span class="keyword">class</span>, <span class="title">String</span>.<span class="title">class</span>))</span></span><br><span class="line"><span class="class">               .<span class="title">keyBy</span>(0)</span></span><br><span class="line"><span class="class">               .<span class="title">reduce</span>(<span class="title">reduceFunction</span>)</span></span><br><span class="line"><span class="class">               .<span class="title">print</span>()</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java">DataStream&lt;String&gt; text = env.readTextFile(<span class="hljs-string">"/Users/wqkenqing/Desktop/out/keyCount.txt"</span>);<br>       FlatMapFunction&lt;String, Tuple2&lt;String, String&gt;&gt; spliter = (String sentence, Collector&lt;Tuple2&lt;String, String&gt;&gt; out) -&gt; &#123;<br>           String ss[] = sentence.split(<span class="hljs-string">"\\s+"</span>);<br>           out.collect(<span class="hljs-keyword">new</span> Tuple2&lt;String, String&gt;(ss[<span class="hljs-number">0</span>], ss[<span class="hljs-number">1</span>]));<br>       &#125;;<br>       FilterFunction&lt;Tuple2&lt;String, String&gt;&gt; filter = (Tuple2&lt;String, String&gt; message) -&gt; &#123;<br>           <span class="hljs-keyword">if</span> (message.f1.contains(<span class="hljs-string">"m"</span>)) &#123;<br>               <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>           &#125;<br>           <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>       &#125;;<br>       ReduceFunction&lt;String&gt; reduceFunction = (m1, m2) -&gt; &#123;<br>           <span class="hljs-keyword">return</span> m1 + m2;<br>       &#125;;<br>       text.flatMap(spliter).returns((TypeInformation) TupleTypeInfo.getBasicTupleTypeInfo(String<span class="hljs-class">.<span class="hljs-keyword">class</span>, <span class="hljs-title">String</span>.<span class="hljs-title">class</span>))</span><br><span class="hljs-class">               .<span class="hljs-title">keyBy</span>(0)</span><br><span class="hljs-class">               .<span class="hljs-title">reduce</span>(<span class="hljs-title">reduceFunction</span>)</span><br><span class="hljs-class">               .<span class="hljs-title">print</span>()</span>;<br></code></pre></td></tr></table></figure>
 
 
-<h3 id="基于socket"><a href="#基于socket" class="headerlink" title="基于socket"></a>基于socket</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="基于socket"><a href="#基于socket" class="headerlink" title="基于socket"></a>基于socket</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><br></code></pre></td></tr></table></figure>
 
 
 
@@ -341,26 +341,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>April 26, 2021</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -380,19 +380,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/Flink%E8%AE%B0%E5%BD%95/" title="王阁/技术/大数据/flink/Flink记录">
+                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/es%E8%AF%A6%E7%BB%86/" title="王阁/技术/大数据/es/es详细">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">王阁/技术/大数据/flink/Flink记录</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">王阁/技术/大数据/es/es详细</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/es/%E7%A7%AF%E7%B4%AF/" title="王阁/技术/大数据/es/积累">
-                        <span class="hidden-mobile">王阁/技术/大数据/es/积累</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink_book/" title="王阁/技术/大数据/flink/flink_book">
+                        <span class="hidden-mobile">王阁/技术/大数据/flink/flink_book</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -413,7 +413,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -469,7 +469,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -477,7 +477,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -656,7 +656,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k wörter
+          3.8k palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          35 minuten
+          32 minutos
         
       </span>
     
@@ -297,14 +297,14 @@
 </ol>
 <hr>
 <p>原始的接口定义常量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface IConstants &#123;</span><br><span class="line">    String MON &#x3D; &quot;Mon&quot;;</span><br><span class="line">    String TUE &#x3D; &quot;Tue&quot;;</span><br><span class="line">    String WED &#x3D; &quot;Wed&quot;;</span><br><span class="line">    String THU &#x3D; &quot;Thu&quot;;</span><br><span class="line">    String FRI &#x3D; &quot;Fri&quot;;</span><br><span class="line">    String SAT &#x3D; &quot;Sat&quot;;</span><br><span class="line">    String SUN &#x3D; &quot;Sun&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IConstants</span> </span>&#123;<br>    <span class="hljs-keyword">String</span> MON = <span class="hljs-string">"Mon"</span>;<br>    <span class="hljs-keyword">String</span> TUE = <span class="hljs-string">"Tue"</span>;<br>    <span class="hljs-keyword">String</span> WED = <span class="hljs-string">"Wed"</span>;<br>    <span class="hljs-keyword">String</span> THU = <span class="hljs-string">"Thu"</span>;<br>    <span class="hljs-keyword">String</span> FRI = <span class="hljs-string">"Fri"</span>;<br>    <span class="hljs-keyword">String</span> SAT = <span class="hljs-string">"Sat"</span>;<br>    <span class="hljs-keyword">String</span> SUN = <span class="hljs-string">"Sun"</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <hr>
 <p><strong>语法（定义）</strong><br> 创建枚举类型要使用 enum 关键字，隐含了所创建的类型都是 java.lang.Enum 类的子类（java.lang.Enum 是一个抽象类）。枚举类型符合通用模式 Class Enum&lt;E extends Enum<E>&gt;，而 E 表示枚举类型的名称。枚举类型的每一个值都将映射到 protected Enum(String name, int ordinal) 构造函数中，在这里，每个值的名称都被转换成一个字符串，并且序数设置表示了此设置被创建的顺序。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">package com.hmw.test;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * 枚举测试类</span><br><span class="line"> * @author &lt;a href&#x3D;&quot;mailto:hemingwang0902@126.com&quot;&gt;何明旺&lt;&#x2F;a&gt;</span><br><span class="line"> *&#x2F;</span><br><span class="line">public enum EnumTest &#123;</span><br><span class="line">    MON, TUE, WED, THU, FRI, SAT, SUN;</span><br><span class="line">&#125;</span><br><span class="line">这段代码实际上调用了7次 Enum(String name, int ordinal)：</span><br><span class="line"></span><br><span class="line">new Enum&lt;EnumTest&gt;(&quot;MON&quot;,0);</span><br><span class="line">new Enum&lt;EnumTest&gt;(&quot;TUE&quot;,1);</span><br><span class="line">new Enum&lt;EnumTest&gt;(&quot;WED&quot;,2);</span><br></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">package</span> com.hmw.test;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 枚举测试类</span><br><span class="hljs-comment"> * @author &lt;a href="mailto:hemingwang0902@126.com"&gt;何明旺&lt;/a&gt;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">EnumTest</span> &#123;</span><br>    MON, TUE, WED, THU, FRI, SAT, SUN;<br>&#125;<br>这段代码实际上调用了<span class="hljs-number">7</span>次 Enum(<span class="hljs-keyword">String</span> name, int ordinal)：<br><br><span class="hljs-keyword">new</span> <span class="hljs-type">Enum</span>&lt;EnumTest&gt;(<span class="hljs-string">"MON"</span>,<span class="hljs-number">0</span>);<br><span class="hljs-keyword">new</span> <span class="hljs-type">Enum</span>&lt;EnumTest&gt;(<span class="hljs-string">"TUE"</span>,<span class="hljs-number">1</span>);<br><span class="hljs-keyword">new</span> <span class="hljs-type">Enum</span>&lt;EnumTest&gt;(<span class="hljs-string">"WED"</span>,<span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
 <hr>
 <p><strong>遍历、switch 等常用操作</strong></p>
 <p>public class Test {<br>    public static void main(String[] args) {<br>        for (EnumTest e : EnumTest.values()) {<br>            System.out.println(e.toString());<br>        }</p>
-<pre><code>    System.out.println(&quot;----------------我是分隔线------------------&quot;);
+<pre><code class="hljs">    System.out.println(&quot;----------------我是分隔线------------------&quot;);
 
     EnumTest test = EnumTest.TUE;
     switch (test) {
@@ -326,16 +326,16 @@
 <p>String name()<br>          返回此枚举常量的名称，在其枚举声明中对其进行声明。</p>
 <p>int ordinal()<br>          返回枚举常量的序数（它在枚举声明中的位置，其中初始常量序数为零）。</p>
 <p>String toString()</p>
-<pre><code>返回枚举常量的名称，它包含在声明中。</code></pre><p>static &lt;T extends Enum<T>&gt; T valueOf(Class<T> enumType, String name)<br>          返回带指定名称的指定枚举类型的枚举常量。</p>
+<pre><code class="hljs">返回枚举常量的名称，它包含在声明中。</code></pre><p>static &lt;T extends Enum<T>&gt; T valueOf(Class<T> enumType, String name)<br>          返回带指定名称的指定枚举类型的枚举常量。</p>
 <hr>
 <p><strong>给 enum 自定义属性和方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">给 enum 对象加一下 value 的属性和 getValue() 的方法：</span><br><span class="line"></span><br><span class="line">package com.hmw.test;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 枚举测试类</span><br><span class="line"> *</span><br><span class="line"> * @author &lt;a href&#x3D;&quot;mailto:hemingwang0902@126.com&quot;&gt;何明旺&lt;&#x2F;a&gt;</span><br><span class="line"> *&#x2F;</span><br><span class="line">public enum EnumTest &#123;</span><br><span class="line">    MON(1), TUE(2), WED(3), THU(4), FRI(5), SAT(6) &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public boolean isRest() &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    SUN(0) &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public boolean isRest() &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    private int value;</span><br><span class="line"></span><br><span class="line">    private EnumTest(int value) &#123;</span><br><span class="line">        this.value &#x3D; value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getValue() &#123;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean isRest() &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(&quot;EnumTest.FRI 的 value &#x3D; &quot; + EnumTest.FRI.getValue());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出结果：</span><br><span class="line">EnumTest.FRI 的 value &#x3D; 5</span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs cs">给 <span class="hljs-keyword">enum</span> 对象加一下 <span class="hljs-keyword">value</span> 的属性和 getValue() 的方法：<br><br>package com.hmw.test;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 枚举测试类</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * @author &lt;a href="mailto:hemingwang0902@126.com"&gt;何明旺&lt;/a&gt;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> EnumTest &#123;<br>    MON(<span class="hljs-number">1</span>), TUE(<span class="hljs-number">2</span>), WED(<span class="hljs-number">3</span>), THU(<span class="hljs-number">4</span>), FRI(<span class="hljs-number">5</span>), SAT(<span class="hljs-number">6</span>) &#123;<br>        @Override<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> boolean <span class="hljs-title">isRest</span>(<span class="hljs-params"></span>)</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;,<br>    SUN(<span class="hljs-number">0</span>) &#123;<br>        @Override<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> boolean <span class="hljs-title">isRest</span>(<span class="hljs-params"></span>)</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-keyword">value</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">EnumTest</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-keyword">value</span></span>)</span> &#123;<br>        <span class="hljs-keyword">this</span>.<span class="hljs-keyword">value</span> = <span class="hljs-keyword">value</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getValue</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">value</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> boolean <span class="hljs-title">isRest</span>(<span class="hljs-params"></span>)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>)</span> &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">"EnumTest.FRI 的 value = "</span> + EnumTest.FRI.getValue());<br>    &#125;<br>&#125;<br>输出结果：<br>EnumTest.FRI 的 <span class="hljs-keyword">value</span> = <span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
 <hr>
 <p><strong>EnumSet，EnumMap 的应用</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;&#x2F; EnumSet的使用</span><br><span class="line">        EnumSet&lt;EnumTest&gt; weekSet &#x3D; EnumSet.allOf(EnumTest.class);</span><br><span class="line">        for (EnumTest day : weekSet) &#123;</span><br><span class="line">            System.out.println(day);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; EnumMap的使用</span><br><span class="line">        EnumMap&lt;EnumTest, String&gt; weekMap &#x3D; new EnumMap(EnumTest.class);</span><br><span class="line">        weekMap.put(EnumTest.MON, &quot;星期一&quot;);</span><br><span class="line">        weekMap.put(EnumTest.TUE, &quot;星期二&quot;);</span><br><span class="line">        &#x2F;&#x2F; ... ...</span><br><span class="line">        for (Iterator&lt;Entry&lt;EnumTest, String&gt;&gt; iter &#x3D; weekMap.entrySet().iterator(); iter.hasNext();) &#123;</span><br><span class="line">            Entry&lt;EnumTest, String&gt; entry &#x3D; iter.next();</span><br><span class="line">            System.out.println(entry.getKey().name() + &quot;:&quot; + entry.getValue());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span> &#123;</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">String</span>[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// EnumSet的使用</span><br>        EnumSet&lt;EnumTest&gt; weekSet = EnumSet.allOf(EnumTest.class);<br>        <span class="hljs-keyword">for</span> (EnumTest day : weekSet) &#123;<br>            System.out.<span class="hljs-built_in">println</span>(day);<br>        &#125;<br><br>        <span class="hljs-comment">// EnumMap的使用</span><br>        EnumMap&lt;EnumTest, <span class="hljs-keyword">String</span>&gt; weekMap = <span class="hljs-keyword">new</span> EnumMap(EnumTest.class);<br>        weekMap.<span class="hljs-built_in">put</span>(EnumTest.MON, <span class="hljs-string">"星期一"</span>);<br>        weekMap.<span class="hljs-built_in">put</span>(EnumTest.TUE, <span class="hljs-string">"星期二"</span>);<br>        <span class="hljs-comment">// ... ...</span><br>        <span class="hljs-keyword">for</span> (Iterator&lt;Entry&lt;EnumTest, <span class="hljs-keyword">String</span>&gt;&gt; iter = weekMap.entrySet().iterator(); iter.hasNext();) &#123;<br>            Entry&lt;EnumTest, <span class="hljs-keyword">String</span>&gt; entry = iter.next();<br>            System.out.<span class="hljs-built_in">println</span>(entry.<span class="hljs-built_in">getKey</span>().name() + <span class="hljs-string">":"</span> + entry.getValue());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <hr>
 <p>原理分析<br>        enum 的语法结构尽管和 class 的语法不一样，但是经过编译器编译之后产生的是一个class文件。该class文件经过反编译可以看到实际上是生成了一个类，该类继承了java.lang.Enum<E>。EnumTest 经过反编译(javap com.hmw.test.EnumTest 命令)之后得到的内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class com.hmw.test.EnumTest extends java.lang.Enum&#123;</span><br><span class="line">    public static final com.hmw.test.EnumTest MON;</span><br><span class="line">    public static final com.hmw.test.EnumTest TUE;</span><br><span class="line">    public static final com.hmw.test.EnumTest WED;</span><br><span class="line">    public static final com.hmw.test.EnumTest THU;</span><br><span class="line">    public static final com.hmw.test.EnumTest FRI;</span><br><span class="line">    public static final com.hmw.test.EnumTest SAT;</span><br><span class="line">    public static final com.hmw.test.EnumTest SUN;</span><br><span class="line">    static &#123;&#125;;</span><br><span class="line">    public int getValue();</span><br><span class="line">    public boolean isRest();</span><br><span class="line">    public static com.hmw.test.EnumTest[] values();</span><br><span class="line">    public static com.hmw.test.EnumTest valueOf(java.lang.String);</span><br><span class="line">    com.hmw.test.EnumTest(java.lang.String, int, int, com.hmw.test.EnumTest);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">com</span>.<span class="hljs-title">hmw</span>.<span class="hljs-title">test</span>.<span class="hljs-title">EnumTest</span> <span class="hljs-title">extends</span> <span class="hljs-title">java</span>.<span class="hljs-title">lang</span>.<span class="hljs-title">Enum</span>&#123;</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> com.hmw.test.EnumTest MON;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> com.hmw.test.EnumTest TUE;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> com.hmw.test.EnumTest WED;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> com.hmw.test.EnumTest THU;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> com.hmw.test.EnumTest FRI;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> com.hmw.test.EnumTest SAT;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> com.hmw.test.EnumTest SUN;<br>    <span class="hljs-keyword">static</span> &#123;&#125;;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getValue</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isRest</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> com.hmw.test.EnumTest[] values();<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> com.hmw.test.<span class="hljs-function">EnumTest <span class="hljs-title">valueOf</span><span class="hljs-params">(java.lang.<span class="hljs-keyword">String</span>)</span></span>;<br>    com.hmw.test.EnumTest(java.lang.<span class="hljs-keyword">String</span>, <span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>, com.hmw.test.EnumTest);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>所以，实际上 enum 就是一个 class，只不过 java 编译器帮我们做了语法的解析和编译而已。<br>总结<br>    可以把 enum 看成是一个普通的 class，它们都可以定义一些属性和方法，不同之处是：enum 不能使用 extends 关键字继承其他类，因为 enum 已经继承了 java.lang.Enum（java是单一继承）。</p>
 
@@ -361,26 +361,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>July 16, 2019</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -403,16 +403,16 @@
                       <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog24/" title="Hadoop总结(第一版---HDFS篇)">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Hadoop总结(第一版---HDFS篇)</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog4/" title="List学习">
-                        <span class="hidden-mobile">List学习</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog23/" title="sed &amp; awk小结">
+                        <span class="hidden-mobile">sed &amp; awk小结</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -433,7 +433,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -489,7 +489,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -497,7 +497,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -676,7 +676,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

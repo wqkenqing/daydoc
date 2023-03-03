@@ -119,7 +119,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -131,7 +131,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -143,7 +143,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -155,7 +155,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -167,7 +167,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -224,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k wörter
+          2.1k palabras
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
         
-          18 minuten
+          18 minutos
         
       </span>
     
@@ -280,7 +280,7 @@
                 
                 <h1 id="spark-学习"><a href="#spark-学习" class="headerlink" title="spark 学习"></a>spark 学习</h1><a id="more"></a>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark 作为主流的实时计算引擎,需要高度掌握</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">spark</span> 作为主流的实时计算引擎,需要高度掌握<br></code></pre></td></tr></table></figure>
 <!-- more -->
 
 <h2 id="spark介绍"><a href="#spark介绍" class="headerlink" title="spark介绍"></a>spark介绍</h2><p>Apache Spark是一用于实时处理的开源集群计算框架.持多种语言编程,Spark Streaming有高吞吐量和容错能力强等特点.<br>数据输入后可以用Spark的高度抽象原语如：map、reduce、join、window等进行运算,而结果也能保存在很多地方，如HDFS，数据库等。另外Spark Streaming也能和MLlib（机器学习）以及Graphx完美融合。</p>
@@ -301,7 +301,7 @@
 <li>可选：key-value型的RDD是根据哈希来分区的，类似于mapreduce当中的Paritioner接口，控制key分到哪个reduce。</li>
 <li>可选：每一个分片的优先计算位置（preferred locations），比如HDFS的block的所在位置应该是优先计算的位置。(存储的是一个表，可以将处理的分区“本地化”).</li>
 </ol>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只计算一次  </span></span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">def</span> <span class="title">getPartitions</span></span>: <span class="type">Array</span>[<span class="type">Partition</span>]  </span><br><span class="line">  <span class="comment">//对一个分片进行计算，得出一个可遍历的结果</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">compute</span></span>(split: <span class="type">Partition</span>, context: <span class="type">TaskContext</span>): <span class="type">Iterator</span>[<span class="type">T</span>]</span><br><span class="line">  <span class="comment">//只计算一次，计算RDD对父RDD的依赖</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">def</span> <span class="title">getDependencies</span></span>: <span class="type">Seq</span>[<span class="type">Dependency</span>[_]] = deps</span><br><span class="line">  <span class="comment">//可选的，分区的方法，针对第4点，类似于mapreduce当中的Paritioner接口，控制key分到哪个reduce</span></span><br><span class="line">  <span class="meta">@transient</span> <span class="keyword">val</span> partitioner: <span class="type">Option</span>[<span class="type">Partitioner</span>] = <span class="type">None</span></span><br><span class="line">  <span class="comment">//可选的，指定优先位置，输入参数是split分片，输出结果是一组优先的节点位置</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">def</span> <span class="title">getPreferredLocations</span></span>(split: <span class="type">Partition</span>): <span class="type">Seq</span>[<span class="type">String</span>] = <span class="type">Nil</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-comment">//只计算一次  </span><br>  <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getPartitions</span></span>: <span class="hljs-type">Array</span>[<span class="hljs-type">Partition</span>]  <br>  <span class="hljs-comment">//对一个分片进行计算，得出一个可遍历的结果</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compute</span></span>(split: <span class="hljs-type">Partition</span>, context: <span class="hljs-type">TaskContext</span>): <span class="hljs-type">Iterator</span>[<span class="hljs-type">T</span>]<br>  <span class="hljs-comment">//只计算一次，计算RDD对父RDD的依赖</span><br>  <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getDependencies</span></span>: <span class="hljs-type">Seq</span>[<span class="hljs-type">Dependency</span>[_]] = deps<br>  <span class="hljs-comment">//可选的，分区的方法，针对第4点，类似于mapreduce当中的Paritioner接口，控制key分到哪个reduce</span><br>  <span class="hljs-meta">@transient</span> <span class="hljs-keyword">val</span> partitioner: <span class="hljs-type">Option</span>[<span class="hljs-type">Partitioner</span>] = <span class="hljs-type">None</span><br>  <span class="hljs-comment">//可选的，指定优先位置，输入参数是split分片，输出结果是一组优先的节点位置</span><br>  <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getPreferredLocations</span></span>(split: <span class="hljs-type">Partition</span>): <span class="hljs-type">Seq</span>[<span class="hljs-type">String</span>] = <span class="hljs-type">Nil</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="为什么会产生RDD"><a href="#为什么会产生RDD" class="headerlink" title="为什么会产生RDD"></a>为什么会产生RDD</h3><h3 id="RDD数据集"><a href="#RDD数据集" class="headerlink" title="RDD数据集"></a>RDD数据集</h3><ol>
 <li>并行集合</li>
@@ -349,26 +349,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>March 4, 2018</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -388,19 +388,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A02/" title="spark学习2">
+                      <a href="/daydoc/2018/06/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/hbase%E7%A7%AF%E7%B4%AF/" title="hbase积累.md">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">spark学习2</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">hbase积累.md</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E7%AE%97%E5%AD%90/" title="spark算子">
-                        <span class="hidden-mobile">spark算子</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A02/" title="spark学习2">
+                        <span class="hidden-mobile">spark学习2</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -421,7 +421,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -477,7 +477,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -485,7 +485,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -664,7 +664,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

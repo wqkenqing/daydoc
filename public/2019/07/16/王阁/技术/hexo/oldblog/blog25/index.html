@@ -120,7 +120,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -132,7 +132,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -144,7 +144,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -156,7 +156,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -168,7 +168,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k wörter
+          3.9k palabras
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          33 minuten
+          33 minutos
         
       </span>
     
@@ -295,9 +295,9 @@
 <h4 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h4><p>nutch的搭建分为分布式与单机版，我目前主要涉猎的是nutch单机版。具体的版本选择，我尝试过nutch1.2与nutch1.7以上的所有版本，1.X与2.X的主要差异在于2.X将持久层给抽象出来了。总得来说nuthc2.x的实用性相对高些。而我以我目前具体使用的版本2.2.1为例，进行介绍<br>step 1.获取nutch2.2.1 <a href="http://archive.apache.org/dist/" target="_blank" rel="noopener">http://archive.apache.org/dist/</a><br>这个url能定位到apache很多软件和历史版本。进入这里，然后找到nutch，下载相应的版本（该连接有时可能打不开，翻墙试试）。<br>step 2. 对ivy下的ivy.xml与ivysetting.xml进行修改。<br>这里就有之前提到的坑一了，这里可能配置对持久层的依赖了。我这以mysql配置。</p>
 <p>修改${APACHE_NUTCH_HOME}/ivy/ivy.xml文件</p>
 <p>将以下行的注释取消</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">修改以下行。从默认的</span><br><span class="line">&#96;&#96;&#96;   org&#x3D;&quot;org.apache.gora&quot;  name&#x3D;&quot;gora-core&quot;  rev&#x3D;&quot;0.3&quot;  conf&#x3D;&quot;*-&gt;default&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs org"><br>修改以下行。从默认的<br>&#96;&#96;&#96;   org&#x3D;&quot;org.apache.gora&quot;  name&#x3D;&quot;gora-core&quot;  rev&#x3D;&quot;0.3&quot;  conf&#x3D;&quot;*-&gt;default&quot;&#x2F;&gt;<br></code></pre></td></tr></table></figure>
 <p>改成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">取消以下行的注释</span><br><span class="line">&#96;&#96;&#96;  org&#x3D;&quot;org.apache.gora&quot;  name&#x3D;&quot;gora-sql&quot;  rev&#x3D;&quot;0.1.1-incubating&quot;  conf&#x3D;&quot;*-&gt;default&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs org"><br>取消以下行的注释<br>&#96;&#96;&#96;  org&#x3D;&quot;org.apache.gora&quot;  name&#x3D;&quot;gora-sql&quot;  rev&#x3D;&quot;0.1.1-incubating&quot;  conf&#x3D;&quot;*-&gt;default&quot; &#x2F;&gt;<br></code></pre></td></tr></table></figure>
 
 <p>如果按默认的不做修改，将会在抓取网页时遇到以下错误。</p>
 <p><img src="//img.wqkenqing.ren//file/2017/8/e8f001bf53174dd985d3ffd36c6fb32d-image.png" srcset="/daydoc/img/loading.gif" lazyload alt="e8f001bf53174dd985d3ffd36c6fb32d-image.png"></p>
@@ -336,26 +336,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>July 16, 2019</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -375,19 +375,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog23/" title="sed &amp; awk小结">
+                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog21/" title="Python">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">sed &amp; awk小结</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">Python</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog7/" title="java中IO小结">
-                        <span class="hidden-mobile">java中IO小结</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog24/" title="Hadoop总结(第一版---HDFS篇)">
+                        <span class="hidden-mobile">Hadoop总结(第一版---HDFS篇)</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -408,7 +408,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -464,7 +464,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -472,7 +472,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -651,7 +651,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

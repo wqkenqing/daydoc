@@ -117,7 +117,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -129,7 +129,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -141,7 +141,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -153,7 +153,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -165,7 +165,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k wörter
+          3.6k palabras
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          31 minuten
+          31 minutos
         
       </span>
     
@@ -293,10 +293,10 @@
 <p>总而言之，GC主要进行回收的内存是JVM中的方法区和堆；<br>涉及到多线程(指堆)、多个对该对象不同类型的引用(指方法区)，才会涉及GC的回收。</p>
 <hr>
 <h4 id="When-–-什么时候回收？"><a href="#When-–-什么时候回收？" class="headerlink" title="When? – 什么时候回收？"></a>When? – 什么时候回收？</h4><p>堆</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在面试中经常会碰到这样一个问题（事实上笔者也碰到过）：如何判断一个对象已经死去？</span><br><span class="line"></span><br><span class="line">很容易想到的一个答案是：对一个对象添加引用计数器。每当有地方引用它时，计数器值加1；当引用失效时，计数器值减1.而当计数器的值为0时这个对象就不会再被使用，判断为已死。是不是简单又直观。然而，很遗憾。这种做法是错误的！（面试时可千万别这样回答哦，我就是不假思索这样回答，然后就。。）为什么是错的呢？事实上，用引用计数法确实在大部分情况下是一个不错的解决方案，而在实际的应用中也有不少案例，但它却无法解决对象之间的循环引用问题。比如对象A中有一个字段指向了对象B，而对象B中也有一个字段指向了对象A，而事实上他们俩都不再使用，但计数器的值永远都不可能为0，也就不会被回收，然后就发生了内存泄露。。</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">在面试中经常会碰到这样一个问题（事实上笔者也碰到过）：如何判断一个对象已经死去？<br><br>很容易想到的一个答案是：对一个对象添加引用计数器。每当有地方引用它时，计数器值加<span class="hljs-number">1</span>；当引用失效时，计数器值减<span class="hljs-number">1.</span>而当计数器的值为<span class="hljs-number">0</span>时这个对象就不会再被使用，判断为已死。是不是简单又直观。然而，很遗憾。这种做法是错误的！（面试时可千万别这样回答哦，我就是不假思索这样回答，然后就。。）为什么是错的呢？事实上，用引用计数法确实在大部分情况下是一个不错的解决方案，而在实际的应用中也有不少案例，但它却无法解决对象之间的循环引用问题。比如对象A中有一个字段指向了对象B，而对象B中也有一个字段指向了对象A，而事实上他们俩都不再使用，但计数器的值永远都不可能为<span class="hljs-number">0</span>，也就不会被回收，然后就发生了内存泄露。。<br></code></pre></td></tr></table></figure>
 
 <p>在Java，C#等语言中，比较主流的判定一个对象已死的方法是：<Strong>可达性分析(Reachability Analysis).</Strong><br>所有生成的对象都是一个称为”GC Roots”的根的子树。从GC Roots开始向下搜索，搜索所经过的路径称为引用链(Reference Chain)，当一个对象到GC Roots没有任何引用链可以到达时，就称这个对象是不可达的（不可引用的），也就是可以被GC回收了<br><img src="./1483447208180.png" srcset="/daydoc/img/loading.gif" lazyload alt="Alt text"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">无论是引用计数器还是可达性分析，判定对象是否存活都与引用有关！那么，如何定义对象的引用呢？</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plain">无论是引用计数器还是可达性分析，判定对象是否存活都与引用有关！那么，如何定义对象的引用呢？<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>强引用(Strong Reference):Object obj = new Object();只要强引用还存在，GC永远不会回收掉被引用的对象。</li>
@@ -315,7 +315,7 @@
 <li>加载该类的ClassLoader已经被回收；</li>
 <li>该类对应的java.lang.Class对象没有任何地方被引用，无法在任何地方通过反射访问该类的方法。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">总而言之，对于堆中的对象，主要用可达性分析判断一个对象是否还存在引用，如果该对象没有任何引用就应该被回收。而根据我们实际对引用的不同需求，又分成了4中引用，每种引用的回收机制也是不同的。</span><br><span class="line">对于方法区中的常量和类，当一个常量没有任何对象引用它，它就可以被回收了。而对于类，如果可以判定它为无用类，就可以被回收了。</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">总而言之，对于堆中的对象，主要用可达性分析判断一个对象是否还存在引用，如果该对象没有任何引用就应该被回收。而根据我们实际对引用的不同需求，又分成了<span class="hljs-number">4</span>中引用，每种引用的回收机制也是不同的。<br>对于方法区中的常量和类，当一个常量没有任何对象引用它，它就可以被回收了。而对于类，如果可以判定它为无用类，就可以被回收了。<br></code></pre></td></tr></table></figure>
 <h4 id="How-–-如何回收？"><a href="#How-–-如何回收？" class="headerlink" title="How? – 如何回收？"></a>How? – 如何回收？</h4><h5 id="标记-清除-Mark-Sweep-算法"><a href="#标记-清除-Mark-Sweep-算法" class="headerlink" title="标记-清除(Mark-Sweep)算法"></a>标记-清除(Mark-Sweep)算法</h5><p>分为两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记的对象。<br>缺点：效率问题，标记和清除两个过程的效率都不高；空间问题，会产生很多碎片。</p>
 <h5 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h5><p>将可用内存按容量划分为大小相等的两块，每次只用其中一块。当这一块用完了，就将还存活的对象复制到另外一块上面，然后把原始空间全部回收。高效、简单。<br>缺点：将内存缩小为原来的一半。</p>
 <h5 id="标记-整理-Mark-Compat-算法"><a href="#标记-整理-Mark-Compat-算法" class="headerlink" title="标记-整理(Mark-Compat)算法"></a>标记-整理(Mark-Compat)算法</h5><p>标记过程与标记-清除算法过程一样，但后面不是简单的清除，而是让所有存活的对象都向一端移动，然后直接清除掉端边界以外的内存。</p>
@@ -361,26 +361,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>July 16, 2019</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -400,19 +400,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog20/" title="hbase">
+                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog10/" title="异常处理机制小结">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hbase</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">异常处理机制小结</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog18/" title="flume小结">
-                        <span class="hidden-mobile">flume小结</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog15/" title="Vim笔记">
+                        <span class="hidden-mobile">Vim笔记</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -433,7 +433,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -489,7 +489,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -497,7 +497,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -676,7 +676,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

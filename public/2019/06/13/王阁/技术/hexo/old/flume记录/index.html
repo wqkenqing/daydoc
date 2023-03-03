@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k wörter
+          1.9k palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          19 minuten
+          17 minutos
         
       </span>
     
@@ -277,11 +277,11 @@
                 <p>此处简介</p>
 <a id="more"></a>
 <h1 id="flume记录"><a href="#flume记录" class="headerlink" title="flume记录"></a>flume记录</h1><h2 id="from-kafka"><a href="#from-kafka" class="headerlink" title="from kafka"></a>from kafka</h2><!-- more -->
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">a1.sources &#x3D; source1</span><br><span class="line"></span><br><span class="line">a1.sources.source1.type &#x3D; org.apache.flume.source.kafka.KafkaSource</span><br><span class="line"></span><br><span class="line">a1.sources.source1.channels &#x3D; c1</span><br><span class="line"></span><br><span class="line">a1.sources.source1.batchSize &#x3D; 5000</span><br><span class="line"></span><br><span class="line">a1.sources.source1.batchDurationMillis &#x3D; 2000</span><br><span class="line">a1.sources.source1.zookeeperConnect &#x3D; localhost:2181</span><br><span class="line"></span><br><span class="line">#a1.sources.source1.kafka.brokerList &#x3D; localhost:9092</span><br><span class="line">a1.sources.source1.kafka.bootstrap.servers &#x3D; localhost:9092</span><br><span class="line">a1.sources.source1.topic &#x3D; flumetest</span><br><span class="line">a1.sources.source1.kafka.consumer.group.id &#x3D; custom.g.id</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a1.channels &#x3D; c1</span><br><span class="line"></span><br><span class="line">a1.channels.c1.type &#x3D; memory</span><br><span class="line"></span><br><span class="line">a1.channels.c1.capacity &#x3D; 10000</span><br><span class="line"></span><br><span class="line">a1.channels.c1.transactionCapacity &#x3D; 10000</span><br><span class="line"></span><br><span class="line">a1.channels.c1.byteCapacityBufferPercentage &#x3D; 20</span><br><span class="line"></span><br><span class="line">a1.channels.c1.byteCapacity &#x3D; 800000</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a1.sinks &#x3D; k1</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.type &#x3D; file_roll</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.channel &#x3D; c1</span><br><span class="line"></span><br><span class="line">a1.sinks.k1.sink.directory &#x3D; &#x2F;home&#x2F;hadoop&#x2F;testfile&#x2F;flume</span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs stylus">a1<span class="hljs-selector-class">.sources</span> = source1<br><br>a1<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.type</span> = org<span class="hljs-selector-class">.apache</span><span class="hljs-selector-class">.flume</span><span class="hljs-selector-class">.source</span><span class="hljs-selector-class">.kafka</span>.KafkaSource<br><br>a1<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.channels</span> = c1<br><br>a1<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.batchSize</span> = <span class="hljs-number">5000</span><br><br>a1<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.batchDurationMillis</span> = <span class="hljs-number">2000</span><br>a1<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.zookeeperConnect</span> = localhost:<span class="hljs-number">2181</span><br><br><span class="hljs-selector-id">#a1</span><span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.kafka</span><span class="hljs-selector-class">.brokerList</span> = localhost:<span class="hljs-number">9092</span><br>a1<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.kafka</span><span class="hljs-selector-class">.bootstrap</span><span class="hljs-selector-class">.servers</span> = localhost:<span class="hljs-number">9092</span><br>a1<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.topic</span> = flumetest<br>a1<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.source1</span><span class="hljs-selector-class">.kafka</span><span class="hljs-selector-class">.consumer</span><span class="hljs-selector-class">.group</span><span class="hljs-selector-class">.id</span> = custom<span class="hljs-selector-class">.g</span>.id<br><br><br><br>a1<span class="hljs-selector-class">.channels</span> = c1<br><br>a1<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span><span class="hljs-selector-class">.type</span> = memory<br><br>a1<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span><span class="hljs-selector-class">.capacity</span> = <span class="hljs-number">10000</span><br><br>a1<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span><span class="hljs-selector-class">.transactionCapacity</span> = <span class="hljs-number">10000</span><br><br>a1<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span><span class="hljs-selector-class">.byteCapacityBufferPercentage</span> = <span class="hljs-number">20</span><br><br>a1<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span><span class="hljs-selector-class">.byteCapacity</span> = <span class="hljs-number">800000</span><br><br><br><br>a1<span class="hljs-selector-class">.sinks</span> = k1<br><br>a1<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span><span class="hljs-selector-class">.type</span> = file_roll<br><br>a1<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span><span class="hljs-selector-class">.channel</span> = c1<br><br>a1<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span><span class="hljs-selector-class">.sink</span><span class="hljs-selector-class">.directory</span> = /home/hadoop/testfile/flume<br></code></pre></td></tr></table></figure>
 
 <p>这里也有版本匹配的问题.经过多番尝试,这里的组合版本是flume1.6+kafka_2.11-2.2.0.tgz<br>其它版本可能会有request header 问题.<br>另外还遇到了指定topic 和 zookeeper的问题.</p>
 <p>执行语句:flume-ng agent -n a1 -c conf -f kafka.properties -Dflume.root.logger=INFO,console</p>
-<h2 id="flume-采集到kafka"><a href="#flume-采集到kafka" class="headerlink" title="flume 采集到kafka"></a>flume 采集到kafka</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">agent.sources&#x3D;r1</span><br><span class="line">agent.sinks&#x3D;k1</span><br><span class="line">agent.channels&#x3D;c1</span><br><span class="line"></span><br><span class="line">agent.sources.r1.type&#x3D;exec</span><br><span class="line">agent.sources.r1.command&#x3D;tail &#x2F;root&#x2F;tomcat&#x2F;logs&#x2F;catalina.out</span><br><span class="line">agent.sources.r1.restart&#x3D;true</span><br><span class="line">agent.sources.r1.batchSize&#x3D;1000</span><br><span class="line">agent.sources.r1.batchTimeout&#x3D;3000</span><br><span class="line">agent.sources.r1.channels&#x3D;c1</span><br><span class="line"></span><br><span class="line">agent.channels.c1.type&#x3D;memory</span><br><span class="line">agent.channels.c1.capacity&#x3D;102400</span><br><span class="line">agent.channels.c1.transactionCapacity&#x3D;1000</span><br><span class="line"></span><br><span class="line">agent.channels.c1.byteCapacity&#x3D;134217728</span><br><span class="line">agent.channels.c1.byteCapacityBufferPercentage&#x3D;80</span><br><span class="line"></span><br><span class="line">agent.sinks.k1.channel&#x3D;c1</span><br><span class="line">agent.sinks.k1.type&#x3D;org.apache.flume.sink.kafka.KafkaSink</span><br><span class="line">agent.sinks.k1.kafka.topic&#x3D;sparkstreaming</span><br><span class="line">agent.sinks.k1.kafka.zookeeperConnect&#x3D;47.102.199.215:2181</span><br><span class="line">#agent.sinks.k1.kafka.bootstrap.servers&#x3D;47.102.199.215:9092</span><br><span class="line">agent.sinks.k1.kafka.brokerList &#x3D;47.102.199.215:9092</span><br><span class="line">agent.sinks.k1.serializer.class&#x3D;kafka.serializer.StringEncoder</span><br><span class="line">agent.sinks.k1.flumeBatchSize&#x3D;1000</span><br><span class="line">agent.sinks.k1.useFlumeEventFormat&#x3D;true</span><br></pre></td></tr></table></figure>
+<h2 id="flume-采集到kafka"><a href="#flume-采集到kafka" class="headerlink" title="flume 采集到kafka"></a>flume 采集到kafka</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs stylus">agent.sources=r1<br>agent.sinks=k1<br>agent.channels=c1<br><br>agent<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.r1</span>.type=exec<br>agent<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.r1</span>.command=tail /root/tomcat/logs/catalina.out<br>agent<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.r1</span>.restart=true<br>agent<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.r1</span>.batchSize=<span class="hljs-number">1000</span><br>agent<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.r1</span>.batchTimeout=<span class="hljs-number">3000</span><br>agent<span class="hljs-selector-class">.sources</span><span class="hljs-selector-class">.r1</span>.channels=c1<br><br>agent<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span>.type=memory<br>agent<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span>.capacity=<span class="hljs-number">102400</span><br>agent<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span>.transactionCapacity=<span class="hljs-number">1000</span><br><br>agent<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span>.byteCapacity=<span class="hljs-number">134217728</span><br>agent<span class="hljs-selector-class">.channels</span><span class="hljs-selector-class">.c1</span>.byteCapacityBufferPercentage=<span class="hljs-number">80</span><br><br>agent<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span>.channel=c1<br>agent<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span>.type=org<span class="hljs-selector-class">.apache</span><span class="hljs-selector-class">.flume</span><span class="hljs-selector-class">.sink</span><span class="hljs-selector-class">.kafka</span>.KafkaSink<br>agent<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span><span class="hljs-selector-class">.kafka</span>.topic=sparkstreaming<br>agent<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span><span class="hljs-selector-class">.kafka</span>.zookeeperConnect=<span class="hljs-number">47.102</span>.<span class="hljs-number">199.215</span>:<span class="hljs-number">2181</span><br><span class="hljs-selector-id">#agent</span><span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span><span class="hljs-selector-class">.kafka</span><span class="hljs-selector-class">.bootstrap</span>.servers=<span class="hljs-number">47.102</span>.<span class="hljs-number">199.215</span>:<span class="hljs-number">9092</span><br>agent<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span><span class="hljs-selector-class">.kafka</span><span class="hljs-selector-class">.brokerList</span> =<span class="hljs-number">47.102</span>.<span class="hljs-number">199.215</span>:<span class="hljs-number">9092</span><br>agent<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span><span class="hljs-selector-class">.serializer</span>.class=kafka<span class="hljs-selector-class">.serializer</span>.StringEncoder<br>agent<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span>.flumeBatchSize=<span class="hljs-number">1000</span><br>agent<span class="hljs-selector-class">.sinks</span><span class="hljs-selector-class">.k1</span>.useFlumeEventFormat=true<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -304,26 +304,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>June 13, 2019</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -346,7 +346,7 @@
                       <a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/Yarn%E9%85%8D%E7%BD%AE/" title="Yarn配置细节">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Yarn配置细节</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -355,7 +355,7 @@
                     
                       <a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/sql/SparkSql/" title="SparkSql">
                         <span class="hidden-mobile">SparkSql</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -376,7 +376,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -432,7 +432,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -440,7 +440,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -619,7 +619,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

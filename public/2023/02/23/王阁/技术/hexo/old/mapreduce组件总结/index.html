@@ -118,7 +118,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -130,7 +130,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -142,7 +142,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -154,7 +154,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -166,7 +166,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k wörter
+          1.1k palabras
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          10 minuten
+          10 minutos
         
       </span>
     
@@ -291,7 +291,7 @@
 <li>Reduce</li>
 </ol>
 <h1 id="shuffle"><a href="#shuffle" class="headerlink" title="shuffle"></a>shuffle</h1><p><img src="http://img.wqkenqing.ren/2019-03-19-15-39-59.png" srcset="/daydoc/img/loading.gif" lazyload alt="2019-03-19-15-39-59"><br><img src="http://img.wqkenqing.ren/2019-03-19-16-46-06.png" srcset="/daydoc/img/loading.gif" lazyload alt="2019-03-19-16-46-06"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shuffle 被称为mapreduce的核心,一个真正让奇迹发生的地方.但它到底是什么呢?简练的讲,它就是 map out 到 reduce in 这段过程中对数据的处理过程.</span><br></pre></td></tr></table></figure>
+<figure class="highlight golo"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs golo">shuffle 被称为mapreduce的核心,一个真正让奇迹发生的地方.但它到底是什么呢?简练的讲,它就是 <span class="hljs-keyword">map</span> out 到 <span class="hljs-keyword">reduce</span> <span class="hljs-keyword">in</span> 这段过程中对数据的处理过程.<br></code></pre></td></tr></table></figure>
 <p>shuffle过程中主要发生的操作有,Partion,Sort,spill,merge,copy,sort,merge.(还有可能有combine操作)</p>
 <p>具体流程是<br>map out后,Collector 对out后的数据进行处理. 数据将会写入到内存缓冲区,该内存缓冲区的数据达到80%后,会开启一个溢写线程,在磁盘本地创建一个文件.如果reduce设置了多个分区,写入buffer区的数据,会被打上一个分区标记.通过sortAndSpill()方法进行指对数据按分区号,key排序.最后溢出的文件是分区的,按key有序的文件.若buffer区中的20%一直未被填满,buffer写入进程不会断.但若达到100%,Buffer写入进程则会阻塞.并在buffer区中的数据全部spill完后才会再开启. (buffer区的内存默认是100M),spill过程中,若设置过combiner.则会对数据先进行combiner逻辑处理,再将处理后的数据写出</p>
 <p>spill完成后则会对本地的spill后的文件进行Merge.即把多个spill后的文件进行合并,并排序.最后会行成一个有序文件</p>
@@ -304,7 +304,7 @@
 <p>copy phase 完成后,是reduceTask 中的 sort phase<br>即对merge 中的文件继续进行sort and group .</p>
 <p>当sort phase 完成.则开启reduce phase .到此shuffle正式完成.</p>
 <p>##二次排序</p>
-<pre><code></code></pre><p>mapreduce 常见的辅助排序</p>
+<pre><code class="hljs"></code></pre><p>mapreduce 常见的辅助排序</p>
 <ol>
 <li>partitioner</li>
 <li>key的比较Comparator</li>
@@ -341,26 +341,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>February 23, 2023</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -380,19 +380,19 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/kafka/" title="kafka">
+                      <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E4%B8%93%E9%A2%98/%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BB/" title="王阁/技术/专题/数据建模/数据指标体系">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">kafka</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="hidden-mobile">王阁/技术/专题/数据建模/数据指标体系</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E5%88%86%E4%BA%AB/" title="大数据分享">
-                        <span class="hidden-mobile">大数据分享</span>
-                        <span class="visible-mobile">Nächster</span>
+                      <a href="/daydoc/2023/02/23/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/kafka/" title="kafka">
+                        <span class="hidden-mobile">kafka</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -413,7 +413,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -469,7 +469,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -477,7 +477,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -656,7 +656,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

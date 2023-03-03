@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k wörter
+          1.4k palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          12 minuten
+          12 minutos
         
       </span>
     
@@ -288,7 +288,7 @@
 <h3 id="整库导入"><a href="#整库导入" class="headerlink" title="整库导入"></a>整库导入</h3><p>sqoop import-all-tables –connect jdbc:mysql://192.168.10.210:3306/hy_hydd –driver com.mysql.jdbc.Driver –username ‘yg_reader’ –password ‘yg987654321’ –hbase-create-table –hbase-table ‘test:hy_hydd’ –column-family ‘info’ –hbase-bulkload</p>
 <p>sqoop mysql to hbase的效果是直接导入到一个表中（该库中的所有表，都导入到一个表中）</p>
 <h2 id="hbase-to-mysql"><a href="#hbase-to-mysql" class="headerlink" title="hbase to mysql"></a>hbase to mysql</h2><p>无法直接导出,需要借助hive、hdfs等策略</p>
-<h2 id="mysql-to-hive"><a href="#mysql-to-hive" class="headerlink" title="mysql to hive"></a>mysql to hive</h2><h3 id="单表导入-1"><a href="#单表导入-1" class="headerlink" title="单表导入"></a>单表导入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sqoop import \</span><br><span class="line">--connect jdbc:mysql:&#x2F;&#x2F;192.168.10.210:3306&#x2F;hy_hydd \</span><br><span class="line">--username yg_reader \</span><br><span class="line">--password yg987654321 \</span><br><span class="line">--table t_user \</span><br><span class="line">-m 1 \</span><br><span class="line">--hive-import \</span><br><span class="line">--hive-table t_user \</span><br><span class="line">--hive-overwrite \</span><br><span class="line">--create-hive-table \</span><br><span class="line">--fields-terminated-by &#39;,&#39; \</span><br><span class="line">--lines-terminated-by &#39;\n&#39;</span><br></pre></td></tr></table></figure>
+<h2 id="mysql-to-hive"><a href="#mysql-to-hive" class="headerlink" title="mysql to hive"></a>mysql to hive</h2><h3 id="单表导入-1"><a href="#单表导入-1" class="headerlink" title="单表导入"></a>单表导入</h3><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs haml">sqoop import \<br>-<span class="ruby">-connect <span class="hljs-symbol">jdbc:</span><span class="hljs-symbol">mysql:</span>/<span class="hljs-regexp">/192.168.10.210:3306/hy</span>_hydd \</span><br><span class="ruby">--username yg_reader \</span><br><span class="ruby">--password yg987654321 \</span><br><span class="ruby">--table t_user \</span><br><span class="ruby">-m <span class="hljs-number">1</span> \</span><br><span class="ruby">--hive-import \</span><br><span class="ruby">--hive-table t_user \</span><br><span class="ruby">--hive-overwrite \</span><br><span class="ruby">--create-hive-table \</span><br><span class="ruby">--fields-terminated-by <span class="hljs-string">','</span> \</span><br><span class="ruby">--lines-terminated-by <span class="hljs-string">'\n'</span></span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -317,26 +317,26 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>March 16, 2022</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -359,7 +359,7 @@
                       <a href="/daydoc/2022/03/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/CDH/cdh%E9%9B%86%E6%88%90phoenix/" title="王阁/技术/hexo/CDH/cdh集成phoenix">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">王阁/技术/hexo/CDH/cdh集成phoenix</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -368,7 +368,7 @@
                     
                       <a href="/daydoc/2022/02/21/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E5%B9%B3%E5%8F%B0/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4-%E9%87%87%E9%9B%86%E4%BB%BB%E5%8A%A1%E6%A8%A1%E5%9D%97/" title="王阁/工作/数据基础平台/数据运维/数据运维-采集任务模块">
                         <span class="hidden-mobile">王阁/工作/数据基础平台/数据运维/数据运维-采集任务模块</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -389,7 +389,7 @@
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -445,7 +445,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -453,7 +453,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -632,7 +632,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>

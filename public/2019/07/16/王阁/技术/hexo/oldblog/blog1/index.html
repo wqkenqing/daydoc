@@ -115,7 +115,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/">
                 <i class="iconfont icon-home-fill"></i>
-                <span>Startseite</span>
+                <span>Inicio</span>
               </a>
             </li>
           
@@ -127,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                <span>Archiv</span>
+                <span>Archivo</span>
               </a>
             </li>
           
@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                <span>Kategorien</span>
+                <span>Categorías</span>
               </a>
             </li>
           
@@ -151,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                <span>Schlagwörter</span>
+                <span>Etiquetas</span>
               </a>
             </li>
           
@@ -163,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/daydoc/about/">
                 <i class="iconfont icon-user-fill"></i>
-                <span>Über</span>
+                <span>Acerca</span>
               </a>
             </li>
           
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k wörter
+          1.6k palabras
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          14 minuten
+          14 minutos
         
       </span>
     
@@ -279,15 +279,15 @@
 
 <h2 id="java八大数据类型总结"><a href="#java八大数据类型总结" class="headerlink" title="java八大数据类型总结"></a>java八大数据类型总结</h2><p>[TOC]</p>
 <p><code>负数在电脑中的存储是用（该数值的绝对值的反码+1表示）</code><br><code>最高位是符号位，1表示负数，0表示正数</code><br><code>负数换算规则:负数的二进制=负数绝对值的二进制取反码+1。</code></p>
-<h3 id="byte类型"><a href="#byte类型" class="headerlink" title="byte类型:"></a>byte类型:</h3><pre><code>byte类型，使用一个字节存放一个数据，一个字节占八位，所以它取值范围是:1000 0000 ~ 0111 1111(-128-127)</code></pre><h3 id="short类型"><a href="#short类型" class="headerlink" title="short类型"></a>short类型</h3><pre><code>    short类型，使用两个字节存放一个数据，两个字节16位二进制表示，那么它的取值范围就是：
+<h3 id="byte类型"><a href="#byte类型" class="headerlink" title="byte类型:"></a>byte类型:</h3><pre><code class="hljs">byte类型，使用一个字节存放一个数据，一个字节占八位，所以它取值范围是:1000 0000 ~ 0111 1111(-128-127)</code></pre><h3 id="short类型"><a href="#short类型" class="headerlink" title="short类型"></a>short类型</h3><pre><code class="hljs">    short类型，使用两个字节存放一个数据，两个字节16位二进制表示，那么它的取值范围就是：
 1000 0000 0000 0000 ~ 0111 1111 1111 1111(-32768-32767)换算同上述byte类型</code></pre><hr>
-<h3 id="char类型"><a href="#char类型" class="headerlink" title="char类型"></a>char类型</h3><pre><code>char在java中占据两个字节，即用16位表示一个char类型的数据。由于char是无符号的所以其表示范围是0-65536.当计算超过其表示范围时，系统会自动将结果转换为int类型。</code></pre><h3 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型:"></a>boolean类型:</h3><pre><code>boolean类型占用一个字节，八位二进制表示。boolean类型只有两个值true和flase。</code></pre><h3 id="float类型"><a href="#float类型" class="headerlink" title="float类型"></a>float类型</h3><p>  其他特殊表示:</p>
-<pre><code> 1.当指数部分和小数部分全为0时,表示0值,有+0和-0之分(符号位决定),0x00000000表示正0,0x80000000表示负0.
+<h3 id="char类型"><a href="#char类型" class="headerlink" title="char类型"></a>char类型</h3><pre><code class="hljs">char在java中占据两个字节，即用16位表示一个char类型的数据。由于char是无符号的所以其表示范围是0-65536.当计算超过其表示范围时，系统会自动将结果转换为int类型。</code></pre><h3 id="boolean类型"><a href="#boolean类型" class="headerlink" title="boolean类型:"></a>boolean类型:</h3><pre><code class="hljs">boolean类型占用一个字节，八位二进制表示。boolean类型只有两个值true和flase。</code></pre><h3 id="float类型"><a href="#float类型" class="headerlink" title="float类型"></a>float类型</h3><p>  其他特殊表示:</p>
+<pre><code class="hljs"> 1.当指数部分和小数部分全为0时,表示0值,有+0和-0之分(符号位决定),0x00000000表示正0,0x80000000表示负0.
 2.指数部分全1,小数部分全0时,表示无穷大,有正无穷和负无穷,0x7f800000表示正无穷,0xff800000表示负无穷.
 3.指数部分全1,小数部分不全0时,表示NaN,分为QNaN和SNaN,Java中都是NaN.
-可以看出浮点数的取值范围是:2^(-149)~~(2-2^(-23))*2^127,也就是Float.MIN_VALUE和Float.MAX_VALUE.</code></pre><h3 id="double类型"><a href="#double类型" class="headerlink" title="double类型"></a>double类型</h3><pre><code>double类型占8个字节，一共是64位二进制表示。数符加尾数占48位，指数符加指数占16位.取值换算方式和float的换算方式一样。但是在使用float和double时最好先分析好目标数据的精度和性能要求，如果能够使用float满足的坚决不适用double，因为double类型使用内存占用是float的两倍，运算速度远不如float。</code></pre><h3 id="short类型-1"><a href="#short类型-1" class="headerlink" title="short类型"></a>short类型</h3><pre><code>    short类型，使用两个字节存放一个数据，两个字节16位二进制表示，那么它的取值范围就是：
-1000 0000 0000 0000 ~ 0111 1111 1111 1111(-32768-32767)换算同上述byte类型。short类型使用时除了要注意取值范围</code></pre><h3 id="int类型"><a href="#int类型" class="headerlink" title="int类型"></a>int类型</h3><pre><code>int类型，在Java中使用的是四个字节保存一个数据，一共是32为二进制表示，同上述的一样,取值范围:1000 0000 0000 0000 0000 0000 0000 0000 - 0111 1111 1111 1111 1111 1111 1111 1111
-(-2^32~2^31)</code></pre><h3 id="long类型"><a href="#long类型" class="headerlink" title="long类型"></a>long类型</h3><pre><code>long类型是Java的基础类型，使用8个字节存储一个数值，一共是64位二进制数。取值范围是（-2^64-2^63</code></pre><h3 id="八大常用类型的最大值与最小值"><a href="#八大常用类型的最大值与最小值" class="headerlink" title="八大常用类型的最大值与最小值"></a>八大常用类型的最大值与最小值</h3><p><code>float max=3.4028235E38
+可以看出浮点数的取值范围是:2^(-149)~~(2-2^(-23))*2^127,也就是Float.MIN_VALUE和Float.MAX_VALUE.</code></pre><h3 id="double类型"><a href="#double类型" class="headerlink" title="double类型"></a>double类型</h3><pre><code class="hljs">double类型占8个字节，一共是64位二进制表示。数符加尾数占48位，指数符加指数占16位.取值换算方式和float的换算方式一样。但是在使用float和double时最好先分析好目标数据的精度和性能要求，如果能够使用float满足的坚决不适用double，因为double类型使用内存占用是float的两倍，运算速度远不如float。</code></pre><h3 id="short类型-1"><a href="#short类型-1" class="headerlink" title="short类型"></a>short类型</h3><pre><code class="hljs">    short类型，使用两个字节存放一个数据，两个字节16位二进制表示，那么它的取值范围就是：
+1000 0000 0000 0000 ~ 0111 1111 1111 1111(-32768-32767)换算同上述byte类型。short类型使用时除了要注意取值范围</code></pre><h3 id="int类型"><a href="#int类型" class="headerlink" title="int类型"></a>int类型</h3><pre><code class="hljs">int类型，在Java中使用的是四个字节保存一个数据，一共是32为二进制表示，同上述的一样,取值范围:1000 0000 0000 0000 0000 0000 0000 0000 - 0111 1111 1111 1111 1111 1111 1111 1111
+(-2^32~2^31)</code></pre><h3 id="long类型"><a href="#long类型" class="headerlink" title="long类型"></a>long类型</h3><pre><code class="hljs">long类型是Java的基础类型，使用8个字节存储一个数值，一共是64位二进制数。取值范围是（-2^64-2^63</code></pre><h3 id="八大常用类型的最大值与最小值"><a href="#八大常用类型的最大值与最小值" class="headerlink" title="八大常用类型的最大值与最小值"></a>八大常用类型的最大值与最小值</h3><p><code>float max=3.4028235E38
 float min=1.4E-45
 double max=1.7976931348623157E308
 double max=4.9E-324
@@ -325,26 +325,26 @@ long min=-9223372036854775808</code></p>
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Beitragsautor</div>
+          <div>Autor</div>
           <div>Kuiq  Wang</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Veröffentlicht am</div>
+          <div>Publicado el</div>
           <div>July 16, 2019</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Urheberrechtshinweis</div>
+          <div>Licencia bajo</div>
           <div>
             
               
               
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                  <span class="hint--top hint--rounded" aria-label="BY - Atribución">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
@@ -367,7 +367,7 @@ long min=-9223372036854775808</code></p>
                       <a href="/daydoc/2019/07/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/hadoop/hdfs/hdfs%E5%91%BD%E4%BB%A4/" title="hdfs命令">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">hdfs命令</span>
-                        <span class="visible-mobile">Vorheriger</span>
+                        <span class="visible-mobile">Anterior</span>
                       </a>
                     
                   </article>
@@ -376,7 +376,7 @@ long min=-9223372036854775808</code></p>
                     
                       <a href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog10/" title="异常处理机制小结">
                         <span class="hidden-mobile">异常处理机制小结</span>
-                        <span class="visible-mobile">Nächster</span>
+                        <span class="visible-mobile">Siguiente</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -397,7 +397,7 @@ long min=-9223372036854775808</code></p>
     <div id="toc">
   <p class="toc-header">
     <i class="iconfont icon-list"></i>
-    <span>Inhaltsverzeichnis</span>
+    <span>Tabla de Contenidos</span>
   </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
@@ -453,7 +453,7 @@ long min=-9223372036854775808</code></p>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Buscar</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -461,7 +461,7 @@ long min=-9223372036854775808</code></p>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
+          <label data-error="x" data-success="v" for="local-search-input">Palabra clave</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -640,7 +640,7 @@ long min=-9223372036854775808</code></p>
   
 
   <noscript>
-    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
+    <div class="noscript-warning">El blog funciona mejor con JavaScript habilitado</div>
   </noscript>
 </body>
 </html>
