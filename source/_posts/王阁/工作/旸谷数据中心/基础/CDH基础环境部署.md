@@ -149,7 +149,7 @@ systemctl restart mysqld
 ### 允许root用户远程登录
 
 ```bash
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'ER62-fP()hs1OoFW>' WITH GRANT OPTION; 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Yg123456!' WITH GRANT OPTION; 
 FLUSH PRIVILEGES;
 
 
@@ -225,7 +225,7 @@ vim /etc/yum.repos.d/os.repo
 
 #以下为文件内容 
 [osrepo] name=os_repo 
-baseurl=http://hadoop01.baicdt.com/cm6.3.1 
+baseurl=http://namenode/cm6.3.1 
 enabled=true 
 gpgcheck=false
 
@@ -274,7 +274,7 @@ cd /usr/share/java/
 mv mysql-connector-java-5.1.46.jar mysql-connector-java.jar
 
 pssh -h host2.txt "mkdir -p  /usr/share/java "
-pscp -h host2.txt /usr/share/java/mysql-connector-java.jar /usr/share/java/
+  pscp -h host2.txt /usr/share/java/mysql-connector-java.jar /usr/share/java/
 
 ```
 
@@ -290,8 +290,8 @@ yum install -y cloudera-manager-server cloudera-manager-daemons cloudera-manager
 ## 安装agent and damons
 pssh -h host.txt "yum -y install cloudera-manager-daemons"
 pssh -h host.txt "yum -y install cloudera-manager-agent"
-pssh -h host2.txt yum -y install cloudera-manager-daemons
-pssh -h host2.txt yum -y install cloudera-manager-agent
+pssh -h host2.txt yum -y install cloudera-manager-daemons"
+pssh -h host2.txt yum -y install cloudera-manager-agent"
 
 ```
 
@@ -310,7 +310,7 @@ pscp -h host2.txt /etc/cloudera-scm-agent/config.ini /etc/cloudera-scm-agent/
 #### 初始化scm数据库
 
 ```
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm ER62-fP()hs1OoFW>
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm Yg123456!
 
 添加mysql驱动包
 pscp -h host2.txt /usr/share/java/mysql-connector-java.jar  /opt/cloudera/cm/lib

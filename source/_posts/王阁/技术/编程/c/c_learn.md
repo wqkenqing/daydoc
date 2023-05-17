@@ -1,4 +1,4 @@
-![CleanShot 2023-03-16 at 17.22.42@2x](http://img.wqkenqing.ren/typora_img/CleanShot%202023-03-16%20at%2017.22.42@2x.png)title:  c learn
+title:  c learn
 date:  2023年 3月 7日
 tags: [c、考研、复试]
 password: 7FKBKZrTTTPG2LnC
@@ -1269,7 +1269,7 @@ fopen()的参数mode是文件打开方式.
 
 ![CleanShot 2023-03-19 at 10.57.53@2x](http://img.wqkenqing.ren/typora_img/CleanShot%202023-03-19%20at%2010.57.53@2x.png)
 
-![CleanShot 2023-03-19 at 10.58.11@2x](/Users/kuiqwang/Library/Application Support/CleanShot/media/media_d7IR1dX8sk/CleanShot 2023-03-19 at 10.58.11@2x.png)
+
 
 #### 8.4.2 文件的读/写
 
@@ -1339,4 +1339,45 @@ int fflush(FILE *fp);
 
 #### 8.4.4 标准输入与标准输出
 
-printf()和fprintf()很像，差别仅在于一个FILE*fp。它们之间有什么血缘关系吗？ C语言定义了三个特别的文件指针常数：stdin、stdout和stderr,分别称为标准输入、标准输出和标准错误输出。如果提供给fprintfo的第一个参数是stdout,它和printf()就完全一样了。这个道理对fputc()与putchar(),fgetc()与getchar(),fputs()与puts,fgets()与gets()等也适用。具体来说，函数putchar()的实现只有一行语句：
+printf()和fprintf()很像，差别仅在于一个FILE*fp。它们之间有什么血缘关系吗？ C语言定义了三个特别的文件指针常数：stdin、stdout和stderr,分别称为标准输入、标准输出和标准错误输出。如果提供给fprintfo的第一个参数是stdout,它和printf()就完全一样了。这个道理对fputc()与putchar(),fgetc()与getchar(),fputs()与puts,fgets()与gets()等也适用。具体来说，函数putchar()的实现只有一行语句
+
+
+
+
+
+## 9、一些使用中的QA
+
+Q1:C语言结构体中的数组为什么可以通过 struct A a ={1,2,3}这种形式来赋值
+
+```
+C语言中的结构体可以包含数组类型的成员变量，数组类型的成员变量本质上是一段连续的内存空间，可以存储多个元素。可以通过结构体变量名加成员名的方式来访问结构体中的数组元素。
+
+在C语言中，结构体变量的初始化可以通过在定义时使用大括号来实现，其中大括号中包含的是按顺序排列的成员变量的初始值。对于数组类型的成员变量，可以在大括号中使用逗号分隔的方式，一一列出数组中的各个元素的初始值。例如，使用如下的方式初始化一个包含三个int类型的数组的结构体变量A：
+
+
+```
+
+```c
+struct A {
+    int arr[3];
+};
+
+struct A a = {1, 2, 3};
+```
+
+在这个例子中，结构体类型A包含一个名为arr的int类型数组成员变量，数组中有3个元素。变量a是A类型的一个结构体变量，用大括号中的值初始化了a中的数组元素。这样做的效果就是a.arr[0]被初始化为1，a.arr[1]被初始化为2，a.arr[2]被初始化为3。
+
+需要注意的是，结构体变量的初始化时必须按照成员变量的声明顺序依次进行初始化。如果想要初始化结构体中的某个特定成员变量，可以在大括号中使用成员名来指定初始化的值。例如：
+
+```c
+struct A {
+    int x;
+    int arr[3];
+    int y;
+};
+
+struct A a = {.x = 1, .arr = {2, 3, 4}, .y = 5};
+
+```
+
+在这个例子中，结构体类型A包含三个int类型成员变量，依次为x、arr和y。变量a用大括号中的初始化值初始化了结构体变量，其中使用了成员名来指定arr成员变量的初始化值。这样做的效果是a.x被初始化为1，a.arr[0]被初始化为2，a.arr[1]被初始化为3，a.arr[2]被初始化为4，a.y被初始化为5。
