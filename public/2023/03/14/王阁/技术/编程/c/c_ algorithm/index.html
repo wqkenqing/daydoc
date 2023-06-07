@@ -1,644 +1,176 @@
-
-
-<!DOCTYPE html>
-<html lang="zh-Hans" data-default-color-scheme=auto>
-
-
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/daydoc/img/fluid.png">
-  <link rel="icon" href="/daydoc/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Kuiq  Wang">
-  <meta name="keywords" content="yGin910">
-  
-    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>algorithm by C | wang's dayliy document</title><meta name="author" content="Kuiq  Wang"><meta name="copyright" content="Kuiq  Wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="algorithm by C">
 <meta property="og:url" content="http://www.wqkenqing.ren/daydoc/2023/03/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/c_%20algorithm/index.html">
 <meta property="og:site_name" content="wang&#39;s dayliy document">
 <meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
-<meta property="article:published_time" content="2023-03-14T02:34:36.038Z">
-<meta property="article:modified_time" content="2023-03-16T01:55:38.697Z">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-03-14T02:34:36.000Z">
+<meta property="article:modified_time" content="2023-05-09T06:57:51.510Z">
 <meta property="article:author" content="Kuiq  Wang">
 <meta property="article:tag" content="C、algorithm">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>algorithm by C - wang&#39;s dayliy document</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/daydoc/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/daydoc/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/daydoc/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.wqkenqing.ren","root":"/daydoc/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/daydoc/local-search.xml"};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/daydoc/img/favicon.png"><link rel="canonical" href="http://www.wqkenqing.ren/daydoc/2023/03/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/c_%20algorithm/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/daydoc/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/daydoc/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
     }
-  </script>
-  <script  src="/daydoc/js/utils.js" ></script>
-  <script  src="/daydoc/js/color-schema.js" ></script>
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'algorithm by C',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-09 14:57:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-
-
-  
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
-</head>
-
-
-<body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/daydoc/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/daydoc/">
-                <i class="iconfont icon-home-fill"></i>
-                <span>Home</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/daydoc/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>Archives</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/daydoc/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                <span>Categories</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/daydoc/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>Tags</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/daydoc/about/">
-                <i class="iconfont icon-user-fill"></i>
-                <span>About</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/daydoc/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="algorithm by C"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-14 10:34" pubdate>
-          March 14, 2023 am
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          2.1k words
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          18 mins
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">algorithm by C</h1>
-            
-            
-              
-              <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <div class="hbe-input-container">
-  <input type="password" id="hbePass" placeholder="" />
-    <label for="hbePass">Hey, password is required here.</label>
-    <div class="bottom-line"></div>
-  </div>
-  <script id="hbeData" type="hbeData" data-hmacdigest="078dbfb18e4ba5e17ae76949c252d063baa1e553a91a76e1ab1aaa7f6c3eca32">bfd13a94429111698edf7af48f8898ac319b05f576f63d32af711cd48650ba89f4d0e4c8c6878735bddb5b54fe41d0a4bfb29eabb12179c6a79b1bdd7ec8cb335e50002925f12d9e9deed2e24d7fd35ea0654e4159588b51ec5996fb42bea67e12f01b059c64b5376da415ff989814b8fca3dac925137b5041415da95c71251c8e94a2dfec05dcfe69552570fb8e457de1f89db41c754208b65b83722c3c57b01e487b99a9838b38ff76599d7d14349c7ef6402768840f6d1d5b96609cb88b3f9efac77bb2cf13df72a7b5a14ec275cb34431956a07035331f970cf954ef0f4d9e5681834e435ffd8ddb0c34dc2079e997706c356ed889c033da65fb4bc5c3bca176cd12fec471c62316be4da416a0712a2ddd86dbba492023e7d510b8d3019a765c6bce05aa9ab64c8aeda7d0480e734104ede50c3a805c16edb434312ce025c5723b078f3137f8bc0e24a69df8aaebd4a030faff98098a37b5bae67c9c5671ebf59fbe4910c5f33953b9ab9db08c8ea4bb1da33caea9a5dceed94377fdeb519cf931ac5240eb89b883daa8d7661fbf9571435484a569d6ad6f24ec0c37307aac7683b39abca478fa71145a83efe1e3a3ce41fe4eee21cfc4525ba2e16c7d96992857afd52578618b60126deeac810cd3d8e1e96b9aa67426effd79ab62eeb79682d8b9d1b7c1ed152b872e0a01fdf3c5529c593dd4ed9a6a3068bf8983297b4ea00c416210d659e48d3a17e12f297e8f6b13e87e7850d42e4db3d645b2b5de121c912520c09765aa99cdb4b77ca861023ed22eb4cc384098d3c98aeacef4c4e554de59b984c82503c4a047815a5a768a7107ca164c690e3c408c82fb935735c98ae5927c179a1e280a353e84842cb4ef8166b228f8c97eb9a65d2edf62081e498508c400e5600b7dae1575b4bc50c6718ad51af0aa4ba4d87a1dc3f4a3c20bd0e4c604c8d729d79bfa3c54b1b79a9654ead1231f7e70202a4c7ba406466381c204761de1f3d3573359b8210ff0841a482eb263995d32046faf187367a7b72b653d44af953b21d3a362b9c3449c2cc7e0dedada5151eed7cc3cd858df1472223e91a72c8a18f1a3d2b9834a971acfbc0b2a59052a5ecaeca0a27ee29f397d0c7e031d37ae97b39e2c29b619923a04a111a68e18a9d55667e0d7d47bdc3304ec45bef047f9bc17c0328d89414cf4f0d3f996efaba435193f6cd3ec79b10ea6ca60245d69b30e6309a33cdaa77b93b0a9968e71b26606c5322659b7048daca59785bd0130e371c116badbe135aa4202145e9ad166ecd43e428bd9f8d3036ba808193bfe9fbcfb5c787f367039e94d37b2af54acd604619f51a84d21cb03c9dfe3303c6070cecc33164e4f5ffb1735c60ff7d15917e93dd079248af790a73a105d2a620880ad3af252276977b011097bab5e344d97032bb177fd32999568d23c4d</script>
-</div>
-<script src="/daydoc/lib/blog-encrypt.js"></script><link href="/daydoc/css/blog-encrypt.css" rel="stylesheet" type="text/css">
-              
-
-              
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/daydoc/tags/C%E3%80%81algorithm/">#C、algorithm</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>algorithm by C</div>
-      <div>http://www.wqkenqing.ren/daydoc/2023/03/14/王阁/技术/编程/c/c_ algorithm/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>Author</div>
-          <div>Kuiq  Wang</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
-          <div>March 14, 2023</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>Licensed under</div>
-          <div>
-            
-              
-              
-                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/daydoc/2023/03/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/hive/2023/hive_learn/" title="hive学习">
-                        <span class="hidden-mobile">hive学习</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>Table of Contents</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
-</div>
-
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
-  </footer>
-
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
     })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/daydoc/js/events.js" ></script>
-<script  src="/daydoc/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
       }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
+      document.head.appendChild(link)
+    })
   
-    <script  src="/daydoc/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-  <script defer>
-    if (document.getElementById('hbePass')) {
-      Fluid.utils.waitElementLoaded('hbe-prefix', function() {
-        var hbePrefix = document.querySelector('hbe-prefix');
-        hbePrefix.parentElement.classList.add('markdown-body');
-        Fluid.utils.retry(function() {
-          if (Fluid.boot && Fluid.boot.refresh) {
-            Fluid.boot.refresh();
-            return true;
-          }
-        }, 100, 10);
-      })
-    }
-  </script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
         }
       }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
         }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
       }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/daydoc/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/daydoc/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
-  </noscript>
-</body>
-</html>
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/daydoc/archives/"><div class="headline">Articles</div><div class="length-num">201</div></a><a href="/daydoc/tags/"><div class="headline">Tags</div><div class="length-num">86</div></a><a href="/daydoc/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/daydoc/" title="wang's dayliy document"><span class="site-name">wang's dayliy document</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">algorithm by C</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-03-14T02:34:36.000Z" title="Created 2023-03-14 10:34:36">2023-03-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-09T06:57:51.510Z" title="Updated 2023-05-09 14:57:51">2023-05-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="algorithm by C"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="8d2f672111f5a6d8b57120515a75daadcaaaa71da6b0331517d7fbd439f9ce8a">c53f42a1e5e13d1b4f230ee1f4a7563d8fa2e431fc6b41b49d4f13ec0b9cef9d4ccc78869517ee141066091f9b2ba91e6e1c5b7bd86d3d3f4c0dad709acb46b19af980c68d37baf02af290ee3a41c90fdc4ce6bcd22a48e7e1e761af5634b89b34479c67b2c3f269e04f9cba685fcf910bc0c8768f79e2c0e8d38e0eba2ed37dd3d3434c52689a761fec7ef52a6cc80398acfedb3375cd79418e9d840b613d6e70f549630bc94667bb3ba26cdc65493a818b258d17005d1c0c2e039009c471b68a2b56e21f0cc6323b82c9345f6d5e4d85494d8a546e55814daa5a4817d0709fa0972430e122a814aacf1e6ead48ab3e89fe6c7145242ddefe915ace18e62d88305fcc0664c3c5e4d75405fdf5a07fcfee303a37b839acf3d6976983160b2eb0d5982ad1b72387eb2f023a6a9cb0e2db2303597d1bfa8f04e8a8b4af94bd00f2f3d77da72ed768fb9252a65764a26cf32c18f846a70e06c210ae02372e2eda50bf999e5841c2face8e1e8631b2be2b9ab4607bddb944257dbf152d737995d8f8f149f5c88551a97f8610f7e761ed41d4487d24427141233a7f57cac6f5751a554d7f7bc33a1ac1b0962c275dc77dd0f2065a5bb6c0ad94eaa17826ae136a00e504abf3effe1d7ed00abf5f0bfb315d3a1bcda6498ffef20a0d5098d363dda889c33ae385e7e3c7a016f9a4169f7c8f66016e301e8e272db15e61f4f0ad9c7a0a06eb1474bc2ac65ec62510d12b3eeb5d34795e3ce20602fe4c63c44a969cd0819a8f149e49c028421345bf2e7d9c45a625be557fbb72b70296214fed4593863530b04ec00f0bf780d47d66e72d08d9f614599a2df41d35a2466b8ea227c481ca6cc13a4c31c296316c9a529f4a1ee6bf797770a383ac38c9ecc84ef42914b9518d62d78bb47e6ebe700ce52d491826907e164d9a3953b5899b3467940d3953dc2d1d500bb8c9bc172e31e1ebb8fa3d7091e29179dbafdbedba82d3dbbbca902a12110ddc4453ada02be6237669c9328edf2413565aaa34111d99b588b134c7b6c87c84a11d445b1dbccf806b977fb38bf7d7975ed38ea21e9a3b9bff828be61442ad56eb82fc5224ea9da2d461116c62f5f075e428880f1dba9841fb1e4d37e2d07abf69101954b2c09bdbd7ad71d75af915fd03fba287bd783fe77483814e0af57bbb78ced1de368a533d9c7564ded90fd6992b0e33aac6d1991e15a2abdc260be7089998fbebc0e5d1c595c6e554bc4cbf214314fff5bf49ebc70854a52e44adaa23622dbbc01624a302aacde18b1a85a91f99f151d53a89ac24531bdf4907ef37420570bcaf0dc3267ec7b391b41dad4740bbd759209010b0555a7075435f2ac8be93f8d73630f99b938472307bb732f11e040c6daed48b88ccd53ee13b36f487ca2c5627b7d1c77faae7c3ef54e53abfdd30b455045d84d87e1eaa3a64c39343711bcc1fbb1630a9fce578accdd3229060f2b7461f9f48765679d4e6382289ac7801a388745804a246f6702fef175d3f6c44bd216a24c2b72cefb078c15424f7792659c70cba1ee0e43f93072e3ddd39d87a7e34e0ef70e6e2a6f7aafad36fb7c30cf3682ec662272c1a827ab22691b4eb70bd477e77f8c9fd449400cf7a6710d1b84d3f24f6e9bce2967a2e2f311192648a6596fde6d37070a254b6db6a07e610288124c3b3b9443a078ab3055f1f6665b3cfc60ce8bc3a21636a43ef8ae4a9b56b701149e626958ee29d38bb8ac1630d3561061064e64ed1484a936d7fc1f6bca606ea665c3c98c9d459ba1df750e5d10f18f6b985c42d1292c3f3f901d3306149d851d52183b27c0ca132e523bf8da716e8ca13892d0b99a6d170b4a88cb23619dbcb4fa41c9cd0a534be8bbee1dd859c7b06af6f912900db09e810323fc05fdca4c067b2e52a6e5bb09b9a6a2473b70422ab9ef37802d7fd55984ea64320cb55a51243652b5bc754963fd22b760717991cb90ee3735ea3328357a76c259131659fecb01d5aea308e57666c690a3b52953cd9880aa8891cc225e614221ac056f2bb6ac67ba06e1dbe6266480422bee22655782290039ebecce734619898965ce2ed87e6f44ce71425b73f896ab6a1926315efdb7152178c31a280e2112f83425897ccb9afeb2eeb98fe1d8ceb79abeee05c90fea61247fb877295beb5b83f8859b0ae4ece10bba49740b831fdd1da97cbee86950e95bc968784ea45b5264d2ab6d29efa5e1da8dd380825494751af33e117450f930f195dfc936971cb7de3ec1f21925fe39a7ec8412ffd537870fc5ef25a5973ba649f7215abca24d08e71b581a40b7cb124fe37abcdf7742a11f23883b4c01a72c389b16a5b4b79ea0e9850f8643a49f4e4017450b60c46fc4c3d79e05eaa5d0e85b8d8abc7e21af9757c416c3540768492b91f43633f1a5f4f846acfbac9e2e0752b1f2396130a775e313f5eec3bc3c9d8d4ebff33bbfe89b8bec1af0cdb98c60fedcb1a0290218cdae936f855d187341497e15d4cbdc474f81276d3571fdfe9aa54b21aa1e2f7e66da81d3546dacadb45591fec47f2fb0ec4b950536db85a5adae08123fe2c8f89f1f1844b80189ba4eced4638a0d38cc7a27f2069d59ea1b981e6d0089182614b987d6b5db16bb2a3858bbf69a305388d9f579a90b32f65c5f5d2a3927e38b7e927f5d743fa7a950a778079debbc2d6e6f5f9bf2972e48c8d46b89bbc472356d6016eceeb2bf1daf82d6a6c4f790aac549ed2c3ea7c934b569ee5a49758c276be4e0e2f2d34b82f1194dea393b10a9576ca1aeca2c8c92e85d9a47255d2718252c073c959ec8ea94bca4113390850900d5acebd9fe026e2e56122dadeaebffa4e6052ab7eea4f26bdceaaaf10523922fb890c2d7c7fb6b413be8f2607015627746a26e5fb0a8726e8763393d8b9f987cf2be3bce296e6109c70e9078f534d42292ffba3f45ba5286b32efcaad0bd7770694bf44df171b8a748d9b9d8b0d42a9188a6137f1bfbfa0e8986c66b14614310896803ec5d8bcc7c9367c8d1a3ffb0c142e4e502a3f86df8e43aade3479b5cfcc02b90a097c8c67529fe7d2905bd63328e6c5de7945d287aecd7154b875e4c3410c1f3a45200126e9b20499ee0d84ae47d9ab71c91ad7814841b35d1722ec210731490f95d98b1307dd09be0b6d64a1f1c0cfbf781be46dc5bf4b1161dae60aef2728241b3a7bfbfd5c922f8fb4e74a46df872023f9aec707bb88a441192670a3095d3528f7112fdead266053e8206ea58bde1ed533e30958011c7a90e17ae2ea105fb118d70bcebb6d1ad8b432c0ade5e69a297fd3c8b3fc9350a0d8e95327eb8fbc3bc3f18145707a25c8255ea865d294b33166f3887f50381c22641d7d093df13eff297857f4792799afd666d8af9a4aafe4fff3f908ffe6b1a3a5494f8cca7c41fe25defb55a78ab772a8f3430da12d8c7642979666250658bb98f136dcda6b8cfa5ee2a3a9cfbbe00bc6bc9afc2e29fad1cd244e1e34fcf5c4e9dfd56a64f592dd4600c10a83e266150d33490cae07694081e8928e6a39fc4469a7689fd0b938ec8e798447d581ef9a1d7b473b06085894241d9a046078d88f76040958423e3886cd4769f78e53ac6e3a4a39fc6b243751dd3782d847791f1602f5266c8067602e4bd1af5e6d26f604a746e1edbda2628ba47d46336225f86a66d60b175c77c265cf48fd616cfbda4de9e57bfd513fa4823f70fbefe3a8615cb5e4909f5108c1dc890135637c108711577d1f2f189bdaa20b41c2f082d27d2a66c0a36a66bf33ef391a8730474464b4c4d6b267e7babe39e5fbdba28f82fdc4ef89e73b2e695c3a337ed1a5742439f68abcb014e7859f6d3bf0347a3b3b27b255b8a7dcf3b24e5854f0c77f577fc4bf28c4d7e289f1c18437809da3825df2aeec2d3d2c49c7820922ea2630cf6da9d6f52356a7716c4901f1598c263408ffd41bec5ee56de03325d81752c52c2c0046615558d80e3612e1478e22ae5225e11d46e6bbae562127a538b39d837118695d2ea457b97e2208a26af99a9410ae27d8aa307a429c5f546bb25c74b8992e3760c06fefbcbd0bfee1dc16515ab86cf6d1ef155f004ddfd9c565a50aa14031d65262ccabd58db691d133fb3021474817e6059419adf3dce5d88e61bc4dbad2a142c9e0d1db81ff4b4a6ccb7b38003883235625628844174116a4b8958aada55f7813e31b288ebab50207bff5d134aad922fa164fe6a76e57ae7c010658a13e4dadc73a4fe60e14c056009fdb124138464e0422725b1d59706298afe8ba97e8483b477eb25f1588b334bbfe0b8bd72853bc327903ecb4949de609bff5e1602aebc7eb0710e274f9a37ef4b19cad86b5ba36b014673b981fab060ec8ad6737f76c079721705e94f47e2ba051598616b65c37c08e5d33cd82fde0131d4139ca0b61aa5270cbb02778d52817ce38191f5983bb80cc4eb8e542441c2cd9710267753e805161c16cba951b9f30ed6f521718b1e5b8abe1d6c291694d7f5e8488948d313adb648bc87ecb28d526cd4b7ca23d57e11995801c0d373a83d2bd7e00b2b77fdd04d9d2584610488ba1a7528f8814edd3e5286eaeb18275dadd1c7ec4275acea9d1dd9f010ecb5e5ad53642ba945e6ebb20ce8c840571c671339d21e6743f4585f2b8e4517c</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/daydoc/lib/hbe.js"></script><link href="/daydoc/css/hbe.style.css" rel="stylesheet" type="text/css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://www.wqkenqing.ren/daydoc">Kuiq  Wang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://www.wqkenqing.ren/daydoc/2023/03/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/c_%20algorithm/">http://www.wqkenqing.ren/daydoc/2023/03/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/c_%20algorithm/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/daydoc/tags/C%E3%80%81algorithm/">C、algorithm</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/daydoc/2023/03/21/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/flinkSql/flinksql/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/daydoc/2023/03/09/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/c_learn/" title="c learn"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">c learn</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/daydoc/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kuiq  Wang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/daydoc/archives/"><div class="headline">Articles</div><div class="length-num">201</div></a><a href="/daydoc/tags/"><div class="headline">Tags</div><div class="length-num">86</div></a><a href="/daydoc/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content toc-div-class" style="display:none"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%9A%E8%BF%87C%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%84%E7%AE%97%E6%B3%95%E7%9A%84%E5%BA%94%E7%94%A8%E3%80%82"><span class="toc-number">1.</span> <span class="toc-text">通过C实现一些常规算法的应用。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Algorithm"><span class="toc-number">2.</span> <span class="toc-text">Algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">2.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-number">2.2.</span> <span class="toc-text">线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text">线性表的抽象数据类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91"><span class="toc-number">2.3.</span> <span class="toc-text">树</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/ds/" title="数据结构专题">数据结构专题</a><time datetime="2023-05-17T07:17:53.024Z" title="Created 2023-05-17 15:17:53">2023-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/05/05/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/%E6%A0%91/" title="树">树</a><time datetime="2023-05-05T08:15:41.506Z" title="Created 2023-05-05 16:15:41">2023-05-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/04/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/tree/" title="树">树</a><time datetime="2023-04-19T09:12:21.121Z" title="Created 2023-04-19 17:12:21">2023-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/04/03/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/python/" title="No title">No title</a><time datetime="2023-04-03T06:10:14.233Z" title="Created 2023-04-03 14:10:14">2023-04-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/03/29/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/C%E5%A4%8D%E8%AF%95/" title="No title">No title</a><time datetime="2023-03-29T05:53:31.174Z" title="Created 2023-03-29 13:53:31">2023-03-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Kuiq  Wang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/daydoc/js/utils.js"></script><script src="/daydoc/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="zh-Hans" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>数据结构专题 | wang's dayliy document</title><meta name="author" content="Kuiq  Wang"><meta name="copyright" content="Kuiq  Wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构专题">
+<meta property="og:url" content="http://www.wqkenqing.ren/daydoc/2023/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/ds/index.html">
+<meta property="og:site_name" content="wang&#39;s dayliy document">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-05-17T07:17:53.024Z">
+<meta property="article:modified_time" content="2023-05-17T09:20:56.658Z">
+<meta property="article:author" content="Kuiq  Wang">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/daydoc/img/favicon.png"><link rel="canonical" href="http://www.wqkenqing.ren/daydoc/2023/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/ds/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/daydoc/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/daydoc/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据结构专题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-17 17:20:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/daydoc/archives/"><div class="headline">Articles</div><div class="length-num">201</div></a><a href="/daydoc/tags/"><div class="headline">Tags</div><div class="length-num">86</div></a><a href="/daydoc/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/daydoc/" title="wang's dayliy document"><span class="site-name">wang's dayliy document</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数据结构专题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-17T07:17:53.024Z" title="Created 2023-05-17 15:17:53">2023-05-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-17T09:20:56.658Z" title="Updated 2023-05-17 17:20:56">2023-05-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据结构专题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="a38f6fbc2ad9ba6bace8d1258ec6ddec7d4f8c8590d201fa78512876f7065480">c53f42a1e5e13d1b4f230ee1f4a7563dbd574dc5438568c4bf77c2c2bfe8fbbe04fe9ab10f0647ab41eba50d6d4f110f7ee6f37c66de52074eee705beb5c2f0a91d3587092c391e266aafa9ef8f13515b409223e7ef086122ac4b98635a3f3096edecc5bc9eb8a6455f2d81581fcf4ef71577db9cf658897ccc79450ae66434f493251f4e1e9cb5a5bdd809ab33216b654b2e978d52e9c92704f9d81461290a2d6f2180ba3eeeba67d39cf2f8a48f74bb9c6d49e37864a2b4d854a3cfaffae53ea66e19a3666821f407303140ce0e5003a68e116b65a3f25a5de7585f86fe24f919dd44ea02d930e23c1a9f09f9935b28d2a985b51bcf2b13f8f67c9530238a0375c992cfa61b3be0d004112d4d8a0bdae9e86e17e02fe65a48129e04f1e6fe318c3d1d42fa0d9b8a9b1a062c3d08699d0ad50c18e319c424d92c3f244e744ff6a8deb4b99b66034d6d23324c373fce66c6adb089c8e6957a28255509ec333517e765f023f9afe90b1e288edd623c45c7d0c9214f2c2c094882af3f6d257a2ecfdc63c497f1fa5cc41055e9a09d43d068a5205e4f823060be5bc1f5913bdb17102320af00d196c81cf44f93ba407a62caeacd0a80e5f469c3fbe2c6d047ba9fa99ccfee0bc99cb01663584521fc5b66c6583c927319452be4697be84ddf660089829ad6e6c5073220a0cf205974d345a71b025942e562c6e7c1707ccb8305b5e4b72c8a71f8c384b2223bc87d4dd40fdaa801a3f003e9c9b7291ad82e4c3e9c0e14b3a7ad7cfb519106e27bff1db091d06de8361ed560e8f438db6226a194f4004304d90881a0b5ca0ea4d16fe345a672d3866374247d0c59d5e070cee7f1c84a9afac5c56319a0d701a9f9d461c5ef4e74b6a4b1390d5b18d23d37ee63acbdda210fadca797a2b2a65c27cdcbac5d03f29ef3da3ad467d802d8e2637787292b47ddbfff5943e08e1fd43baf491fe1b74b989e16d6d2e9af30d7124fb0a22ccd843b0560c07a14171db293adb5e8b3044c9fbc56db94387d87fcb486fc5fb4e658c356ef515cebc116c4fdbb6d38ebe6372484e2d2070f160ba622623d381666c768f6bf3edc303bd5b949881182ece12bce7befca580c3cfa8a19226ab999020ada1c35451b00aad3b5e714eacedb9a7569f0fcb9e5e834d6a2d3d759b3f07462779cdcfa1c231818375ff34db96351273af3680c66ad95579eaecc8508d00c9ecbd4e1de5d391f06cd45b4be7940aa9070ba2c980b20f9036c8cb2ae6ab70a9f4046704f88e9b3698db4f3721a68534304c18d1ac0707d461bcde90f9fd194311ddb2af98160b9f3b3ec6994292f1f7061d3921f6b9214050a4334084bde7dd80572eb67a9a7d7e319f42476196e96e9a08d439a6d2d33fd35052a647dcb0c7d6cda01be6a6630b3c2ee5bb0fdb3886e279b16000c8cedc5f36790594bf0c6678fb1c19bef3803d9f527a18236879b3d4a59c03426c49cd1fd331eba55a2f545aaa989cc2963ee0fb800535332d5790dd97e705397405e541d2fa33b3a0752b9b22dc535bebd7276b4516bcba6baf8ced12dc64bff5f9cc5ec1a9b1c03bc8ffea3d0bd354d013aaa1785dd08885470237a3b8d4e4cdd9c9bac3d315d9bc62a56f05950b79b7a5acab179f3f5960867de61a0c445bdb187c08d5ee445716695e1a7661357a85cddd51e437026c60c59be3612a654cce54024d74791036c8a59a6004072895c057bdea2b9f928c8a67467569a8a2f0fcf092842a12fe93fcee8baae92f82d5c10dbd7c2a75b4ec8cc95a0d82ef67410345b91cae90a6e83d3bc196a86efd4fe868002ef121596920a9b066a91fe80760cf1274465d905317f7cdef366bad3b6ae82cb3caaefe000ec465ed5ce8ea37d0026ce19e663b64291a136be15a660377e960b89d6b5f001b292c3969e4495b0e890afd4bfa5e0fdb82b3d5978c92eae0ea578f10c9a0d2c6b1d2f12a1146832744f14402bc05eebeb7f23d5489334a5f38c5beda22cdda18d6d</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/daydoc/lib/hbe.js"></script><link href="/daydoc/css/hbe.style.css" rel="stylesheet" type="text/css"></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://www.wqkenqing.ren/daydoc">Kuiq  Wang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://www.wqkenqing.ren/daydoc/2023/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/ds/">http://www.wqkenqing.ren/daydoc/2023/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/ds/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/daydoc/2023/05/05/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/%E6%A0%91/" title="树"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">树</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/daydoc/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kuiq  Wang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/daydoc/archives/"><div class="headline">Articles</div><div class="length-num">201</div></a><a href="/daydoc/tags/"><div class="headline">Tags</div><div class="length-num">86</div></a><a href="/daydoc/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content toc-div-class" style="display:none"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%93%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">数据结构专题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%A2%B3%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">1、数据结构梳理</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/ds/" title="数据结构专题">数据结构专题</a><time datetime="2023-05-17T07:17:53.024Z" title="Created 2023-05-17 15:17:53">2023-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/05/05/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/%E6%A0%91/" title="树">树</a><time datetime="2023-05-05T08:15:41.506Z" title="Created 2023-05-05 16:15:41">2023-05-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/04/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/tree/" title="树">树</a><time datetime="2023-04-19T09:12:21.121Z" title="Created 2023-04-19 17:12:21">2023-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/04/03/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/python/" title="No title">No title</a><time datetime="2023-04-03T06:10:14.233Z" title="Created 2023-04-03 14:10:14">2023-04-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/03/29/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/C%E5%A4%8D%E8%AF%95/" title="No title">No title</a><time datetime="2023-03-29T05:53:31.174Z" title="Created 2023-03-29 13:53:31">2023-03-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Kuiq  Wang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/daydoc/js/utils.js"></script><script src="/daydoc/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
