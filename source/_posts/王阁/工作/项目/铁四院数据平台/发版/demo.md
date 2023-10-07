@@ -145,4 +145,4 @@ user_item_role
 | enterprise_honor_attachment             | 四院信息-企业荣誉附件 |
 | enterprise_engineering_award_attachment | 四院信息-工程获奖附件 |
 | professional_attachment                 | 四院信息-职称情况附件 |
-| `                                       | 四院信息-资质荣誉附件 |
+|                                         | 四院信息-资质荣誉附件 |

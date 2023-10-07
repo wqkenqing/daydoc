@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>视频播放</title>
+</head>
+<body>
+    <video id="video" controls width="640" height="360"></video>
+
+    <script>
+        // 获取video元素
+        var video = document.getElementById('video');
+
+        // 设置视频源
+        video.src = 'https://cmgw-vpc.lechange.com:8890/LCO/6L0C7D0PAN9419D/0/1/20230912T083933/ab5e94aec96f9251a117575a52072512.m3u8?proto=https';
+
+        // 添加点击事件处理程序，当用户点击时触发播放
+        video.addEventListener('click', function () {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    </script>
+</body>
+</html>

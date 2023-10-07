@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>视频播放</title>(base) wangserver@wangserver:~/notion$ ls
+    notion.py  run.sh
+    (base) wangserver@wangserver:~/notion$ crontab -e
+    crontab: installing new crontab
+    (base) wangserver@wangserver:~/notion$ clear
+    (base) wangserver@wangserver:~/notion$ crontab -l
+    # Edit this file to introduce tasks to be run by cron.y#
+    # Each task to run has to be defined through a single line
+    # indicating with different fields when the task will be run
+    # and what command to run for the task
+    #
+    # To define the time you can provide concrete values for
+    # minute (m), hour (h), day of month (dom), month (mon),
+    # and day of week (dow) or use '*' in these fields (for 'any').
+    #
+    # Notice that tasks will be started based on the cron's system
+    # daemon's notion of time and timezones.
+    #
+    # Output of the crontab jobs (including errors) is sent through
+    # email to the user the crontab file belongs to (unless redirected).
+    #
+    # For example, you can run a backup of all your user accounts
+    # at 5 a.m every week with:
+    # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+    #
+    # For more information see the manual pages of crontab(5) and cron(8)
+    #
+    # m h  dom mon dow   command
+    0 9 * * * /bin/bash /home/wangserver/notion/run.sh
+    0 20 * * * /bin/bash /home/wangserver/notion/run.sh
+    (base) wangserver@wangserver:~/notion$
+    
+    
+    
+    
+    
+</head>
+<body>
+    <video id="video" controls width="640" height="360"></video>
+
+    <script>
+        // 获取video元素
+        var video = document.getElementById('video');
+
+        // 设置视频源
+        video.src = 'https://cmgw-vpc.lechange.com:8890/LCO/6L0C7D0PAN9419D/0/1/20230912T083933/ab5e94aec96f9251a117575a52072512.m3u8?proto=https';
+
+        // 添加点击事件处理程序，当用户点击时触发播放
+        video.addEventListener('click', function () {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    </script>
+</body>
+</html>

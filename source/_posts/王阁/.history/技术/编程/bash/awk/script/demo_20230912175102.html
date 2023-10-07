@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>视频播放</title>
+    <link href="https://vjs.zencdn.net/7.16.4/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/7.16.4/video.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/5.15.0/videojs-contrib-hls.js"></script>
+</head>
+<body>
+    <video id="video" class="video-js vjs-default-skin" controls width="640" height="360"></video>
+
+    <script>
+        // 获取video元素
+        var video = document.getElementById('video');
+
+        // 初始化Video.js
+        var player = videojs('video', {
+            autoplay: true,
+            preload: 'auto',
+        });
+
+        // 使用videojs-contrib-hls插件来支持HLS流
+        player.src({
+            src: 'https://cmgw-vpc.lechange.com:8890/LCO/6L0C7D0PAN9419D/0/1/20230912T083933/ab5e94aec96f9251a117575a52072512.m3u8?proto=https',
+            type: 'application/x-mpegURL'
+        });
+    </script>
+</body>
+</html>

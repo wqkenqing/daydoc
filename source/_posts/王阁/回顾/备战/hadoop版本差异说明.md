@@ -1,0 +1,78 @@
+### hadoop 生态组件
+
+### 1.1.1 hadoop 各版本之间的比较
+
+我们按迭代来描述hadoop的版本分类，大致可以分为三类。1.x，2.x，3.x
+
+#### 1.x与2.x的比较
+
+1. 组件区别
+
+   hadoop1: hdfs、mapreudce1
+
+   hadoop2: hdfs、mapreduce2、yarn
+
+   | **Hadoop 1** | **Hadoop 2** |
+   | :----------: | :----------: |
+   |     HDFS     |     HDFS     |
+   |  Map Reduce  | YARN / MRv2  |
+
+2. 进程区别（运行时的相关进程）
+
+   |      Hadoop 1      |      Hadoop 2      |
+   | :----------------: | :----------------: |
+   |      Namenode      |      Namenode      |
+   |      Datanode      |      Datanode      |
+   | Secondary Namenode | Secondary Namenode |
+   |    Job Tracker     |  Resource Manager  |
+   |    Task Tracker    |    Node Manager    |
+
+3. 运行区别
+
+   hadoop1中hdfs用于数据存储、mapreduce用于计算与调度，这也是为什么会有job Tracker的原因。hadoop2中，hdfs用于存储、mapreduce用于计算、yarn用于资源调度。
+
+   ![img](http://img.wqkenqing.ren/typora_img/Working-of-Hadoop-1-and-Hadoop-2-20230814160228273.jpg)
+
+  4. 架构区别
+
+     Hadoop 1 是主从架构。它由一个主站和多个从站组成。假设如果主节点崩溃，那么无论您的最佳从节点如何，您的集群都将被破坏。同样，创建该集群意味着在另一个系统上复制系统文件、映像文件等非常耗时，这在当今的组织中是无法容忍的。
+
+      Hadoop 2也是Master-Slave架构。但这由多个主节点（即活动名称节点和备用名称节点）和多个从节点组成。如果这里的主节点崩溃了，那么备用主节点将接管它。您可以对主备节点进行多种组合。因此Hadoop 2将消除单点故障的问题。
+
+5. 生态介绍
+
+![img](http://img.wqkenqing.ren/typora_img/Ecosystem-of-Hadoop-1-and-Hadoop-2-adsd-20230814160229136.jpg)
+
+至此，是1.x与2.x的一些简单区别。 
+
+---
+
+#### 2.x与3.x的区别
+
+[2.x与3.x区别](https://data-flair.training/blogs/hadoop-2-x-vs-hadoop-3-x-comparison/)
+
+| S.No. |             Feature              |                          Hadoop 2.x                          |                          Hadoop 3.x                          |
+| :---: | :------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|   1   |             License              |    Apache 2.0 is used for licensing which is open-source.    |    Apache 2.0 is used for licensing which is open-source.    |
+|   2   |  Minimum supported Java version  |          JAVA 7 is the minimum compatible version.           |          JAVA 8 is the minimum compatible version.           |
+|   3   |         Fault Tolerance          | Replication is the only way to handle fault tolerance which is not space optimized. |     Erasure coding is used for handling fault tolerance.     |
+|   4   |          Data Balancing          |          HDFS balancer is used for Data Balancing.           | Intra-data node balancer is used which is called via HDFS disk-balancer command-line interface. |
+|   5   |          Storage Scheme          |                3x Replication Scheme is used.                |                uses eraser encoding in HDFS.                 |
+|   6   |         Storage Overhead         |            200% of HDFS is consumed in Hadoop 2.x            |   50% used in Hadoop 3.x means we have more space to work.   |
+|   7   |      YARN Timeline Service       |        Uses timeline service with scalability issue.         | Improve the time line service along with improving scalability and reliability of this service. |
+|   8   |           Scalability            | Limited Scalability, can have upto 10000 nodes in a cluster. | Scalability is improved, can have more then 10000 nodes in a cluster. |
+|   9   | Default Port Range (32768-61000) | Linux ephemeral port range is used as default, which is failed to bind at startup time. |       Ports used are out of this ephemeral port range.       |
+|  10   |     Compatible File System.      | HDFS(default), FTP, Amazon S3 and Windows Azure Storage Blobs (WASB) file system. | All file systems including Microsoft Azure Data Lake filesystem. |
+|  11   |        Name Node recovery        |   Manual intervention is needed for the namenode recovery.   |    No need of Manual intervention for name node recovery.    |
+
+
+
+相比较之下，3.x主要更新了容错能力的实现方式，这带来的效果是致存储等相关性能的提升。之前容错取决于replica.factor（备份因子），常用的默认值是3。所以导致存储开销是正常的两倍，同时还有一些如网络IO的开销，对系统带来了更多的开销，且因为数据分冷、热的关系，有较多的数据是冷数据，使用平次很低，我们相当于用了N倍的开销，取得了n分之1的收益。
+
+**3.x实现的容错的方式-Erasure coding**
+
+[Erasure coding](https://data-flair.training/blogs/hadoop-hdfs-erasure-coding/)
+
+[Erasure coding](https://www.modb.pro/db/115757)
+
+[difference](1. 1 https://sqlrelease.com/difference-between-hadoop-1-x-hadoop-2-x-and-hadoop-3-x)

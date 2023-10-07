@@ -100,3 +100,129 @@ docker run  -d -p 9000:9000  --name myminio -e "MINIO_ROOT_USER=minioadmin" -e "
 
 ```
 
+
+
+
+
+```
+kubectl set image deployments/pre-sxsddsj-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_web:v11303 
+```
+
+```
+ kubectl set image deployments/pre-sxsddsj-main app=registry.lisong.pub:28500/sxsddsj/main:v11305
+```
+
+
+
+6.12
+
+```
+kubectl set image deployments/pre-sxsddsj-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_web:v11386   
+```
+
+```
+ kubectl set image deployments/pre-sxsddsj-main app=registry.lisong.pub:28500/sxsddsj/main:v11378 
+```
+
+
+
+```
+ kubectl set image deployments/pre-sxsddsj-big-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_big_screen:v11390 
+```
+
+
+
+
+
+6.28
+
+````
+ kubectl set image deployments/pre-sxsddsj-big-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_big_screen:v11416  
+````
+
+```
+kubectl set image deployments/pre-sxsddsj-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_web:v11417
+```
+
+
+
+7.5
+
+```
+ kubectl set image deployments/pre-sxsddsj-big-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_big_screen:v11419
+  
+```
+
+
+
+
+
+7.21
+
+```
+kubectl set image deployments/pre-sxsddsj-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_web:v11521
+```
+
+````
+
+
+````
+
+
+
+```
+
+
+```
+
+```
+ kubectl set image deployments/pre-sxsddsj-auth-center app=registry.lisong.pub:28500/sxsddsj/auth-center:v11519
+```
+
+
+
+
+
+7.24
+
+
+
+```
+kubectl set image deployments/pre-sxsddsj-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_web:v11531
+
+```
+
+```
+kubectl set image deployments/pre-sxsddsj-main app=registry.lisong.pub:28500/sxsddsj/main:v11526
+```
+
+```
+kubectl set image deployments/pre-sxsddsj-data-dictionary app=registry.lisong.pub:28500/sxsddsj/sxsddsj-data-dictionary:v11525
+```
+
+```
+
+```
+
+7.25
+
+```
+kubectl set image deployments/pre-sxsddsj-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_web:v11543
+```
+
+```
+kubectl set image deployments/pre-sxsddsj-main app=registry.lisong.pub:28500/sxsddsj/main:v11542
+```
+
+9.8
+
+```
+ kubectl set image deployments/pre-sxsddsj-big-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_big_screen:v11923  
+```
+
+10.7
+
+```
+ kubectl set image deployments/pre-sxsddsj-main app=registry.lisong.pub:28500/sxsddsj/main:v12049
+```
+

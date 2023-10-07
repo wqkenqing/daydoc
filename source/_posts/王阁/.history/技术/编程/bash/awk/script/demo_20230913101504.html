@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>直播播放</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <video id="video" controls autoplay width="640" height="360"></video>
+    <button id="playButton">点击播放</button>
+
+       
+    
+    <script>
+        
+ // 获取video元素
+var video = document.getElementById('video');
+
+// 用户点击时，触发播放
+video.addEventListener('click', function () {
+    video.play().then(function () {
+        // 播放成功
+    }).catch(function (error) {
+        // 播放失败，处理错误
+        console.error(error);
+    });
+});
+
+
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource('https://cmgw-vpc.lechange.com:8890/LCO/6L0C7D0PAN9419D/0/1/20230912T083933/ab5e94aec96f9251a117575a52072512.m3u8?proto=https');
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                // 播放器已准备好，可以播放了
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // 如果浏览器支持原生的HLS播放
+            video.src = 'https://cmgw-vpc.lechange.com:8890/LCO/6L0C7D0PAN9419D/0/1/20230912T083933/ab5e94aec96f9251a117575a52072512.m3u8?proto=https';
+            video.addEventListener('loadedmetadata', function () {
+                // 播放器已准备好，可以播放了
+                video.play();
+            });
+        }
+     
+    
+    </script>
+</body>
+</html>
