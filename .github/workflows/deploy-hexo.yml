@@ -21,10 +21,12 @@ jobs:
         
     - name: Install and Build 🔧 
       run: |
+	npm install -g hexo
         npm install -g hexo-cli
         npm install
         hexo clean
         hexo generate
+ 	hexo deploy
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
