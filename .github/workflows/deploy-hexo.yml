@@ -25,11 +25,4 @@ jobs:
         npm install
         hexo clean
         hexo generate
-        #hexo deploy
-
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: master
-        FOLDER: public
+        hexo deploy

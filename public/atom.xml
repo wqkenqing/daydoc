@@ -105,6 +105,27 @@
   
   <entry>
     <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%94%B9%E9%80%A0/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%94%B9%E9%80%A0/</id>
+    <published>2023-10-14T02:58:25.925Z</published>
+    <updated>2023-10-14T02:58:25.925Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="组件安全升级"><a href="#组件安全升级" class="headerlink" title="组件安全升级"></a>组件安全升级</h2><blockquote><p>洪雅项目发生了elaticsearch被黑客入侵事故，事后分析，主要跟我们内部安全策略不强也有关系，接下来对相关组件进行安全升级</p></blockquote><h3 id="1-问题分析"><a href="#1-问题分析" class="headerlink" title="1 问题分析"></a>1 问题分析</h3><p>1.1 因为elasticsearch默认是9200、9300的端口开放，且默认是没有加安全组件的，我们的移动云服务器，虽然并未将相应端口外部暴露，如果是移动云内部，仍可能发生被扫描的爆破</p><h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><ol><li>加xpack安全组件</li><li>加防火墙策略<ol><li>只允许内部服务器访问</li></ol></li><li>升级es从6.7到6.8</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">我现在需要对部署在ubuntu上的elasticsearch服务进行端口防火墙策略，现在需要实现的策略是只允许</span><br><span class="line">192.168.18.100 namenode</span><br><span class="line">192.168.18.104 namenode2</span><br><span class="line">192.168.18.101 datanode1</span><br><span class="line">192.168.18.102 datanode2</span><br><span class="line">192.168.18.103 datanode3</span><br><span class="line">这几台服务器之前可以访问9200、9300端口</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 允许192.168.18.100访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.100 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.100访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.100 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.104访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.104 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.104访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.104 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.101访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.101 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.101访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.101 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.102访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.102 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.102访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.102 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.103访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.103 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.103访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.103 to any port 9300</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo ufw allow from 192.168.9.185 to any port 9200</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>centos</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 添加允许192.168.18.100访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.100 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.100访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.100 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.104访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.104 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.104访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.104 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.101访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.101 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.101访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.101 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.102访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.102 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.102访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.102 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.103访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.103 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.103访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.103 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET &quot;http://namenode2:9200/_cat/indices?v&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;组件安全升级&quot;&gt;&lt;a href=&quot;#组件安全升级&quot; class=&quot;headerlink&quot; title=&quot;组件安全升级&quot;&gt;&lt;/a&gt;组件安全升级&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;洪雅项目发生了elaticsearch被黑客入侵事故，事后分析，主要跟我们内部安全</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
     <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/"/>
     <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/</id>
     <published>2023-10-14T02:58:25.925Z</published>
@@ -166,27 +187,6 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%94%B9%E9%80%A0/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%94%B9%E9%80%A0/</id>
-    <published>2023-10-14T02:58:25.925Z</published>
-    <updated>2023-10-14T02:58:25.925Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="组件安全升级"><a href="#组件安全升级" class="headerlink" title="组件安全升级"></a>组件安全升级</h2><blockquote><p>洪雅项目发生了elaticsearch被黑客入侵事故，事后分析，主要跟我们内部安全策略不强也有关系，接下来对相关组件进行安全升级</p></blockquote><h3 id="1-问题分析"><a href="#1-问题分析" class="headerlink" title="1 问题分析"></a>1 问题分析</h3><p>1.1 因为elasticsearch默认是9200、9300的端口开放，且默认是没有加安全组件的，我们的移动云服务器，虽然并未将相应端口外部暴露，如果是移动云内部，仍可能发生被扫描的爆破</p><h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><ol><li>加xpack安全组件</li><li>加防火墙策略<ol><li>只允许内部服务器访问</li></ol></li><li>升级es从6.7到6.8</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">我现在需要对部署在ubuntu上的elasticsearch服务进行端口防火墙策略，现在需要实现的策略是只允许</span><br><span class="line">192.168.18.100 namenode</span><br><span class="line">192.168.18.104 namenode2</span><br><span class="line">192.168.18.101 datanode1</span><br><span class="line">192.168.18.102 datanode2</span><br><span class="line">192.168.18.103 datanode3</span><br><span class="line">这几台服务器之前可以访问9200、9300端口</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 允许192.168.18.100访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.100 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.100访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.100 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.104访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.104 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.104访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.104 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.101访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.101 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.101访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.101 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.102访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.102 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.102访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.102 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.103访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.103 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.103访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.103 to any port 9300</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo ufw allow from 192.168.9.185 to any port 9200</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>centos</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 添加允许192.168.18.100访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.100 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.100访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.100 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.104访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.104 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.104访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.104 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.101访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.101 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.101访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.101 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.102访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.102 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.102访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.102 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.103访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.103 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.103访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.103 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET &quot;http://namenode2:9200/_cat/indices?v&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;组件安全升级&quot;&gt;&lt;a href=&quot;#组件安全升级&quot; class=&quot;headerlink&quot; title=&quot;组件安全升级&quot;&gt;&lt;/a&gt;组件安全升级&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;洪雅项目发生了elaticsearch被黑客入侵事故，事后分析，主要跟我们内部安全</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
     <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/"/>
     <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/</id>
     <published>2023-10-14T02:58:25.924Z</published>
@@ -220,6 +220,19 @@
   
   <entry>
     <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/</id>
+    <published>2023-10-14T02:58:25.924Z</published>
+    <updated>2023-10-14T02:58:25.924Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
     <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/"/>
     <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/</id>
     <published>2023-10-14T02:58:25.924Z</published>
@@ -233,24 +246,6 @@
     <summary type="html">&lt;p&gt;account: wqkenqing&lt;br&gt;password:125323wkQ$&lt;/p&gt;
 </summary>
       
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/</id>
-    <published>2023-10-14T02:58:25.924Z</published>
-    <updated>2023-10-14T02:58:25.924Z</updated>
-    
-    <content type="html"><![CDATA[<hr><h2 id="title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理"><a href="#title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理" class="headerlink" title=" title:  jumpserver体验 date: 2020-07-28 tags: [jumpserver,资产管理]"></a> title:  jumpserver体验<br> date: 2020-07-28<br> tags: [jumpserver,资产管理]</h2> <span id="more"></span><p> # jumpserver体验</p><p> ## 一体化安装</p><p>mysql -uroot -e “create database jumpserver default charset ‘utf8’; grant all on jumpserver.* to ‘jumpserver‘@’127.0.0.1’ identified by ‘$DB_PASSWORD’; flush privileges;”</p><p>m6GgXgemmBw5B7om9uYqFSz3erVo0JCLO7Trxpo8S2bxazXk2Y</p><p>Vv42qLmxsEPUO4Kf</p><p>xLnAOS5Mc8cqRZ8QDxUzVQvZgxIRnJl73c0rE56WCSq8tYZQFG</p><p>ETNhIk9zu3fgN2pG</p>]]></content>
-    
-    
-    <summary type="html">&lt;hr&gt;
-&lt;h2 id=&quot;title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理&quot;&gt;&lt;a href=&quot;#title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理&quot; class=&quot;headerlink&quot; title=&quot; title:  jumpserver体验 date: 2020-07-28 tags: [jumpserver,资产管理]&quot;&gt;&lt;/a&gt; title:  jumpserver体验&lt;br&gt; date: 2020-07-28&lt;br&gt; tags: [jumpserver,资产管理]&lt;/h2&gt;</summary>
     
     
     
@@ -280,11 +275,16 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/</id>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/</id>
     <published>2023-10-14T02:58:25.924Z</published>
     <updated>2023-10-14T02:58:25.924Z</updated>
     
+    <content type="html"><![CDATA[<hr><h2 id="title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理"><a href="#title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理" class="headerlink" title=" title:  jumpserver体验 date: 2020-07-28 tags: [jumpserver,资产管理]"></a> title:  jumpserver体验<br> date: 2020-07-28<br> tags: [jumpserver,资产管理]</h2> <span id="more"></span><p> # jumpserver体验</p><p> ## 一体化安装</p><p>mysql -uroot -e “create database jumpserver default charset ‘utf8’; grant all on jumpserver.* to ‘jumpserver‘@’127.0.0.1’ identified by ‘$DB_PASSWORD’; flush privileges;”</p><p>m6GgXgemmBw5B7om9uYqFSz3erVo0JCLO7Trxpo8S2bxazXk2Y</p><p>Vv42qLmxsEPUO4Kf</p><p>xLnAOS5Mc8cqRZ8QDxUzVQvZgxIRnJl73c0rE56WCSq8tYZQFG</p><p>ETNhIk9zu3fgN2pG</p>]]></content>
+    
+    
+    <summary type="html">&lt;hr&gt;
+&lt;h2 id=&quot;title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理&quot;&gt;&lt;a href=&quot;#title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理&quot; class=&quot;headerlink&quot; title=&quot; title:  jumpserver体验 date: 2020-07-28 tags: [jumpserver,资产管理]&quot;&gt;&lt;/a&gt; title:  jumpserver体验&lt;br&gt; date: 2020-07-28&lt;br&gt; tags: [jumpserver,资产管理]&lt;/h2&gt;</summary>
     
     
     
@@ -368,29 +368,6 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A%E4%BF%AE%E6%94%B9%E6%84%8F%E8%A7%81/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A%E4%BF%AE%E6%94%B9%E6%84%8F%E8%A7%81/</id>
-    <published>2023-10-14T02:58:25.922Z</published>
-    <updated>2023-10-14T02:58:25.922Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><ol><li>增加对软件的评估</li></ol><h3 id="4、详细测试结果"><a href="#4、详细测试结果" class="headerlink" title="4、详细测试结果"></a>4、详细测试结果</h3><p>把测试用例按结果分类编写</p><p><img src="/daydoc/Users/kuiqwang/Library/Application%20Support/typora-user-images/image-20230719143839876.png" alt="image-20230719143839876"></p><h3 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h3><ol><li>按模块进行分类</li><li>用例名称-&gt;更改成一个测试方法类型</li></ol><h3 id="测试记录"><a href="#测试记录" class="headerlink" title="测试记录"></a>测试记录</h3><h3 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h3><p>缺陷与限制细分一下</p><h3 id="测试建议"><a href="#测试建议" class="headerlink" title="测试建议"></a>测试建议</h3><p>修改测试建议</p><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;测试结果&quot;&gt;&lt;a href=&quot;#测试结果&quot; class=&quot;headerlink&quot; title=&quot;测试结果&quot;&gt;&lt;/a&gt;测试结果&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;增加对软件的评估&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;4、详细测试结果&quot;&gt;&lt;a href=&quot;#4、详细测试结果</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
     <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92/"/>
     <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92/</id>
     <published>2023-10-14T02:58:25.922Z</published>
@@ -424,6 +401,26 @@
       
     <summary type="html">&lt;p&gt;成都旸谷&lt;/p&gt;
 &lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%8E%8B%E5%A5%8E%E6%B8%85%E7%9A%84%E5%8F%91%E8%A8%80/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%8E%8B%E5%A5%8E%E6%B8%85%E7%9A%84%E5%8F%91%E8%A8%80/</id>
+    <published>2023-10-14T02:58:25.922Z</published>
+    <updated>2023-10-14T02:58:25.922Z</updated>
+    
+    <content type="html"><![CDATA[<p>大家好，我是王奎清。入职旸谷四年多时间，司职研发部，从事大数据开发，运维等工作。此时此刻想说的话，有很多，但汇集起来，出现的是这四年多来的点点片段，如青岛胶州湾半岛上满山的癞蛤蟆，洪雅办事处因雨季湿润的床铺，汉口漏水的机房、济泺路现场路边的露天厕所，同时当然还有数不清楚的需求迭代、多个项目的紧急响应的夜晚，一幕幕深刻的回忆也都随之回显在我的脑海里。 回顾这些年，我对旸谷精神“危机与奋斗、梦想与坚持、读书与锻炼” ，在经历了这些年作为旸谷人实际的工作与生活，深以为然，感到深深的认同感。在此祝旸谷六周年生日快乐、未来朝朝日上</p><p>6.17号之后没有更新的数据</p><ol><li>IPGB</li><li>UPS</li></ol><hr><ol><li>车检器数据 (topic2)</li><li>情报板数据()</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;大家好，我是王奎清。入职旸谷四年多时间，司职研发部，从事大数据开发，运维等工作。此时此刻想说的话，有很多，但汇集起来，出现的是这四年多来的点点片段，如青岛胶州湾半岛上满山的癞蛤蟆，洪雅办事处因雨季湿润的床铺，汉口漏水的机房、济泺路现场路边的露天厕所，同时当然还有数不清楚的需</summary>
       
     
     
