@@ -85,7 +85,8 @@ theme: trees
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/wqkenqing/daydoc.git
+  #repo: https://github.com/wqkenqing/daydoc.git
+  repo: git@github.com:wqkenqing/daydoc.git
   branch: master
   ###serarch
 search:
