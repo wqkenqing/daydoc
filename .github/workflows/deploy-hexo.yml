@@ -18,6 +18,10 @@ jobs:
     - name: Install Pandoc
       run: |
         sudo apt-get install pandoc
+    - name: set github profile
+      run: |
+        git config --global user.name 'wqkenqing'
+        git config --global user.email 'wqkenqingto@126.com'
     - name: Setup SSH Key
       run: |
        mkdir -p ~/.ssh
