@@ -6,7 +6,7 @@
   <link href="http://www.wqkenqing.ren/daydoc/atom.xml" rel="self"/>
   
   <link href="http://www.wqkenqing.ren/daydoc/"/>
-  <updated>2023-10-08T09:21:51.107Z</updated>
+  <updated>2023-10-14T02:58:25.926Z</updated>
   <id>http://www.wqkenqing.ren/daydoc/</id>
   
   <author>
@@ -18,281 +18,20 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E4%B8%9A%E5%8A%A1%E9%97%AE%E9%A2%98%E7%AF%87/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E4%B8%9A%E5%8A%A1%E9%97%AE%E9%A2%98%E7%AF%87/</id>
-    <published>2023-10-07T07:21:50.000Z</published>
-    <updated>2023-10-08T09:21:51.107Z</updated>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%BC%94%E7%A4%BA%E8%AF%B4%E6%98%8E/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%BC%94%E7%A4%BA%E8%AF%B4%E6%98%8E/</id>
+    <published>2023-10-14T02:58:25.926Z</published>
+    <updated>2023-10-14T02:58:25.926Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1、Hive数据倾斜"><a href="#1、Hive数据倾斜" class="headerlink" title="1、Hive数据倾斜"></a>1、Hive数据倾斜</h3><ol><li>空值引发的数据倾斜</li><li>不同数据类型引发的数据倾斜</li><li>不可拆分大文件引发的数据倾斜</li><li>数据膨胀引发的数据倾斜</li><li>表连接时引发的数据倾斜</li><li>确实无法减少数据量引发的数据倾斜</li></ol><hr><h3 id="2、hbase-数据热点与数据倾斜问题的处理"><a href="#2、hbase-数据热点与数据倾斜问题的处理" class="headerlink" title="2、hbase 数据热点与数据倾斜问题的处理"></a>2、hbase 数据热点与数据倾斜问题的处理</h3><h4 id="2-1-数据热点"><a href="#2-1-数据热点" class="headerlink" title="2.1 数据热点"></a>2.1 数据热点</h4><p>a. 什么是数据热点？</p><p>client访问的数据集中在某几个region上。局部region server的访问压力很大，与其它regionserver相比失衡严重</p><p>b. 怎么发生的呢?</p><p>这个问题的发生可能跟rowkey的设计有关。因为rowkey的变化较少，按字典排序时，rowkey过度集中到某几个region中了</p><p>c. 如何处理？</p><ol><li>反转</li><li>加盐（Salting）</li><li>hash</li></ol><p>hbase的数据倾斜问题与处理方式基本类似</p><h3 id="3、hive小文件过多的情况处理"><a href="#3、hive小文件过多的情况处理" class="headerlink" title="3、hive小文件过多的情况处理"></a>3、hive小文件过多的情况处理</h3><h4 id="3-1-小文件产生的原因"><a href="#3-1-小文件产生的原因" class="headerlink" title="3.1 小文件产生的原因"></a>3.1 小文件产生的原因</h4><p>a.  直接向表中插入数据</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into table demo values (round(),&#x27;lisi&#x27;),88)</span><br></pre></td></tr></table></figure><p>b. 通过load方式加载数据</p><p>c. 通过查询方式加载数据</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert overwrite table demo select c_id,c_name from raw_user;</span><br></pre></td></tr></table></figure><blockquote><p>这种方式是生产环境中常用的，也是最容易产生小文件的方式</p><p>insert 导入数据时会启动 MR 任务，MR中 reduce 有多少个就输出多少个文件</p><p>所以， 文件数量&#x3D;ReduceTask数量*分区数</p><p>也有很多简单任务没有reduce，只有map阶段，则</p><p>文件数量&#x3D;MapTask数量*分区数</p><p>每执行一次 insert 时hive中至少产生一个文件，因为 insert 导入时至少会有一个MapTask。<br>像有的业务需要每10分钟就要把数据同步到 hive 中，这样产生的文件就会很多。</p></blockquote><h4 id="3-2-带来的影响"><a href="#3-2-带来的影响" class="headerlink" title="3.2 带来的影响"></a>3.2 带来的影响</h4><ol><li>首先对底层存储HDFS来说，HDFS本身就不适合存储大量小文件，小文件过多会导致namenode元数据特别大, 占用太多内存，严重影响HDFS的性能</li><li>对 hive 来说，在进行查询时，每个小文件都会当成一个块，启动一个Map任务来完成，而一个Map任务启动和初始化的时间远远大于逻辑处理的时间，就会造成很大的资源浪费。而且，同时可执行的Map数量是受限的。</li></ol><h4 id="3-3-如何解决"><a href="#3-3-如何解决" class="headerlink" title="3.3 如何解决"></a>3.3 如何解决</h4><p>a. 使用 hive 自带的 concatenate 命令，自动合并小文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#对于非分区表</span><br><span class="line">alter table demo concatenate;</span><br><span class="line"></span><br><span class="line">#对于分区表</span><br><span class="line">alter table demo partition(day=&quot;school&quot;) concatenate;</span><br></pre></td></tr></table></figure><blockquote><p> 注意：<br>1、concatenate 命令只支持 RCFILE 和 ORC 文件类型。<br>2、使用concatenate命令合并小文件时不能指定合并后的文件数量，但可以多次执行该命令。<br>3、当多次使用concatenate后文件数量不在变化，这个跟参数 mapreduce.input.fileinputformat.split.minsize&#x3D;256mb 的设置有关，可设定每个文件的最小size。</p></blockquote><p>b. 调整参数减少Map数量</p><ul><li><strong>设置map输入合并小文件的相关参数</strong>：</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#执行Map前进行小文件合并</span><br><span class="line">#CombineHiveInputFormat底层是 Hadoop的 CombineFileInputFormat 方法</span><br><span class="line">#此方法是在mapper中将多个文件合成一个split作为输入</span><br><span class="line">set hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat; -- 默认</span><br><span class="line"></span><br><span class="line">#每个Map最大输入大小(这个值决定了合并后文件的数量)</span><br><span class="line">set mapred.max.split.size=256000000;   -- 256M</span><br><span class="line"></span><br><span class="line">#一个节点上split的至少的大小(这个值决定了多个DataNode上的文件是否需要合并)</span><br><span class="line">set mapred.min.split.size.per.node=100000000;  -- 100M</span><br><span class="line"></span><br><span class="line">#一个交换机下split的至少的大小(这个值决定了多个交换机上的文件是否需要合并)</span><br><span class="line">set mapred.min.split.size.per.rack=100000000;  -- 100M</span><br></pre></td></tr></table></figure><ul><li><strong>设置map输出和reduce输出进行合并的相关参数</strong>:</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#设置map端输出进行合并，默认为true</span><br><span class="line">set hive.merge.mapfiles = true;</span><br><span class="line"></span><br><span class="line">#设置reduce端输出进行合并，默认为false</span><br><span class="line">set hive.merge.mapredfiles = true;</span><br><span class="line"></span><br><span class="line">#设置合并文件的大小</span><br><span class="line">set hive.merge.size.per.task = 256*1000*1000;   -- 256M</span><br><span class="line"></span><br><span class="line">#当输出文件的平均大小小于该值时，启动一个独立的MapReduce任务进行文件merge</span><br><span class="line">set hive.merge.smallfiles.avgsize=16000000;   -- 16M </span><br></pre></td></tr></table></figure><ul><li><strong>启用压缩</strong></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># hive的查询结果输出是否进行压缩</span><br><span class="line">set hive.exec.compress.output=true;</span><br><span class="line"></span><br><span class="line"># MapReduce Job的结果输出是否使用压缩</span><br><span class="line">set mapreduce.output.fileoutputformat.compress=true;</span><br></pre></td></tr></table></figure><p>c. <strong>减少Reduce的数量</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#reduce 的个数决定了输出的文件的个数，所以可以调整reduce的个数控制hive表的文件数量，</span><br><span class="line">#hive中的分区函数 distribute by 正好是控制MR中partition分区的，</span><br><span class="line">#然后通过设置reduce的数量，结合分区函数让数据均衡的进入每个reduce即可。</span><br><span class="line"></span><br><span class="line">#设置reduce的数量有两种方式，第一种是直接设置reduce个数</span><br><span class="line">set mapreduce.job.reduces=10;</span><br><span class="line"></span><br><span class="line">#第二种是设置每个reduce的大小，Hive会根据数据总大小猜测确定一个reduce个数</span><br><span class="line">set hive.exec.reducers.bytes.per.reducer=5120000000; -- 默认是1G，设置为5G</span><br><span class="line"></span><br><span class="line">#执行以下语句，将数据均衡的分配到reduce中</span><br><span class="line">set mapreduce.job.reduces=10;</span><br><span class="line">insert overwrite table A partition(dt)</span><br><span class="line">select * from B</span><br><span class="line">distribute by rand();</span><br><span class="line"></span><br><span class="line">解释：如设置reduce数量为10，则使用 rand()， 随机生成一个数 x % 10 ，</span><br><span class="line">这样数据就会随机进入 reduce 中，防止出现有的文件过大或过小</span><br></pre></td></tr></table></figure><p>e. 使用hadoop的archive将小文件归档</p><p>Hadoop Archive简称HAR，是一个高效地将小文件放入HDFS块中的文件存档工具，它能够将多个小文件打包成一个HAR文件，这样在减少namenode内存使用的同时，仍然允许对文件进行透明的访问</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#用来控制归档是否可用</span><br><span class="line">set hive.archive.enabled=true;</span><br><span class="line">#通知Hive在创建归档时是否可以设置父目录</span><br><span class="line">set hive.archive.har.parentdir.settable=true;</span><br><span class="line">#控制需要归档文件的大小</span><br><span class="line">set har.partfile.size=1099511627776;</span><br><span class="line"></span><br><span class="line">#使用以下命令进行归档</span><br><span class="line">ALTER TABLE A ARCHIVE PARTITION(dt=&#x27;2020-12-24&#x27;, hr=&#x27;12&#x27;);</span><br><span class="line"></span><br><span class="line">#对已归档的分区恢复为原文件</span><br><span class="line">ALTER TABLE A UNARCHIVE PARTITION(dt=&#x27;2020-12-24&#x27;, hr=&#x27;12&#x27;);</span><br></pre></td></tr></table></figure><p>新集群最好在入库的时候就设好文件格式，直接以ORC格式，并启用LZO压缩</p><p>这样小文件过多可以使用hive的concatenate快速合并</p><hr><h3 id="4、hdfs小文件过多的情况处理"><a href="#4、hdfs小文件过多的情况处理" class="headerlink" title="4、hdfs小文件过多的情况处理"></a>4、hdfs小文件过多的情况处理</h3><h4 id="4-1-为什么hdfs小文件过多会算是一个问题"><a href="#4-1-为什么hdfs小文件过多会算是一个问题" class="headerlink" title="4.1 为什么hdfs小文件过多会算是一个问题"></a>4.1 为什么hdfs小文件过多会算是一个问题</h4><p>每个文件均<strong>按块存储</strong>，每个块的元数据存储在NameNode的内存中，因此HDFS存储小文件会非常低效。因为<strong>大量的小文件会耗尽NameNode中的大部分内存</strong>。但注意，存储小文件所需要的磁盘容量和数据块的大小无关。每个块的大小可以通过配置参数（<code>dfs.blocksize</code>）来规定，默认的大小<code>128M</code>。例如，一个1MB的文件设置为128MB的块存储，实际使用的是1MB的磁盘空间，而不是128MB</p><p><strong>100个1k文件块，与100个100M的文件块，占用NN内存大小一样</strong></p><p>1）小文件是如何产生的？</p><ul><li>动态分区插入数据，产生大量的小文件，从而导致 map 数量剧增；</li><li>reduce 数量越多，小文件也越多，reduce 的个数和输出文件个数一致；</li><li>数据源本身就是大量的小文件；</li></ul><p>2）文件块大小设置</p><p><img src="http://img.wqkenqing.ren/typora_img/eb7e341b695443c1a49483fc7d1608ed.png" alt="示意图"> </p><p>所以对于块大小的设置既不能太大，也不能太小，<strong>太大会使得传输时间加长</strong>，程序在处理这块数据时会变得非常慢，如果文件块的大小<strong>太小的话会增加每一个块的寻址时间</strong>。所以文件块的大小设置取决于磁盘的传输速率。</p><h4 id="4-2-HDFS小文件问题处理方案"><a href="#4-2-HDFS小文件问题处理方案" class="headerlink" title="4.2 HDFS小文件问题处理方案"></a>4.2 HDFS小文件问题处理方案</h4><p><a href="https://cloud.tencent.com/developer/article/1779976">处理方案</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;1、Hive数据倾斜&quot;&gt;&lt;a href=&quot;#1、Hive数据倾斜&quot; class=&quot;headerlink&quot; title=&quot;1、Hive数据倾斜&quot;&gt;&lt;/a&gt;1、Hive数据倾斜&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;空值引发的数据倾斜&lt;/li&gt;
-&lt;li&gt;不同数据类型引发的数据倾斜</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/Untitled/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/Untitled/</id>
-    <published>2023-10-07T06:41:55.459Z</published>
-    <updated>2023-10-08T09:21:32.881Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%89%87%E6%AE%B5/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%89%87%E6%AE%B5/</id>
-    <published>2023-10-07T02:25:05.000Z</published>
-    <updated>2023-10-07T03:51:38.714Z</updated>
-    
-    <content type="html"><![CDATA[<p>成都旸谷</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">项目内容: 数据基础服务平台、数据运维平台</span><br><span class="line">本项目是结合我司众多项目的研发过程中，归纳相关需求，内部孵化的自研产品，能快速的为项目提供基础服务，加快项目的推进进程，从而更快产生价值。</span><br><span class="line">主要的功能包含数据地图、数据集成(数据采集、数据同步)、元数据管理、数据治理、调度系统、数据应用（数据服务、数据图表、报表）等核心功能。</span><br><span class="line">该项目较完整的包含了数据流过程中的功能，每部份功能都能在项目中提供具体的功能。如数据采集、数据同步等，通过相关配置，我们即可快速的完成主流的采集协议的采集通道构建。数据同步我们已经支持较多组件之前的同步和多种策略的同步，并在不断的完善中。元数据管理，我们基于atlas进行二次开发，在此基础上完成了我们主要的组件的元数据的采集，粒度细致到字段级，并查相关血缘信息。数据治理，基础海豚调度加flink、spark、hive、clickhouse等组件，完成了一些常见内置治理规则的治理，同时还支持上传udf包，进行自定义规则处理。</span><br><span class="line">我的职责</span><br><span class="line">1. 担任本项目的团队sm，主导项目的推进与孵化</span><br><span class="line">2. 主力架构与拆分项目的主体的功能。</span><br><span class="line">3. 管理数据运维平台，保障各基础组件正常运行。</span><br></pre></td></tr></table></figure><p>浩海通达</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">项目内容:</span><br><span class="line">通过jt807、jt808等协议对平台多个客户方的近千量车辆的轨迹采集，业务数据量级日均百G级，并进行清洗,处理.存储.然后再结合业务数据,进行相同起始点的耗时对比，线路运费对比等业务分析，线路故障信息分析等,从而进行流程优化，线路推荐等。针对积累的数据，进行聚合分析，反馈给司机端，以供司机选择最优路径。以报表形式反馈给B端，以供企业做成本分析，与商业决策。</span><br><span class="line">我的职责</span><br><span class="line">1. 主导数据中心的建设，为团队提供大数据存储、处理的能力</span><br><span class="line">2. 主导JT807、JT808协议解析的数据采集服务的构建、提供稳定，高效的数据采集服务。</span><br><span class="line">3. 主力开发相关数据处理任务，如轨迹数据的异常点清洗，轨迹纠偏，轨迹稀疏，轨迹对比等任务开发。</span><br></pre></td></tr></table></figure><p>海航</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">项目内容:</span><br><span class="line">海航hiapp (MTS app)项目，是一款涉及航旅、住宿、美食等ToC应用服务，承载了海航千万级注册用户，日活过百万。我们的工作职责是以app用户登录为入口产生的行为数据流进行存储、处理、分析、应用等数据流处理。涉及到较大数据量的实时数据流的处理，和丰富的业务应用，如面向运营部门的报表业务、面向AI对话机器人的模型治理数据、推荐中心的推荐模型数据等。</span><br><span class="line">我的职责:</span><br><span class="line">1. 部份模块的任务开发，如用户埋点日志信息流处理、对话数据的NLP切词流任务、主流网站的出行旅游游记爬虫任务等</span><br><span class="line">2. 部份数据报表服务的开发实现.</span><br></pre></td></tr></table></figure><p>摩森特</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">针对公司的数百T的存量文本数据反复进行切词、聚类、分析等处理与挖掘，在此基础开发出了公司的DMP平台，主要的核心功能有多标签的用户画像、多主题的数据仓库、脱敏的数据服务等。为公司带来可观的经济增值。</span><br><span class="line">主要职责:</span><br><span class="line">1.数据集群各组件搭建</span><br><span class="line">2.批处理任务的开发，如文本信息的切词、聚类任务等，数据仓库入库数据的清洗等和一些Hive的UDF包开发</span><br><span class="line">3.DMP的部份模块开发如数据仓库即席查询服务，用户画像功能等。</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="接口测试"><a href="#接口测试" class="headerlink" title="接口测试"></a>接口测试</h2><p>在postman中配置了系统中相关接口信息，通过传入相应的参数进行测试。</p><p>测试步骤</p><ol><li>先通过接口登录，测试工具加载出相应的token。</li><li>随机选择一些接口进行测试。</li></ol><p>因为系统已经投入使用，所以相应的接口已经与对应的功能进行绑定。这里的接口测试主要是会选择一些GET请求来方便演示为主。</p><hr><h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><p>通过jmeter进行性能测试，已经选取了一些系统中有代表性的数据接口编写了对应的测试计划。</p><h3 id="模拟场景"><a href="#模拟场景" class="headerlink" title="模拟场景"></a>模拟场景</h3><ol><li>100人同时对测试计划中的请求发送请求</li><li>检测请求成功通过率</li><li>响应时间</li><li>并呈现如TPS、记录条数&#x2F;秒、数据量&#x2F;秒、通过概等</li><li>图表化呈现测试结果</li></ol>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;成都旸谷&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/09/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/curl%20&#39;httpsapi/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/09/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/curl%20&#39;httpsapi/</id>
-    <published>2023-09-13T03:19:08.195Z</published>
-    <updated>2023-09-13T03:19:08.195Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://api.notion.com/v1/users&#x27; \</span><br><span class="line">  -H &#x27;Authorization: Bearer &quot;secret_zfm2jh7s9oLGLGPDaZikI3SkN1xxV9TtHVbp1trM4nj&quot;&#x27; \</span><br><span class="line">  -H &quot;Notion-Version: 2022-06-28&quot;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://api.notion.com/v1/users&#x27; \</span><br><span class="line">  -H &#x27;Authorization: Bearer &#x27;&quot;secret_zfm2jh7s9oLGLGPDaZikI3SkN1xxV9TtHVbp1trM4nj&quot;&#x27;&#x27; \</span><br><span class="line">  -H &quot;Notion-Version: 2022-06-28&quot;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://api.notion.com/v1/pages/Python-655a71827c5d47c787b160ddef220eaf&#x27; \</span><br><span class="line">  -H &#x27;Notion-Version: 2022-06-28&#x27; \</span><br><span class="line">  -H &#x27;Authorization: Bearer &#x27;&quot;secret_zfm2jh7s9oLGLGPDaZikI3SkN1xxV9TtHVbp1trM4nj&quot;&#x27;&#x27;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://api.notion.com/v1/users/me&#x27; \</span><br><span class="line">  -H &#x27;Authorization: Bearer &#x27;&quot;secret_zfm2jh7s9oLGLGPDaZikI3SkN1xxV9TtHVbp1trM4nj&quot;&#x27;&#x27; \</span><br><span class="line">  -H &quot;Notion-Version: 2022-06-28&quot; \</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://api.notion.com/v1/pages/0c1e8114feb246a6946d357f9f2073e4&#x27; \</span><br><span class="line">  -H &#x27;Notion-Version: 2022-06-28&#x27; \</span><br><span class="line">  -H &#x27;Authorization: Bearer &#x27;&quot;secret_zfm2jh7s9oLGLGPDaZikI3SkN1xxV9TtHVbp1trM4nj&quot;&#x27;&#x27;</span><br></pre></td></tr></table></figure><p>现有流程是：</p><ol><li><p>业主提供文件</p></li><li><p>我们收到文件进行分析</p></li><li><p>摘取文件内容，选择我们需要的字段。</p></li><li><p>将摘取出的字段与我们大屏用应层的字段信息进行匹配</p></li><li><p>完成导入</p><hr><p>期望流程是：</p><ol><li>我们提供导入标准模版</li><li>业主按标准模版摘录导入文件</li><li>将整理好的标准数据文件导入</li></ol><hr><p>接口采集现有流程:</p><ol><li>业主提供采集接口协议文档</li><li>分析采集文档或与对方开发人员进行沟通</li><li>开发与调试</li><li>发布服务，开始采集</li></ol></li></ol><p>接口采集期望流程:</p><ol><li>我们提供标准的采集文档，约定相关规则</li><li>对方按规定供相应的采集服务接口</li><li>对接与调度</li><li>发布服务，开始采集</li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span c</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/09/13/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92913/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/09/13/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92913/</id>
-    <published>2023-09-13T02:25:25.636Z</published>
-    <updated>2023-09-13T03:18:53.607Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="发版步骤"><a href="#发版步骤" class="headerlink" title="发版步骤"></a>发版步骤</h1><ol><li>完成测试项，评估能否发版</li><li>暂停代码提交</li><li>数据库备份</li><li>打包镜像发到远程</li><li>同步数据库变更信息</li><li>发版</li><li>回归测试</li><li>验证通过</li></ol><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="服务更新"><a href="#服务更新" class="headerlink" title="服务更新"></a>服务更新</h2><table><thead><tr><th>更新项目</th><th>更新版本号</th><th></th></tr></thead><tbody><tr><td>sxsddsj &#x2F; sxsddsj-shield-data-main</td><td>11955</td><td>默认最新版本号，不是最新则以最新为准</td></tr><tr><td></td><td></td><td></td></tr></tbody></table><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">UPDATE `sxsddsj_main`.`railway_tunnel_video`</span><br><span class="line">SET</span><br><span class="line">  `video_url` = &#x27;http://cmgw-vpc.lechange.com:8888/LCO/6L0C7D0PAN9419D/0/1/20230913T023721/c006e2a0b8f854db2b84b64fe77e52e3.m3u8&#x27;,</span><br><span class="line">  `update_time` = &#x27;2023-09-01 11:39:33&#x27;</span><br><span class="line">WHERE</span><br><span class="line">  `tunnel_id` = 187;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `sxsddsj_main`.`railway_tunnel_video`( `tunnel_id`, `video_url`, `create_time`, `update_time`) VALUES ( 187, &#x27;http://cmgw-vpc.lechange.com:8888/LCO/6L0C7D0PAN9419D/0/1/20230912T083933/ab5e94aec96f9251a117575a52072512.m3u8&#x27;, &#x27;2023-09-01 11:39:30&#x27;, &#x27;2023-09-01 11:50:33&#x27;);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;发版步骤&quot;&gt;&lt;a href=&quot;#发版步骤&quot; class=&quot;headerlink&quot; title=&quot;发版步骤&quot;&gt;&lt;/a&gt;发版步骤&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;完成测试项，评估能否发版&lt;/li&gt;
-&lt;li&gt;暂停代码提交&lt;/li&gt;
-&lt;li&gt;数据库备份&lt;/li&gt;
-&lt;li&gt;打包镜</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/09/13/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92915/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/09/13/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92915/</id>
-    <published>2023-09-13T02:25:25.636Z</published>
-    <updated>2023-09-15T03:39:58.732Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="发版步骤"><a href="#发版步骤" class="headerlink" title="发版步骤"></a>发版步骤</h1><ol><li>完成测试项，评估能否发版</li><li>暂停代码提交</li><li>数据库备份</li><li>打包镜像发到远程</li><li>同步数据库变更信息</li><li>发版</li><li>回归测试</li><li>验证通过</li></ol><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="服务更新"><a href="#服务更新" class="headerlink" title="服务更新"></a>服务更新</h2><table><thead><tr><th>更新项目</th><th>更新版本号</th><th></th></tr></thead><tbody><tr><td>sxsddsj-shield-online-data-collector</td><td>11965</td><td>新增环境变量<code>BEIYAN_WEST_ADDRESS</code>，默认值<code>http://openapi.dadungou.com:9002/ShieldAuth/ShieldDataV2</code>，为北延数据http采集接口，生产环境直接使用该默认值。</td></tr><tr><td>sxsddsj-shield-data-main</td><td>11970</td><td></td></tr></tbody></table><h1 id="CK相关命令-王奎清来执行"><a href="#CK相关命令-王奎清来执行" class="headerlink" title="CK相关命令(王奎清来执行)"></a>CK相关命令(王奎清来执行)</h1><blockquote><h3 id="按照顺序执行"><a href="#按照顺序执行" class="headerlink" title="按照顺序执行"></a>按照顺序执行</h3></blockquote><ol><li><p>kafka创建topic<code>sxsddsj_shield_online_data_all_in_one_4_1</code>，只需要1个partition</p></li><li><p>clickhouse创建kafka采集表（<strong>需要修改kafka_broker_list</strong>）</p></li></ol><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> sxsddsj.shield_online_data_all_in_one_4_1_kafka</span><br><span class="line">(</span><br><span class="line">    `collectTime` String,</span><br><span class="line">    `cutterHeadTorque` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `cutterHeadSpeed` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `advancementAngle` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `speedReducerTemperatureAlarmValue` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `totalPropulsion` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `primaryHydraulicOilTankTemperature` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `tunnellingRate` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `tunnellingRingNumber` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `designRingNumber` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `propulsionSpeed` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `propulsionDisplacement` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `frontPointDeviationX` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `frontPointDeviationY` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `frontShieldPitchAngle` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `frontShieldRollAngle` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `leftShieldPressure` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `rightShieldPressure` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>)),</span><br><span class="line">    `topShieldPressure` Nullable(<span class="type">Decimal</span>(<span class="number">18</span>, <span class="number">4</span>))</span><br><span class="line">)</span><br><span class="line">ENGINE <span class="operator">=</span> Kafka()</span><br><span class="line">SETTINGS</span><br><span class="line">  kafka_broker_list <span class="operator">=</span> <span class="string">&#x27;datanode1:9092,datanode2:9092,namenode:9092&#x27;</span>,</span><br><span class="line">  kafka_topic_list <span class="operator">=</span> <span class="string">&#x27;sxsddsj_shield_online_data_all_in_one_4_1&#x27;</span>,</span><br><span class="line">  kafka_group_name <span class="operator">=</span> <span class="string">&#x27;sxsddsj-shield-online-data-all-in-one-4-1-ck&#x27;</span>,</span><br><span class="line">  kafka_format <span class="operator">=</span> <span class="string">&#x27;JSONEachRow&#x27;</span>,</span><br><span class="line">  kafka_num_consumers <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure><blockquote><p>其中<code>kafka_broker_list</code>需要根据生产环境配置更改</p></blockquote><ol start="3"><li>clickhouse创建传输视图</li></ol><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> MATERIALIZED <span class="keyword">VIEW</span> sxsddsj.shield_online_data_all_in_one_4_1_mv <span class="keyword">to</span> sxsddsj.shield_offline_data_all_in_one_4_1</span><br><span class="line"><span class="keyword">as</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> sxsddsj.shield_online_data_all_in_one_4_1_kafka;</span><br></pre></td></tr></table></figure><ol start="4"><li>发布微服务<code>sxsddsj-shield-online-data-collector</code></li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kafka-topics.sh --create --topic sxsddsj_shield_online_data_all_in_one_4_1 --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHOW CREATE TABLE sxsddsj.shield_online_data_all_in_one_4_1_mv;</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-consumer --bootstrap-server datanode2:9092 --topic sxsddsj_shield_online_data_all_in_one_4_1 --from-beginning</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kafka-console-consumer.sh --bootstrap-server your_bootstrap_server --topic sxsddsj_shield_online_data_all_in_one_4_1 --from-beginning</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;发版步骤&quot;&gt;&lt;a href=&quot;#发版步骤&quot; class=&quot;headerlink&quot; title=&quot;发版步骤&quot;&gt;&lt;/a&gt;发版步骤&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;完成测试项，评估能否发版&lt;/li&gt;
-&lt;li&gt;暂停代码提交&lt;/li&gt;
-&lt;li&gt;数据库备份&lt;/li&gt;
-&lt;li&gt;打包镜</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/09/12/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92912/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/09/12/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92912/</id>
-    <published>2023-09-12T07:18:50.180Z</published>
-    <updated>2023-09-13T08:56:14.880Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="发版步骤"><a href="#发版步骤" class="headerlink" title="发版步骤"></a>发版步骤</h1><ol><li>完成测试项，评估能否发版</li><li>暂停代码提交</li><li>数据库备份</li><li>打包镜像发到远程</li><li>同步数据库变更信息</li><li>发版</li><li>回归测试</li><li>验证通过</li></ol><h2 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h2><p>更新Clickhouse，由我(王奎清)来更新</p><h2 id="服务更新"><a href="#服务更新" class="headerlink" title="服务更新"></a>服务更新</h2><table><thead><tr><th>更新项目</th><th>更新版本号</th><th></th></tr></thead><tbody><tr><td>sxsddsj-data-center-clickhouse</td><td>11945</td><td>默认最新版本号，不是最新则以最新为准</td></tr><tr><td>sxsddsj-shield-data-main</td><td>11948</td><td></td></tr></tbody></table><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">clickhouse-client --host localhost --port 9002 -m -u yanggu --password z3pqc5NgYP4mHcj -d  sxsddsj  --multiquery &lt;  /root/sql_tmp/</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;发版步骤&quot;&gt;&lt;a href=&quot;#发版步骤&quot; class=&quot;headerlink&quot; title=&quot;发版步骤&quot;&gt;&lt;/a&gt;发版步骤&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;完成测试项，评估能否发版&lt;/li&gt;
-&lt;li&gt;暂停代码提交&lt;/li&gt;
-&lt;li&gt;数据库备份&lt;/li&gt;
-&lt;li&gt;打包镜</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/09/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92908/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/09/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92908/</id>
-    <published>2023-09-08T06:05:55.867Z</published>
-    <updated>2023-09-12T09:07:24.908Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="发版步骤"><a href="#发版步骤" class="headerlink" title="发版步骤"></a>发版步骤</h1><ol><li>完成测试项，评估能否发版</li><li>暂停代码提交</li><li>数据库备份</li><li>打包镜像发到远程</li><li>同步数据库变更信息</li><li>发版</li><li>回归测试</li><li>验证通过</li></ol><h2 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h2><p>执行数据库文件</p><p>railway_tunnel_video.sql</p><h2 id="服务更新"><a href="#服务更新" class="headerlink" title="服务更新"></a>服务更新</h2><table><thead><tr><th>更新项目</th><th>更新版本号</th><th></th></tr></thead><tbody><tr><td>sxsddsj_big_screen</td><td>11889</td><td>默认最新版本号，不是最新则以最新为准</td></tr><tr><td>sxsddsj-main</td><td>11881</td><td></td></tr></tbody></table><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `sxsddsj_main`.`railway_tunnel_video`( `tunnel_id`, `video_url`, `create_time`, `update_time`) VALUES ( 183, &#x27;https://cmgw-vpc.lechange.com:8890/LCO/6L0C7D0PAN9419D/0/1/20230912T083933/ab5e94aec96f9251a117575a52072512.m3u8?proto=https&#x27;, &#x27;2023-09-01 11:39:30&#x27;, &#x27;2023-09-01 11:39:33&#x27;);</span><br></pre></td></tr></table></figure><p>?要在线上找到具体的值后进行替换。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;发版步骤&quot;&gt;&lt;a href=&quot;#发版步骤&quot; class=&quot;headerlink&quot; title=&quot;发版步骤&quot;&gt;&lt;/a&gt;发版步骤&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;完成测试项，评估能否发版&lt;/li&gt;
-&lt;li&gt;暂停代码提交&lt;/li&gt;
-&lt;li&gt;数据库备份&lt;/li&gt;
-&lt;li&gt;打包镜</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/09/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92908_2/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/09/08/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92908_2/</id>
-    <published>2023-09-08T06:05:55.867Z</published>
-    <updated>2023-09-08T08:29:19.186Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="发版步骤"><a href="#发版步骤" class="headerlink" title="发版步骤"></a>发版步骤</h1><ol><li>完成测试项，评估能否发版</li><li>暂停代码提交</li><li>数据库备份</li><li>打包镜像发到远程</li><li>同步数据库变更信息</li><li>发版</li><li>回归测试</li><li>验证通过</li></ol><h2 id="服务更新"><a href="#服务更新" class="headerlink" title="服务更新"></a>服务更新</h2><table><thead><tr><th>更新项目</th><th>更新版本号</th><th></th></tr></thead><tbody><tr><td>sxsddsj_big_screen</td><td>11922</td><td>默认最新版本号，不是最新则以最新为准</td></tr><tr><td></td><td></td><td></td></tr></tbody></table><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;发版步骤&quot;&gt;&lt;a href=&quot;#发版步骤&quot; class=&quot;headerlink&quot; title=&quot;发版步骤&quot;&gt;&lt;/a&gt;发版步骤&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;完成测试项，评估能否发版&lt;/li&gt;
-&lt;li&gt;暂停代码提交&lt;/li&gt;
-&lt;li&gt;数据库备份&lt;/li&gt;
-&lt;li&gt;打包镜</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/08/14/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E7%BB%84%E4%BB%B6-hbase%E7%AF%87/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/08/14/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E7%BB%84%E4%BB%B6-hbase%E7%AF%87/</id>
-    <published>2023-08-14T09:10:11.000Z</published>
-    <updated>2023-08-30T09:50:12.845Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="hbase架构"><a href="#hbase架构" class="headerlink" title="hbase架构"></a>hbase架构</h2><p>架构如图：</p><p><img src="http://img.wqkenqing.ren/typora_img/1228818-20180402125111282-1966599087-20230821162317280.png" alt="img"></p><p><img src="http://img.wqkenqing.ren/typora_img/1228818-20180402125111282-1966599087.png" alt="img"></p><p><img src="http://img.wqkenqing.ren/typora_img/1228818-20180402130346713-706113248.png" alt="img"></p><h3 id="hbase的组成"><a href="#hbase的组成" class="headerlink" title="hbase的组成"></a>hbase的组成</h3><ol><li><p>Client</p><ol><li>客户端，后面以客户端视角进行读、写等操作的流程分析</li></ol></li><li><p>ZooKeeper</p><ol><li><p>一些元数据信息:包括有哪些 Table，每个 Table 有哪些 Column Family</p></li><li><p>协助HMaster选举，为 HBase 提供 Failover 机制，选举 Master，避免单点 Master 单点故障问题</p></li><li><p>实时监控 RegionServer 的状态，将 RegionServer 的上线和下线信息实时通知给 Master</p></li><li><p>存储所有 Region 的寻址入口：&#x2F;hbase&#x2F;meta-region-server</p></li></ol></li><li><p>HMaster</p><ol><li>为 RegionServer 分配 Region</li><li>负责 RegionServer 的负载均衡</li><li>发现失效的 RegionServer 并重新分配其上的 Region</li><li>HDFS 上的垃圾文件（HBase）回收</li><li>处理 Schema 更新请求（表的创建，删除，修改，列簇的增加等等）</li></ol></li><li><p>HRegionServer</p><ol><li><p>HRegion</p><ol><li><blockquote><p> table在行的方向上分隔为多个Region。<strong>Region是HBase中分布式存储和负载均衡的最小单元</strong>，即不同的region可以分别在不同的Region Server上，但同一个Region是不会拆分到多个server上</p></blockquote></li><li><blockquote><p> Region按大小分隔，每个表一般是只有一个region。随着数据不断插入表，region不断增大，当region的某个列族达到一个阈值时就会分成两个新的region。</p></blockquote></li><li><blockquote><p>每个region由以下信息标识：&lt; 表名,startRowkey,创建时间&gt;</p></blockquote></li><li><p>成员</p><ol><li><p>Store</p><ol><li><blockquote><p>由一个或多个store组成，至少是一个store，hbase会把一起访问的数据放在一个store里面，即为每个 ColumnFamily建一个store，如果有几个ColumnFamily，也就有几个Store。一个Store由一个memStore和0或者 多个StoreFile组成。 HBase以store的大小来判断是否需要切分region</p></blockquote></li><li><p>成员</p><ol><li><p>MemStore</p><ol><li><blockquote><p>memStore 是放在内存里的。保存修改的数据即keyValues。当memStore的大小达到一个阀值（默认128MB）时，memStore会被flush到文 件，即生成一个快照。目前hbase 会有一个线程来负责memStore的flush操作。</p></blockquote></li></ol></li><li><p>StoreFile</p><ol><li><blockquote><p>memStore内存中的数据写到文件后就是StoreFile，StoreFile底层是以HFile的格式保存。当storefile文件的数量增长到一定阈值后，系统会进行合并（minor、major compaction），在合并过程中会进行版本合并和删除工作（majar），形成更大的storefile。</p></blockquote></li><li><p>成员</p><ol><li><p>HFile</p><ol><li><blockquote><p>HBase中KeyValue数据的存储格式，HFile是Hadoop的 二进制格式文件，实际上StoreFile就是对Hfile做了轻量级包装，即StoreFile底层就是HFile。</p></blockquote></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></li><li><p><strong>.META.</strong></p><ol><li>记录了用户所有表拆分出来的的 Region 映射信息，.META.可以有多个 Regoin</li><li>老版还有一个-ROOT-表，这里不缀述了，可以了解一下就行</li></ol></li><li><p>RegionServer 维护 Master 分配给它的 Region，处理对这些 Region 的 IO 请求</p></li><li><p>RegionServer 负责 Split 在运行过程中变得过大的 Region，负责 Compact 操作</p></li><li><p>client 访问 HBase 上数据的过程并不需要 master 参与（寻址访问 zookeeper 和 RegioneServer，数据读写访问 RegioneServer），Master 仅仅维护者 Table 和 Region 的元数据信息，负载很低。</p></li><li><p>.META. 存的是所有的 Region 的位置信息，那么 RegioneServer 当中 Region 在进行分裂之后 的新产生的 Region，是由 Master 来决定发到哪个 RegioneServer，这就意味着，只有 Master 知道 new Region 的位置信息，所以，由 Master 来管理.META.这个表当中的数据的 CRUD</p></li><li><p>所以结合以上两点表明，在没有 Region 分裂的情况，Master 宕机一段时间是可以忍受的。</p></li></ol></li><li><p><strong>HLog</strong></p><ol><li><blockquote><p>HLog(WAL log)：WAL意为write ahead log，用来做灾难恢复使用，HLog记录数据的所有变更，一旦region server 宕机，就可以从log中进行恢复。<br>HLog文件就是一个普通的Hadoop Sequence File， Sequence File的value是key时HLogKey对象，其中记录了写入数据的归属信息，除了table和region名字外，还同时包括sequence number和timestamp，timestamp是写入时间，sequence number的起始值为0，或者是最近一次存入文件系统中的sequence number。 Sequence File的value是HBase的KeyValue对象，即对应HFile中的KeyValue。</p></blockquote></li></ol></li></ol><p><a href="https://www.cnblogs.com/frankdeng/p/9310278.html">hbase介绍</a></p><p><a href="https://www.cnblogs.com/frankdeng/p/9310278.html">hbase组成介绍</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;hbase架构&quot;&gt;&lt;a href=&quot;#hbase架构&quot; class=&quot;headerlink&quot; title=&quot;hbase架构&quot;&gt;&lt;/a&gt;hbase架构&lt;/h2&gt;&lt;p&gt;架构如图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://img.wqkenqing.ren/ty</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/08/11/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E7%BB%84%E4%BB%B6-hdfs%E7%AF%87/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/08/11/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E7%BB%84%E4%BB%B6-hdfs%E7%AF%87/</id>
-    <published>2023-08-11T02:03:34.000Z</published>
-    <updated>2023-09-28T06:27:56.075Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h1><h2 id="1、Hive-Sql"><a href="#1、Hive-Sql" class="headerlink" title="1、Hive Sql"></a>1、Hive Sql</h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;Hive&quot;&gt;&lt;a href=&quot;#Hive&quot; class=&quot;headerlink&quot; title=&quot;Hive&quot;&gt;&lt;/a&gt;Hive&lt;/h1&gt;&lt;h2 id=&quot;1、Hive-Sql&quot;&gt;&lt;a href=&quot;#1、Hive-Sql&quot; class=&quot;headerlink&quot; titl</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/08/11/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E7%BB%84%E4%BB%B6-hive%E7%AF%87/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/08/11/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E7%BB%84%E4%BB%B6-hive%E7%AF%87/</id>
-    <published>2023-08-11T02:03:34.000Z</published>
-    <updated>2023-09-30T08:59:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Hive-Sql"><a href="#Hive-Sql" class="headerlink" title="Hive Sql"></a>Hive Sql</h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;Hive-Sql&quot;&gt;&lt;a href=&quot;#Hive-Sql&quot; class=&quot;headerlink&quot; title=&quot;Hive Sql&quot;&gt;&lt;/a&gt;Hive Sql&lt;/h2&gt;</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/08/10/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E5%9F%BA%E7%A1%80%E8%AF%B4%E6%98%8E/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/08/10/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E5%9F%BA%E7%A1%80%E8%AF%B4%E6%98%8E/</id>
-    <published>2023-08-10T09:35:35.471Z</published>
-    <updated>2023-08-11T02:03:26.501Z</updated>
-    
-    <content type="html"><![CDATA[<p>主要是为了系统性复盘。所以可能涉及到绘图、编码等工作</p><p>具体可能使用的到工具有 ：</p><ol><li>OmniGraffle</li><li>vscode</li><li>typora</li><li>各编码工具</li><li>各数据库连接工具</li><li>mindnode</li></ol><hr><p>复盘打算从两个大的方向出发</p><ol><li>项目的复盘</li><li>技术栈的复盘</li></ol><p>复盘的目的，一是总结之前的经验，找到沉淀之处 二是总结不足，进行优化</p><hr><p>最重要的还是大数据部份内容</p><p>组件篇</p><ol><li>组件的回顾</li><li>组件应用</li><li>组件的调优</li><li>组件的踩坑</li></ol><hr><p>业务篇:</p><ol><li>数据仓库的构建与应用</li><li>流批一体引擎的构建与应用</li><li>数据平台的开发与应用</li><li>数据基础平台的搭建与应用</li><li>大数据应用</li></ol><hr><p>编程篇</p><ol><li>java基础</li><li>python基础</li><li>bash基础</li><li>c基础</li><li>sql基础</li></ol><hr><p>web开发篇</p><ol><li><p>spring</p></li><li><p>mybaits-plus</p></li><li><p>nacos等</p><p>前端</p></li><li><p>html5+css</p></li><li><p>javascript</p></li><li><p>jquery</p></li><li><p>vue</p><hr><p>数据结构与算法</p><hr><p>常用工具篇</p><ol><li><p>docker</p></li><li><p>k8s</p></li></ol></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;主要是为了系统性复盘。所以可能涉及到绘图、编码等工作&lt;/p&gt;
-&lt;p&gt;具体可能使用的到工具有 ：&lt;/p&gt;
+    <summary type="html">&lt;h2 id=&quot;接口测试&quot;&gt;&lt;a href=&quot;#接口测试&quot; class=&quot;headerlink&quot; title=&quot;接口测试&quot;&gt;&lt;/a&gt;接口测试&lt;/h2&gt;&lt;p&gt;在postman中配置了系统中相关接口信息，通过传入相应的参数进行测试。&lt;/p&gt;
+&lt;p&gt;测试步骤&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;OmniGraffle&lt;/li&gt;
-&lt;li&gt;vscode&lt;/li&gt;
-&lt;li&gt;typora&lt;/li&gt;
-&lt;li&gt;各编码工具&lt;/li&gt;
-&lt;li&gt;各数据库连接工具</summary>
+&lt;li&gt;</summary>
       
     
     
@@ -302,17 +41,60 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/08/10/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/README/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/08/10/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/README/</id>
-    <published>2023-08-10T09:34:36.805Z</published>
-    <updated>2023-08-31T07:23:40.987Z</updated>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E5%8F%A4%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B/%E5%BB%BA%E8%AE%BE%E6%80%9D%E8%B7%AF/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E5%8F%A4%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B/%E5%BB%BA%E8%AE%BE%E6%80%9D%E8%B7%AF/</id>
+    <published>2023-10-14T02:58:25.926Z</published>
+    <updated>2023-10-14T02:58:25.926Z</updated>
     
-    <content type="html"><![CDATA[<p>for interview!</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="古诗词竞赛"><a href="#古诗词竞赛" class="headerlink" title="古诗词竞赛"></a>古诗词竞赛</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个趣味小游戏，以诗词竞赛为主题，引入竞赛机制。</span><br></pre></td></tr></table></figure><h2 id="一、技术架构"><a href="#一、技术架构" class="headerlink" title="一、技术架构"></a>一、技术架构</h2><p>图示：</p><p><img src="http://img.wqkenqing.ren/typora_img/CleanShot%202022-05-12%20at%2010.27.26.png" alt="CleanShot 2022-05-12 at 10.27.26"></p><p>涉及技术栈:</p><ol><li>java</li><li>spring全家桶</li><li>elasticsearch</li><li>mybaits-plus</li><li>flink</li><li>web</li><li>jsoup</li><li>kafka</li></ol><p>以上主要是一期</p><p>二期会主要围绕小端等来进行开发</p><p>本应用采用了三层结构：采集层、治理层、应用层。</p><p>为此服务体系也采用微服务架构</p><h2 id="二、实现思路"><a href="#二、实现思路" class="headerlink" title="二、实现思路"></a>二、实现思路</h2><h3 id="2-1-采集层"><a href="#2-1-采集层" class="headerlink" title="2.1 采集层"></a>2.1 采集层</h3><p>通过爬虫服务，抓取相应的诗词数据，并放入暂存层中</p><h3 id="2-2-清洗转换层"><a href="#2-2-清洗转换层" class="headerlink" title="2.2 清洗转换层"></a>2.2 清洗转换层</h3><p>将暂存层中的数据，清洗后、分发至相应的数据库中</p><h3 id="2-3-应用层"><a href="#2-3-应用层" class="headerlink" title="2.3 应用层"></a>2.3 应用层</h3><p>基于抓取的数据进行设计开发web页面</p><h2 id="三、开发记录"><a href="#三、开发记录" class="headerlink" title="三、开发记录"></a>三、开发记录</h2><p>解析步骤<br>1.获取到总页数<br>2.获取a列表<br>3.抓取页面内容<br>    1. class zhuti yuanjiao 获取名称<br>    2. class jjzz 获取年代与作者名<br>    3. class shicineirong 获取诗词内容</p><h3 id="生成全局唯一id"><a href="#生成全局唯一id" class="headerlink" title="生成全局唯一id"></a>生成全局唯一id</h3><ol><li>数据库自增长序列或字段生成id</li><li>UUID</li><li>Redis生成ID</li><li>zookeeper生成ID</li><li>Twitter的snowflake算法</li></ol><h3 id="诗歌全局唯一id生成策略"><a href="#诗歌全局唯一id生成策略" class="headerlink" title="诗歌全局唯一id生成策略"></a>诗歌全局唯一id生成策略</h3>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;for interview!&lt;/p&gt;
+    <summary type="html">&lt;h1 id=&quot;古诗词竞赛&quot;&gt;&lt;a href=&quot;#古诗词竞赛&quot; class=&quot;headerlink&quot; title=&quot;古诗词竞赛&quot;&gt;&lt;/a&gt;古诗词竞赛&lt;/h1&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E5%8F%A4%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B/%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E9%A1%B9%E7%9B%AE/%E5%8F%A4%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B/%E8%AF%97%E8%AF%8D%E7%AB%9E%E8%B5%9B%E4%B8%9A%E5%8A%A1%E6%9E%B6%E6%9E%84/</id>
+    <published>2023-10-14T02:58:25.926Z</published>
+    <updated>2023-10-14T02:58:25.926Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="诗词竞赛业务架构"><a href="#诗词竞赛业务架构" class="headerlink" title="诗词竞赛业务架构"></a>诗词竞赛业务架构</h1><p>现有业务模块梳理</p><ol><li>消费从而生成诗词源</li><li>任务生成，并绑定对应的诗词</li><li>生成试题</li><li>测验</li><li>批改</li><li>判胜负</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;诗词竞赛业务架构&quot;&gt;&lt;a href=&quot;#诗词竞赛业务架构&quot; class=&quot;headerlink&quot; title=&quot;诗词竞赛业务架构&quot;&gt;&lt;/a&gt;诗词竞赛业务架构&lt;/h1&gt;&lt;p&gt;现有业务模块梳理&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;消费从而生成诗词源&lt;/li&gt;
+&lt;li&gt;任务生成，</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E4%BA%AC%E4%B8%9C%E4%BA%91/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E4%BA%AC%E4%B8%9C%E4%BA%91/</id>
+    <published>2023-10-14T02:58:25.925Z</published>
+    <updated>2023-10-14T02:58:25.925Z</updated>
+    
+    <content type="html"><![CDATA[<p>114.67.107.246<br>wangkuiqing<br>eExfeTmKkgRJ255SRRZq</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;114.67.107.246&lt;br&gt;wangkuiqing&lt;br&gt;eExfeTmKkgRJ255SRRZq&lt;/p&gt;
 </summary>
       
     
@@ -323,24 +105,38 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/08/01/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E5%B7%9D%E8%97%8F%E4%BC%9A%E8%AE%AE/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/08/01/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E5%B7%9D%E8%97%8F%E4%BC%9A%E8%AE%AE/</id>
-    <published>2023-08-01T07:41:01.151Z</published>
-    <updated>2023-08-01T09:04:32.071Z</updated>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%8D%9A%E5%AE%A2%E4%B8%8D%E5%90%8C%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2/</id>
+    <published>2023-10-14T02:58:25.925Z</published>
+    <updated>2023-10-14T02:58:25.925Z</updated>
     
-    <content type="html"><![CDATA[<ol><li>起始里程、截止里程、公里数是保密信息</li><li>风险源有类型，涉及操作人可能不同</li><li>风险等级判定，根据标准来判定</li><li>标段里有多少高中低风险源，要显示出来</li></ol><hr><p><strong>核心功能</strong>：风险源的追踪（产生、消失）</p><ol><li><p>风险巡查: 多少产生、多少消失</p></li><li><p><strong>只说明问题，不解决问题</strong></p></li><li><p><strong>屏蔽项目新增功能，只专注川藏</strong></p></li><li><p>做好大屏，涉及脸面</p></li><li><p><strong>做好培训</strong></p></li></ol><hr><h3 id="保险模块"><a href="#保险模块" class="headerlink" title="保险模块"></a>保险模块</h3><p>投保管理&#x3D;&gt;投保信息管理</p><ol start="2"><li><p>理赔是由保险公司来实现，本系统主要展示结果。 </p></li><li><p>收集资料，上传给保险公司</p><ol><li>追踪进度与结果</li></ol></li><li><p>现在与保险公司的交互方式</p><ol><li>现有的是通过VPN的方式来实现的</li></ol></li><li><p>保险统计分析功能</p><ol><li>什么时候发生、什么时候结案</li><li>对应的资料（尽能否跟保险公司打通材料上传）</li></ol></li><li><p>投保信息要有</p><hr><p>服务器</p><ol><li>我司服务器</li><li>上云</li><li>自建</li></ol><hr></li></ol>]]></content>
+    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这里的背景是针对博客不同项目生成不同主题类目的方案</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>step one </p><p> 更换wqkenqing.github.io下的github项目</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;ol&gt;
-&lt;li&gt;起始里程、截止里程、公里数是保密信息&lt;/li&gt;
-&lt;li&gt;风险源有类型，涉及操作人可能不同&lt;/li&gt;
-&lt;li&gt;风险等级判定，根据标准来判定&lt;/li&gt;
-&lt;li&gt;标段里有多少高中低风险源，要显示出来&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;核心功能&lt;/s</summary>
+    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>操作记录</title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</id>
+    <published>2023-10-14T02:58:25.925Z</published>
+    <updated>2023-10-14T02:58:25.925Z</updated>
+    
+    <content type="html"><![CDATA[ <span id="more"></span><p>docker run  –name fid_state_new -d -v &#x2F;data&#x2F;query_sql:&#x2F;query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.137 –add-host  data3:10.20.10.138 registry.lisong.pub:28500&#x2F;toll_job_tmp &#x2F;query&#x2F;fid_state_tmp.sql    30<br>docker run  –name fid_state_new -d -v &#x2F;data&#x2F;query_sql:&#x2F;query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.137 –add-host  data3:10.20.10.138 registry.lisong.pub:28500&#x2F;toll_state_new &#x2F;query&#x2F;fid_state_tmp.sql    30</p><p>docker run    -v &#x2F;data&#x2F;query_sql:&#x2F;query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.137 –add-host  data3:10.20.10.138 registry.lisong.pub:28500&#x2F;toll_job_state_tmp &#x2F;query&#x2F;fid_state_tmp.sql</p><p>69641199</p><p>kafka-console-consumer.sh –bootstrap-server data1:9092 –property print.key&#x3D;true –topic zhsd_real –partition&#x3D;0  –offset  69640199 &gt;real.log</p><p>kafka-consumer-groups.sh –bootstrap-server data1:9092 –group jzwsd-camera-real-time-forecast-a –describe</p><p>c9656300807b</p><p>docker run -d   -v &#x2F;data&#x2F;query_sql:&#x2F;query  –add-host  data1:10.20.10.136 –add-host  data2:10.20.10.137 –add-host  data3:10.20.10.138 registry.lisong.pub:28500&#x2F;toll_job_tmp &#x2F;query&#x2F;fid_info.sql  30</p><p>select * from Biz_Roadstae where FID &gt; 186681323</p><p>ssh -o ServerAliveInterval&#x3D;59 -NfL 0.0.0.0:9092:data1:9092 jzw</p><p>ssh -o ServerAliveInterval&#x3D;59 -NfL 0.0.0.0:2181:data1:2181 jzw</p><p>kafka-run-class.sh kafka.tools.GetOaffsetShell  –broker-list localhost:9092 –partitions 0 –topic zhsd_real –time -1</p><p>71429512</p><p>kafka-console-consumer.sh –bootstrap-server data1:9092 –property print.key&#x3D;true –topic zhsd_real –partition&#x3D;0  –offset 71409512 &gt;real.log</p><p>kafka-console-consumer.sh –bootstrap-server data1:9092  –from-beginning –topic jzw_toll_island_state   &gt;state.txt</p><p>kafka-run-class.sh kafka.tools.GetOaffsetShell  –broker-list data1:9092  –topic ws_hy_mock_data_five_minute –time -1</p><p>PUT &#x2F;_snapshot&#x2F;my_backup<br>{<br>  “type” : “fs”,<br>  “settings”: {<br>    “location”: “&#x2F;data&#x2F;snapshot&#x2F;backup1”<br>    “max_snapshot_bytes_per_sec” : “50mb”,<br>    “max_restore_bytes_per_sec” :”50mb”,<br>    “compress”:true}<br>  }<br>}</p><p>curl -XPUT ‘<a href="http://192.168.5.185:9200/_snapshot/el_bak">http://192.168.5.185:9200/_snapshot/el_bak</a>‘ -d ‘{“type”: “fs”,”settings”: {“location”:”&#x2F;usr&#x2F;hadoop&#x2F;application&#x2F;el_bak”,”max_snapshot_bytes_per_sec” : “50mb”, “max_restore_bytes_per_sec” :”50mb”,”compress”:true}}’</p><p>————————————————<br>版权声明：本文为CSDN博主「warrah」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/warrah/article/details/78978244">https://blog.csdn.net/warrah/article/details/78978244</a></p><p>plugin install elasticsearch&#x2F;elasticsearch-repository-hdfs&#x2F;6.7.2</p><p>POST &#x2F;hy_mock_data_five_minute&#x2F;_delete_by_query<br>{<br>  “query”: {<br>      “bool”: {<br>        “must”: [<br>          {<br>            “range”: {<br>              “rangeBegin”: {<br>                “gte”: “2020-04-18 00:00:00”,<br>                “lt”: “2020-04-22 00:00:00”<br>              }<br>            }<br>          }<br>        ]<br>      }<br>    }<br>}</p><p>同步hy_mock_data</p><p>elasticdump –input&#x3D;<a href="http://namenode2:9200/hy_mock_data_five_minute">http://namenode2:9200/hy_mock_data_five_minute</a> –output&#x3D;<a href="http://yd_data1:9200/hy_mock_data_five_minute_new">http://yd_data1:9200/hy_mock_data_five_minute_new</a>  –type&#x3D;settings<br>elasticdump –input&#x3D;<a href="http://namenode2:9200/hy_mock_data_five_minute">http://namenode2:9200/hy_mock_data_five_minute</a> –output&#x3D;<a href="http://yd_data1:9200/hy_mock_data_five_minute_new">http://yd_data1:9200/hy_mock_data_five_minute_new</a>  –type&#x3D;mapping<br>elasticdump –input&#x3D;<a href="http://namenode2:9200/hy_mock_data_five_minute">http://namenode2:9200/hy_mock_data_five_minute</a> –output&#x3D;<a href="http://yd_data1:9200/hy_mock_data_five_minute_new">http://yd_data1:9200/hy_mock_data_five_minute_new</a>  –type&#x3D;data</p><p>hy_traffic_baidu_five_minute</p><p>elasticdump –input&#x3D;<a href="http://namenode2:9200/hy_traffic_baidu_five_minute">http://namenode2:9200/hy_traffic_baidu_five_minute</a> –output&#x3D;<a href="http://yd_data1:9200/hy_traffic_baidu_five_minute_new1">http://yd_data1:9200/hy_traffic_baidu_five_minute_new1</a>  –type&#x3D;settings<br>elasticdump –input&#x3D;<a href="http://namenode2:9200/hy_traffic_baidu_five_minute">http://namenode2:9200/hy_traffic_baidu_five_minute</a> –output&#x3D;<a href="http://yd_data1:9200/hy_traffic_baidu_five_minute_new1">http://yd_data1:9200/hy_traffic_baidu_five_minute_new1</a>  –type&#x3D;mapping<br>elasticdump –input&#x3D;<a href="http://namenode2:9200/hy_traffic_baidu_five_minute">http://namenode2:9200/hy_traffic_baidu_five_minute</a> –output&#x3D;<a href="http://yd_data1:9200/hy_traffic_baidu_five_minute_new1">http://yd_data1:9200/hy_traffic_baidu_five_minute_new1</a>  –type&#x3D;data</p><p>county_consumption_city</p><p>hotel_tourist_source 不一致</p><p>tourist_local_data<br>tourist_source_prov<br>tourist_source_country<br>county_consumption<br>county_consumption_province<br>hotel_checkin_record</p><hr><p>tourist_passenger_ticket<br>tourist_minute_local_data</p><p>industry_real-weather_data  26866<br>environment_bureau-data 12749</p><hr><p>ddns</p><p>docker run -d  <br>    –restart&#x3D;always <br>    –name ddns-aliyun <br>    -e “AKID&#x3D;LTAI4GBKPp17u31LThucvsab” <br>    -e “AKSCT&#x3D;mmR4XXXKC1QG9KeiHCAuWktMq50UyF” <br>    -e “DOMAIN&#x3D;home.kuiq.wang” <br>    -e “REDO&#x3D;600” <br>    chenhw2&#x2F;aliyun-ddns-cli</p><p>curl -X GET <a href="http://jd_cloud:9200/_search?v">http://jd_cloud:9200/_search?v</a></p><p>county_consumption_city<br>county_industry_consumption<br>county_consumption_province<br>county_consumption<br>county_business_circle_consumption</p><p>tourist_local_data<br>tourist_source_prov<br>tourist_source_country<br>tourist_source_city</p><hr><p>returns((TypeInformation) TupleTypeInfo.getBasicTupleTypeInfo(String.class, Integer.class)).groupBy(0).sum(1)</p><p>2020-07-29</p><p>flink run -c org.example.stream.SocketTextStreamWordCount &#x2F;Users&#x2F;wqkenqing&#x2F;Desktop&#x2F;gitfiles&#x2F;flink-demo&#x2F;target&#x2F;original-flink-demo-1.0-SNAPSHOT.jar 127.0.0.1 9000<br>flink run -c org.example.stream.SocketTextStreamWordCount original-flink-demo-1.0-SNAPSHOT.jar 127.0.0.1 9000</p><p>&#x2F;Users&#x2F;wqkenqing&#x2F;Desktop&#x2F;gitfiles&#x2F;flink-demo&#x2F;target&#x2F;original-flink-demo-1.0-SNAPSHOT.jar</p><p>docker run -d <br>    –restart&#x3D;always <br>    –name ddns-aliyun <br>    -e “AKID&#x3D;LTAI4GBKPp17u31LThucvsab” <br>    -e “AKSCT&#x3D;mmR4XXXKC1QG9KeiHCAuWktMq50UyF” <br>    -e “DOMAIN&#x3D;home.kuiq.wang” <br>    -e “REDO&#x3D;600” <br>chenhw2&#x2F;aliyun-ddns-cli</p><p>LTAI4GBKPp17u31LThucvsab</p>]]></content>
+    
+    
+      
+      
+    <summary type="html"> &lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+&lt;p&gt;docker run  –name fid_state_new -d -v &amp;#x2F;data&amp;#x2F;query_sql:&amp;#x2F;query  –add-host  data1:10.20.10.136 –add-</summary>
       
     
     
@@ -350,10 +146,30 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/07/31/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%94%B9%E9%80%A0/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/07/31/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%94%B9%E9%80%A0/</id>
-    <published>2023-07-31T01:34:43.279Z</published>
-    <updated>2023-07-31T08:46:44.458Z</updated>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C/</id>
+    <published>2023-10-14T02:58:25.925Z</published>
+    <updated>2023-10-14T02:58:25.925Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Q-更换ubuntu安装源"><a href="#Q-更换ubuntu安装源" class="headerlink" title="Q: 更换ubuntu安装源"></a>Q: 更换ubuntu安装源</h2><p>cp &#x2F;source&#x2F;apt&#x2F;source.plist &#x2F;source&#x2F;apt&#x2F;source.list.bak</p><p>vim &#x2F;source&#x2F;apt&#x2F;source.plist</p><p>添加国内源.</p><p>Q: mac 查看目前哪些进程占用哪些端口</p><p>lsof -nP  | grep TCP | grep LISTEN</p><p>lsof -i :TCP</p><p><img src="http://img.wqkenqing.ren/759a2c6c1c06fc81b9c400060913e93b.png" alt="查看mac pid进程的端口"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Q-更换ubuntu安装源&quot;&gt;&lt;a href=&quot;#Q-更换ubuntu安装源&quot; class=&quot;headerlink&quot; title=&quot;Q: 更换ubuntu安装源&quot;&gt;&lt;/a&gt;Q: 更换ubuntu安装源&lt;/h2&gt;&lt;p&gt;cp &amp;#x2F;source&amp;#x2F;apt</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%94%B9%E9%80%A0/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%94%B9%E9%80%A0/</id>
+    <published>2023-10-14T02:58:25.925Z</published>
+    <updated>2023-10-14T02:58:25.925Z</updated>
     
     <content type="html"><![CDATA[<h2 id="组件安全升级"><a href="#组件安全升级" class="headerlink" title="组件安全升级"></a>组件安全升级</h2><blockquote><p>洪雅项目发生了elaticsearch被黑客入侵事故，事后分析，主要跟我们内部安全策略不强也有关系，接下来对相关组件进行安全升级</p></blockquote><h3 id="1-问题分析"><a href="#1-问题分析" class="headerlink" title="1 问题分析"></a>1 问题分析</h3><p>1.1 因为elasticsearch默认是9200、9300的端口开放，且默认是没有加安全组件的，我们的移动云服务器，虽然并未将相应端口外部暴露，如果是移动云内部，仍可能发生被扫描的爆破</p><h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><ol><li>加xpack安全组件</li><li>加防火墙策略<ol><li>只允许内部服务器访问</li></ol></li><li>升级es从6.7到6.8</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">我现在需要对部署在ubuntu上的elasticsearch服务进行端口防火墙策略，现在需要实现的策略是只允许</span><br><span class="line">192.168.18.100 namenode</span><br><span class="line">192.168.18.104 namenode2</span><br><span class="line">192.168.18.101 datanode1</span><br><span class="line">192.168.18.102 datanode2</span><br><span class="line">192.168.18.103 datanode3</span><br><span class="line">这几台服务器之前可以访问9200、9300端口</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 允许192.168.18.100访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.100 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.100访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.100 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.104访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.104 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.104访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.104 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.101访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.101 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.101访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.101 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.102访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.102 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.102访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.102 to any port 9300</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.103访问9200端口</span><br><span class="line">sudo ufw allow from 192.168.18.103 to any port 9200</span><br><span class="line"></span><br><span class="line"># 允许192.168.18.103访问9300端口</span><br><span class="line">sudo ufw allow from 192.168.18.103 to any port 9300</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sudo ufw allow from 192.168.9.185 to any port 9200</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>centos</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 添加允许192.168.18.100访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.100 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.100访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.100 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.104访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.104 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.104访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.104 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.101访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.101 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.101访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.101 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.102访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.102 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.102访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.102 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.103访问9200端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.103 port port=9200 protocol=tcp accept&#x27;</span><br><span class="line"></span><br><span class="line"># 添加允许192.168.18.103访问9300端口的规则</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-rich-rule=&#x27;rule family=ipv4 source address=192.168.18.103 port port=9300 protocol=tcp accept&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET &quot;http://namenode2:9200/_cat/indices?v&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
     
@@ -371,38 +187,17 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/07/31/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6%E5%AE%89%E5%85%A8%E5%8D%87%E7%BA%A7%E6%96%B9%E6%A1%88/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/07/31/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6%E5%AE%89%E5%85%A8%E5%8D%87%E7%BA%A7%E6%96%B9%E6%A1%88/</id>
-    <published>2023-07-31T01:34:43.279Z</published>
-    <updated>2023-08-09T01:35:57.498Z</updated>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/prepare/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%A4%87/</id>
+    <published>2023-10-14T02:58:25.924Z</published>
+    <updated>2023-10-14T02:58:25.924Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="组件安全升级"><a href="#组件安全升级" class="headerlink" title="组件安全升级"></a>组件安全升级</h2><blockquote><p>洪雅项目发生了elaticsearch被黑客入侵事故，事后分析，主要跟我们内部安全策略不强也有关系，接下来对相关组件进行安全升级</p></blockquote><h3 id="1-问题分析"><a href="#1-问题分析" class="headerlink" title="1 问题分析"></a>1 问题分析</h3><p>1.1 因为elasticsearch默认是9200、9300的端口开放</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;组件安全升级&quot;&gt;&lt;a href=&quot;#组件安全升级&quot; class=&quot;headerlink&quot; title=&quot;组件安全升级&quot;&gt;&lt;/a&gt;组件安全升级&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;洪雅项目发生了elaticsearch被黑客入侵事故，事后分析，主要跟我们内部安全</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/07/28/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%8E%8B%E5%A5%8E%E6%B8%85%E7%9A%84%E5%8F%91%E8%A8%80/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/07/28/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%8E%8B%E5%A5%8E%E6%B8%85%E7%9A%84%E5%8F%91%E8%A8%80/</id>
-    <published>2023-07-28T04:01:20.956Z</published>
-    <updated>2023-07-28T05:59:08.723Z</updated>
-    
-    <content type="html"><![CDATA[<p>大家好，我是王奎清。入职旸谷四年多时间，司职研发部，从事大数据开发，运维等工作。此时此刻想说的话，有很多，但汇集起来，出现的是这四年多来的点点片段，如青岛胶州湾半岛上满山的癞蛤蟆，洪雅办事处因雨季湿润的床铺，汉口漏水的机房、济泺路现场路边的露天厕所，同时当然还有数不清楚的需求迭代、多个项目的紧急响应的夜晚，一幕幕深刻的回忆也都随之回显在我的脑海里。 回顾这些年，我对旸谷精神“危机与奋斗、梦想与坚持、读书与锻炼” ，在经历了这些年作为旸谷人实际的工作与生活，深以为然，感到深深的认同感。在此祝旸谷六周年生日快乐、未来朝朝日上</p><p>6.17号之后没有更新的数据</p><ol><li>IPGB</li><li>UPS</li></ol><hr><ol><li>车检器数据 (topic2)</li><li>情报板数据()</li></ol>]]></content>
+    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">采集数据,留作备用</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>所涉组件</p><p>采集</p><ul><li>flume</li><li>logstash</li><li>beats</li><li>elasticsearch-dump</li></ul><p>传输</p><ul><li>kafka</li><li>flume</li></ul><p>存储</p><ul><li>elasticsearch</li><li>hbase</li><li>hdfs</li></ul><p>step one : 采集数据到elasticsearch</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;大家好，我是王奎清。入职旸谷四年多时间，司职研发部，从事大数据开发，运维等工作。此时此刻想说的话，有很多，但汇集起来，出现的是这四年多来的点点片段，如青岛胶州湾半岛上满山的癞蛤蟆，洪雅办事处因雨季湿润的床铺，汉口漏水的机房、济泺路现场路边的露天厕所，同时当然还有数不清楚的需</summary>
+    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;</summary>
       
     
     
@@ -412,19 +207,31 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/07/25/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/725%E6%9B%B4%E6%96%B0%E5%86%85%E5%AE%B9%E6%B8%85%E5%8D%95/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/07/25/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/725%E6%9B%B4%E6%96%B0%E5%86%85%E5%AE%B9%E6%B8%85%E5%8D%95/</id>
-    <published>2023-07-25T02:31:58.728Z</published>
-    <updated>2023-07-25T02:34:23.555Z</updated>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/vue/vue/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/vue/vue/</id>
+    <published>2023-10-14T02:58:25.924Z</published>
+    <updated>2023-10-14T02:58:25.924Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="更新服务内容清单"><a href="#更新服务内容清单" class="headerlink" title="更新服务内容清单"></a>更新服务内容清单</h2><ol><li><p>角色管理:修改为固定角色（管理员&#x2F;普通用户）</p></li><li><p>人员管理：新增和修改;新增”角色”选项；</p></li><li><p>项目管理-水下隧道管理和铁路隧道管理列表：(1) 第一列新增序号；(2)数据完整度新增排序；(3) 状态新增（显示：value）;</p></li><li><p>项目管理-水下隧道管理：（1）列表-项目当前阶段的排序一方面按照“已建成”-“配合施工”-“施工图”-“初步设计”-“工可”的顺序排列；（2）在项目当前阶段排序规则下。隐藏状态的顺序按照工程进展里填的最早的时间节点进行排序；</p></li><li><p>项目管理-水下隧道管理：（1）新增&#x2F;编辑-工程类别新增编码：输水隧洞；与设计标准无对应关系；（2）涉及：工作台&#x2F;大屏&#x2F;自定义查询；</p></li><li><p>项目管理-水下隧道管理：（1）项目当前阶段中的“配合施工”改为“在建”；（2）涉及：工作台&#x2F;大屏&#x2F;自定义查询；</p></li></ol>]]></content>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/about%E4%BA%91%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81/</id>
+    <published>2023-10-14T02:58:25.924Z</published>
+    <updated>2023-10-14T02:58:25.924Z</updated>
+    
+    <content type="html"><![CDATA[<p>account: wqkenqing<br>password:125323wkQ$</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;更新服务内容清单&quot;&gt;&lt;a href=&quot;#更新服务内容清单&quot; class=&quot;headerlink&quot; title=&quot;更新服务内容清单&quot;&gt;&lt;/a&gt;更新服务内容清单&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;角色管理:修改为固定角色（管理员&amp;#x2F;普通用户）&lt;/p&gt;
-&lt;/li&gt;</summary>
+    <summary type="html">&lt;p&gt;account: wqkenqing&lt;br&gt;password:125323wkQ$&lt;/p&gt;
+</summary>
       
     
     
@@ -434,21 +241,189 @@
   
   <entry>
     <title></title>
-    <link href="http://www.wqkenqing.ren/daydoc/2023/07/21/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92721/"/>
-    <id>http://www.wqkenqing.ren/daydoc/2023/07/21/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92721/</id>
-    <published>2023-07-21T08:07:17.464Z</published>
-    <updated>2023-07-25T02:28:44.880Z</updated>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/jumpserver/</id>
+    <published>2023-10-14T02:58:25.924Z</published>
+    <updated>2023-10-14T02:58:25.924Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="发版步骤"><a href="#发版步骤" class="headerlink" title="发版步骤"></a>发版步骤</h1><ol><li>完成测试项，评估能否发版</li><li>暂停代码提交</li><li>数据库备份</li><li>打包镜像发到远程</li><li>同步数据库变更信息</li><li>发版</li><li>回归测试</li><li>验证通过</li></ol><h2 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h2><p>执行数据库文件</p><p>sxsddsj_data_dictionary.sql</p><h2 id="服务更新"><a href="#服务更新" class="headerlink" title="服务更新"></a>服务更新</h2><table><thead><tr><th>更新项目</th><th>更新版本号</th><th></th></tr></thead><tbody><tr><td>sxsddsj_web</td><td><strong>11521</strong></td><td>项目数据管理系统</td></tr><tr><td>sxsddsj-main</td><td>11524</td><td></td></tr><tr><td>sxsddsj-auth-center</td><td>11519</td><td></td></tr></tbody></table>]]></content>
+    <content type="html"><![CDATA[<hr><h2 id="title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理"><a href="#title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理" class="headerlink" title=" title:  jumpserver体验 date: 2020-07-28 tags: [jumpserver,资产管理]"></a> title:  jumpserver体验<br> date: 2020-07-28<br> tags: [jumpserver,资产管理]</h2> <span id="more"></span><p> # jumpserver体验</p><p> ## 一体化安装</p><p>mysql -uroot -e “create database jumpserver default charset ‘utf8’; grant all on jumpserver.* to ‘jumpserver‘@’127.0.0.1’ identified by ‘$DB_PASSWORD’; flush privileges;”</p><p>m6GgXgemmBw5B7om9uYqFSz3erVo0JCLO7Trxpo8S2bxazXk2Y</p><p>Vv42qLmxsEPUO4Kf</p><p>xLnAOS5Mc8cqRZ8QDxUzVQvZgxIRnJl73c0rE56WCSq8tYZQFG</p><p>ETNhIk9zu3fgN2pG</p>]]></content>
+    
+    
+    <summary type="html">&lt;hr&gt;
+&lt;h2 id=&quot;title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理&quot;&gt;&lt;a href=&quot;#title-jumpserver体验-date-2020-07-28-tags-jumpserver-资产管理&quot; class=&quot;headerlink&quot; title=&quot; title:  jumpserver体验 date: 2020-07-28 tags: [jumpserver,资产管理]&quot;&gt;&lt;/a&gt; title:  jumpserver体验&lt;br&gt; date: 2020-07-28&lt;br&gt; tags: [jumpserver,资产管理]&lt;/h2&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%BF%90%E7%BB%B4/tmux%E4%B8%8A%E6%89%8B/</id>
+    <published>2023-10-14T02:58:25.924Z</published>
+    <updated>2023-10-14T02:58:25.925Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用tmux"><a href="#使用tmux" class="headerlink" title="使用tmux"></a>使用tmux</h2><p>mac os 通过 brew install tmux</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux 接收快捷键的指令是 ^ + B 即mac中的control + B</span><br></pre></td></tr></table></figure><p>窗格的操作</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这些操作都是通过 ^+b 来接收</span><br><span class="line"></span><br></pre></td></tr></table></figure><table><thead><tr><th align="left">操作符</th><th align="left">作用</th></tr></thead><tbody><tr><td align="left">%</td><td align="left">左右创建两个窗格</td></tr><tr><td align="left">‘’</td><td align="left">左右创建两个窗格</td></tr><tr><td align="left">x</td><td align="left">关闭当前窗格</td></tr><tr><td align="left">{</td><td align="left">前移当前窗格</td></tr><tr><td align="left">}</td><td align="left">后移当前窗格</td></tr><tr><td align="left">;</td><td align="left">选择上次用的窗格</td></tr><tr><td align="left">o</td><td align="left">选择下一个窗格</td></tr><tr><td align="left">space</td><td align="left">切换窗格布局</td></tr><tr><td align="left">z</td><td align="left">放大窗格</td></tr><tr><td align="left">q</td><td align="left">显示序号</td></tr></tbody></table>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;发版步骤&quot;&gt;&lt;a href=&quot;#发版步骤&quot; class=&quot;headerlink&quot; title=&quot;发版步骤&quot;&gt;&lt;/a&gt;发版步骤&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;完成测试项，评估能否发版&lt;/li&gt;
-&lt;li&gt;暂停代码提交&lt;/li&gt;
-&lt;li&gt;数据库备份&lt;/li&gt;
-&lt;li&gt;打包镜</summary>
+    <summary type="html">&lt;h2 id=&quot;使用tmux&quot;&gt;&lt;a href=&quot;#使用tmux&quot; class=&quot;headerlink&quot; title=&quot;使用tmux&quot;&gt;&lt;/a&gt;使用tmux&lt;/h2&gt;&lt;p&gt;mac os 通过 brew install tmux&lt;/p&gt;
+&lt;figure class=&quot;highlig</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/%E8%80%83%E8%AF%95/%E7%94%B5%E5%AD%90%E7%A7%91%E5%A4%A72019%E6%8B%9B%E7%94%9F%E6%94%B6%E9%9B%86/</id>
+    <published>2023-10-14T02:58:25.924Z</published>
+    <updated>2023-10-14T02:58:25.924Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/blog_sync_project/plan/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%97%A5%E5%B8%B8/blog_sync_project/plan/</id>
+    <published>2023-10-14T02:58:25.923Z</published>
+    <updated>2023-10-14T02:58:25.923Z</updated>
+    
+    <content type="html"><![CDATA[<p>about two git project</p><p>one hexo .<br>this project is used to deploy the files;</p><p>two : dayliy_doc</p><p>so I just divide the project about these parts</p><ol><li><p>pull files from github </p></li><li><p>list the files;</p></li><li><p>choose the files to sync. </p></li><li><p>push and deploy;</p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;about two git project&lt;/p&gt;
+&lt;p&gt;one hexo .&lt;br&gt;this project is used to deploy the files;&lt;/p&gt;
+&lt;p&gt;two : dayliy_doc&lt;/p&gt;
+&lt;p&gt;so I just divide the </summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E7%99%BB%E9%99%86%E4%B8%8Esso/%E5%90%8E%E7%AB%AF%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E7%99%BB%E9%99%86%E4%B8%8Esso/%E5%90%8E%E7%AB%AF%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/</id>
+    <published>2023-10-14T02:58:25.923Z</published>
+    <updated>2023-10-14T02:58:25.923Z</updated>
+    
+    <content type="html"><![CDATA[<p>本期主要实现的功能有</p><ol><li><p>用户登陆验证功能</p></li><li><p>路由拦截，token验证功能</p></li><li><p>待实现的功能</p><ol><li>路由拦截功能<ol><li>即通过地址访问时，会先拦截，进行校验是否有token。</li><li>若无token，则回退到登陆页面。</li></ol></li><li>用户验证功能<ol><li>通过账号密码可以正常登陆。</li></ol></li><li>授权功能<ol><li>可以登陆sso中任意一个系统，通过token</li></ol></li></ol></li></ol><p>实现过程</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 在调研的过程中发现现在前后端分离，在这种情况下如何实现后端的登陆校验</span><br><span class="line">2. 原来前后端分离，现在的校验方式就是每个页面现在发起一个后端请求。验证是是否能访问</span><br><span class="line">3.我的思路是现在封装一个validate.js</span><br><span class="line">4. 现在先实现后端的验证，打算基于spring secruity 来实现</span><br></pre></td></tr></table></figure><p>创建用户认证模块</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 创建用户表</span><br><span class="line">Q: 我需要创建一个用户表 ，表名user，字段为 id,username,password,name,password_salt,type,status,update_time,create_time</span><br></pre></td></tr></table></figure><p>再创建一个menu表</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q. 我需要创建一个菜单表，表名们menu，字段为 id、code、name、type、path、create_time、update_time、icon</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">先实现一个初级的方法，即前端传用户传用户名与密码，后端生成token，且有失效时间，前端存储改token，每次访问的时候，带入此token</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpSession session = request.getSession();</span><br><span class="line">//第二步：将想要保存到数据存入session中</span><br><span class="line">session.setAttribute(&quot;userName&quot;,userName);</span><br><span class="line">session.setAttribute(&quot;password&quot;,passWord);</span><br></pre></td></tr></table></figure><p>网关服务的实现</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用网关服务的好处是，这样我在开发的过程中就不用再频繁切换后端地址。方便开发与调试</span><br></pre></td></tr></table></figure><ol><li>安装nacos</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nacos/nacos-server</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -d nacos/nacos-server:latest</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;本期主要实现的功能有&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;用户登陆验证功能&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;路由拦截，token验证功能&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;待实现的功能&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;路由拦截功能&lt;ol&gt;
+&lt;li&gt;即通过地址访问时，会先拦截，进行校</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E7%99%BB%E9%99%86%E4%B8%8Esso/login&amp;sso/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E7%99%BB%E9%99%86%E4%B8%8Esso/login&amp;sso/</id>
+    <published>2023-10-14T02:58:25.923Z</published>
+    <updated>2023-10-14T02:58:25.923Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>结合现有的服务，需要设计一个login与sso页面的功能</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;结合现有的服务，需要设计一个login与sso页面的功能&lt;/p&gt;
+&lt;/blockquote&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A%E4%BF%AE%E6%94%B9%E6%84%8F%E8%A7%81/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A%E4%BF%AE%E6%94%B9%E6%84%8F%E8%A7%81/</id>
+    <published>2023-10-14T02:58:25.922Z</published>
+    <updated>2023-10-14T02:58:25.922Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><ol><li>增加对软件的评估</li></ol><h3 id="4、详细测试结果"><a href="#4、详细测试结果" class="headerlink" title="4、详细测试结果"></a>4、详细测试结果</h3><p>把测试用例按结果分类编写</p><p><img src="/daydoc/Users/kuiqwang/Library/Application%20Support/typora-user-images/image-20230719143839876.png" alt="image-20230719143839876"></p><h3 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h3><ol><li>按模块进行分类</li><li>用例名称-&gt;更改成一个测试方法类型</li></ol><h3 id="测试记录"><a href="#测试记录" class="headerlink" title="测试记录"></a>测试记录</h3><h3 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h3><p>缺陷与限制细分一下</p><h3 id="测试建议"><a href="#测试建议" class="headerlink" title="测试建议"></a>测试建议</h3><p>修改测试建议</p><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;测试结果&quot;&gt;&lt;a href=&quot;#测试结果&quot; class=&quot;headerlink&quot; title=&quot;测试结果&quot;&gt;&lt;/a&gt;测试结果&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;增加对软件的评估&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;4、详细测试结果&quot;&gt;&lt;a href=&quot;#4、详细测试结果</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E6%B5%8B%E8%AF%95%E8%AE%A1%E5%88%92/</id>
+    <published>2023-10-14T02:58:25.922Z</published>
+    <updated>2023-10-14T02:58:25.922Z</updated>
+    
+    <content type="html"><![CDATA[<p>按模版调整</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;按模版调整&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%89%87%E6%AE%B5/"/>
+    <id>http://www.wqkenqing.ren/daydoc/2023/10/14/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%89%87%E6%AE%B5/</id>
+    <published>2023-10-14T02:58:25.922Z</published>
+    <updated>2023-10-14T02:58:25.922Z</updated>
+    
+    <content type="html"><![CDATA[<p>成都旸谷</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">项目内容: 数据基础服务平台、数据运维平台</span><br><span class="line">本项目是结合我司众多项目的研发过程中，归纳相关需求，内部孵化的自研产品，能快速的为项目提供基础服务，加快项目的推进进程，从而更快产生价值。</span><br><span class="line">主要的功能包含数据地图、数据集成(数据采集、数据同步)、元数据管理、数据治理、调度系统、数据应用（数据服务、数据图表、报表）等核心功能。</span><br><span class="line">该项目较完整的包含了数据流过程中的功能，每部份功能都能在项目中提供具体的功能。如数据采集、数据同步等，通过相关配置，我们即可快速的完成主流的采集协议的采集通道构建。数据同步我们已经支持较多组件之前的同步和多种策略的同步，并在不断的完善中。元数据管理，我们基于atlas进行二次开发，在此基础上完成了我们主要的组件的元数据的采集，粒度细致到字段级，并查相关血缘信息。数据治理，基础海豚调度加flink、spark、hive、clickhouse等组件，完成了一些常见内置治理规则的治理，同时还支持上传udf包，进行自定义规则处理。</span><br><span class="line">我的职责</span><br><span class="line">1. 担任本项目的团队sm，主导项目的推进与孵化</span><br><span class="line">2. 主力架构与拆分项目的主体的功能。</span><br><span class="line">3. 管理数据运维平台，保障各基础组件正常运行。</span><br></pre></td></tr></table></figure><p>浩海通达</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">项目内容:</span><br><span class="line">通过jt807、jt808等协议对平台多个客户方的近千量车辆的轨迹采集，业务数据量级日均百G级，并进行清洗,处理.存储.然后再结合业务数据,进行相同起始点的耗时对比，线路运费对比等业务分析，线路故障信息分析等,从而进行流程优化，线路推荐等。针对积累的数据，进行聚合分析，反馈给司机端，以供司机选择最优路径。以报表形式反馈给B端，以供企业做成本分析，与商业决策。</span><br><span class="line">我的职责</span><br><span class="line">1. 主导数据中心的建设，为团队提供大数据存储、处理的能力</span><br><span class="line">2. 主导JT807、JT808协议解析的数据采集服务的构建、提供稳定，高效的数据采集服务。</span><br><span class="line">3. 主力开发相关数据处理任务，如轨迹数据的异常点清洗，轨迹纠偏，轨迹稀疏，轨迹对比等任务开发。</span><br></pre></td></tr></table></figure><p>海航</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">项目内容:</span><br><span class="line">海航hiapp (MTS app)项目，是一款涉及航旅、住宿、美食等ToC应用服务，承载了海航千万级注册用户，日活过百万。我们的工作职责是以app用户登录为入口产生的行为数据流进行存储、处理、分析、应用等数据流处理。涉及到较大数据量的实时数据流的处理，和丰富的业务应用，如面向运营部门的报表业务、面向AI对话机器人的模型治理数据、推荐中心的推荐模型数据等。</span><br><span class="line">我的职责:</span><br><span class="line">1. 部份模块的任务开发，如用户埋点日志信息流处理、对话数据的NLP切词流任务、主流网站的出行旅游游记爬虫任务等</span><br><span class="line">2. 部份数据报表服务的开发实现.</span><br></pre></td></tr></table></figure><p>摩森特</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">针对公司的数百T的存量文本数据反复进行切词、聚类、分析等处理与挖掘，在此基础开发出了公司的DMP平台，主要的核心功能有多标签的用户画像、多主题的数据仓库、脱敏的数据服务等。为公司带来可观的经济增值。</span><br><span class="line">主要职责:</span><br><span class="line">1.数据集群各组件搭建</span><br><span class="line">2.批处理任务的开发，如文本信息的切词、聚类任务等，数据仓库入库数据的清洗等和一些Hive的UDF包开发</span><br><span class="line">3.DMP的部份模块开发如数据仓库即席查询服务，用户画像功能等。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;成都旸谷&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span</summary>
       
     
     
