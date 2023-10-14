@@ -22,7 +22,7 @@ jobs:
     - name: Install and Build 🔧 
       run: |
         npm install -g hexo-cli
-	npm install -g hexo-deployer-git
+	npm install --save hexo-deployer-git
         npm install
         hexo clean
         hexo generate
