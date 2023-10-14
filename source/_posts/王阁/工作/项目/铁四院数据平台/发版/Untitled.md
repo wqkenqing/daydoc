@@ -226,3 +226,21 @@ kubectl set image deployments/pre-sxsddsj-main app=registry.lisong.pub:28500/sxs
  kubectl set image deployments/pre-sxsddsj-main app=registry.lisong.pub:28500/sxsddsj/main:v12049
 ```
 
+10.8
+
+```
+ kubectl set image deployments/sxsddsj-auth-center app=registry.lisong.pub:28500/sxsddsj/auth-center:v12058
+```
+
+
+
+10.11
+
+```
+ kubectl set image deployments/pre-sxsddsj-main app=registry.lisong.pub:28500/sxsddsj/main:v12103
+```
+
+```
+kubectl set image deployments/pre-sxsddsj-web webapp=registry.lisong.pub:28500/sxsddsj-fe/sxsddsj_web:v12082
+```
+

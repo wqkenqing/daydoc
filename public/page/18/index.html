@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-05-18 11:29:59'
+  postUpdate: '2023-10-08 17:22:22'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -158,106 +158,215 @@
     }
     detectApple()
     })(window)</script><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/daydoc/archives/"><div class="headline">Articles</div><div class="length-num">201</div></a><a href="/daydoc/tags/"><div class="headline">Tags</div><div class="length-num">86</div></a><a href="/daydoc/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/daydoc/" title="wang's dayliy document"><span class="site-name">wang's dayliy document</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">wang's dayliy document</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog19/" title="JVM问题">JVM问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/daydoc/archives/"><div class="headline">Articles</div><div class="length-num">255</div></a><a href="/daydoc/tags/"><div class="headline">Tags</div><div class="length-num">86</div></a><a href="/daydoc/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/daydoc/" title="wang's dayliy document"><span class="site-name">wang's dayliy document</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">wang's dayliy document</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flink/flink_book/" title="王阁/技术/大数据/flink/flink_book">王阁/技术/大数据/flink/flink_book</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">
+ title:  flink_book.md date: 2020-8-24 tags:  [flink,book]
+
+ 
+
+flink book</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/hbase/hbase20190109/" title="王阁/技术/大数据/hbase/hbase20190109">王阁/技术/大数据/hbase/hbase20190109</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">summary of today今日总结
+
+hive外部表的创建与删除
+hbase filter的使用
+hbase rowkey 的使用
 
 
-JVM问题1、堆内存溢出2、持久代内存溢出3、系统频繁FGC
-框架使用不当4、错误使用框架提供API5、日志框架使用不当OS内存溢出6、某系统物理内存溢出数据库问题7、慢SQL问题
-案例1、堆内存溢出JVM基础知识1、Jvm内存分为三个大区，young区，old区和perm区；其中young区又包含三个区：Edgn区、S0、S1区2、young区和old区属于heap区，占据堆内存；perm区称为持久代，不占据堆内存。堆内存溢出性能问题发现过程
-查看服务器上报错日志，发现有如下报错信息［java.lang.OutOfMemoryError: Java heap space］；根据报错信息确定是jvm 堆内存空间不够导致，于是使用jvm命令（下图）查看，发现此时old区内存空间已经被占满了，同时使用jvisualvm监控工具也发现old区空间被占满（右图），整个heap区空间已经无法再容纳新对象进入。建议考虑大量数据一次性写入内存场景
-持久代内存溢出现象
-压测某系统接口，压测前1分钟左右tps 400多，之后Tps直降为零，后台报错日志：java.lang.OutOfMem ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog2/" title="String StringBuffer StringBuilder">String StringBuffer StringBuilder</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
+hive 外部表的创建,主要是 postion_gps_online表
+hbase rowkey的使用,这里涉及到相关逻辑里的实现问题,如轨迹某段时间里所有设备的轨迹,rowkey 若设计成device_id+”“+ts_time 形式,则会出现通过start_row与stop_row的模糊区间匹配未找到现成的方案.所以后续rowkey设计成的是ts_time+”“+device_id的形式,这样可以只通过传时间就可以筛选出这个时间区间里的所有device_id.
 
-String StringBuffer StringBuilder
-String s =new String(“ok”)
-（1）String ok1=new String(“ok”);（2）String ok2=“ok”;我相信很多人都知道这两种方式定义字符串，但他们之间的差别又有多少人清楚呢。画出这两个字符串的内存示意图：
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/docker%E7%89%88flume%E4%BD%BF%E7%94%A8/" title="王阁/技术/大数据/flume/docker版flume使用">王阁/技术/大数据/flume/docker版flume使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">flume in docker1公司flume的docker镜像,
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E5%8E%9F%E7%90%86/" title="kafka原理">kafka原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content"> 
 
-1String ok1=new String(“ok”)。首先会在堆内存申请一块内存存储字符串ok,ok1指向其内存块对象。同时还会检查字符串常量池中是否含有ok字符串,若没有则添加ok到字符串常量池中。所以 new String()可能会创建两个对象.
+[TOC]
+正常kafka服务运行的组件组成
+kafka
 
-String ok2=“ok”。 先检查字符串常量池中是否含有ok字符串,如果有则直接指向, 没有则在字符串常量池添加ok字符串并指向它.所以这种方法最多创建一个对象，有可能不创建对象所以String ok1=new String(“ok”);//创建了两个对象String ok2=“ok”;//没有创建对象比较类中的数值是否相等使用equals(),比较两个包装类的引用是否指向同一个对象时用== ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog23/" title="sed &amp; awk小结">sed &amp; awk小结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
+zookeeper
+kafka运行主要的逻辑角色组成
 
+producer
+consumer
+broker
 
-sed &amp; awk小结一直想认真掌握sed与awk已经很久了，但一直未找个以特别详细的资料和时间来做这件事，正好这两天受到启发，转而翻墙搜索国外资源，有了很大的收获，趁次机会攻克下来
-前言sed与awk总得来说是两样东西，本身无直接关联，做在日常使用时两者经常使用到，并且常常混合使用，所以此次小结放在一起，分总式结构进行小结
-sedsed相较awk更偏于工具一点，全称应该是strem editor (即流式编辑器)。面向的是一行一行内容
-使用形式sed [-nefr] [动作]选项与参数：-n ：使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN 的数据一般都会被列出到终端上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。-e ：直接在命令列模式上进行 sed 的动作编辑；-f ：直接将 sed 的动作写在一个文件内， -f filename 则可以运行 filename 内的 sed 动作；-r ：sed 的动作支持的是延伸型正规表示法的语法。(默认是基础正规表示法语法)-i ：直接修改读取的文件 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog25/" title="爬虫之nutch">爬虫之nutch</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
-
-
- 这阵子主要研究的爬虫方向，主要以java为语言基础,nutch为自动框架，jsoup作为自主爬虫插件开发基础，进行了一些有针对性的实站，在这些过程中，也遇到了一些问题和心得，觉得有必要总结一下
-爬虫之nutchnutch使用体验与感悟在这里之所以以nutch开篇，因为在接触爬虫之前就一直有听过它的大名，知道它是我们java语言栈中的爬虫利器，而且因为它，诞生了hadoop这一重器，后者在如今天大数据技术圈的名头，应该是无人不晓吧。所以，多种因素的促使下，让我入了nutch的坑。而本文虽是不仅针对nutch的总结，但主要还是以nutch为主。
-经过一阵的实际体验,nutch给我的感觉，老实说确实是强,百科中说nutch的目的是“Nutch 致力于让每个人能很容易, 同时花费很少就可以配置世界一流的Web搜索引擎. 为了完成这一宏伟的目标, Nutch必须能够做到”,能有这么宏伟的目标，自然得有相应的实力来支撑。但就我体验来说，它确实是强，经过简单的配置后，几个简单的指令就能对页面进行抓取，但我觉得也有几个比较明显的让人体验不太好的地方
-
-对动态生成的网页内容的抓取不理想， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog26/" title="MapReduce的核心思想">MapReduce的核心思想</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
-
-
-mapreduce在hadoop中更多的承担的是计算的角色
-什么是MapReduce？mapreduce源于谷歌公司为研究大规模数据处理而研发出的一种并行计算模型和方法。它将并行编程中的难点和有相对门槛的方法进行高度封装，而给开发者一套接口，让开发者理专注于自己的业务逻辑，即可让自己的代码运行在分布式集群中，大大降低了开发一些并发程序的门槛。从字面上就可以知道，MapReduce分为Map(映射)、Reduce(规约)
-MapReduce的核心思想MapReduce主要是两种经典函数：
-
-映射（Mapping）将一个整体按某种规则映射成N份。并对这N份进行同一种操作。
-规约（Reducing）将N份文件，按某种策略进行合并。
-
-MapReduce的角色与动作　 MapReduce包含四个组成部分，分别为Client、JobTracker、TaskTracker和Task，下面我们详细介绍这四个组成部分。
-
-Client：作业提交的发起者， 每一个 Job 都会在用户端通过 Client 类将应用程序以及配置参数 Configuration 打包成 JAR 文件存储在 HD ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog24/" title="Hadoop总结(第一版---HDFS篇)">Hadoop总结(第一版---HDFS篇)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
-
-
-Hadoop总结(第一版—HDFS篇)123## 什么是hadoop？&gt;hadoop是稳定的，高容错的，可大规模布署的分布式文件，存储，并行编程框架。&#96;&#96;&#96;本文默认是已经有hadoop使用经验,所以暂不涉及具体的hadoop生态的各组件的部署和调优细节，后续单开文章来总结。但在具体讲解时会涉及说参数配置会对相关组件参生影响
-具体而言，hadoop核心组件内容有：hdfs、mapredcue。所以接下来的总结主要针对这两在核心组件展开
-HDFS篇什么是HDFS？分布式文件系统：分布式文件系统是一种允许文件通过网络在多台主机上分享的 文件的系统，可让多机器上的多用户分享文件和存储空间HDFS:（Hadoop Distribute File System）即hadoop分布式文件系统  主要用于适合运行在通用硬件上的分布式文件系统，特点是高度容错，适合布署在廉价服务器上，具有高吞吐量的数据访问等特点  1. 保存多个副本，且提供容错机制，副本丢失或宕机自动恢复。默认存3份。  2. 运行在廉价的机器上。  3. 适合大数据的处理。多大？多小？HDF ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog4/" title="List学习">List学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
-
-
-List学习 ArrayList不是线程安全的，只能用在单线程环境下，多线程环境下可以考虑用Collections.synchronizedList(List l)函数返回一个线程安全的ArrayList类，也可以使用concurrent并发包下的CopyOnWriteArrayList类
-ArrayList实现了Serializable接口，因此它支持序列化，能够通过序列化传输，实现了RandomAccess接口，支持快速随机访问，实际上就是通过下标序号进行快速访问，实现了Cloneable接口，能被克隆。
-每个ArrayList实例都有一个容量，该容量是指用来存储列表元素的数组的大小。它总是至少等于列表的大小。随着向ArrayList中不断添加元素，其容量也自动增长。自动增长会带来数据向新数组的重新拷贝，因此，如果可预知数据量的多少，可在构造ArrayList时指定其容量。在添加大量元素前，应用程序也可以使用ensureCapacity操作来增加ArrayList实例的容量，这可以减少递增式再分配的数量。每个ArrayList实例都有一个容量，该容量是指用来存储列表元 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog3/" title="java中枚举的使用">java中枚举的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
-
-java中枚举的使用enum 的全称为 enumeration 是 JDK 1.5  中引入的新特性，存放在 java.lang 包中。
-
-原始的接口定义常量
-
-语法（定义）
-
-遍历、switch 等常用操作
-
-enum 对象的常用方法介绍
-
-给 enum 自定义属性和方法
-
-EnumSet，EnumMap 的应用
-
-enum 的原理分析
-
-总结
+kafka 组成拓扑结构
 
 
 
-原始的接口定义常量
-123456789public interface IConstants &#123;    String MON = "Mon";    String TUE = "Tue";    String WED = "Wed";    String THU = "Thu";    String FRI = "Fri";    String SAT = "Sat";    String SUN = "Sun";&#125;
-
-语法（定义） 创建枚举类型要使用 enum 关键字，隐含了所创建的类型都是 java.lang.Enum 类的子类（java.lang.Enum 是一个抽象类）。枚举类型符合通用模式 Cl ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog6/" title="反射小结">反射小结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
-
-
-反射小结什么是反射反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制。对于反射我的理解是：正java的核心思想，万物对象，那么类的类也可被描述，如类也会有名，属性，方法的特性。皆是对类的类型的一种描述。在jvm中反射机制的存在让java也拥有了动态的特性，即我们可以在运行时才确定类的类型，即相应的方法与属性
-反射的功能
-在运行时获取其类的相关特性，如名称，属性，方法
-可以构造一个类的对象
-动态代理
-
-反射的三种形式
-Class.forName(“ “);通过Class的静态方法加载相应的相对路径，获得指定的类的类型
-类.class获取类的类型
-实例.getClass();
-
-要访问私有属性，要设置setAccessibleClass cls ~~Field file =cls.getDeclaredFields();
-</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2019/07/16/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/oldblog/blog20/" title="hbase">hbase</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-07-15T16:00:00.000Z" title="Created 2019-07-16 00:00:00">2019-07-16</time></span></div><div class="content">此处简介
+broker
+topic
+partition
 
 
-hbase shell命令                                描述alter        修改列族（column family）模式count    统计表中行的数量create    创建表describe    显示表相关的详细信息delete    删除指定对象的值（可以为表，行，列对应的值，另外也可以指定时间戳的值）deleteall    删除指定行的所有元素值disable    使表无效drop    删除表enable    使表有效exists    测试表是否存在exit    退出hbase shellget    获取行或单元（cell）的值incr    增加指定表，行或列的值list    列出hbase中存在的所有表put    向指向的表单元添加值tools    列出hbase所支持的工具scan    通过对表的扫描来获取对用的值status    返回hbase集群的状态信息shutdown    关闭hbase集群（与exit不同）truncate    重新创建指定表version    返回hbas ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/daydoc/page/17/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/daydoc/">1</a><span class="space">&hellip;</span><a class="page-number" href="/daydoc/page/17/#content-inner">17</a><span class="page-number current">18</span><a class="page-number" href="/daydoc/page/19/#content-inner">19</a><span class="space">&hellip;</span><a class="page-number" href="/daydoc/page/21/#content-inner">21</a><a class="extend next" rel="next" href="/daydoc/page/19/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/daydoc/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kuiq  Wang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/daydoc/archives/"><div class="headline">Articles</div><div class="length-num">201</div></a><a href="/daydoc/tags/"><div class="headline">Tags</div><div class="length-num">86</div></a><a href="/daydoc/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/05/17/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/ds/" title="数据结构专题">数据结构专题</a><time datetime="2023-05-17T07:17:53.024Z" title="Created 2023-05-17 15:17:53">2023-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/05/05/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/%E6%A0%91/" title="树">树</a><time datetime="2023-05-05T08:15:41.506Z" title="Created 2023-05-05 16:15:41">2023-05-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/04/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/datastructure/tree/" title="树">树</a><time datetime="2023-04-19T09:12:21.121Z" title="Created 2023-04-19 17:12:21">2023-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/04/03/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/python/" title="No title">No title</a><time datetime="2023-04-03T06:10:14.233Z" title="Created 2023-04-03 14:10:14">2023-04-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/03/29/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/c/C%E5%A4%8D%E8%AF%95/" title="No title">No title</a><time datetime="2023-03-29T05:53:31.174Z" title="Created 2023-03-29 13:53:31">2023-03-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+AR
+ISR
+OSR
+
+
+
+
+consumer
+consumer_group
+offset
+
+
+
+
+producer
+
+ProducerQ: server.properies(服务端参数配置)相关参数
+
+
+
+参数名
+默认设置
+建议设置
+说明
+
+
+
+
+zookeeper.connect
+
+
+
+
+
+
+listeners
+
+
+
+
+
+
+advertised.listeners
+
+
+
+
+
+
+broker.id
+
+
+
+
+
+
+log.dir,log.dirs
+
+
+
+
+
+
+message.max.bytes
+
+
+
+
+
+
+Q:listeners 与 advertised.listeners 是否有区别message.max.bytes修改对conusmer端的级联影响Q: HW &amp; LEO是什么,HW如何指定,有什么作用?HW: hight w ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E5%B0%8F%E7%BB%93/" title="王阁/技术/大数据/kafka/kafka小结">王阁/技术/大数据/kafka/kafka小结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">1kafka细粒度学习与总结
+
+相对干货
+Kafka学习笔记——Kafka原理与使用详解
+记录点
+
+kafka组成部分
+数据流转过程
+备份
+安全性
+持久性
+性能
+api储备
+消息传输机制(相关语义)
+zookeer的作用
+
+着重点
+
+备份同步(ISR)
+
+消费请求处理(处理能力,出现总是的恢复)
+
+Consumer Rebalance 触发条件
+
+consumer的增加或删除
+broker的增加或删除
+
+
+分区策略
+
+Rangeassignor
+RoundRobinAssignor
+StickyAssignor
+自定义
+
+
+再均衡
+
+均衡器
+GroupCoordinator
+ConsumerCoordinator
+
+
+原因
+新的消费者入组
+消息者宕机失联
+消息者主动退组(leaveGroupRequest),fg 调用unsubscribe()取消订阅
+消费组对应分区数量发生变化
+
+
+
+
+分区管理
+
+优先副本(分区broker)
+leader副本承担读写服务,分区leader被怼坏意味着该分区不可用.即broker节点中对应的leader副本多少,决定了该节点的负载高低.
+
+
+
+
+
+
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/kafka/kafka%E7%96%91%E9%97%AE%E7%82%B9/" title="王阁/技术/大数据/kafka/kafka疑问点">王阁/技术/大数据/kafka/kafka疑问点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">kafka疑问点consumer api
+High-level &amp;&amp; sample-level的区别
+不同api下offset的维护.
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E9%9B%86%E7%BE%A4/%E7%A7%81%E6%9C%89%E9%9B%86%E7%BE%A4/" title="王阁/技术/大数据/集群/私有集群">王阁/技术/大数据/集群/私有集群</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">9 @(私有集群的搭建)###私有集群搭建一、服务器的准备
+
+阿里云实例（115.29.97.126）
+华为云实例（114.115.203.81）
+阿里云实例2(115.29.35.125）
+本机实例（）
+
+1.1）服务器环境设置修改服务器hostname
+
+阿里（wqkenqing）
+华为（wqkenqing02）
+阿里2(wqkenqing03)
+虚拟机（wqkneqing04）hostname修改教程
+
+
+1.2）配置语言环境（取的默认环境）1.3）关闭防火墙1.4）创建hadoop用户1.5）上传相关文件(jdk1.7、hadoop2.7.2)
+
+1.6）配置环境变量**export JAVA_HOME=/usr/local/jdk1.7export JRE_HOME=${JAVA_HOME}/jreexport CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH **
+
+1.7）配置免密码登陆    1)实现本机ssh免秘钥登录：
+
+$ ssh-keygen -t ds ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/shell%E7%A7%AF%E7%B4%AF/" title="王阁/技术/编程/bash/shell积累">王阁/技术/编程/bash/shell积累</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">shell collect/Users/wqkenqing/Library/Preferences/IntelliJIdea2019.3/scratches
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/python_learn/" title="王阁/技术/编程/bash/python_learn">王阁/技术/编程/bash/python_learn</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">python learn1.print 函数详细用法
+print (value,…,sep=’’,end=’\n’,file=sys.stdout,flush=False)
+</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/daydoc/2021/04/26/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/scala/scala%E5%AD%A6%E4%B9%A0/" title="王阁/技术/编程/scala/scala学习">王阁/技术/编程/scala/scala学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-04-26T13:52:35.000Z" title="Created 2021-04-26 21:52:35">2021-04-26</time></span></div><div class="content">
+ title:  scala学习 date:  2020-07-23 tags:
+
+ 
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/daydoc/page/17/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/daydoc/">1</a><span class="space">&hellip;</span><a class="page-number" href="/daydoc/page/17/#content-inner">17</a><span class="page-number current">18</span><a class="page-number" href="/daydoc/page/19/#content-inner">19</a><span class="space">&hellip;</span><a class="page-number" href="/daydoc/page/26/#content-inner">26</a><a class="extend next" rel="next" href="/daydoc/page/19/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/daydoc/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kuiq  Wang</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/daydoc/archives/"><div class="headline">Articles</div><div class="length-num">255</div></a><a href="/daydoc/tags/"><div class="headline">Tags</div><div class="length-num">86</div></a><a href="/daydoc/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/%E4%B8%9A%E5%8A%A1%E9%97%AE%E9%A2%98%E7%AF%87/" title="No title">No title</a><time datetime="2023-10-07T07:21:50.000Z" title="Created 2023-10-07 15:21:50">2023-10-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E5%9B%9E%E9%A1%BE/%E5%A4%87%E6%88%98/Untitled/" title="No title">No title</a><time datetime="2023-10-07T06:41:55.459Z" title="Created 2023-10-07 14:41:55">2023-10-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/10/07/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/%E7%89%87%E6%AE%B5/" title="No title">No title</a><time datetime="2023-10-07T02:25:05.000Z" title="Created 2023-10-07 10:25:05">2023-10-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/09/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E9%A1%B9%E7%9B%AE/%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B/curl%20'httpsapi/" title="No title">No title</a><time datetime="2023-09-13T03:19:08.195Z" title="Created 2023-09-13 11:19:08">2023-09-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/daydoc/2023/09/13/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E9%A1%B9%E7%9B%AE/%E9%93%81%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0/%E5%8F%91%E7%89%88/%E5%8F%91%E7%89%88%E8%AE%A1%E5%88%92913/" title="No title">No title</a><time datetime="2023-09-13T02:25:25.636Z" title="Created 2023-09-13 10:25:25">2023-09-13</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>Categories</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/daydoc/categories/%E6%97%A5%E5%B8%B8/"><span class="card-category-list-name">日常</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/daydoc/tags/bigdata/" style="font-size: 1.5em; color: #99a9bf">bigdata</a> <a href="/daydoc/tags/%E6%B5%81%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%BC%95%E6%93%8E/" style="font-size: 1.1em; color: #999">流式计算引擎</a> <a href="/daydoc/tags/spark-streaming/" style="font-size: 1.1em; color: #999">spark-streaming</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E9%9B%86%E6%88%90%E3%80%81%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E3%80%81%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/" style="font-size: 1.1em; color: #999">数据集成、数据采集、数据存储</a> <a href="/daydoc/tags/kafka/" style="font-size: 1.5em; color: #99a9bf">kafka</a> <a href="/daydoc/tags/Flink%E3%80%81source/" style="font-size: 1.1em; color: #999">Flink、source</a> <a href="/daydoc/tags/%E7%AE%97%E5%AD%90/" style="font-size: 1.1em; color: #999">算子</a> <a href="/daydoc/tags/flink%E3%80%81transform%E3%80%81process/" style="font-size: 1.1em; color: #999">flink、transform、process</a> <a href="/daydoc/tags/%E9%87%87%E9%9B%86/" style="font-size: 1.1em; color: #999">采集</a> <a href="/daydoc/tags/rdd/" style="font-size: 1.1em; color: #999">rdd</a> <a href="/daydoc/tags/flink%E3%80%81transform/" style="font-size: 1.1em; color: #999">flink、transform</a> <a href="/daydoc/tags/sentry/" style="font-size: 1.1em; color: #999">sentry</a> <a href="/daydoc/tags/cdh/" style="font-size: 1.1em; color: #999">cdh</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/" style="font-size: 1.3em; color: #99a1ac">数据中心</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.1em; color: #999">数据结构</a> <a href="/daydoc/tags/kakfa/" style="font-size: 1.1em; color: #999">kakfa</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4/" style="font-size: 1.1em; color: #999">数据运维</a> <a href="/daydoc/tags/clickhouse%E3%80%81%E6%95%B0%E4%BB%93/" style="font-size: 1.1em; color: #999">clickhouse、数仓</a> <a href="/daydoc/tags/%E5%AD%A6%E4%B9%A0spark/" style="font-size: 1.1em; color: #999">学习spark</a> <a href="/daydoc/tags/math/" style="font-size: 1.1em; color: #999">math</a> <a href="/daydoc/tags/flink%E3%80%81stream%E3%80%81%E8%BD%AC%E6%8D%A2/" style="font-size: 1.1em; color: #999">flink、stream、转换</a> <a href="/daydoc/tags/%E8%A1%80%E7%BC%98%E7%AE%A1%E7%90%86/" style="font-size: 1.1em; color: #999">血缘管理</a> <a href="/daydoc/tags/logstash/" style="font-size: 1.3em; color: #99a1ac">logstash</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" style="font-size: 1.1em; color: #999">数据仓库</a> <a href="/daydoc/tags/dsl/" style="font-size: 1.1em; color: #999">dsl</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%81%E6%A0%91/" style="font-size: 1.3em; color: #99a1ac">数据结构、树</a> <a href="/daydoc/tags/api%E5%8D%87%E7%BA%A7/" style="font-size: 1.1em; color: #999">api升级</a> <a href="/daydoc/tags/c%E3%80%81%E8%80%83%E7%A0%94%E3%80%81%E5%A4%8D%E8%AF%95/" style="font-size: 1.1em; color: #999">c、考研、复试</a> <a href="/daydoc/tags/%E5%AD%A6%E4%B9%A0spark2/" style="font-size: 1.1em; color: #999">学习spark2</a> <a href="/daydoc/tags/dataworks/" style="font-size: 1.1em; color: #999">dataworks</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E5%BA%94%E7%94%A8/" style="font-size: 1.1em; color: #999">数据应用</a> <a href="/daydoc/tags/java/" style="font-size: 1.3em; color: #99a1ac">java</a> <a href="/daydoc/tags/flink/" style="font-size: 1.1em; color: #999">flink</a> <a href="/daydoc/tags/kerberos/" style="font-size: 1.1em; color: #999">kerberos</a> <a href="/daydoc/tags/kibana/" style="font-size: 1.1em; color: #999">kibana</a> <a href="/daydoc/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 1.1em; color: #999">小结</a> <a href="/daydoc/tags/altas/" style="font-size: 1.1em; color: #999">altas</a> <a href="/daydoc/tags/mac-python2-python3/" style="font-size: 1.1em; color: #999">mac python2 python3</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E3%80%81%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">数据仓库、架构设计</a> <a href="/daydoc/tags/poi/" style="font-size: 1.1em; color: #999">poi</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/daydoc/archives/" title="More">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/05/"><span class="card-archive-list-date">May 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/03/"><span class="card-archive-list-date">March 2023</span><span class="card-archive-list-count">13</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/02/"><span class="card-archive-list-date">February 2023</span><span class="card-archive-list-count">26</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2022/11/"><span class="card-archive-list-date">November 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2022/06/"><span class="card-archive-list-date">June 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2022/05/"><span class="card-archive-list-date">May 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2022/04/"><span class="card-archive-list-date">April 2022</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">201</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-05-18T03:29:59.390Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Kuiq  Wang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/daydoc/js/utils.js"></script><script src="/daydoc/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/daydoc/tags/kibana/" style="font-size: 1.1em; color: #999">kibana</a> <a href="/daydoc/tags/hdfs/" style="font-size: 1.1em; color: #999">hdfs</a> <a href="/daydoc/tags/%E6%B5%81%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%BC%95%E6%93%8E/" style="font-size: 1.1em; color: #999">流式计算引擎</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%EF%BC%8C%E5%AE%89%E5%85%A8%EF%BC%8Ckerberos/" style="font-size: 1.1em; color: #999">数据中心，安全，kerberos</a> <a href="/daydoc/tags/java/" style="font-size: 1.23em; color: #999ea6">java</a> <a href="/daydoc/tags/json/" style="font-size: 1.1em; color: #999">json</a> <a href="/daydoc/tags/xml/" style="font-size: 1.1em; color: #999">xml</a> <a href="/daydoc/tags/ip/" style="font-size: 1.1em; color: #999">ip</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.1em; color: #999">数据结构</a> <a href="/daydoc/tags/%E5%AD%A6%E4%B9%A0spark2/" style="font-size: 1.1em; color: #999">学习spark2</a> <a href="/daydoc/tags/spark/" style="font-size: 1.1em; color: #999">spark</a> <a href="/daydoc/tags/docker/" style="font-size: 1.1em; color: #999">docker</a> <a href="/daydoc/tags/altas/" style="font-size: 1.1em; color: #999">altas</a> <a href="/daydoc/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1.1em; color: #999">爬虫</a> <a href="/daydoc/tags/mysql/" style="font-size: 1.1em; color: #999">mysql</a> <a href="/daydoc/tags/python/" style="font-size: 1.5em; color: #99a9bf">python</a> <a href="/daydoc/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.1em; color: #999">服务器</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86/" style="font-size: 1.1em; color: #999">数据治理</a> <a href="/daydoc/tags/flink%E3%80%81CDH/" style="font-size: 1.1em; color: #999">flink、CDH</a> <a href="/daydoc/tags/%E5%B0%8F%E7%BB%93/" style="font-size: 1.1em; color: #999">小结</a> <a href="/daydoc/tags/flink%E3%80%81%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/" style="font-size: 1.1em; color: #999">flink、极客时间</a> <a href="/daydoc/tags/%E4%BF%A1%E6%81%AF/" style="font-size: 1.1em; color: #999">信息</a> <a href="/daydoc/tags/spark-streaming/" style="font-size: 1.1em; color: #999">spark-streaming</a> <a href="/daydoc/tags/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/" style="font-size: 1.5em; color: #99a9bf">日常总结</a> <a href="/daydoc/tags/%E5%AD%A6%E4%B9%A0spark/" style="font-size: 1.1em; color: #999">学习spark</a> <a href="/daydoc/tags/flink%E3%80%81%E7%8A%B6%E6%80%81%E3%80%81%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">flink、状态、编程</a> <a href="/daydoc/tags/spark%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">spark学习</a> <a href="/daydoc/tags/connect/" style="font-size: 1.1em; color: #999">connect</a> <a href="/daydoc/tags/flink%E3%80%81stream%E3%80%81%E8%BD%AC%E6%8D%A2/" style="font-size: 1.1em; color: #999">flink、stream、转换</a> <a href="/daydoc/tags/mac-python2-python3/" style="font-size: 1.1em; color: #999">mac python2 python3</a> <a href="/daydoc/tags/sparkstreaming/" style="font-size: 1.1em; color: #999">sparkstreaming</a> <a href="/daydoc/tags/flink/" style="font-size: 1.1em; color: #999">flink</a> <a href="/daydoc/tags/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/" style="font-size: 1.1em; color: #999">极客时间</a> <a href="/daydoc/tags/flink%E3%80%81time%E3%80%81window/" style="font-size: 1.1em; color: #999">flink、time、window</a> <a href="/daydoc/tags/cdh/" style="font-size: 1.1em; color: #999">cdh</a> <a href="/daydoc/tags/sql/" style="font-size: 1.1em; color: #999">sql</a> <a href="/daydoc/tags/cm/" style="font-size: 1.1em; color: #999">cm</a> <a href="/daydoc/tags/api%E5%8D%87%E7%BA%A7/" style="font-size: 1.1em; color: #999">api升级</a> <a href="/daydoc/tags/kafka/" style="font-size: 1.37em; color: #99a4b2">kafka</a> <a href="/daydoc/tags/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/" style="font-size: 1.1em; color: #999">数据管理</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span><a class="card-more-btn" href="/daydoc/archives/" title="More">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/10/"><span class="card-archive-list-date">October 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/07/"><span class="card-archive-list-date">July 2023</span><span class="card-archive-list-count">24</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/06/"><span class="card-archive-list-date">June 2023</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/05/"><span class="card-archive-list-date">May 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/04/"><span class="card-archive-list-date">April 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/daydoc/archives/2023/03/"><span class="card-archive-list-date">March 2023</span><span class="card-archive-list-count">13</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">255</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-10-08T09:22:22.459Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Kuiq  Wang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/daydoc/js/utils.js"></script><script src="/daydoc/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
