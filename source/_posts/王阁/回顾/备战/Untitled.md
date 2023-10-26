@@ -16,3 +16,69 @@
 
 
 
+```
+# 创建 sxsddsj_shield_data_0 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_0 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_1 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_1 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_2 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_2 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_3 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_3 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_4 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_4 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_5 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_5 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_6 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_6 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_7 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_7 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_8 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_8 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_9 topic
+kafka-topics.sh --create --bootstrap-server your-bootstrap-server --topic sxsddsj_shield_data_9 --partitions 3 --replication-factor 1
+
+```
+
+```
+# 创建 sxsddsj_shield_data_0 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_0 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_1 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_1 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_2 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_2 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_3 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_3 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_4 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_4 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_5 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_5 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_6 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_6 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_7 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_7 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_8 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_8 --partitions 3 --replication-factor 1
+
+# 创建 sxsddsj_shield_data_9 topic
+kafka-topics.sh --create --bootstrap-server kafka01:9092 --topic sxsddsj_shield_data_9 --partitions 3 --replication-factor 1
+
+```
+
