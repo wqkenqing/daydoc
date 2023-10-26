@@ -1,4 +1,0 @@
-```
-[ERROR] 2023-07-13 09:40:23.497 +0000 org.apache.dolphinscheduler.server.master.processor.queue.TaskExecuteRunnable:[69] - [WorkflowInstance-325488][TaskInstance-325664] - Handle task event error, get a unknown exception, this event will be removed, event: TaskEvent(taskInstanceId=325664, workerAddress=192.168.10.103:1234, state=TaskExecutionStatus{code=7, desc='success'}, startTime=Thu Jul 13 09:14:40 UTC 2023, endTime=Thu Jul 13 09:15:22 UTC 2023, executePath=/tmp/dolphinscheduler/exec/process/dbp/10190280291200/10215210462849_12/325488/325664, logPath=/opt/dolphinscheduler3.1.7/worker-server/logs/20230713/10215210462849_12-325488-325664.log, processId=1243, appIds=, event=RESULT, varPool=[], channel=[id: 0xf2ae3afc, L:/192.168.10.104:5678 - R:/192.168.10.103:39020], processInstanceId=325488)
-```
-
