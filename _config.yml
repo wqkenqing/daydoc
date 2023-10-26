@@ -79,7 +79,7 @@ pagination_dir: page
 plugin:
 - hexo-generator-feed
 - hexo-generator-sitemap
-theme: cosy
+theme: trees
 #theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
