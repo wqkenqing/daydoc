@@ -7,7 +7,7 @@ password: 7FKBKZrTTTPG2LnC
 ---
  <!--more-->
 
-###  DDL 建表
+## 2、DDL 建表
 
 #### 内部表
 
@@ -325,7 +325,7 @@ CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] database_name
       ALTER TABLE table_name PARTITION (dt='2008-08-09') RENAME TO PARTITION (dt='20080809');
       ```
 
-3. delete partition
+3. *delete partition* 
 
    1. ```
       --3、删除分区
@@ -333,4 +333,592 @@ CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] database_name
       ALTER TABLE table_name DROP [IF EXISTS] PARTITION (dt='2008-08-08', country='us') PURGE; --直接删除数据 不进垃圾桶
       ```
 
-   2. 
+4. ### msck partition
+
+   1. 修复分区
+
+      ```
+      MSCK [REPAIR] TABLE table_name [ADD/DROP/SYNC PARTITIONS];
+      ```
+
+### show 显示语法
+
+```
+--1、显示所有数据库 SCHEMAS和DATABASES的用法 功能一样
+show databases;
+show schemas;
+
+--2、显示当前数据库所有表/视图/物化视图/分区/索引
+show tables;
+SHOW TABLES [IN database_name]; --指定某个数据库
+
+--3、显示当前数据库下所有视图
+Show Views;
+SHOW VIEWS 'test_*'; -- show all views that start with "test_"
+SHOW VIEWS FROM test1; -- show views from database test1
+SHOW VIEWS [IN/FROM database_name];
+
+--4、显示当前数据库下所有物化视图
+SHOW MATERIALIZED VIEWS [IN/FROM database_name];
+
+--5、显示表分区信息，分区按字母顺序列出，不是分区表执行该语句会报错
+show partitions table_name;
+
+--6、显示表/分区的扩展信息
+SHOW TABLE EXTENDED [IN|FROM database_name] LIKE table_name;
+show table extended like student;
+
+--7、显示表的属性信息
+SHOW TBLPROPERTIES table_name;
+show tblproperties student;
+
+--8、显示表、视图的创建语句
+SHOW CREATE TABLE ([db_name.]table_name|view_name);
+show create table student;
+
+--9、显示表中的所有列，包括分区列。
+SHOW COLUMNS (FROM|IN) table_name [(FROM|IN) db_name];
+show columns  in student;
+
+--10、显示当前支持的所有自定义和内置的函数
+show functions;
+
+--11、Describe desc
+--查看表信息
+desc extended table_name;
+--查看表信息（格式化美观）
+desc formatted table_name;
+--查看数据库相关信息
+describe database database_name;
+```
+
+## 3、DML DQL
+
+### hive加载数据的方式
+
+1. 可以直接通过hadoop fs -put 的方式，将数据上传至指定路径下
+
+2. 通过load的方式，将数据移动到hive表对应的位置。
+
+示例语句: 
+
+```
+LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)]
+
+LOAD DATA [LOCAL] INPATH 'filepath' [OVERWRITE] INTO TABLE tablename [PARTITION (partcol1=val1, partcol2=val2 ...)] [INPUTFORMAT 'inputformat' SERDE 'serde'] (3.0 or later)
+```
+
+#### filepath
+
+​	filepath表示的待移动数据的路径，可以引用一个文件（在这种情况下，Hive将文件移动到表中），也可以是一个目录（在这种情况下，Hive将把该目录中的所有文件移动到表中）。
+
+​	相对路径，例如：project/data1 
+
+​	绝对路径，例如：/user/hive/project/data1 
+
+​	具有schema的完整URI，例如：hdfs://namenode:9000/user/hive/project/data1
+
+#### local
+
+如果指定了LOCAL， load命令将在本地文件系统中查找文件路径。如果指定了相对路径，它将相对于用户的当前工作目录进行解释。
+
+用户也可以为本地文件指定完整的URI-例如：[file:///user/hive/project/data1](file:///user/hive/project/data1)。
+
+注意，如果对HiveServer2服务运行此命令。这里的**本地文件系统指的是Hiveserver****2服务所在机器的本地Linux文件系统**，不是Hive客户端所在的本地文件系统。
+
+#### OVERWRITE 
+
+如果使用了OVERWRITE关键字，则目标表（或者分区）中的内容会被删除，然后再将 filepath 指向的文件/目录中的内容添加到表/分区中。 
+
+```
+--------练习:Load Data From Local FS or HDFS------
+--step1:建表
+--建表student_local 用于演示从本地加载数据
+create table student_local(num int,name string,sex string,age int,dept string) row format delimited fields terminated by ',';
+--建表student_HDFS  用于演示从HDFS加载数据
+create external table student_HDFS(num int,name string,sex string,age int,dept string) row format delimited fields terminated by ',';
+--建表student_HDFS_p 用于演示从HDFS加载数据到分区表
+create table student_HDFS_p(num int,name string,sex string,age int,dept string) partitioned by(country string) row format delimited fields terminated by ',';
+
+--建议使用beeline客户端 可以显示出加载过程日志信息
+--step2:加载数据
+-- 从本地加载数据  数据位于HS2（node1）本地文件系统  本质是hadoop fs -put上传操作
+LOAD DATA LOCAL INPATH '/root/hivedata/students.txt' INTO TABLE student_local;
+
+--从HDFS加载数据  数据位于HDFS文件系统根目录下  本质是hadoop fs -mv 移动操作
+--先把数据上传到HDFS上  hadoop fs -put /root/hivedata/students.txt /
+LOAD DATA INPATH '/students.txt' INTO TABLE student_HDFS;
+
+----从HDFS加载数据到分区表中并制定分区  数据位于HDFS文件系统根目录下
+--先把数据上传到HDFS上 hadoop fs -put /root/hivedata/students.txt /
+LOAD DATA INPATH '/students.txt' INTO TABLE student_HDFS_p partition(country ="CHina");
+```
+
+**hive3.0 Load新特性**
+
+```
+-------hive 3.0 load命令新特性------------------
+CREATE TABLE if not exists tab1 (col1 int, col2 int)
+PARTITIONED BY (col3 int)
+row format delimited fields terminated by ',';
+
+LOAD DATA LOCAL INPATH '/root/hivedata/tab1.txt' INTO TABLE tab1;
+--tab1.txt内容如下
+11,22,1
+33,44,2
+```
+
+本来加载的时候没有指定分区，语句是报错的，但是文件的格式符合表的结构，前两个是col1,col2,最后一个是分区字段col3，则此时会将load语句转换成为insert as select语句。
+
+在Hive3.0中，还支持使用inputformat、SerDe指定任何Hive输入格式，例如文本，ORC等。
+
+### DML-Insert插入数据
+
+### RDBMS中insert使用（insert+values）
+
+在MySQL这样的RDBMS中，通常是insert+values的方式来向表插入数据，并且速度很快。这也是RDBMS中插入数据的核心方式。
+
+但在hive中会比较慢，因为底层启用的是mapreduce，每一次启用的开销会比较大。
+
+### insert **+** select
+
+Hive中insert主要是结合select查询语句使用，将查询结果插入到表中，例如：
+
+```
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...) [IF NOT EXISTS]] select_statement1 FROM from_statement;
+
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, partcol2=val2 ...)] select_statement1 FROM from_statement;
+```
+
+INSERT OVERWRITE将覆盖表或分区中的任何现有数据。
+
+需要保证查询结果列的数目和需要插入数据表格的列数目一致。
+
+如果查询出来的数据类型和插入表格对应的列数据类型不一致，将会进行转换，但是不能保证转换一定成功，转换失败的数据将会为NULL。
+
+```
+--step1:创建一张源表student
+drop table if exists student;
+create table student(num int,name string,sex string,age int,dept string)
+row format delimited
+fields terminated by ',';
+--加载数据
+load data local inpath '/root/hivedata/students.txt' into table student;
+
+--step2：创建一张目标表  只有两个字段
+create table student_from_insert(sno int,sname string);
+--使用insert+select插入数据到新表中
+insert into table student_from_insert select num,name from student;
+
+select *
+from student_insert1;
+```
+
+**multiple inserts 多重插入**
+
+multiple inserts可以翻译成为多次插入，多重插入，核心是：一次扫描，多次插入。其功能也体现出来了就是减少扫描的次数。
+
+```
+------------multiple inserts----------------------
+--当前库下已有一张表student
+select * from student;
+--创建两张新表
+create table student_insert1(sno int);
+create table student_insert2(sname string);
+--多重插入
+from student
+insert overwrite table student_insert1
+select num
+insert overwrite table student_insert2
+select name;
+```
+
+**dynamic partition insert动态分区插入**
+
+```
+create table student_HDFS_p(Sno int,Sname string,Sex string,Sage int,Sdept string) partitioned by(country string) row format delimited fields terminated by ',';
+--注意 分区字段country的值是在导入数据的时候手动指定的 China
+LOAD DATA INPATH '/students.txt' INTO TABLE student_HDFS_p partition(country ="China");
+```
+
+### Hive Transaction事务
+
+
+
+### 4、 DML-Update Delete更新、删除数据
+
+
+
+### 5、 DQL-Select
+
+#### 基础查询
+
+语法树示例
+
+```
+[WITH CommonTableExpression (, CommonTableExpression)*] 
+SELECT [ALL | DISTINCT] select_expr, select_expr, ...
+  FROM table_reference
+  [WHERE where_condition]
+  [GROUP BY col_list]
+  [ORDER BY col_list]
+  [CLUSTER BY col_list
+    | [DISTRIBUTE BY col_list] [SORT BY col_list]
+  ]
+ [LIMIT [offset,] rows]
+```
+
+```
+--step1:创建普通表t_usa_covid19
+drop table itcast.t_usa_covid19;
+CREATE TABLE itcast.t_usa_covid19(
+       count_date string,
+       county string,
+       state string,
+       fips int,
+       cases int,
+       deaths int)
+row format delimited fields terminated by ",";
+--将源数据load加载到t_usa_covid19表对应的路径下
+load data local inpath '/root/hivedata/us-covid19-counties.dat' into table t_usa_covid19;
+
+--step2:创建一张分区表 基于count_date日期,state州进行分区
+CREATE TABLE itcast.t_usa_covid19_p(
+     county string,
+     fips int,
+     cases int,
+     deaths int)
+partitioned by(count_date string,state string)
+row format delimited fields terminated by ",";
+
+--step3:使用动态分区插入将数据导入t_usa_covid19_p中
+set hive.exec.dynamic.partition.mode = nonstrict;
+
+insert into table t_usa_covid19_p partition (count_date,state)
+select county,fips,cases,deaths,count_date,state from t_usa_covid19;
+```
+
+1. 每个select_expr表示您要检索的列。必须至少有一个 select_expr。
+
+2. ####  **ALL 、DISTINCT**
+
+   1. ALL和DISTINCT选项指定是否应返回重复的行。如果没有给出这些选项，则默认值为ALL（返回所有匹配的行）。DISTINCT指定从结果集中删除重复的行。
+
+3. ####  **WHERE**
+
+   1. WHERE条件是一个布尔表达式。在WHERE表达式中，您可以使用Hive支持的任何函数和运算符，但聚合函数除外。
+
+   2. ```
+      select * from t_usa_covid19_p where state ="California" and deaths > 1000;
+      select * from t_usa_covid19_p where 1 > 2;  -- 1 > 2 返回false
+      select * from t_usa_covid19_p where 1 = 1;  -- 1 = 1 返回true
+      
+      --where条件中使用函数 找出州名字母超过10个
+      select * from t_usa_covid19_p where length(state) >10 ;
+      
+      --WHERE子句支持子查询
+      SELECT *
+      FROM A
+      WHERE A.a IN (SELECT foo FROM B);
+      
+      --where条件中不能使用聚合函数
+      --报错 SemanticException:Not yet supported place for UDAF 'sum'
+      select state,sum(deaths)
+      from t_usa_covid19_p where sum(deaths) >100 group by state;
+      ```
+
+   3. 那么为什么不能在where子句中使用聚合函数呢？
+
+      因为**聚合函数要使用它的前提是结果集已经确定。而****where子句还处于“确定”结果集的过程中，因而不能使用****聚合****函数**。
+
+4. ####  **分区查询、分区裁剪**
+
+   1. 通常，SELECT查询将扫描整个表（所谓的全表扫描）。如果使用PARTITIONED BY子句创建的分区表，则在查询时可以指定分区查询，减少全表扫描，也叫做分区裁剪。
+   2. 所谓分区裁剪指的是：对分区表进行查询时，会检查WHERE子句或JOIN中的ON子句中是否存在对分区字段的过滤，如果存在，则仅访问查询符合条件的分区，即裁剪掉没必要访问的分区。
+
+   ```
+   --找出来自加州，累计死亡人数大于1000的县 state字段就是分区字段 进行分区裁剪 避免全表扫描
+   select * from t_usa_covid19_p where state ="California" and deaths > 1000;
+   
+   --多分区裁剪
+   select * from t_usa_covid19_p where count_date = "2021-01-28" and state ="California" and deaths > 1000;
+   ```
+
+5. ####  **GROUP BY**
+
+   1. GROUP BY 语句用于结合聚合函数，根据一个或多个列对结果集进行分组。需要注意的是，出现在GROUP BY中select_expr的字段：**要么是GROUP BY分组的字段****；****要么是被聚合函数应用的字段****。**原因很简单，避免出现一个字段多个值的歧义。
+
+      ```
+      --根据state州进行分组
+      
+      --SemanticException:Expression not in GROUP BY key 'deaths'
+      --deaths不是分组字段 报错
+      --state是分组字段 可以直接出现在select_expr中
+      select state,deaths
+      from t_usa_covid19_p where count_date = "2021-01-28" group by state;
+      
+      --被聚合函数应用
+      select state,count(deaths)
+      from t_usa_covid19_p where count_date = "2021-01-28" group by state;
+      ```
+
+6. Having
+
+   在SQL中增加HAVING子句原因是，WHERE关键字无法与聚合函数一起使用。
+
+​		HAVING子句可以让我们筛选分组后的各组数据,并且可以在Having中使用聚合函数，因为此时where，group by已经执行结束，结果集已经确定。
+
+```
+--having
+--统计死亡病例数大于10000的州
+--where语句中不能使用聚合函数 语法报错
+select state,sum(deaths)
+from t_usa_covid19_p
+where count_date = "2021-01-28" and sum(deaths) >10000 group by state;
+
+--先where分组前过滤（此处是分区裁剪），再进行group by分组（含聚合）， 分组后每个分组结果集确定 再使用having过滤
+select state,sum(deaths)
+from t_usa_covid19_p
+where count_date = "2021-01-28"
+group by state
+having sum(deaths) > 10000;
+
+--这样写更好 即在group by的时候聚合函数已经作用得出结果 having直接引用结果过滤 不需要再单独计算一次了
+select state,sum(deaths) as cnts
+from t_usa_covid19_p
+where count_date = "2021-01-28"
+group by state
+having cnts> 10000;
+```
+
+​		having与where的区别:
+
+​		having是在分组后对数据进行过滤
+
+​		where是在分组前对数据进行过滤
+
+​		having后面可以使用聚合函数
+
+​		where后面不可以使用聚合
+
+7. LIMIT
+
+   1. LIMIT子句可用于约束SELECT语句返回的行数。
+
+      LIMIT接受一个或两个数字参数，这两个参数都必须是非负整数常量。
+
+      第一个参数指定要返回的第一行的偏移量（从 Hive 2.0.0开始），第二个参数指定要返回的最大行数。当给出单个参数时，它代表最大行数，并且偏移量默认为0。
+
+    **Hive** **SQL查询执行顺序**
+
+   ```
+   SELECT [ALL | DISTINCT] select_expr, select_expr, ...  FROM table_reference  [WHERE where_condition]  [GROUP BY col_list]  [ORDER BY col_list]  [CLUSTER BY col_list   | [DISTRIBUTE BY col_list] [SORT BY col_list]  ]  [LIMIT [offset,] rows]
+   ```
+
+   在查询过程中执行顺序：**from>where>group（含聚合）>having>order>select**。
+
+   所以聚合语句(sum,min,max,avg,count)要比having子句优先执行，而where子句在查询过程中执行优先级别优先于聚合语句(sum,min,max,avg,count)。
+
+   
+
+   
+
+   #### 高阶查询
+
+   #### 1.   **SORT/ORDER/CLUSTER/DISTRIBUTE BY**
+
+   1.1  ORDER BY
+
+   ORDER BY [ASC|DESC]
+
+   Hive SQL中的ORDER BY语法类似于SQL语言中的ORDER BY语法。会对输出的结果进行全局排序，因此底层使用MapReduce引擎执行的时候，只会有一个reducetask执行。也因此，如果输出的行数太大，会导致需要很长的时间才能完成全局排序。
+
+   默认排序顺序为升序（ASC），也可以指定为DESC降序。
+
+   在Hive 2.1.0和更高版本中，支持在“ order by”子句中为每个列指定null类型结果排序顺序。ASC顺序的默认空排序顺序为NULLS FIRST，而DESC顺序的默认空排序顺序为NULLS LAST。
+
+   ```
+   ---order by
+   --根据字段进行排序
+   select * from t_usa_covid19_p
+   where count_date = "2021-01-28"
+   and state ="California"
+   order by deaths; --默认asc null first
+   
+   select * from t_usa_covid19_p
+   where count_date = "2021-01-28"
+   and state ="California"
+   order by deaths desc; --指定desc null last
+   
+   --强烈建议将LIMIT与ORDER BY一起使用。避免数据集行数过大
+   --当hive.mapred.mode设置为strict严格模式时，使用不带LIMIT的ORDER BY时会引发异常。
+   select * from t_usa_covid19_p
+   where count_date = "2021-01-28"
+     and state ="California"
+   order by deaths desc
+   limit 3;
+   ```
+
+   1.2  **CLUSTER** **BY**
+
+   SELECT expression… FROM table CLUSTER BY col_name;
+
+   Hive SQL中的**CLUSTER** **BY**语法可以指定根据后面的字段将数据分组，每组内再根据这个字段正序排序（不允许指定排序规则），概况起来就是：**根据同一个字段，分且排序**。
+
+   分组的规则hash散列。hash_func(col_name) % reduce task nums
+
+   分为几组取决于reduce task的个数。下面在Hive beeline客户端中针对student表进行演示。
+
+```
+--cluster by
+select * from student;
+--不指定reduce task个数
+--日志显示：Number of reduce tasks not specified. Estimated from input data size: 1
+select * from student cluster by sno;
+
+--手动设置reduce task个数
+set mapreduce.job.reduces =2;
+select * from student cluster by sno;
+```
+
+1.3  **DISTRIBUTE BY** **+****SORT BY**
+
+**CLUSTER BY****=****DISTRIBUTE BY +SORT BY****（字段一样）**
+
+![CleanShot 2023-10-30 at 15.41.46@2x](http://img.wqkenqing.ren/typora_img/CleanShot%202023-10-30%20at%2015.41.46@2x.png)
+
+![CleanShot 2023-10-30 at 15.42.14@2x](http://img.wqkenqing.ren/typora_img/CleanShot%202023-10-30%20at%2015.42.14@2x.png)
+
+#### 1.4 Union联合查询
+
+UNION用于将来自多个SELECT语句的结果合并为一个结果集。语法如下：
+
+```
+select_statement UNION [ALL | DISTINCT] select_statement UNION [ALL | DISTINCT] select_statement ...
+```
+
+使用DISTINCT关键字与只使用UNION默认值效果一样，都会删除重复行。
+
+使用ALL关键字，不会删除重复行，结果集包括所有SELECT语句的匹配行（包括重复行）。
+
+1.2.0之前的Hive版本仅支持UNION ALL，在这种情况下不会消除重复的行。
+
+每个select_statement返回的列的数量和名称必须相同。
+
+```
+--union
+--使用DISTINCT关键字与使用UNION默认值效果一样，都会删除重复行。
+select num,name from student_local
+UNION
+select num,name from student_hdfs;
+--和上面一样
+select num,name from student_local
+UNION DISTINCT
+select num,name from student_hdfs;
+
+--使用ALL关键字会保留重复行。
+select num,name from student_local
+UNION ALL
+select num,name from student_hdfs;
+
+--如果要将ORDER BY，SORT BY，CLUSTER BY，DISTRIBUTE BY或LIMIT应用于单个SELECT
+--请将子句放在括住SELECT的括号内
+SELECT sno,sname FROM (select sno,sname from student_local LIMIT 2) subq1
+UNION
+SELECT sno,sname FROM (select sno,sname from student_hdfs LIMIT 3) subq2
+
+--如果要将ORDER BY，SORT BY，CLUSTER BY，DISTRIBUTE BY或LIMIT子句应用于整个UNION结果
+--请将ORDER BY，SORT BY，CLUSTER BY，DISTRIBUTE BY或LIMIT放在最后一个之后。
+select sno,sname from student_local
+UNION
+select sno,sname from student_hdfs
+order by sno desc;
+```
+
+#####   **from子句中子查询**
+
+在Hive0.12版本，仅在FROM子句中支持子查询。而且必须要给子查询一个名称，因为FROM子句中的每个表都必须有一个名称。
+
+子查询返回结果中的列必须具有唯一的名称。子查询返回结果中的列在外部查询中可用，就像真实表的列一样。子查询也可以是带有UNION的查询表达式。Hive支持任意级别的子查询，也就是所谓的嵌套子查询。
+
+Hive 0.13.0和更高版本中的子查询名称之前可以包含可选关键字“ AS” 。
+
+```
+--from子句中子查询（Subqueries）
+--子查询
+SELECT num
+FROM (
+         select num,name from student_local
+     ) tmp;
+
+--包含UNION ALL的子查询的示例
+SELECT t3.name
+FROM (
+         select num,name from student_local
+         UNION distinct
+         select num,name from student_hdfs
+     ) t3;
+```
+
+where 子句中的子查询
+
+```
+--where子句中子查询（Subqueries）
+--不相关子查询，相当于IN、NOT IN,子查询只能选择一个列。
+--（1）执行子查询，其结果不被显示，而是传递给外部查询，作为外部查询的条件使用。
+--（2）执行外部查询，并显示整个结果。　　
+SELECT *
+FROM student_hdfs
+WHERE student_hdfs.num IN (select num from student_local limit 2);
+
+--相关子查询，指EXISTS和NOT EXISTS子查询
+--子查询的WHERE子句中支持对父查询的引用
+SELECT A
+FROM T1
+WHERE EXISTS (SELECT B FROM T2 WHERE T1.X = T2.Y);
+```
+
+CTE 
+
+公用表表达式（CTE）是一个临时结果集，该结果集是从WITH子句中指定的简单查询派生而来的，该查询紧接在SELECT或INSERT关键字之前。
+
+CTE仅在单个语句的执行范围内定义。一个或多个CTE可以在Hive SELECT，INSERT，  CREATE TABLE AS SELECT或CREATE VIEW AS SELECT语句中使用。
+
+**Join连接查询**
+
+在这种情况下，有时需要基于多张表查询才能得到最终完整的结果，SQL中join语法的出现是**用于根据两个或多个表中的列之间的关系，从这些表中共同组合查询数据**，因此有时为了得到完整的结果，我们就需要执行 join。
+
+Hive作为面向分析的数据仓库软件，为了更好的支持数据分析的功能丰富，也实现了join的语法，整体上来看和RDBMS中的join语法类似，只不过在某些点有自己的特色。需要特别注意。
+
+### **Hive join语法**
+
+在**Hive**中，当下版本3.1.2总共支持**6种join语法**。分别是：
+
+1. **inner** join（内连接）
+2. **left** join（左连接）
+3. **right** join（右连接）
+4. **full outer** join（全外连接）
+
+、、、l**eft semi** join（左半开连接）、**cross** join（交叉连接，也叫做笛卡尔乘积）。
+
+**语法丰富**
+
+```
+从Hive 0.13.0开始，支持隐式联接表示法（请参阅HIVE-5558）。这允许FROM子句连接以逗号分隔的表列表，而省略JOIN关键字。
+```
+
+```
+SELECT *
+FROM table1 t1, table2 t2, table3 t3
+WHERE t1.id = t2.id AND t2.id = t3.id AND t1.zipcode = '02535';
+```
+
+从Hive 2.2.0开始，支持ON子句中的复杂表达式，支持不相等连接（请参阅HIVE-15211和HIVE-15251）。在此之前，Hive不支持不是相等条件的联接条件。
+
+```
+SELECT a.* FROM a JOIN b ON (a.id = b.id)
+SELECT a.* FROM a JOIN b ON (a.id = b.id AND a.department = b.department)
+SELECT a.* FROM a LEFT OUTER JOIN b ON (a.id <> b.id)
+```
+
+###  **join查询数据环境准备**
