@@ -29,7 +29,7 @@ jobs:
        chmod 600 ~/.ssh/id_ed25519
     - name: Install and Build 🔧 
       run: |
-	npm i hexo-theme-async@latest
+        npm i hexo-theme-async@latest
         npm install -g hexo-cli
         npm install hexo-deployer-git --save
         npm install
