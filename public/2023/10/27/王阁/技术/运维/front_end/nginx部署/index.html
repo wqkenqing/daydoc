@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="server {  listen 8089;  server_name ; &#x2F;&#x2F; 你的域名或者 ip  root &#x2F;root&#x2F;H-ui.admin; &#x2F;&#x2F; 你的克隆到的项目路径  index index.html; &#x2F;&#x2F; 显示首页  location ~* ^.+.(jpg|jpeg|gif|png|ico|css|j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="wang&#39;s dayliy document">
+<meta property="og:url" content="http://www.wqkenqing.ren/daydoc/2023/10/27/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/nginx%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="wang&#39;s dayliy document">
+<meta property="og:description" content="server {  listen 8089;  server_name ; &#x2F;&#x2F; 你的域名或者 ip  root &#x2F;root&#x2F;H-ui.admin; &#x2F;&#x2F; 你的克隆到的项目路径  index index.html; &#x2F;&#x2F; 显示首页  location ~* ^.+.(jpg|jpeg|gif|png|ico|css|j">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-10-27T06:50:27.032Z">
+<meta property="article:modified_time" content="2023-10-27T06:50:27.032Z">
+<meta property="article:author" content="Kuiq  Wang">
+<meta property="article:tag" content="yGin910">
+<meta name="twitter:card" content="summary">
+
+    <meta name="keywords" content="yGin910">
+
+
+<title >wang's dayliy document</title>
+
+<!-- Favicon -->
+
+    <link href='/daydoc/img/favicon.svg?v=2.1.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/daydoc/img/favicon.svg?v=2.1.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/daydoc/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/daydoc/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"www.wqkenqing.ren","author":"Kuiq  Wang","root":"/daydoc/","typed_text":null,"theme_version":"2.1.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","appleTouchIcon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":true}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-10-27 14:50:27"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/daydoc/css/index.css?v=2.1.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
+</head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/daydoc/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/daydoc/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            Async<span>Theme</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/daydoc/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/daydoc/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/daydoc/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/daydoc/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/daydoc/img/avatar.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        ThemeAsync
+    </h5>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            10/27
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            14:50
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Kuiq  Wang
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>server {<br>  listen 8089;<br>  server_name ; &#x2F;&#x2F; 你的域名或者 ip<br>  root &#x2F;root&#x2F;H-ui.admin; &#x2F;&#x2F; 你的克隆到的项目路径<br>  index index.html; &#x2F;&#x2F; 显示首页<br>  location ~* ^.+.(jpg|jpeg|gif|png|ico|css|js|pdf|txt){<br>    root &#x2F;&#x2F;root&#x2F;H-ui.admin;<br>  } &#x2F;&#x2F; 静态文件访问<br>}</p>
+<p>server {<br>    listen       9001;<br>    server_name  localhost;<br>    location &#x2F; {<br>        root   &#x2F;root&#x2F;node-project&#x2F;pm2test;<br>        #index  index.html index.htm;<br>    }<br>}</p>
+<h1 id="For-more-information-on-configuration-see"><a href="#For-more-information-on-configuration-see" class="headerlink" title="For more information on configuration, see:"></a>For more information on configuration, see:</h1><h1 id="Official-English-Documentation-http-nginx-org-en-docs"><a href="#Official-English-Documentation-http-nginx-org-en-docs" class="headerlink" title="* Official English Documentation: http://nginx.org/en/docs/"></a>* Official English Documentation: <a target="_blank" rel="noopener" href="http://nginx.org/en/docs/">http://nginx.org/en/docs/</a></h1><h1 id="Official-Russian-Documentation-http-nginx-org-ru-docs"><a href="#Official-Russian-Documentation-http-nginx-org-ru-docs" class="headerlink" title="* Official Russian Documentation: http://nginx.org/ru/docs/"></a>* Official Russian Documentation: <a target="_blank" rel="noopener" href="http://nginx.org/ru/docs/">http://nginx.org/ru/docs/</a></h1><p>user root;<br>worker_processes auto;<br>error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log;<br>pid &#x2F;run&#x2F;nginx.pid;</p>
+<h1 id="Load-dynamic-modules-See-usr-share-nginx-README-dynamic"><a href="#Load-dynamic-modules-See-usr-share-nginx-README-dynamic" class="headerlink" title="Load dynamic modules. See &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;README.dynamic."></a>Load dynamic modules. See &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;README.dynamic.</h1><p>include &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;modules&#x2F;*.conf;</p>
+<p>events {<br>    worker_connections 1024;<br>}</p>
+<p>http {<br>    log_format  main  ‘$remote_addr - $remote_user [$time_local] “$request” ‘<br>                      ‘$status $body_bytes_sent “$http_referer” ‘<br>                      ‘“$http_user_agent” “$http_x_forwarded_for”‘;</p>
+<pre><code>access_log  /var/log/nginx/access.log  main;
+
+sendfile            on;
+tcp_nopush          on;
+tcp_nodelay         on;
+keepalive_timeout   65;
+types_hash_max_size 2048;
+
+include             /etc/nginx/mime.types;
+default_type        application/octet-stream;
+
+# Load modular configuration files from the /etc/nginx/conf.d directory.
+# See http://nginx.org/en/docs/ngx_core_module.html#include
+# for more information.
+
+#include /etc/nginx/conf.d/*.conf;
+
+server &#123;
+</code></pre>
+<p>  listen 8089;<br>  server_name  116.196.81.123;<br>  root &#x2F;root&#x2F;H-ui.admin;<br>  index index.html;<br>  location ~* ^.+.(jpg|jpeg|gif|png|ico|css|js|pdf|txt){<br>    root &#x2F;&#x2F;root&#x2F;H-ui.admin;<br>  }<br>}<br>    include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</p>
+<h1 id="Settings-for-a-TLS-enabled-server"><a href="#Settings-for-a-TLS-enabled-server" class="headerlink" title="Settings for a TLS enabled server."></a>Settings for a TLS enabled server.</h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="server"><a href="#server" class="headerlink" title="server {"></a>server {</h1><h1 id="listen-443-ssl-http2-default-server"><a href="#listen-443-ssl-http2-default-server" class="headerlink" title="listen       443 ssl http2 default_server;"></a>listen       443 ssl http2 default_server;</h1><h1 id="listen-443-ssl-http2-default-server-1"><a href="#listen-443-ssl-http2-default-server-1" class="headerlink" title="listen       [::]:443 ssl http2 default_server;"></a>listen       [::]:443 ssl http2 default_server;</h1><h1 id="server-name"><a href="#server-name" class="headerlink" title="server_name  _;"></a>server_name  _;</h1><h1 id="root-usr-share-nginx-html"><a href="#root-usr-share-nginx-html" class="headerlink" title="root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;"></a>root         &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</h1><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h1 id="ssl-certificate-“-etc-pki-nginx-server-crt”"><a href="#ssl-certificate-“-etc-pki-nginx-server-crt”" class="headerlink" title="ssl_certificate “&#x2F;etc&#x2F;pki&#x2F;nginx&#x2F;server.crt”;"></a>ssl_certificate “&#x2F;etc&#x2F;pki&#x2F;nginx&#x2F;server.crt”;</h1><h1 id="ssl-certificate-key-“-etc-pki-nginx-private-server-key”"><a href="#ssl-certificate-key-“-etc-pki-nginx-private-server-key”" class="headerlink" title="ssl_certificate_key “&#x2F;etc&#x2F;pki&#x2F;nginx&#x2F;private&#x2F;server.key”;"></a>ssl_certificate_key “&#x2F;etc&#x2F;pki&#x2F;nginx&#x2F;private&#x2F;server.key”;</h1><h1 id="ssl-session-cache-shared-SSL-1m"><a href="#ssl-session-cache-shared-SSL-1m" class="headerlink" title="ssl_session_cache shared:SSL:1m;"></a>ssl_session_cache shared:SSL:1m;</h1><h1 id="ssl-session-timeout-10m"><a href="#ssl-session-timeout-10m" class="headerlink" title="ssl_session_timeout  10m;"></a>ssl_session_timeout  10m;</h1><h1 id="ssl-ciphers-HIGH-aNULL-MD5"><a href="#ssl-ciphers-HIGH-aNULL-MD5" class="headerlink" title="ssl_ciphers HIGH:!aNULL:!MD5;"></a>ssl_ciphers HIGH:!aNULL:!MD5;</h1><h1 id="ssl-prefer-server-ciphers-on"><a href="#ssl-prefer-server-ciphers-on" class="headerlink" title="ssl_prefer_server_ciphers on;"></a>ssl_prefer_server_ciphers on;</h1><h1 id="-2"><a href="#-2" class="headerlink" title=""></a></h1><h1 id="Load-configuration-files-for-the-default-server-block"><a href="#Load-configuration-files-for-the-default-server-block" class="headerlink" title="# Load configuration files for the default server block."></a># Load configuration files for the default server block.</h1><h1 id="include-etc-nginx-default-d-conf"><a href="#include-etc-nginx-default-d-conf" class="headerlink" title="include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;"></a>include &#x2F;etc&#x2F;nginx&#x2F;default.d&#x2F;*.conf;</h1><h1 id="-3"><a href="#-3" class="headerlink" title=""></a></h1><h1 id="location"><a href="#location" class="headerlink" title="location &#x2F; {"></a>location &#x2F; {</h1><h1 id="-4"><a href="#-4" class="headerlink" title="}"></a>}</h1><h1 id="-5"><a href="#-5" class="headerlink" title=""></a></h1><h1 id="error-page-404-404-html"><a href="#error-page-404-404-html" class="headerlink" title="error_page 404 &#x2F;404.html;"></a>error_page 404 &#x2F;404.html;</h1><h1 id="location-40x-html"><a href="#location-40x-html" class="headerlink" title="location &#x3D; &#x2F;40x.html {"></a>location &#x3D; &#x2F;40x.html {</h1><h1 id="-6"><a href="#-6" class="headerlink" title="}"></a>}</h1><h1 id="-7"><a href="#-7" class="headerlink" title=""></a></h1><h1 id="error-page-500-502-503-504-50x-html"><a href="#error-page-500-502-503-504-50x-html" class="headerlink" title="error_page 500 502 503 504 &#x2F;50x.html;"></a>error_page 500 502 503 504 &#x2F;50x.html;</h1><h1 id="location-50x-html"><a href="#location-50x-html" class="headerlink" title="location &#x3D; &#x2F;50x.html {"></a>location &#x3D; &#x2F;50x.html {</h1><h1 id="-8"><a href="#-8" class="headerlink" title="}"></a>}</h1><h1 id="-9"><a href="#-9" class="headerlink" title="}"></a>}</h1><p>}</p>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/daydoc/2023/10/27/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E8%B0%83%E7%A0%94/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/daydoc/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
+            </div>
+            <h5>
+                <a href="/daydoc/2023/10/27/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/front_end/%E8%B0%83%E7%A0%94/" class="trm-anima-link">
+                    
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/10/27</li>
+                <li>14:50</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/daydoc/2023/10/27/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/owncloud/%E8%B4%A6%E5%8F%B7/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/daydoc/img/block.jpg">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
+            </div>
+            <h5>
+                <a href="/daydoc/2023/10/27/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E8%BF%90%E7%BB%B4/owncloud/%E8%B4%A6%E5%8F%B7/" class="trm-anima-link">
+                    
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/10/27</li>
+                <li>14:50</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.1.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/daydoc/js/main.js?v=2.1.6"></script>
+
+</body>
+
+</html>
