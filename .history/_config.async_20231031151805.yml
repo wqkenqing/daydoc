@@ -1,0 +1,19 @@
+toc: true
+banner:
+  index:
+    type: img
+    bgurl: https://pic1.zhimg.com/v2-b3c2c6745b9421a13a3c4706b19223b3_r.jpg?source=1940ef5c
+    bannerTitle: 你是无意穿堂风，<br>偏偏孤倨引山洪。
+    bannerText: welcome to my blog!
+sidebar:
+  typedTextPrefix: I`m
+  typedText: ["Data Developer"]
+user:
+  name: 两人众
+  first_name: 两
+  last_name: 人从
+  email: admin@imalun.com
+  domain: https://www.imalun.com
+  avatar: /img/avatar.jpg
+  describe: 网站简介。
+  ruleText: 暂不接受个人博客以外的友链申请，确保您的网站内容积极向上，文章至少30篇，原创70%以上，部署HTTPS。
