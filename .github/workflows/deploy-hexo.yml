@@ -31,10 +31,8 @@ jobs:
       run: |
         rm -rf node_modules && npm install --force
         npm install --save hexo-theme-async hexo-renderer-less hexo-renderer-ejs
-        npm i hexo-theme-async@latest
         npm install -g hexo-cli
         npm install hexo-deployer-git --save
-        npm install
         hexo clean
         hexo generate
         hexo deploy
