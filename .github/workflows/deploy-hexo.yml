@@ -33,7 +33,6 @@ jobs:
         npm install hexo-theme-async@latest
         npm install -g hexo-cli
         npm install hexo-deployer-git --save
-        hexo clean
         hexo generate
         hexo deploy
 
