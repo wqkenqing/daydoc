@@ -1,0 +1,11 @@
+title: hive梳理2 
+date: 2023-10-31 09:49:59 
+tags: []
+categories: [回顾]
+password: 
+
+---
+
+ <!--more-->
+
+ > 前面中梳理了hive的DML、DQL等基础用法。
