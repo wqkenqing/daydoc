@@ -30,8 +30,9 @@ jobs:
     - name: Install and Build 🔧 
       run: |
         rm -rf node_modules && npm install --force
-        npm install --save hexo-theme-async hexo-renderer-less hexo-renderer-ejs
+        npm install --save hexo-renderer-less hexo-renderer-ejs
         npm install -g hexo-cli
+        npm i hexo-theme-async@latest
         npm install hexo-deployer-git --save
         hexo clean
         hexo generate
