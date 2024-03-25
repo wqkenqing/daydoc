@@ -1,0 +1,12 @@
+title: Flinkcdc 
+date: 2024-03-25 14:49:28 
+tags: [flink]
+categories: [专题]
+password: 7FKBKZrTTTPG2LnC
+
+---
+ <!--more-->
+
+1. 什么是flinkcdc?
+2. flinkcdc 用来干什么
+3. flink cdc的应用
