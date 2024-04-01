@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="spark 算子">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spark算子">
+<meta property="og:url" content="http://www.wqkenqing.ren/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E7%AE%97%E5%AD%90/index.html">
+<meta property="og:site_name" content="wang&#39;s dayliy document">
+<meta property="og:description" content="spark 算子">
+<meta property="og:locale">
+<meta property="article:published_time" content="2018-03-04T03:12:05.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:50:27.008Z">
+<meta property="article:author" content="Kuiq  Wang">
+<meta property="article:tag" content="spark学习">
+<meta name="twitter:card" content="summary">
+
+    <meta name="keywords" content="yGin910">
+
+
+<title >spark算子</title>
+
+<!-- Favicon -->
+
+    <link href='/daydoc/img/favicon.svg?v=2.1.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/daydoc/img/favicon.svg?v=2.1.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/daydoc/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/daydoc/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"www.wqkenqing.ren","author":"Kuiq  Wang","root":"/daydoc/","typed_text":["Data Developer"],"theme_version":"2.1.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","appleTouchIcon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":false},"covers":["https://cdn.pixabay.com/photo/2023/09/18/16/47/leaves-8260967_1280.jpg","https://cdn.pixabay.com/photo/2022/10/28/12/05/halloween-7553022_1280.jpg","https://pixabay.com/link/?ua=cd3%3Dimage%26cd7%3Den%253Anature%253AFRA%26ec%3Dapi_ad%26ea%3Dnavigate%26el%3Dgetty%26tid%3DUA-20223345-1%26dr%3Dhttps%253A%252F%252Fpixabay.com%252Fzh%252F&sp=%2524%3Dadvertisement_clicked%26media_type%3Dimage%26user_action%3Dnavigate%26ad_partner%3Dgetty%26ad_content%3Dapi_ad&next=https%3A%2F%2Fwww.istockphoto.com%2Fphoto%2Fhand-holdig-plant-growing-on-green-background-with-sunshine-gm1394781347-450126535%3Futm_source%3Dpixabay%26utm_medium%3Daffiliate%26utm_campaign%3DSRP_image_sponsored%26utm_content%3Dhttps%253A%252F%252Fpixabay.com%252Fzh%252Fimages%252Fsearch%252F%253Forder%253Dec%26utm_term%3Dnature&hash=83a731925a44749a062f73923a53e8e21a4c6a24&=","https://pixabay.com/zh/photos/eagle-bird-raptor-animal-show-8319555/","https://cdn.pixabay.com/photo/2023/10/13/16/39/coffee-8313090_1280.jpg","https://cdn.pixabay.com/photo/2023/10/21/11/46/sunset-8331285_1280.jpg","https://media.istockphoto.com/id/1225941556/fr/photo/caf%C3%A9-faire-du-caf%C3%A9-de-la-machine-%C3%A0-la-maison.jpg?s=2048x2048&w=is&k=20&c=kdUMGRbdkXVZKYr71E_iEC4tYTDFUWpsbeOcOIOHkUY="]};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-10-27 14:50:27"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/daydoc/css/index.css?v=2.1.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
+</head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/daydoc/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/daydoc/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            人从<span>两</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/daydoc/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/daydoc/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/daydoc/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            spark算子
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/daydoc/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2018
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="https://pic.616pic.com/ys_bnew_img/00/04/31/yUPTAXjSKA.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        两人从
+    </h5>
+    
+        <div class="trm-label">
+            I`m
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:wqkenqingto@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            03/04
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            11:12
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Kuiq  Wang
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="spark-算子"><a href="#spark-算子" class="headerlink" title="spark 算子"></a>spark 算子</h1><span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sparkRDD封装的函数方法又称算子,通过这些算子可以对RDD进行相关处理,从而获我们想要的结果,因为可能涉及的算子较多.因此单独开篇进行粒度更细,更集中的总结.</span><br><span class="line"></span><br><span class="line">总得来讲spark的算子,本就是scala集合的一些高阶用法.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Transformation-转换"><a href="#Transformation-转换" class="headerlink" title="Transformation(转换)"></a>Transformation(转换)</h2><p>不触发提交作业，完成作业中间处理过程。</p>
+<h3 id="parallelize-并行化"><a href="#parallelize-并行化" class="headerlink" title="parallelize (并行化)"></a>parallelize (并行化)</h3><p>将一个存在的集合，变成一个RDD ,返回的是一个JavaRDD[T]<br>** in scala **</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc.parallelize(<span class="type">List</span>(<span class="string">&quot;shenzhen&quot;</span>, <span class="string">&quot;is a beautiful city&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p> ** in java **<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JavaRDD&lt;String&gt; javaStringRDD = sc.parallelize(Arrays.asList(<span class="string">&quot;shenzhen&quot;</span>, <span class="string">&quot;is a beautiful city&quot;</span>));</span><br></pre></td></tr></table></figure></p>
+<h3 id="makeRDD"><a href="#makeRDD" class="headerlink" title="makeRDD"></a>makeRDD</h3><p>只有scala版本的才有makeRDD ,与parallelize类似.</p>
+<h3 id="textFile"><a href="#textFile" class="headerlink" title="textFile"></a>textFile</h3><p>调用SparkContext.textFile()方法，从外部存储中读取数据来创建 RDD<br>** in scala **<br> <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lines = sc.textFile(inpath) </span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java</span></span><br><span class="line"> JavaRDD&lt;String&gt; lines = sc.textFile(inpath);</span><br></pre></td></tr></table></figure>
+
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>对RDD数据进行过滤</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>接收一个函数,并将这个函数作用于RDD中的每个元素.RDD 中对应**元素的值 map是一对一的关系 **</p>
+<h3 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h3><p>有时候，我们希望对某个元素生成多个元素，实现该功能的操作叫作 flatMap() ,faltMap的函数应用于每一个元素，对于每一个元素返回的是多个元素组成的迭代器</p>
+<h3 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a>distinct</h3><p>去重,我们生成的RDD可能有重复的元素，使用distinct方法可以去掉重复的元素, 不过此方法涉及到混洗，操作开销很大 </p>
+<h3 id="union"><a href="#union" class="headerlink" title="union"></a>union</h3><p>两个RDD进行合并 </p>
+<h3 id="intersection"><a href="#intersection" class="headerlink" title="intersection"></a>intersection</h3><p>RDD1.intersection(RDD2) 返回两个RDD的交集，** 并且去重 **<br>intersection 需要混洗数据，比较浪费性能</p>
+<h3 id="subtract"><a href="#subtract" class="headerlink" title="subtract"></a>subtract</h3><p>RDD1.subtract(RDD2),返回在RDD1中出现，但是不在RDD2中出现的元素，不去重 </p>
+<h3 id="cartesian"><a href="#cartesian" class="headerlink" title="cartesian"></a>cartesian</h3><p>cartesian(RDD2) 返回RDD1和RDD2的笛卡儿积，这个开销非常大</p>
+<h3 id="mapToPair"><a href="#mapToPair" class="headerlink" title="mapToPair"></a>mapToPair</h3><p>将元素该成key-value形式</p>
+<h3 id="flatMapToPair"><a href="#flatMapToPair" class="headerlink" title="flatMapToPair"></a>flatMapToPair</h3><p>差异同mapToPair</p>
+<h3 id="combineByKey"><a href="#combineByKey" class="headerlink" title="combineByKey"></a>combineByKey</h3><p>该方法主要针对不同分区的同一key进行元素合并函数操作.<br>需要对pairRDD进行</p>
+<ol>
+<li>createCombiner  会遍历分区中的所有元素，因此每个元素的键要么还没有遇到过,要么就<br>和之前的某个元素的键相同。如果这是一个新的元素， combineByKey() 会使用一个叫作 createCombiner() 的函数来创建<br>那个键对应的累加器的初始值</li>
+<li>mergeValue 如果这是一个在处理当前分区之前已经遇到的键， 它会使用 mergeValue() 方法将该键的累加器对应的当前值与这个新的值进行合并</li>
+<li>mergeCombiners 于每个分区都是独立处理的， 因此对于同一个键可以有多个累加器。如果有两个或者更<br>多的分区都有对应同一个键的累加器， 就需要使用用户提供的 mergeCombiners() 方法将各<br>个分区的结果进行合并。</li>
+</ol>
+<h3 id="reduceByKey"><a href="#reduceByKey" class="headerlink" title="reduceByKey"></a>reduceByKey</h3><p>接收一个函数，按照相同的key进行reduce操</p>
+<h3 id="foldByKey"><a href="#foldByKey" class="headerlink" title="foldByKey"></a>foldByKey</h3><p>该函数用于RDD[K,V]根据K将V做折叠、合并处理，其中的参数zeroValue表示先根据映射函数将zeroValue应用于V,进行初始化V,再将映射函数应用于初始化后的V ,与reduce不同的是 foldByKey开始折叠的第一个元素不是集合中的第一个元素，而是传入的一个元素 </p>
+<h3 id="sortByKey"><a href="#sortByKey" class="headerlink" title="sortByKey"></a>sortByKey</h3><p>SortByKey用于对pairRDD按照key进行排序，第一个参数可以设置true或者false，默认是true </p>
+<h3 id="groupByKey"><a href="#groupByKey" class="headerlink" title="groupByKey"></a>groupByKey</h3><p>groupByKey会将RDD[key,value] 按照相同的key进行分组，形成RDD[key,Iterable[value]]的形式， 有点类似于sql中的groupby，例如类似于mysql中的group_concat </p>
+<h3 id="cogroup"><a href="#cogroup" class="headerlink" title="cogroup"></a>cogroup</h3><p>groupByKey是对单个 RDD 的数据进行分组，还可以使用一个叫作 cogroup() 的函数对多个共享同一个键的 RDD 进行分组<br>RDD1.cogroup(RDD2) 会将RDD1和RDD2按照相同的key进行分组，得到(key,RDD[key,Iterable[value1],Iterable[value2]])的形式 </p>
+<h3 id="subtractByKey"><a href="#subtractByKey" class="headerlink" title="subtractByKey"></a>subtractByKey</h3><p>类似于subtrac，删掉 RDD 中键与 other RDD 中的键相同的元素</p>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>可以把RDD1,RDD2中的相同的key给连接起来，类似于sql中的join操作<br>RDD1.join(RDD2) </p>
+<h3 id="fullOuterJoin"><a href="#fullOuterJoin" class="headerlink" title="fullOuterJoin"></a>fullOuterJoin</h3><p>全连接</p>
+<h3 id="leftOuterJoin"><a href="#leftOuterJoin" class="headerlink" title="leftOuterJoin"></a>leftOuterJoin</h3><h3 id="rightOuterJoin"><a href="#rightOuterJoin" class="headerlink" title="rightOuterJoin"></a>rightOuterJoin</h3><h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><h3 id="first"><a href="#first" class="headerlink" title="first"></a>first</h3><p>返回第一个元素 </p>
+<h3 id="take"><a href="#take" class="headerlink" title="take"></a>take</h3><p>rdd.take(n)返回第n个元素 </p>
+<h3 id="collect"><a href="#collect" class="headerlink" title="collect"></a>collect</h3><p>rdd.collect() 返回 RDD 中的所有元素 </p>
+<h3 id="count"><a href="#count" class="headerlink" title="count"></a>count</h3><p>rdd.count() 返回 RDD 中的元素个数 </p>
+<h3 id="countByValue"><a href="#countByValue" class="headerlink" title="countByValue"></a>countByValue</h3><p>各元素在 RDD 中出现的次数 返回{(key1,次数),(key2,次数),…(keyn,次数)} </p>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>并行整合RDD中所有数据</p>
+<h3 id="fold"><a href="#fold" class="headerlink" title="fold"></a>fold</h3><p>和 reduce() 一 样， 但是提供了初始值num,每个元素计算时，先要合这个初始值进行折叠, 注意，这里会按照每个分区进行fold，然后分区之间还会再次进行fold </p>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>rdd.top(n)<br>按照降序的或者指定的排序规则，返回前n个元素 </p>
+<h3 id="takeOrdered"><a href="#takeOrdered" class="headerlink" title="takeOrdered"></a>takeOrdered</h3><p>rdd.take(n)<br>对RDD元素进行升序排序,取出前n个元素并返回，也可以自定义比较器（这里不介绍），类似于top的相反的方法 </p>
+<h3 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h3><p>对 RDD 中的每个元素使用给<br>定的函数</p>
+<h3 id="countByKey"><a href="#countByKey" class="headerlink" title="countByKey"></a>countByKey</h3><p>以RDD{(1, 2),(2,4),(2,5), (3, 4),(3,5), (3, 6)}为例 rdd.countByKey会返回{(1,1),(2,2),(3,3)} </p>
+<h3 id="collectAsMap"><a href="#collectAsMap" class="headerlink" title="collectAsMap"></a>collectAsMap</h3><p>将pair类型(键值对类型)的RDD转换成map, 还是上面的例子</p>
+<h3 id="saveAsTextFile"><a href="#saveAsTextFile" class="headerlink" title="saveAsTextFile"></a>saveAsTextFile</h3><p>saveAsTextFile用于将RDD以文本文件的格式存储到文件系统中。</p>
+<h3 id="saveAsSequenceFile"><a href="#saveAsSequenceFile" class="headerlink" title="saveAsSequenceFile"></a>saveAsSequenceFile</h3><p>saveAsSequenceFile用于将RDD以SequenceFile的文件格式保存到HDFS上。</p>
+<h3 id="saveAsObjectFile"><a href="#saveAsObjectFile" class="headerlink" title="saveAsObjectFile"></a>saveAsObjectFile</h3><p>saveAsObjectFile用于将RDD中的元素序列化成对象，存储到文件中。</p>
+<h3 id="saveAsHadoopFile"><a href="#saveAsHadoopFile" class="headerlink" title="saveAsHadoopFile"></a>saveAsHadoopFile</h3><h3 id="saveAsNewAPIHadoopFile"><a href="#saveAsNewAPIHadoopFile" class="headerlink" title="saveAsNewAPIHadoopFile"></a>saveAsNewAPIHadoopFile</h3><h3 id="mapPartitions"><a href="#mapPartitions" class="headerlink" title="mapPartitions"></a>mapPartitions</h3><h3 id="mapPartitionsWithIndex"><a href="#mapPartitionsWithIndex" class="headerlink" title="mapPartitionsWithIndex"></a>mapPartitionsWithIndex</h3><h3 id="HashPartitioner"><a href="#HashPartitioner" class="headerlink" title="HashPartitioner"></a>HashPartitioner</h3><h3 id="RangePartitioner"><a href="#RangePartitioner" class="headerlink" title="RangePartitioner"></a>RangePartitioner</h3><h3 id="自定义分区"><a href="#自定义分区" class="headerlink" title="自定义分区"></a>自定义分区</h3>
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A02/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
+            </div>
+            <h5>
+                <a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/spark%E5%AD%A6%E4%B9%A02/" class="trm-anima-link">
+                    spark学习2
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>18/03/04</li>
+                <li>11:12</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/sqoop%E8%AE%B0%E5%BD%95/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
+            </div>
+            <h5>
+                <a href="/daydoc/2018/03/04/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/sqoop%E8%AE%B0%E5%BD%95/" class="trm-anima-link">
+                    sqoop记录
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>18/03/04</li>
+                <li>10:54</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.1.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+    <div id="post-toc" class="trm-post-toc">
+      <div class="trm-post-toc-header">
+        目录导航
+				<span id="post-toc-top">
+					置顶
+				</span>
+      </div>
+      <div class="trm-post-toc-content">
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1" title="spark 算子"><a rel="nofollow" class="trm-toc-link" href="#spark-算子"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">spark 算子</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-2" title="Transformation(转换)"><a rel="nofollow" class="trm-toc-link" href="#Transformation-转换"><span class="trm-toc-number">1.1.</span> <span class="trm-toc-text">Transformation(转换)</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="parallelize (并行化)"><a rel="nofollow" class="trm-toc-link" href="#parallelize-并行化"><span class="trm-toc-number">1.1.1.</span> <span class="trm-toc-text">parallelize (并行化)</span></a></li><li class="trm-toc-item trm-toc-level-3" title="makeRDD"><a rel="nofollow" class="trm-toc-link" href="#makeRDD"><span class="trm-toc-number">1.1.2.</span> <span class="trm-toc-text">makeRDD</span></a></li><li class="trm-toc-item trm-toc-level-3" title="textFile"><a rel="nofollow" class="trm-toc-link" href="#textFile"><span class="trm-toc-number">1.1.3.</span> <span class="trm-toc-text">textFile</span></a></li><li class="trm-toc-item trm-toc-level-3" title="filter"><a rel="nofollow" class="trm-toc-link" href="#filter"><span class="trm-toc-number">1.1.4.</span> <span class="trm-toc-text">filter</span></a></li><li class="trm-toc-item trm-toc-level-3" title="map"><a rel="nofollow" class="trm-toc-link" href="#map"><span class="trm-toc-number">1.1.5.</span> <span class="trm-toc-text">map</span></a></li><li class="trm-toc-item trm-toc-level-3" title="flatMap"><a rel="nofollow" class="trm-toc-link" href="#flatMap"><span class="trm-toc-number">1.1.6.</span> <span class="trm-toc-text">flatMap</span></a></li><li class="trm-toc-item trm-toc-level-3" title="distinct"><a rel="nofollow" class="trm-toc-link" href="#distinct"><span class="trm-toc-number">1.1.7.</span> <span class="trm-toc-text">distinct</span></a></li><li class="trm-toc-item trm-toc-level-3" title="union"><a rel="nofollow" class="trm-toc-link" href="#union"><span class="trm-toc-number">1.1.8.</span> <span class="trm-toc-text">union</span></a></li><li class="trm-toc-item trm-toc-level-3" title="intersection"><a rel="nofollow" class="trm-toc-link" href="#intersection"><span class="trm-toc-number">1.1.9.</span> <span class="trm-toc-text">intersection</span></a></li><li class="trm-toc-item trm-toc-level-3" title="subtract"><a rel="nofollow" class="trm-toc-link" href="#subtract"><span class="trm-toc-number">1.1.10.</span> <span class="trm-toc-text">subtract</span></a></li><li class="trm-toc-item trm-toc-level-3" title="cartesian"><a rel="nofollow" class="trm-toc-link" href="#cartesian"><span class="trm-toc-number">1.1.11.</span> <span class="trm-toc-text">cartesian</span></a></li><li class="trm-toc-item trm-toc-level-3" title="mapToPair"><a rel="nofollow" class="trm-toc-link" href="#mapToPair"><span class="trm-toc-number">1.1.12.</span> <span class="trm-toc-text">mapToPair</span></a></li><li class="trm-toc-item trm-toc-level-3" title="flatMapToPair"><a rel="nofollow" class="trm-toc-link" href="#flatMapToPair"><span class="trm-toc-number">1.1.13.</span> <span class="trm-toc-text">flatMapToPair</span></a></li><li class="trm-toc-item trm-toc-level-3" title="combineByKey"><a rel="nofollow" class="trm-toc-link" href="#combineByKey"><span class="trm-toc-number">1.1.14.</span> <span class="trm-toc-text">combineByKey</span></a></li><li class="trm-toc-item trm-toc-level-3" title="reduceByKey"><a rel="nofollow" class="trm-toc-link" href="#reduceByKey"><span class="trm-toc-number">1.1.15.</span> <span class="trm-toc-text">reduceByKey</span></a></li><li class="trm-toc-item trm-toc-level-3" title="foldByKey"><a rel="nofollow" class="trm-toc-link" href="#foldByKey"><span class="trm-toc-number">1.1.16.</span> <span class="trm-toc-text">foldByKey</span></a></li><li class="trm-toc-item trm-toc-level-3" title="sortByKey"><a rel="nofollow" class="trm-toc-link" href="#sortByKey"><span class="trm-toc-number">1.1.17.</span> <span class="trm-toc-text">sortByKey</span></a></li><li class="trm-toc-item trm-toc-level-3" title="groupByKey"><a rel="nofollow" class="trm-toc-link" href="#groupByKey"><span class="trm-toc-number">1.1.18.</span> <span class="trm-toc-text">groupByKey</span></a></li><li class="trm-toc-item trm-toc-level-3" title="cogroup"><a rel="nofollow" class="trm-toc-link" href="#cogroup"><span class="trm-toc-number">1.1.19.</span> <span class="trm-toc-text">cogroup</span></a></li><li class="trm-toc-item trm-toc-level-3" title="subtractByKey"><a rel="nofollow" class="trm-toc-link" href="#subtractByKey"><span class="trm-toc-number">1.1.20.</span> <span class="trm-toc-text">subtractByKey</span></a></li><li class="trm-toc-item trm-toc-level-3" title="join"><a rel="nofollow" class="trm-toc-link" href="#join"><span class="trm-toc-number">1.1.21.</span> <span class="trm-toc-text">join</span></a></li><li class="trm-toc-item trm-toc-level-3" title="fullOuterJoin"><a rel="nofollow" class="trm-toc-link" href="#fullOuterJoin"><span class="trm-toc-number">1.1.22.</span> <span class="trm-toc-text">fullOuterJoin</span></a></li><li class="trm-toc-item trm-toc-level-3" title="leftOuterJoin"><a rel="nofollow" class="trm-toc-link" href="#leftOuterJoin"><span class="trm-toc-number">1.1.23.</span> <span class="trm-toc-text">leftOuterJoin</span></a></li><li class="trm-toc-item trm-toc-level-3" title="rightOuterJoin"><a rel="nofollow" class="trm-toc-link" href="#rightOuterJoin"><span class="trm-toc-number">1.1.24.</span> <span class="trm-toc-text">rightOuterJoin</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-2" title="Action"><a rel="nofollow" class="trm-toc-link" href="#Action"><span class="trm-toc-number">1.2.</span> <span class="trm-toc-text">Action</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="first"><a rel="nofollow" class="trm-toc-link" href="#first"><span class="trm-toc-number">1.2.1.</span> <span class="trm-toc-text">first</span></a></li><li class="trm-toc-item trm-toc-level-3" title="take"><a rel="nofollow" class="trm-toc-link" href="#take"><span class="trm-toc-number">1.2.2.</span> <span class="trm-toc-text">take</span></a></li><li class="trm-toc-item trm-toc-level-3" title="collect"><a rel="nofollow" class="trm-toc-link" href="#collect"><span class="trm-toc-number">1.2.3.</span> <span class="trm-toc-text">collect</span></a></li><li class="trm-toc-item trm-toc-level-3" title="count"><a rel="nofollow" class="trm-toc-link" href="#count"><span class="trm-toc-number">1.2.4.</span> <span class="trm-toc-text">count</span></a></li><li class="trm-toc-item trm-toc-level-3" title="countByValue"><a rel="nofollow" class="trm-toc-link" href="#countByValue"><span class="trm-toc-number">1.2.5.</span> <span class="trm-toc-text">countByValue</span></a></li><li class="trm-toc-item trm-toc-level-3" title="reduce"><a rel="nofollow" class="trm-toc-link" href="#reduce"><span class="trm-toc-number">1.2.6.</span> <span class="trm-toc-text">reduce</span></a></li><li class="trm-toc-item trm-toc-level-3" title="fold"><a rel="nofollow" class="trm-toc-link" href="#fold"><span class="trm-toc-number">1.2.7.</span> <span class="trm-toc-text">fold</span></a></li><li class="trm-toc-item trm-toc-level-3" title="top"><a rel="nofollow" class="trm-toc-link" href="#top"><span class="trm-toc-number">1.2.8.</span> <span class="trm-toc-text">top</span></a></li><li class="trm-toc-item trm-toc-level-3" title="takeOrdered"><a rel="nofollow" class="trm-toc-link" href="#takeOrdered"><span class="trm-toc-number">1.2.9.</span> <span class="trm-toc-text">takeOrdered</span></a></li><li class="trm-toc-item trm-toc-level-3" title="foreach"><a rel="nofollow" class="trm-toc-link" href="#foreach"><span class="trm-toc-number">1.2.10.</span> <span class="trm-toc-text">foreach</span></a></li><li class="trm-toc-item trm-toc-level-3" title="countByKey"><a rel="nofollow" class="trm-toc-link" href="#countByKey"><span class="trm-toc-number">1.2.11.</span> <span class="trm-toc-text">countByKey</span></a></li><li class="trm-toc-item trm-toc-level-3" title="collectAsMap"><a rel="nofollow" class="trm-toc-link" href="#collectAsMap"><span class="trm-toc-number">1.2.12.</span> <span class="trm-toc-text">collectAsMap</span></a></li><li class="trm-toc-item trm-toc-level-3" title="saveAsTextFile"><a rel="nofollow" class="trm-toc-link" href="#saveAsTextFile"><span class="trm-toc-number">1.2.13.</span> <span class="trm-toc-text">saveAsTextFile</span></a></li><li class="trm-toc-item trm-toc-level-3" title="saveAsSequenceFile"><a rel="nofollow" class="trm-toc-link" href="#saveAsSequenceFile"><span class="trm-toc-number">1.2.14.</span> <span class="trm-toc-text">saveAsSequenceFile</span></a></li><li class="trm-toc-item trm-toc-level-3" title="saveAsObjectFile"><a rel="nofollow" class="trm-toc-link" href="#saveAsObjectFile"><span class="trm-toc-number">1.2.15.</span> <span class="trm-toc-text">saveAsObjectFile</span></a></li><li class="trm-toc-item trm-toc-level-3" title="saveAsHadoopFile"><a rel="nofollow" class="trm-toc-link" href="#saveAsHadoopFile"><span class="trm-toc-number">1.2.16.</span> <span class="trm-toc-text">saveAsHadoopFile</span></a></li><li class="trm-toc-item trm-toc-level-3" title="saveAsNewAPIHadoopFile"><a rel="nofollow" class="trm-toc-link" href="#saveAsNewAPIHadoopFile"><span class="trm-toc-number">1.2.17.</span> <span class="trm-toc-text">saveAsNewAPIHadoopFile</span></a></li><li class="trm-toc-item trm-toc-level-3" title="mapPartitions"><a rel="nofollow" class="trm-toc-link" href="#mapPartitions"><span class="trm-toc-number">1.2.18.</span> <span class="trm-toc-text">mapPartitions</span></a></li><li class="trm-toc-item trm-toc-level-3" title="mapPartitionsWithIndex"><a rel="nofollow" class="trm-toc-link" href="#mapPartitionsWithIndex"><span class="trm-toc-number">1.2.19.</span> <span class="trm-toc-text">mapPartitionsWithIndex</span></a></li><li class="trm-toc-item trm-toc-level-3" title="HashPartitioner"><a rel="nofollow" class="trm-toc-link" href="#HashPartitioner"><span class="trm-toc-number">1.2.20.</span> <span class="trm-toc-text">HashPartitioner</span></a></li><li class="trm-toc-item trm-toc-level-3" title="RangePartitioner"><a rel="nofollow" class="trm-toc-link" href="#RangePartitioner"><span class="trm-toc-number">1.2.21.</span> <span class="trm-toc-text">RangePartitioner</span></a></li><li class="trm-toc-item trm-toc-level-3" title="自定义分区"><a rel="nofollow" class="trm-toc-link" href="#自定义分区"><span class="trm-toc-number">1.2.22.</span> <span class="trm-toc-text">自定义分区</span></a></li></ol></li></ol></li></ol>
+      </div>
+    </div>
+
+            
+<div class="trm-fixed-container">
+    
+        <div class="trm-fixed-btn post-toc-btn" data-title="目录">
+            <i class="iconfont fas fa-th-list"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/daydoc/js/plugins/typing.js?v=2.1.6"></script>
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/daydoc/js/main.js?v=2.1.6"></script>
+
+</body>
+
+</html>

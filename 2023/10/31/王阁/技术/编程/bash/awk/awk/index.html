@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="awk">
+<meta property="og:url" content="http://www.wqkenqing.ren/daydoc/2023/10/31/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E7%BC%96%E7%A8%8B/bash/awk/awk/index.html">
+<meta property="og:site_name" content="wang&#39;s dayliy document">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-10-31T07:58:02.000Z">
+<meta property="article:modified_time" content="2023-10-31T07:58:03.108Z">
+<meta property="article:author" content="Kuiq  Wang">
+<meta property="article:tag" content="yGin910">
+<meta name="twitter:card" content="summary">
+
+    <meta name="keywords" content="yGin910">
+
+
+<title >awk</title>
+
+<!-- Favicon -->
+
+    <link href='/daydoc/img/favicon.svg?v=2.1.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/daydoc/img/favicon.svg?v=2.1.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/daydoc/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/daydoc/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"www.wqkenqing.ren","author":"Kuiq  Wang","root":"/daydoc/","typed_text":["Data Developer"],"theme_version":"2.1.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","appleTouchIcon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":false},"covers":["https://cdn.pixabay.com/photo/2023/09/18/16/47/leaves-8260967_1280.jpg","https://cdn.pixabay.com/photo/2022/10/28/12/05/halloween-7553022_1280.jpg","https://pixabay.com/link/?ua=cd3%3Dimage%26cd7%3Den%253Anature%253AFRA%26ec%3Dapi_ad%26ea%3Dnavigate%26el%3Dgetty%26tid%3DUA-20223345-1%26dr%3Dhttps%253A%252F%252Fpixabay.com%252Fzh%252F&sp=%2524%3Dadvertisement_clicked%26media_type%3Dimage%26user_action%3Dnavigate%26ad_partner%3Dgetty%26ad_content%3Dapi_ad&next=https%3A%2F%2Fwww.istockphoto.com%2Fphoto%2Fhand-holdig-plant-growing-on-green-background-with-sunshine-gm1394781347-450126535%3Futm_source%3Dpixabay%26utm_medium%3Daffiliate%26utm_campaign%3DSRP_image_sponsored%26utm_content%3Dhttps%253A%252F%252Fpixabay.com%252Fzh%252Fimages%252Fsearch%252F%253Forder%253Dec%26utm_term%3Dnature&hash=83a731925a44749a062f73923a53e8e21a4c6a24&=","https://pixabay.com/zh/photos/eagle-bird-raptor-animal-show-8319555/","https://cdn.pixabay.com/photo/2023/10/13/16/39/coffee-8313090_1280.jpg","https://cdn.pixabay.com/photo/2023/10/21/11/46/sunset-8331285_1280.jpg","https://media.istockphoto.com/id/1225941556/fr/photo/caf%C3%A9-faire-du-caf%C3%A9-de-la-machine-%C3%A0-la-maison.jpg?s=2048x2048&w=is&k=20&c=kdUMGRbdkXVZKYr71E_iEC4tYTDFUWpsbeOcOIOHkUY="]};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-10-31 15:58:03"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/daydoc/css/index.css?v=2.1.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
+</head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/daydoc/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/daydoc/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            人从<span>两</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/daydoc/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/daydoc/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/daydoc/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            awk
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/daydoc/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="https://pic.616pic.com/ys_bnew_img/00/04/31/yUPTAXjSKA.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        两人从
+    </h5>
+    
+        <div class="trm-label">
+            I`m
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:wqkenqingto@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            10/31
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            15:58
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Kuiq  Wang
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="dd17f1637a700a972e14d728e7c6bf4778b74fcc7f887d922a0daff1c28032eb">c53f42a1e5e13d1b4f230ee1f4a7563d2711600470bbcd89000fc4b25515e219ae45d7a1e23fd06b172b26dd607f96e86c37f3b17ad42c73e8acb8880af94a93601a9f2638146151b0d37d9d1aee052bca18a961ccba2a5a82e389e3dd4cb701aa687fb2930e59b057a370ec2c67554d201efee94070b262eb80f12b3be87a3a8dd3c14952aab8802673899060f41d625bec6d3a538d5a680aae3e7bf74882b6f6c8dec650338733f4ff4819a92f970cd926dd4378d4d1dce52c7b4f2d1f8e5f09957d1a85b036400d479bd62ae0457521c0e0ef297ccf0a65c2d7abf66a16f131271e16c2e843b04a0d45154a154d0947ba6e310fd2e527a14207e3889ca40106118d0d9552360f6ab87af3875c5468a94ac4e2064c3879f6a8d1875c0ee6f86c517f2b0f53024b1cfcd4d6673a9b631cd665336256afb9595a1b318cc4cab5ed797c57dbb36788a0c194b093c3f7f9a3c4e19505e10e17b3c9672aeebb57a98fa7fc3ff4631e60ec7b593142ed0c52f0725ba4c684c5cf7e06af4fcaf9d7f88caab290d6529eb2e749d39aace55750369cd4145d82c599345f2a0bcddb5e87ebc6cb26e1727dcbc2aeb7f280d1e7debcc900c67278e6c7b50ab221c5fe036e94b42ab51a232055eab195c425c6bc8e7bf15505816e570791aa1ad91dc7ee5ac7b359e32eae97613c74843c7ab75dc9de45a2a646c32b2ed552c28594abb7817b2c10572c0587077e714a0f396f08f92a207476edd9368e8ace08d9e3d139a7cbbffa550647c0b6c01277bb6863deb34d6119105a54f8614e925eb31ba4848fc23fbffde2d0c04084844b29473cd82d79985c97e5a9582de3ebe32b64055a7650c67f40bc52d53d535d56b98c3d3aba8a375b18c357c5379ec56077a2d60d8a4ade29cb5df1510ac1f9a07b934dc6312bff89de7ebd712bcd20e6e00e5fb0977afc42adaeb43a6f53fb6af33f4c46fe5232b927f6b8b7e95fefcb015acee8e930f620f197d8b60a17b31cd0d33222c540e712c5fb6426338940e8ab5ad47c9a61f47dd2e367a7b92d401ed40cd2b2f46945bfe3d6403bea865645ed62ac61450b638eef7a2e270f194ed7b704a049bd8384552cf97f07639e9d6b03958af42b48a44533ab946fa9ad8ebe294b775ecc8dd25ee284b30984a29a019493f2fc9f1d58b16f26208c9fa9931fefb960ac57a149853044dbe3d55b9b5b45b526b59a0adab7c52805523275495bd4b4de22700befc3a3d89b82b9f61f2a21d11d1e719ae3bba1ff8edd78c0e9ca97908b0da074a80add686e2daccde5a2dcdf2c2a3d4beeafed1dc955819070571cd84a625f34724d6f9586ef8e3fe61231af0d1d57bff58f17ff202cdc959f1039da25856d2ef64c81cf3a4a7b7ccf283b7863bd692b4ea027ce39bc191fddfa5ced65641bc115a3e3c522c95a17c4f6f923059740e596dd91f5854db275e86903c95cd939e9ffab95dfd5cd89a159e917ea351c9c4067b1d68327425b62fca3dc19e0a167b5a123761eed4e67ab33bf1d31761bba9759c8f68133815c2994f1d5e5b365a4eb54d266e79b71149c9b418f6ced1c0897555a3c8aa99fb5650c6f4d99392eb6a2b45207471b741d552a50e93f084584e698d11d44b652f064912dddba0a7d4412356bbde49d8a4ae8ecd2cd73152a524871fad46b23d7b66421e45d8802e3a8b59e284172e221518bdf6980f833fe47171a8f44d4427f283d72a289356cb9c9a1a5cad86612226340d29e84ca640280d7261099b1bc4d783db3d74dc6e56c85232142c9e332c34936e6df331396635b551bc9d4e4dd03cfda6c508b9702b9eaec6a094af973c9d17e8f552276029b59ca7031cbadf41a08a48d2a901b27e16964d107b39b9d8c8b7a2436efe033ee36a33c34ce492761df1c813292e02c04680279c727a738c4ae8b55642fcc876338d436fd8fcc2cd2c9eacdc525eaefcb5c2f9605d7d18d7642645a7325f23655474b226a50bf9dae7ed309fcb442e369b938bef0a0bc8e55bba2038e98969a5f63a47000ff6078ebf8adb2ce8f3480aadd95ac8dbec17e18e8caed35a9ad6d166f9219a7dcb4f081066fae2e862603fd0f681fc9fdc662b906b71e1b0285541b67ffcc1951cc4a595d8846379f21c88ea2222d60d19ab0ad0dc3c505288d7db4f416695474a9a19ab1511f52940026cd780b94561aeba125b0a0b77fe94169babfdbe354caac4ff9b4c4232194a6390dd69400b2e73b83ccc694fc48a35501a9115d154225c726373aec887b7b74777fec5e47f6981b7a43f9d54032096874a7e58b8f827276a431e721de25ed6250cc25ab02465fdfe645994d9b12894eefc27181fa993d5333e3e6ad9cac129f0b1d136dbd90473ee08eeacfe5c23b6e419f4863d28e13187229446071d3b7e862f896dc33a80cb9eafe4428791c25e3ecd8123d54f2dc2236e7df1f827c93ee440f45d8eb123b44d9fe5c71aa5039a8e6dc68f2171e3c9d585fc87f57788e6e59cf7bf71eb7079ec5ce8792ccdd6fad7b8303f655264daad5b326ea82c76913da4881068a199654f01b84abb9cc4ea70bbea16fcd8fd72013228c200858f38705d9c3bb07e04f2d418e59380f8d48074a9328ae180bac832ed42e9b4ee6d30e6f72d28c6da9df5259c6666c42a00ca5345b3e2bd9052c7cdc444632c9870770ca9278556ce347aa9e01ad8fc79f23c6564c436cc210921947d519deef055fc3bc4c6855668bd507d91ff32fbe78917665b16a908e57a832d899efb4ceedca58ba9f5b02349d1f480514dd43e463a6475753fb40e150fb067146d33235d817ea6d95dbc652dd3e1b2893804d1f29388476f42e92f45a7aee86ec1a838731e16cc1e66c0875eee980a6796908c5470caa0c12c63f5f6fbc1b97bb665ae795a4029e5556e400de70380115fe45925818c7059c5ad1bdb595e7f04e9cdf00ea2739750399eca1dd8da8a48329f01739072370144d62f564900027bb3838f3763dee828db85510de318091ef48005d984ab4d3a0e1e6c907f4ca6061c4e5ed02f846f6fb1f8abb1ac50b99302ac3e92a15b98d47df1d94a0c54498bed2da99fdeeb81953724306fb0d88c03c9966a134a7cea6f31f427682fc10096cb2b6f77c238196987e8e9a5b9b3dfd4105740120c8f51c346b3281c269b8974d4f1898ccfc45b1f2308ab3a92e60b853064b3839adfb824dfd3857b6365b139a780259bc9bb929823057d05c502fd5cd8df0582a1d065130a3fe9e196cdbefdd4b0e27f5c4572c97a3fc7b1596ec8fb7bfadb6c4cae42fef75db7e4d6e9b7dc49e907ec6aa2f12d6d78067b27c758e35442b8ca319e5b2a849e83f23e7e4475ee838813d1ae4695974bfa03dc59aa17b21cc4766597b729247ba63d160e959cdd3092e7c699c6609a5ac5fc88f7e2b7ae6fa372d62db890bd20e99bf3ba1f278f8f5622391c24a19b6e9774f9e988fa1696c86612860bb6b2e38d4432b01546ed919c68f40cb4520a5c60b928cf679b2eea779345ad90e72b7643eca85258d25dc57c9069a6f5d4544f21552bb57f10f495574a2e15fe8a6cbb924cad610b0ffa28f64e903302474434e5b8304a32779a289ad606f294ad8af7ca4c415b881c3742e4190e49b61780e4556e005b65da0237c825fb7b3fbce044cc47778d14c553b89c85b8174e10c326dea30cc59bc6ee3a445d4b6a2e1b55f32e81b5d4abe3839c4797247f06519638a09812ae841439207e34d08d789e2d4aa69cf56e0aad33ca890098dfd48ea4e10172a0c9536d90718c8eae363ad0684b88a77adf19f65912f67e0ae6f21fa23445b3306a6faa6453930e8781f6b3a23e7793c3e81a717ed7e0ee9f5897e57f7a515390ae4f87024daf125729cc82781b6693844294fae5be9bd9dae8fe4e14f78d90865ed43865304ab02db99a5f5b1de0242c6d8e9195d0d59b59b8f7d759cbbc13b25d34c73b2bc6c6fc5f7d2c8ba86efb8025ff513924b92848282f9c75d46d2725a00b264ca4892f2bd092f57d18dbf8656be2cbf99f53fbe8237e3d597a138cf29166559444bfb13c2d9eb72cc48609a83bbec248ebd1101e4f80ca2d38db5a2bf943aa397a73a01de1c3182656a002c4ecbcd4f64b55e8074daff8528f2dbafdb8607c6e33d3cd8fa752d10dfd503c8e18ebd8ea17ed6ec0a95ba7ac5adc3e2c4a3b621a20d0bf9e464af7c7330c8b583e906b44a669f5b56b4657a0cd315bd1036477cdd841175423666b46347161e95a73fa7b8e2a94c7e35171df7db680d81bd7811f9ae34428d8ed4eca3b69dd4c866e699e4cab3ce0f60d5a2b694ddf886a11b27893bbc9cd127cf6bdbfa4695fc97060ddc3afd56d3c532250ce696e3d4e61778284d5e66b3081a4766a0781eb998c955ea419bbfe52214fe614f32d2c2437b097e89e7854142ff1ec4d0559022f44ca41380b29f721d989581889b38a8f4933cff3f59419852508232598cdef6dbdd19c6edd465f86c4e862efcdb073285f1657d4a5b84cb5979c13ca61dda0aaade748b0ce03eb1e2cfb88ad61776534fa53c6e98d3a259d3b41913800eaf3b2fc1f9c11305d65551cc52d11573e00f457c0588f64c61c3b60220673620bea940de5590275bea15a5a8674ae727cdbc9123d4f1a8629e6e139739cb61664eff4e7bb8252638d6dc9564b32bcc8517152728292a027f7bf3897b7bd518360b1d14d810a4522aeff41b7b4885e7ac0c13e4fb50318310ec2568df95c0fe33b3b58086cb0ab89cd9d8593333035fbd65eeb4c4a98933f903ae74a9ae615ef7b4cbbe0df2c921d1d313782a9ab597c4e6c94a89018b2689b96809994e5e44a5a8962b3ff46ecfa44c8a22f75b726d075d8f3f50babda18017d39fa66768a0f889cabd5c9f2088be93b04fbd40ba9932deeb54c10e05dcc91d604e1515dc956a96d4b08633dadc84ad36ae54bc784f60962b0ca03043cdf21c56ec7b3823798a5719469ef30b8a7278a3b04868f1772f0195f3803f94b166e2266c120553</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/daydoc/lib/hbe.js"></script><link href="/daydoc/css/hbe.style.css" rel="stylesheet" type="text/css">
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/daydoc/2023/10/31/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E9%9B%86%E7%BE%A4/%E7%A7%81%E6%9C%89%E9%9B%86%E7%BE%A4/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /daydoc/categories/%E9%9B%86%E7%BE%A4/">
+                    集群
+                </a>
+            </div>
+            <h5>
+                <a href="/daydoc/2023/10/31/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E9%9B%86%E7%BE%A4/%E7%A7%81%E6%9C%89%E9%9B%86%E7%BE%A4/" class="trm-anima-link">
+                    私有集群
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/10/31</li>
+                <li>15:58</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/daydoc/2023/10/31/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%9D%82%E8%AE%B0/%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%AD%89%E6%94%B9%E9%80%A0/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /daydoc/categories/%E6%9D%82%E8%AE%B0/">
+                    杂记
+                </a>
+            </div>
+            <h5>
+                <a href="/daydoc/2023/10/31/%E7%8E%8B%E9%98%81/%E5%B7%A5%E4%BD%9C/%E6%9D%82%E8%AE%B0/%E5%9B%9B%E9%99%A2%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%AD%89%E6%94%B9%E9%80%A0/" class="trm-anima-link">
+                    四院数据处理等改造
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/10/31</li>
+                <li>15:57</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.1.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/daydoc/js/plugins/typing.js?v=2.1.6"></script>
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/daydoc/js/main.js?v=2.1.6"></script>
+
+</body>
+
+</html>

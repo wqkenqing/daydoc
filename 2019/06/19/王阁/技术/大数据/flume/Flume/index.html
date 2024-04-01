@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="flume几种source and sink实际操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flume记录">
+<meta property="og:url" content="http://www.wqkenqing.ren/daydoc/2019/06/19/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%95%B0%E6%8D%AE/flume/Flume/index.html">
+<meta property="og:site_name" content="wang&#39;s dayliy document">
+<meta property="og:description" content="flume几种source and sink实际操作">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-06-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-27T06:50:27.013Z">
+<meta property="article:author" content="Kuiq  Wang">
+<meta property="article:tag" content="yGin910">
+<meta name="twitter:card" content="summary">
+
+    <meta name="keywords" content="yGin910">
+
+
+<title >flume记录</title>
+
+<!-- Favicon -->
+
+    <link href='/daydoc/img/favicon.svg?v=2.1.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/daydoc/img/favicon.svg?v=2.1.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/daydoc/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/daydoc/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"www.wqkenqing.ren","author":"Kuiq  Wang","root":"/daydoc/","typed_text":["Data Developer"],"theme_version":"2.1.6","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","appleTouchIcon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":false},"covers":["https://cdn.pixabay.com/photo/2023/09/18/16/47/leaves-8260967_1280.jpg","https://cdn.pixabay.com/photo/2022/10/28/12/05/halloween-7553022_1280.jpg","https://pixabay.com/link/?ua=cd3%3Dimage%26cd7%3Den%253Anature%253AFRA%26ec%3Dapi_ad%26ea%3Dnavigate%26el%3Dgetty%26tid%3DUA-20223345-1%26dr%3Dhttps%253A%252F%252Fpixabay.com%252Fzh%252F&sp=%2524%3Dadvertisement_clicked%26media_type%3Dimage%26user_action%3Dnavigate%26ad_partner%3Dgetty%26ad_content%3Dapi_ad&next=https%3A%2F%2Fwww.istockphoto.com%2Fphoto%2Fhand-holdig-plant-growing-on-green-background-with-sunshine-gm1394781347-450126535%3Futm_source%3Dpixabay%26utm_medium%3Daffiliate%26utm_campaign%3DSRP_image_sponsored%26utm_content%3Dhttps%253A%252F%252Fpixabay.com%252Fzh%252Fimages%252Fsearch%252F%253Forder%253Dec%26utm_term%3Dnature&hash=83a731925a44749a062f73923a53e8e21a4c6a24&=","https://pixabay.com/zh/photos/eagle-bird-raptor-animal-show-8319555/","https://cdn.pixabay.com/photo/2023/10/13/16/39/coffee-8313090_1280.jpg","https://cdn.pixabay.com/photo/2023/10/21/11/46/sunset-8331285_1280.jpg","https://media.istockphoto.com/id/1225941556/fr/photo/caf%C3%A9-faire-du-caf%C3%A9-de-la-machine-%C3%A0-la-maison.jpg?s=2048x2048&w=is&k=20&c=kdUMGRbdkXVZKYr71E_iEC4tYTDFUWpsbeOcOIOHkUY="]};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-10-27 14:50:27"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/daydoc/css/index.css?v=2.1.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/daydoc/atom.xml" title="wang's dayliy document" type="application/atom+xml">
+</head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/daydoc/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/daydoc/img/favicon.svg">
+    
+    
+        <div class="trm-logo-text">
+            人从<span>两</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/daydoc/" target="">
+                    首页
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/daydoc/archives/" target="">
+                    归档
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/daydoc/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            flume记录
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/daydoc/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2019
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="https://pic.616pic.com/ys_bnew_img/00/04/31/yUPTAXjSKA.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        两人从
+    </h5>
+    
+        <div class="trm-label">
+            I`m
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Residence:
+            </div>
+            <div class="trm-label trm-label-light">
+                Mars
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:wqkenqingto@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            06/19
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            00:00
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            Kuiq  Wang
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <p>flume几种source and sink实际操作</p>
+<span id="more"></span>
+
+<h2 id="soruce"><a href="#soruce" class="headerlink" title="soruce"></a>soruce</h2><p>flume自身就支持多种source.<br>chanel这里暂用mem<br>sink to hdfs</p>
+<p>简单测试几种source</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置Agent</span></span><br><span class="line"><span class="attr">a1.sources</span> = <span class="string">r1</span></span><br><span class="line"><span class="attr">a1.sinks</span> = <span class="string">k1</span></span><br><span class="line"><span class="attr">a1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置Source</span></span><br><span class="line"><span class="attr">a1.sources.r1.type</span> = <span class="string">exec</span></span><br><span class="line"><span class="attr">a1.sources.r1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sources.r1.deserializer.outputCharset</span> = <span class="string">UTF-8</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置需要监控的日志输出目录</span></span><br><span class="line"><span class="attr">a1.sources.r1.command</span> = <span class="string">tail</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置Sink</span></span><br><span class="line"><span class="attr">a1.sinks.k1.type</span> = <span class="string">hdfs</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.useLocalTimeStamp</span> = <span class="string">true</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.path</span> = <span class="string">hdfs://namenode:9000/flume/events/%Y-%m</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.filePrefix</span> = <span class="string">%Y-%m-%d-%H</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.fileSuffix</span> = <span class="string">.log</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.minBlockReplicas</span> = <span class="string">1</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.fileType</span> = <span class="string">DataStream</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.writeFormat</span> = <span class="string">Text</span></span><br><span class="line"><span class="comment">#a1.sinks.k1.hdfs.rollInterval = 86400</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.rollSize</span> =<span class="string">0</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.rollCount</span> =<span class="string">0</span></span><br><span class="line"><span class="comment">#a1.sinks.k1.hdfs.idleTimeout = 0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置Channel</span></span><br><span class="line"><span class="attr">a1.channels.c1.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.capacity</span> = <span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c1.transactionCapacity</span> = <span class="string">100</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 将三者连接</span></span><br><span class="line"><span class="attr">a1.sources.r1.channel</span> = <span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sinks.k1.channel</span> = <span class="string">c1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><p>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f kafka.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f demo2.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>16228</p>
+<h2 id="解决Flume采集数据时在HDFS上产生大量小文件的问题"><a href="#解决Flume采集数据时在HDFS上产生大量小文件的问题" class="headerlink" title="解决Flume采集数据时在HDFS上产生大量小文件的问题"></a>解决Flume采集数据时在HDFS上产生大量小文件的问题</h2><p>以上conf为例</p>
+<p>a1为agent的名称<br>demo.conf为flume配置文件的名称<br>-c指向log4j.properties文件和flume_env.sh文件所在目录。<br>–Dflume.root.logger&#x3D;INFO,console 在终端输出运行日志</p>
+<p>查阅flume配置参数，如下：</p>
+<p>rollSize<br>默认值：1024，当临时文件达到该大小（单位：bytes）时，滚动成目标文件。如果设置成0，则表示不根据临时文件大小来滚动文件。</p>
+<p>rollCount<br>默认值：10，当events数据达到该数量时候，将临时文件滚动成目标文件，如果设置成0，则表示不根据events数据来滚动文件。</p>
+<p>round<br>默认值：false，是否启用时间上的”舍弃”，类似于”四舍五入”，如果启用，则会影响除了%t的其他所有时间表达式；</p>
+<p>roundValue<br>默认值：1，时间上进行“舍弃”的值；</p>
+<p>roundUnit</p>
+<p>默认值：seconds，时间上进行”舍弃”的单位，包含：second,minute,hour</p>
+<p>当设置了round、roundValue、roundUnit参数收，需要在sink指定的HDFS路径上指定按照时间生成的目录的格式，例如有需求，每采集1小时就在HDFS目录上生成一个目录，里面存放这1小时内采集到的数据。</p>
+<h2 id="flume-file-to-avro"><a href="#flume-file-to-avro" class="headerlink" title="flume file to avro"></a>flume file to avro</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########a1 agent#####</span></span><br><span class="line"><span class="attr">a1.sources</span> = <span class="string">r1</span></span><br><span class="line"><span class="attr">a1.sinks</span> = <span class="string">k1</span></span><br><span class="line"><span class="attr">a1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置Source</span></span><br><span class="line"><span class="attr">a1.sources.r1.type</span> = <span class="string">exec</span></span><br><span class="line"><span class="attr">a1.sources.r1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sources.r1.deserializer.outputCharset</span> = <span class="string">UTF-8</span></span><br><span class="line"><span class="attr">a1.sources.r1.command</span> = <span class="string">cat  /data/upload/theme_item_pool.csv</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置需要监控的日志输出目录</span></span><br><span class="line"><span class="attr">a1.channels.c1.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.capacity</span> = <span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c1.transactionCapacity</span> = <span class="string">100</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sinks.k1.type</span> = <span class="string">avro</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hostname</span> = <span class="string">namenode</span></span><br><span class="line"><span class="attr">a1.sinks.k1.port</span> = <span class="string">4444</span></span><br><span class="line"><span class="attr">a1.sinks.k1.requiredAcks</span> = <span class="string">1</span></span><br><span class="line"><span class="attr">a1.sinks.k1.channel</span> = <span class="string">c1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="flume-avro-to-kafka"><a href="#flume-avro-to-kafka" class="headerlink" title="flume avro to kafka"></a>flume avro to kafka</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#########a1 agent#####</span></span><br><span class="line"><span class="attr">a1.sources</span> = <span class="string">r1</span></span><br><span class="line"><span class="attr">a1.sinks</span> = <span class="string">k1</span></span><br><span class="line"><span class="attr">a1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置Source</span></span><br><span class="line"><span class="attr">a1.sources.r1.type</span> = <span class="string">exec</span></span><br><span class="line"><span class="attr">a1.sources.r1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sources.r1.deserializer.outputCharset</span> = <span class="string">UTF-8</span></span><br><span class="line"><span class="attr">a1.sources.r1.command</span> = <span class="string">cat  /data/upload/theme_item_pool.csv</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># 配置需要监控的日志输出目录</span></span><br><span class="line"><span class="attr">a1.channels.c1.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.capacity</span> = <span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c1.transactionCapacity</span> = <span class="string">100</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sinks.k1.type</span> = <span class="string">avro</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hostname</span> = <span class="string">namenode</span></span><br><span class="line"><span class="attr">a1.sinks.k1.port</span> = <span class="string">4444</span></span><br><span class="line"><span class="attr">a1.sinks.k1.requiredAcks</span> = <span class="string">1</span></span><br><span class="line"><span class="attr">a1.sinks.k1.channel</span> = <span class="string">c1</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="avro-source"><a href="#avro-source" class="headerlink" title="avro source"></a>avro source</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#test avro sources</span></span><br><span class="line"><span class="attr">a1.sources</span>=<span class="string">r1</span></span><br><span class="line"><span class="attr">a1.channels</span>=<span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sinks</span>=<span class="string">k1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sources.r1.type</span> = <span class="string">avro</span></span><br><span class="line"><span class="attr">a1.sources.r1.channels</span>=<span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sources.r1.bind</span>=<span class="string">localhost</span></span><br><span class="line"><span class="attr">a1.sources.r1.port</span>=<span class="string">55555</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#Use a channel which buffers events in memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.capacity</span>=<span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c1.transactionCapacity</span> = <span class="string">100</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#sink配置</span></span><br><span class="line"><span class="attr">a1.sinks.k1.type</span> = <span class="string">hdfs</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.useLocalTimeStamp</span> = <span class="string">true</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.path</span> = <span class="string">hdfs://namenode:8020/flume/events/%Y-%m</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.filePrefix</span> = <span class="string">%Y-%m-%d-%H</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.fileSuffix</span> = <span class="string">.log</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.minBlockReplicas</span> = <span class="string">1</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.fileType</span> = <span class="string">DataStream</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.writeFormat</span> = <span class="string">Text</span></span><br><span class="line"><span class="comment">#a1.sinks.k1.hdfs.rollInterval = 86400</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.rollSize</span> =<span class="string">0</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.rollCount</span> =<span class="string">0</span></span><br><span class="line"><span class="comment">#a1.sinks.k1.hdfs.idleTimeout = 0</span></span><br><span class="line"><span class="attr">a1.sinks.k1.channel</span> = <span class="string">c1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="avro-to-file"><a href="#avro-to-file" class="headerlink" title="avro to file"></a>avro to file</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#test avro sources</span></span><br><span class="line"><span class="attr">a1.sources</span>=<span class="string">r1</span></span><br><span class="line"><span class="attr">a1.channels</span>=<span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sinks</span>=<span class="string">k1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sources.r1.type</span> = <span class="string">exec</span></span><br><span class="line"><span class="attr">a1.sources.r1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sources.r1.deserializer.outputCharset</span> = <span class="string">UTF-8</span></span><br><span class="line"><span class="attr">a1.sources.r1.command</span> =<span class="string">curl http://192.168.10.104:8088/ws/v1/cluster/apps</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#Use a channel which buffers events in memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.capacity</span>=<span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c1.transactionCapacity</span> = <span class="string">100</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#sink配置</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sinks.k1.type</span>=<span class="string">file_roll</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sinks.k1.channel</span>=<span class="string">c1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sinks.k1.sink.directory</span>=<span class="string">/data/hadoop/flume-ng/config/log</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 多个sink</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#test avro sources</span></span><br><span class="line"><span class="attr">a1.sources</span>=<span class="string">r1</span></span><br><span class="line"><span class="attr">a1.channels</span>=<span class="string">c1 c2</span></span><br><span class="line"><span class="attr">a1.sinks</span>=<span class="string">k1 k2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sources.r1.type</span> = <span class="string">netcat</span></span><br><span class="line"><span class="attr">a1.sources.r1.bind</span>=<span class="string">192.168.10.101</span></span><br><span class="line"><span class="attr">a1.sources.r1.port</span>=<span class="string">55555</span></span><br><span class="line"><span class="attr">a1.sources.r1.channels</span> = <span class="string">c1 c2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#Use a channel which buffers events in memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.capacity</span>=<span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c1.transactionCapacity</span> = <span class="string">100</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">###channel2</span></span><br><span class="line"><span class="attr">a1.channels.c2.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="attr">a1.channels.c2.capacity</span>=<span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c2.transactionCapacity</span> = <span class="string">100</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#sink配置</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#a1.sinks.k1.type=logger</span></span><br><span class="line"><span class="attr">a1.sinks.k1.type</span>=<span class="string">file_roll</span></span><br><span class="line"><span class="attr">a1.sinks.k1.channel</span>=<span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sinks.k1.sink.directory</span>=<span class="string">/data/hadoop/flume-ng/config/log</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">###sink2</span></span><br><span class="line"><span class="attr">a1.sinks.k2.type</span> = <span class="string">org.apache.flume.sink.kafka.KafkaSink</span></span><br><span class="line"><span class="attr">a1.sinks.k2.brokerList</span> = <span class="string">namenode:9092</span></span><br><span class="line"><span class="attr">a1.sinks.k2.topic</span> = <span class="string">carstream</span></span><br><span class="line"><span class="attr">a1.sinks.k2.batchSize</span> = <span class="string">100</span></span><br><span class="line"><span class="attr">a1.sinks.k2.requiredAcks</span> = <span class="string">1</span></span><br><span class="line"><span class="attr">a1.sinks.k2.channel</span>=<span class="string">c2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="目录变化"><a href="#目录变化" class="headerlink" title="目录变化"></a>目录变化</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">a1.sources</span>=<span class="string">r1</span></span><br><span class="line"><span class="attr">a1.channels</span>=<span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sinks</span>=<span class="string">k1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sources.r1.type</span> = <span class="string">spooldir</span></span><br><span class="line"><span class="attr">a1.sources.r1.spoolDir</span> = <span class="string">/data/hadoop/flume-ng/config/log</span></span><br><span class="line"><span class="attr">a1.sources.r1.fileHeader</span> = <span class="string">true</span></span><br><span class="line"><span class="attr">a1.sources.r1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#Use a channel which buffers events in memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="attr">a1.channels.c1.capacity</span>=<span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c1.transactionCapacity</span> = <span class="string">100</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sinks.k1.type</span>=<span class="string">logger</span></span><br><span class="line"><span class="attr">a1.sinks.k1.channel</span>=<span class="string">c1</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="tailDir"><a href="#tailDir" class="headerlink" title="tailDir"></a>tailDir</h2><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># in this case called &#x27;a1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">a1.sources</span> = <span class="string">s1</span></span><br><span class="line"><span class="attr">a1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sinks</span> = <span class="string">k1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># For each one of the sources, the type is defined</span></span><br><span class="line"><span class="attr">a1.sources.s1.type</span> = <span class="string">org.apache.flume.source.taildir.TaildirSource</span></span><br><span class="line"><span class="attr">a1.sources.s1.positionFile</span> = <span class="string">/opt/cdhmoduels/apache-flume-1.5.0-cdh5.3.6-bin/taidir/dirsource/taildir_position.json</span></span><br><span class="line"><span class="attr">a1.sources.s1.filegroups</span> = <span class="string">f1</span></span><br><span class="line"><span class="attr">a1.sources.s1.filegroups.f1</span> = <span class="string">/data/hadoop/flume-ng/log/</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># The channel can be defined as follows.</span></span><br><span class="line"><span class="attr">a1.sources.s1.channels</span> = <span class="string">c1</span></span><br><span class="line"><span class="attr">a1.sinks.k1.channel</span> = <span class="string">c1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># Each sink&#x27;s type must be defined</span></span><br><span class="line"><span class="attr">a1.sinks.k1.type</span> = <span class="string">hdfs</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.path</span> = <span class="string">/flume/event/taildir</span></span><br><span class="line"><span class="attr">a1.sinks.k1.hdfs.filePrefix</span> = <span class="string">hive-log</span></span><br><span class="line"><span class="comment">#Specify the channel the sink should use</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># Each channel&#x27;s type is defined.</span></span><br><span class="line"><span class="attr">a1.channels.c1.type</span> = <span class="string">memory</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"># Other config values specific to each type of channel(sink or source)</span></span><br><span class="line"><span class="comment"># can be defined as well</span></span><br><span class="line"><span class="comment"># In this case, it specifies the capacity of the memory channel</span></span><br><span class="line"><span class="attr">a1.channels.c1.capacity</span> = <span class="string">1000</span></span><br><span class="line"><span class="attr">a1.channels.c1.transactionCapacity</span> = <span class="string">1000</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="操作记录"><a href="#操作记录" class="headerlink" title="操作记录"></a>操作记录</h2><p>flume-ng avro-client -c conf -H localhost -p 55555  -F &#x2F;data&#x2F;upload&#x2F;trip_coord.csv</p>
+<p>&#x2F;data&#x2F;upload&#x2F;trip_coord.csv</p>
+<p>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f avro.conf -n a1 -Dflume.root.logger&#x3D;INFO,console</p>
+<p>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f avro2.conf -n a1 -Dflume.root.logger&#x3D;INFO,console</p>
+<p>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f curl.conf -n a1 -Dflume.root.logger&#x3D;INFO,console</p>
+<p>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f self2.conf -n a1 -Dflume.root.logger&#x3D;INFO,console</p>
+<p>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f kafka.conf -n a1 -Dflume.root.logger&#x3D;INFO,console</p>
+<p>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f avro3.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp_hdfs.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f avro.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f avro2.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp4.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f syslog.conf -n a1 -Dflume.root.logger&#x3D;INFO,console</p>
+<h2 id="flume-ng-agent-c-etc-flume-ng-conf-f-http-logger-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-api-logger-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-api-logger-twosink-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-kafka-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-demo4-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-tcp-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-tcp-two-sink-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-spool-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-taildir-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-udp-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-udp-two-sink-conf-n-a1-Dflume-root-logger-INFO-console"><a href="#flume-ng-agent-c-etc-flume-ng-conf-f-http-logger-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-api-logger-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-api-logger-twosink-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-kafka-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-demo4-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-tcp-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-tcp-two-sink-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-spool-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-taildir-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-udp-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-udp-two-sink-conf-n-a1-Dflume-root-logger-INFO-console" class="headerlink" title="flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f http_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f api_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f api_logger_twosink.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f kafka.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f demo4.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp_two_sink.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f spool.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f taildir.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f udp.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f udp_two_sink.conf -n a1 -Dflume.root.logger&#x3D;INFO,console"></a>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f http_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f api_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f api_logger_twosink.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f kafka.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f demo4.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp_two_sink.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f spool.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f taildir.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f udp.conf -n a1 -Dflume.root.logger&#x3D;INFO,console<br>flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f udp_two_sink.conf -n a1 -Dflume.root.logger&#x3D;INFO,console</h2><p>2020-7-22</p>
+<p>docker run –restart&#x3D;unless-stopped  -d -p 9200:9200 -p 9300:9300 -e “discovery.type&#x3D;single-node”  –name&#x3D;”hankoues” elasticsearch:7.1.0</p>
+<p>docker pull docker.io&#x2F;cerebro<br>docker pull docker.io&#x2F;cerebro</p>
+<hr>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/daydoc/2019/07/15/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/stream/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
+            </div>
+            <h5>
+                <a href="/daydoc/2019/07/15/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/spark/stream/" class="trm-anima-link">
+                    updateStateByKey&amp;mapStateWithKey
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>19/07/15</li>
+                <li>00:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/flume%E8%AE%B0%E5%BD%95/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <div class="trm-cover-img" data-random-img></div>
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    未分类
+                </a>
+            </div>
+            <h5>
+                <a href="/daydoc/2019/06/13/%E7%8E%8B%E9%98%81/%E6%8A%80%E6%9C%AF/hexo/old/flume%E8%AE%B0%E5%BD%95/" class="trm-anima-link">
+                    flume记录
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>19/06/13</li>
+                <li>00:00</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation">
+
+    
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.1.6
+            </span>
+        </div>
+      
+
+     
+
+     
+</footer>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+    <div id="post-toc" class="trm-post-toc">
+      <div class="trm-post-toc-header">
+        目录导航
+				<span id="post-toc-top">
+					置顶
+				</span>
+      </div>
+      <div class="trm-post-toc-content">
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-2" title="soruce"><a rel="nofollow" class="trm-toc-link" href="#soruce"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">soruce</span></a></li><li class="trm-toc-item trm-toc-level-2" title="命令"><a rel="nofollow" class="trm-toc-link" href="#命令"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">命令</span></a></li><li class="trm-toc-item trm-toc-level-2" title="解决Flume采集数据时在HDFS上产生大量小文件的问题"><a rel="nofollow" class="trm-toc-link" href="#解决Flume采集数据时在HDFS上产生大量小文件的问题"><span class="trm-toc-number">3.</span> <span class="trm-toc-text">解决Flume采集数据时在HDFS上产生大量小文件的问题</span></a></li><li class="trm-toc-item trm-toc-level-2" title="flume file to avro"><a rel="nofollow" class="trm-toc-link" href="#flume-file-to-avro"><span class="trm-toc-number">4.</span> <span class="trm-toc-text">flume file to avro</span></a></li><li class="trm-toc-item trm-toc-level-2" title="flume avro to kafka"><a rel="nofollow" class="trm-toc-link" href="#flume-avro-to-kafka"><span class="trm-toc-number">5.</span> <span class="trm-toc-text">flume avro to kafka</span></a></li><li class="trm-toc-item trm-toc-level-2" title="avro source"><a rel="nofollow" class="trm-toc-link" href="#avro-source"><span class="trm-toc-number">6.</span> <span class="trm-toc-text">avro source</span></a></li><li class="trm-toc-item trm-toc-level-2" title="avro to file"><a rel="nofollow" class="trm-toc-link" href="#avro-to-file"><span class="trm-toc-number">7.</span> <span class="trm-toc-text">avro to file</span></a></li><li class="trm-toc-item trm-toc-level-2" title="目录变化"><a rel="nofollow" class="trm-toc-link" href="#目录变化"><span class="trm-toc-number">8.</span> <span class="trm-toc-text">目录变化</span></a></li><li class="trm-toc-item trm-toc-level-2" title="tailDir"><a rel="nofollow" class="trm-toc-link" href="#tailDir"><span class="trm-toc-number">9.</span> <span class="trm-toc-text">tailDir</span></a></li><li class="trm-toc-item trm-toc-level-2" title="操作记录"><a rel="nofollow" class="trm-toc-link" href="#操作记录"><span class="trm-toc-number">10.</span> <span class="trm-toc-text">操作记录</span></a></li><li class="trm-toc-item trm-toc-level-2" title="flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f http_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f api_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f api_logger_twosink.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f kafka.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f demo4.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp_two_sink.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f spool.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f taildir.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f udp.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f udp_two_sink.conf -n a1 -Dflume.root.logger&#x3D;INFO,console"><a rel="nofollow" class="trm-toc-link" href="#flume-ng-agent-c-etc-flume-ng-conf-f-http-logger-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-api-logger-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-api-logger-twosink-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-kafka-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-demo4-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-tcp-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-tcp-two-sink-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-spool-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-taildir-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-udp-conf-n-a1-Dflume-root-logger-INFO-consoleflume-ng-agent-c-etc-flume-ng-conf-f-udp-two-sink-conf-n-a1-Dflume-root-logger-INFO-console"><span class="trm-toc-number">11.</span> <span class="trm-toc-text">flume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f http_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f api_logger.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f api_logger_twosink.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f kafka.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f demo4.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f tcp_two_sink.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f spool.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f taildir.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f udp.conf -n a1 -Dflume.root.logger&#x3D;INFO,consoleflume-ng agent -c &#x2F;etc&#x2F;flume-ng&#x2F;conf&#x2F; -f udp_two_sink.conf -n a1 -Dflume.root.logger&#x3D;INFO,console</span></a></li></ol>
+      </div>
+    </div>
+
+            
+<div class="trm-fixed-container">
+    
+        <div class="trm-fixed-btn post-toc-btn" data-title="目录">
+            <i class="iconfont fas fa-th-list"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/daydoc/js/plugins/typing.js?v=2.1.6"></script>
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/daydoc/js/main.js?v=2.1.6"></script>
+
+</body>
+
+</html>
