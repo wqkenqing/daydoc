@@ -1,0 +1,1 @@
+ netsh interface portproxy add v4tov4 listenport=[监听端口号] listenaddress=[本地IP地址] connectport=[目标端口号] connectaddress=[目标IP地址]

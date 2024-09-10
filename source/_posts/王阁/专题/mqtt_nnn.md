@@ -1,0 +1,53 @@
+### mqtt
+
+user:  yanggu
+
+password： Yg123456
+
+host:  45.85.166.29
+
+```
+Listener ssl:default on 0.0.0.0:8883 started.
+Listener tcp:default on 0.0.0.0:1883 started.
+Listener ws:default on 0.0.0.0:8083 started.
+Listener wss:default on 0.0.0.0:8084 started.
+Listener http:dashboard on :18083 started
+```
+
+### kafka
+
+bootstrap.server :  45.85.166.29:9092  注意listener.address也是45.85.166.29:9092
+
+zookeeper : 45.85.166.29:2181
+
+### elasticsearch: 
+
+address 45.85.166.29:9200 
+
+user: elastic
+
+password: 3FuMQXOdPTdFDHrKrVeJ
+
+### clickhouse
+
+host: 45.85.166.29 
+
+port : 9000
+
+user: yanggu
+
+passwd:  yg123456
+
+---
+
+CREATE USER 'yanggu' IDENTIFIED WITH plaintext_password BY 'yg123456';
+
+
+
+
+
+```
+echo "/dev/sdb /data ext4 defaults 0 0" >> /etc/fstab
+```
+
+Yhgs!@#$%^

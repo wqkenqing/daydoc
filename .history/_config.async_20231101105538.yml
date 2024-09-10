@@ -1,0 +1,34 @@
+toc: true
+banner:
+  index:
+    type: img
+    bgurl: https://pic1.zhimg.com/v2-b3c2c6745b9421a13a3c4706b19223b3_r.jpg?source=1940ef5c
+    bannerTitle: 你是无意穿堂风，<br>偏偏孤倨引山洪。
+    bannerText: welcome to my blog!
+sidebar:
+  typedTextPrefix: I`m
+  typedText: ["Data Developer"]
+user:
+  name: 两人从
+  first_name: 两
+  last_name: 人从
+  email: wqkenqingto@163.com
+  domain: www.wqkenqing.ren
+  avatar: https://pic.616pic.com/ys_bnew_img/00/04/31/yUPTAXjSKA.jpg
+  describe: 记录。
+cover:
+  type: random
+  default: 
+  - https://cdn.pixabay.com/photo/2023/09/18/16/47/leaves-8260967_1280.jpg
+  - https://cdn.pixabay.com/photo/2022/10/28/12/05/halloween-7553022_1280.jpg
+  - https://pixabay.com/link/?ua=cd3%3Dimage%26cd7%3Den%253Anature%253AFRA%26ec%3Dapi_ad%26ea%3Dnavigate%26el%3Dgetty%26tid%3DUA-20223345-1%26dr%3Dhttps%253A%252F%252Fpixabay.com%252Fzh%252F&sp=%2524%3Dadvertisement_clicked%26media_type%3Dimage%26user_action%3Dnavigate%26ad_partner%3Dgetty%26ad_content%3Dapi_ad&next=https%3A%2F%2Fwww.istockphoto.com%2Fphoto%2Fhand-holdig-plant-growing-on-green-background-with-sunshine-gm1394781347-450126535%3Futm_source%3Dpixabay%26utm_medium%3Daffiliate%26utm_campaign%3DSRP_image_sponsored%26utm_content%3Dhttps%253A%252F%252Fpixabay.com%252Fzh%252Fimages%252Fsearch%252F%253Forder%253Dec%26utm_term%3Dnature&hash=83a731925a44749a062f73923a53e8e21a4c6a24&=
+  - https://pixabay.com/zh/photos/eagle-bird-raptor-animal-show-8319555/
+  - https://cdn.pixabay.com/photo/2023/10/13/16/39/coffee-8313090_1280.jpg
+  - https://cdn.pixabay.com/photo/2023/10/21/11/46/sunset-8331285_1280.jpg
+  - https://media.istockphoto.com/id/1225941556/fr/photo/caf%C3%A9-faire-du-caf%C3%A9-de-la-machine-%C3%A0-la-maison.jpg?s=2048x2048&w=is&k=20&c=kdUMGRbdkXVZKYr71E_iEC4tYTDFUWpsbeOcOIOHkUY=
+toc:
+  enable: true
+  list_number: true
+  post_title: false
+  max_depth: 3
+  min_depth: 1
